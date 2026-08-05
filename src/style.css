@@ -80,12 +80,15 @@ code {
   text-decoration: none; color: inherit;
 }
 .brand-mark { display: block; width: 1.55rem; height: 1.55rem; flex: none; }
-.nav-links { display: flex; gap: .9rem; font-size: .93rem; flex-wrap: wrap; }
+/* align-items matters: without it the children stretch, which is invisible on
+   plain text links and obvious the moment one has a background. */
+.nav-links { display: flex; align-items: center; gap: .9rem; font-size: .93rem; flex-wrap: wrap; }
 @media (min-width: 34rem) { .nav-links { gap: 1.4rem; } }
 .nav-links a { text-decoration: none; color: var(--muted); }
 /* The only way into the product from here. Lamp rather than night, so it reads
    as a way in without competing with the hero's dark button. */
 .nav-cta {
+  display: inline-flex; align-items: center; line-height: 1.35;
   color: var(--night) !important; font-weight: 650;
   border: 1px solid rgba(232,150,58,.55); border-radius: 999px;
   padding: .34rem .9rem;
