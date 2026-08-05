@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> head}}
+<title>Terms &amp; conditions · {{site.name}}</title>
+<meta name="description" content="The terms you agree to when you use {{site.name}}.">
+<meta property="og:title" content="Terms &amp; conditions · {{site.name}}">
+<meta property="og:description" content="The terms you agree to when you use {{site.name}}.">
+</head>
+<body>
+
+{{> nav}}
+
+<main class="wrap prose">
+
+<h1>Terms &amp; conditions</h1>
+<p class="updated">Last updated {{policies.updated}} · Effective {{policies.effective}}</p>
+
+<div class="callout">
+  <p>
+    <strong>{{company.operatedBy}}</strong> In these terms, "we", "us" and
+    "{{company.tradeName}}" mean {{company.legalName}}, and "you" means the
+    person using the service.
+  </p>
+  <p class="callout-address">
+    Registered address: {{{company.address.html}}}
+  </p>
+  <p>
+    Contact: <a href="mailto:{{company.email}}">{{company.email}}</a> ·
+    {{company.phone}}
+  </p>
+</div>
+
+<p>
+  By creating an account, deploying an application or paying us any money, you
+  agree to these terms. If you do not agree to them, do not use the service.
+</p>
+
+<h2>1. What we provide</h2>
+<p>
+  {{company.tradeName}} is a hosting service. We build the source code you point
+  us at, run the resulting application on a server we operate, give it an address
+  on the internet, and provide a database alongside it. The plans, what each one
+  includes and what each one costs are set out on the
+  <a href="/pricing.html">pricing page</a>, which forms part of these terms.
+</p>
+<p>
+  Applications on the Nap plan are stopped after
+  {{policies.idleMinutes}} minutes without a request and started again when the
+  next request arrives. This is how the service is designed to work and is not a
+  fault.
+</p>
+
+<h2>2. Who can use it</h2>
+<p>
+  You must be at least 18 years old, or 13 or older with a parent or guardian
+  agreeing to these terms on your behalf. You must be able to enter into a
+  contract under the Indian Contract Act, 1872. You must give us accurate
+  details when you sign up and keep them up to date.
+</p>
+
+<h2>3. Your account</h2>
+<p>
+  You are responsible for what happens under your account, including anything
+  done by someone you gave access to. Keep your password and any access tokens
+  private. Tell us at
+  <a href="mailto:{{company.email}}">{{company.email}}</a> as soon as you think
+  someone else has got into your account.
+</p>
+
+<h2>4. Your code and your content</h2>
+<p>
+  Your code, your data and everything your application serves remain yours. We
+  claim no ownership of them.
+</p>
+<p>
+  You give us the limited permission we need to actually run the service: to
+  copy your repository, build it, store the resulting image and your data on our
+  servers, back it up, and serve it to the people who visit your application.
+  That permission ends when you delete the content or close your account.
+</p>
+<p>
+  You confirm that you have the right to use and publish everything you deploy,
+  and that doing so does not infringe anyone else's copyright, trademark or
+  other rights.
+</p>
+
+<h2>5. Access tokens for private repositories</h2>
+<p>
+  If you deploy a private repository you give us a GitHub access token. We use it
+  only to clone that repository when you deploy. We do not use it to read
+  anything else, we do not write to your repositories with it, and we store it
+  encrypted. You can revoke it on GitHub at any time, which immediately stops us
+  being able to read your code.
+</p>
+
+<h2>6. Acceptable use</h2>
+<p>
+  There are things you may not host with us: mining cryptocurrency, phishing,
+  malware, spam, proxies, attacking other systems, and content that is illegal in
+  India among them. The <a href="/acceptable-use.html">acceptable use policy</a>
+  lists them in full and forms part of these terms. Breaking it is the one thing
+  that gets an account suspended without warning and without a refund.
+</p>
+
+<h2>7. Payment</h2>
+<p>
+  Prices are shown on the <a href="/pricing.html">pricing page</a> in Indian
+  Rupees and are charged in Indian Rupees. {{company.gst.statement}}
+</p>
+<p>
+  You pay by adding money to a balance using {{payments.methods}} through
+  {{payments.gateway}}, our payment gateway. We do not see or store your card or
+  UPI details. Your balance is drawn down daily for as long as your application
+  is on a plan. If your balance reaches zero, your application is stopped.
+</p>
+<p>
+  We may change our prices. If we do, we will give you at least 30 days' notice
+  by email, and the new price applies from your next payment. A price change
+  never applies to time you have already paid for.
+</p>
+
+<h2>8. Refunds and cancellation</h2>
+<p>
+  You can cancel at any time, with no notice period and no fee. See the
+  <a href="/cancellation.html">cancellation policy</a>. What we refund, how, and
+  how long it takes is set out in the
+  <a href="/refunds.html">refund policy</a>. Both form part of these terms.
+</p>
+
+<h2>9. What we do not promise</h2>
+<p>
+  We do not promise that the service will be available without interruption or
+  free of faults. We run on a small number of servers and we do maintenance on
+  them. We will tell you in advance about planned work whenever we can.
+</p>
+<p>
+  We back up databases nightly and keep {{policies.backupRetentionDays}} days of
+  them, but backups can fail. Keep your own copy of anything you cannot afford to
+  lose. We are not a substitute for your own backups.
+</p>
+<p>
+  The service is provided "as is". To the extent the law allows, we exclude all
+  warranties that are not written down in these terms.
+</p>
+
+<h2>10. Limits on our liability</h2>
+<p>
+  Nothing in these terms limits our liability for fraud, for death or personal
+  injury caused by our negligence, or for anything else that cannot be limited
+  under Indian law.
+</p>
+<p>
+  Beyond that, our total liability to you for anything arising out of the service
+  is limited to the amount you paid us in the three months before the event that
+  caused the loss. We are not liable for lost profits, lost data, lost business
+  or lost opportunity.
+</p>
+<p>
+  This is a service that costs ₹{{cheapest.monthly}} a month. Please size your
+  expectations accordingly, and do not run anything on it that people's money or
+  safety depends on.
+</p>
+
+<h2>11. Suspending or ending your account</h2>
+<p>
+  You can close your account at any time. See the
+  <a href="/cancellation.html">cancellation policy</a> for what happens to your
+  data when you do.
+</p>
+<p>We may suspend or close your account if:</p>
+<ul>
+  <li>you break the <a href="/acceptable-use.html">acceptable use policy</a>;</li>
+  <li>your balance stays at zero for more than {{policies.dataRetentionDays}} days;</li>
+  <li>you charge back a payment instead of asking us for a refund;</li>
+  <li>we are required to by law, or by a court or government authority.</li>
+</ul>
+<p>
+  Except where you have broken the acceptable use policy or the law, we will give
+  you notice and a chance to put it right first. If we stop offering the service
+  altogether, we will give you {{policies.cancellation.platformNoticeDays}} days'
+  notice and refund the unused part of anything you have paid.
+</p>
+
+<h2>12. Changes to these terms</h2>
+<p>
+  We may change these terms. If a change materially affects you, we will email
+  you at least 30 days before it takes effect. Continuing to use the service
+  after that means you accept the new terms. If you do not accept them, cancel
+  and we will refund the unused part of your balance.
+</p>
+
+<h2>13. Law and disputes</h2>
+<p>
+  These terms are governed by the laws of India. The courts at
+  {{company.address.city}}, {{company.address.state}} have exclusive
+  jurisdiction over any dispute arising from them.
+</p>
+<p>
+  Before going to court, please write to
+  <a href="mailto:{{company.email}}">{{company.email}}</a>. Almost everything is
+  easier to fix by email.
+</p>
+
+<h2>14. Grievances</h2>
+<p>
+  In line with the Information Technology Act, 2000 and the rules made under it,
+  our Grievance Officer is:
+</p>
+<p>
+  {{company.grievanceOfficer.name}}, {{company.grievanceOfficer.title}}<br>
+  <a href="mailto:{{company.grievanceOfficer.email}}">{{company.grievanceOfficer.email}}</a><br>
+  {{company.address.oneLine}}
+</p>
+<p>
+  We acknowledge complaints within {{company.grievanceOfficer.acknowledgeHours}}
+  hours and resolve them within {{company.grievanceOfficer.resolveDays}} days.
+</p>
+
+<h2>15. Contact</h2>
+<p>
+  {{company.legalName}}, trading as {{company.tradeName}}<br>
+  {{{company.address.html}}}<br>
+  <a href="mailto:{{company.email}}">{{company.email}}</a> · {{company.phone}}
+</p>
+
+</main>
+
+{{> footer}}
+
+</body>
+</html>

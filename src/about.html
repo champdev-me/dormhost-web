@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> head}}
+<title>About us · {{site.name}}</title>
+<meta name="description" content="Who runs {{site.name}}, what it is, where it runs, and why it costs ₹{{cheapest.monthly}} a month.">
+<meta property="og:title" content="About us · {{site.name}}">
+<meta property="og:description" content="Who runs {{site.name}}, and why it costs what it costs.">
+</head>
+<body>
+
+{{> nav}}
+
+<main class="wrap">
+
+<div class="page-head">
+  <p class="eyebrow">About us</p>
+  <h1>One person, two servers, and a price that had to work.</h1>
+  <p class="lead">
+    {{company.tradeName}} is hosting for college students in India. It exists
+    because putting a final-year project online cost more than the project was
+    worth.
+  </p>
+</div>
+
+<section class="prose">
+
+<h2>What we do</h2>
+<p>
+  You point us at a GitHub repository. We work out how to build it, build it, and
+  run it on a server with an address, a certificate and a database attached. That
+  is the whole product. There is no dashboard full of settings you will never
+  touch, and there is nothing to configure before it works.
+</p>
+
+<h2>Why it costs ₹{{cheapest.monthly}}</h2>
+<p>
+  A student project has almost no traffic. Your guide looks at it, your panel
+  looks at it, and you send the link to a few people. The rest of the month it
+  sits there doing nothing while a server bills you for being switched on.
+</p>
+<p>
+  So we switch it off. After {{policies.idleMinutes}} minutes without a visitor,
+  your application stops. Its files and its database stay exactly where they are.
+  The next request starts it again in about {{policies.wakeMs}} milliseconds,
+  which is faster than the page would have loaded anyway, and serves the page.
+  Because a sleeping app costs us disk and not memory, we can put many more of
+  them on one machine, and that is the entire reason ₹{{cheapest.monthly}} is
+  possible.
+</p>
+<p>
+  We did not invent sleeping. We did put a lot of work into waking up quickly,
+  because a sleeping app that takes half a minute to come back is not really
+  hosting.
+</p>
+
+<h2>Who runs it</h2>
+<p>
+  {{company.tradeName}} is run by {{company.legalName}}, a software engineer in
+  India, as a {{company.entity}}. It is not a funded startup and there is no
+  team. When you email support, the person who replies is the person who wrote
+  the thing you are emailing about.
+</p>
+<p>
+  We think that is worth telling you rather than hiding. It means support is
+  quick and the answers are real. It also means you should not run a business on
+  us, and we say so on the <a href="/pricing.html">pricing page</a> too.
+</p>
+
+<h2>Where it runs</h2>
+<p>
+  On two servers, one in Mumbai and one in London, both Oracle Cloud ARM
+  machines. Your database runs on the same machine as your application, so a
+  query never crosses the internet. Cloudflare sits in front for DNS and
+  protection against attacks.
+</p>
+<p>
+  Everything runs on ordinary Linux, ordinary containers and open source
+  buildpacks. Nothing about your application is locked to us. If you leave, your
+  code is still just a repository that any host can build.
+</p>
+
+<h2>What we will not do</h2>
+<p>
+  We will not run a free tier. A free tier is paid for by the students on the
+  paid one, and it is the first thing a crypto miner signs up for. If your site
+  is static, <a href="https://pages.github.com/" rel="noopener">GitHub Pages</a>
+  hosts it free and does it better than we would.
+</p>
+<p>
+  We will not sell your data, put trackers on this site, or email you anything
+  that is not about your account. And we will not let anyone use the platform for
+  mining, phishing or spam, because the price only works if the machines are
+  mostly idle and the IP addresses stay clean. The
+  <a href="/acceptable-use.html">acceptable use policy</a> says exactly where the
+  line is.
+</p>
+
+<h2>Business details</h2>
+<table class="table">
+  <tbody>
+    <tr><th>Trade name</th><td>{{company.tradeName}}</td></tr>
+    <tr><th>Legal name</th><td>{{company.legalName}}</td></tr>
+    <tr><th>Type of business</th><td>{{company.entity}}</td></tr>
+    <tr><th>Registered address</th><td>{{{company.address.html}}}</td></tr>
+    <tr><th>Email</th><td><a href="mailto:{{company.email}}">{{company.email}}</a></td></tr>
+    <tr><th>Phone</th><td>{{company.phone}} ({{company.phoneHours}})</td></tr>
+    <tr><th>GST</th><td>{{company.gst.statement}}</td></tr>
+    <tr><th>Nature of service</th><td>Web application hosting and managed databases, sold as a monthly or yearly subscription in Indian Rupees</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <p>
+    <strong>Want to talk before you pay?</strong> Write to
+    <a href="mailto:{{company.email}}">{{company.email}}</a>. Tell us what you are
+    building and we will tell you honestly whether this is the right place for
+    it.
+  </p>
+</div>
+
+</section>
+
+</main>
+
+{{> footer}}
+
+</body>
+</html>

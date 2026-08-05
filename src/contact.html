@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> head}}
+<title>Contact · {{site.name}}</title>
+<meta name="description" content="How to reach {{site.name}}: email, phone, registered address and grievance officer.">
+<meta property="og:title" content="Contact · {{site.name}}">
+<meta property="og:description" content="Email, phone, registered address and grievance officer.">
+</head>
+<body>
+
+{{> nav}}
+
+<main class="wrap">
+
+<div class="page-head">
+  <p class="eyebrow">Contact</p>
+  <h1>One address, and someone actually reads it.</h1>
+  <p class="lead">
+    Sales, support, refunds, abuse reports and complaints all go to the same
+    place. We answer within one working day.
+  </p>
+</div>
+
+<section class="contact-cards">
+  <div class="contact-card">
+    <h2>Email</h2>
+    <p class="contact-value"><a href="mailto:{{company.email}}">{{company.email}}</a></p>
+    <p>The fastest way to reach us, and the one we prefer. Write from the address
+       on your account so we can find you.</p>
+  </div>
+
+  <div class="contact-card">
+    <h2>Phone</h2>
+    <p class="contact-value"><a href="tel:{{company.phone}}">{{company.phone}}</a></p>
+    <p>{{company.phoneHours}}. If nobody picks up we are probably fixing
+       something. Send an email and we will call you back.</p>
+  </div>
+
+  <div class="contact-card">
+    <h2>Registered address</h2>
+    <p class="contact-value contact-address">{{{company.address.html}}}</p>
+    <p>{{company.legalName}}, trading as {{company.tradeName}}. This is a
+       registered business address, not a walk-in office.</p>
+  </div>
+</section>
+
+<section class="prose">
+
+<h2>What to send where</h2>
+<table class="table">
+  <thead>
+    <tr><th>If you want to</th><th>Do this</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ask whether we suit your project</td>
+      <td>Email us with what you are building. We will tell you honestly, including when the answer is no.</td>
+    </tr>
+    <tr>
+      <td>Get help with a deploy</td>
+      <td>Email us with your app name and the build log. Do not send us your tokens or passwords.</td>
+    </tr>
+    <tr>
+      <td>Ask for a refund</td>
+      <td>Email us with the amount and roughly when you paid. See the <a href="/refunds.html">refund policy</a>.</td>
+    </tr>
+    <tr>
+      <td>Cancel</td>
+      <td>Do it in your dashboard, or email us. See the <a href="/cancellation.html">cancellation policy</a>.</td>
+    </tr>
+    <tr>
+      <td>Report abuse or phishing</td>
+      <td>Email us the address and what you saw. Read the <a href="/acceptable-use.html">acceptable use policy</a> for what we act on.</td>
+    </tr>
+    <tr>
+      <td>Ask about your personal data</td>
+      <td>Email us. See the <a href="/privacy.html">privacy policy</a> for your rights.</td>
+    </tr>
+    <tr>
+      <td>Make a formal complaint</td>
+      <td>Write to the Grievance Officer below.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Grievance Officer</h2>
+<p>
+  Appointed under the Information Technology Act, 2000 and the rules made under
+  it.
+</p>
+<p>
+  {{company.grievanceOfficer.name}}, {{company.grievanceOfficer.title}}<br>
+  <a href="mailto:{{company.grievanceOfficer.email}}">{{company.grievanceOfficer.email}}</a><br>
+  {{{company.address.html}}}
+</p>
+<p>
+  Complaints are acknowledged within
+  {{company.grievanceOfficer.acknowledgeHours}} hours and resolved within
+  {{company.grievanceOfficer.resolveDays}} days.
+</p>
+
+<h2>Business details</h2>
+<table class="table">
+  <tbody>
+    <tr><th>Trade name</th><td>{{company.tradeName}}</td></tr>
+    <tr><th>Legal name</th><td>{{company.legalName}}</td></tr>
+    <tr><th>Type of business</th><td>{{company.entity}}</td></tr>
+    <tr><th>Registered address</th><td>{{{company.address.html}}}</td></tr>
+    <tr><th>GST</th><td>{{company.gst.statement}}</td></tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <p>
+    <strong>Please do not send us passwords, API keys or GitHub tokens by
+    email.</strong> We will never ask for them. If we need access to something to
+    help you, we will tell you how to grant it safely.
+  </p>
+</div>
+
+</section>
+
+</main>
+
+{{> footer}}
+
+</body>
+</html>

@@ -1,49 +1,35 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DormHost — put your project online for ₹99 a month</title>
-<meta name="description" content="Hosting for college students. Push a repo, get a URL and a database. Your app sleeps when nobody is using it, which is why it costs ₹99 a month instead of ₹500.">
-<meta property="og:title" content="DormHost — put your project online for ₹99 a month">
+{{> head}}
+<title>{{site.name}}: put your project online for ₹{{cheapest.monthly}} a month</title>
+<meta name="description" content="Hosting for college students. Push a repo, get a URL and a database. Your app sleeps when nobody is using it, which is why it costs ₹{{cheapest.monthly}} a month.">
+<meta property="og:title" content="{{site.name}}: put your project online for ₹{{cheapest.monthly}} a month">
 <meta property="og:description" content="Push a repo, get a URL and a database. No credit card. Pay with UPI.">
-<meta property="og:type" content="website">
-<link rel="stylesheet" href="style.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23161A38'/><rect x='9' y='9' width='14' height='14' rx='2' fill='%23E8963A'/></svg>">
 </head>
 <body>
 
-<div class="wrap">
-  <nav class="nav">
-    <a class="brand" href="/"><span class="brand-mark"></span>DormHost</a>
-    <div class="nav-links">
-      <a href="#how">How it works</a>
-      <a href="#features">Features</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
-    </div>
-  </nav>
-</div>
+{{> nav}}
 
 <header class="wrap hero">
   <div class="hero-grid">
     <div>
       <p class="eyebrow">Hosting for college students</p>
-      <h1>Put your project online for ₹99 a month.</h1>
+      <h1>Put your project online for ₹{{cheapest.monthly}} a month.</h1>
       <p class="lead">
         Push your repo. Get a URL and a database. Your app sleeps when nobody is
-        using it and wakes in about a fifth of a second — which is the only
+        using it and wakes in about a fifth of a second, which is the only
         reason we can charge this little.
       </p>
 
       <div class="price-line">
-        <span class="price">₹99</span>
+        <span class="price">₹{{cheapest.monthly}}</span>
         <span class="price-unit">/ month, all in</span>
       </div>
       <p class="price-note">No credit card. Pay with UPI, top up when you want.</p>
 
       <div class="cta-row">
-        <a class="btn btn-primary" href="#pricing">See what you get</a>
+        <a class="btn btn-primary" href="/pricing.html">See what you get</a>
         <a class="btn btn-ghost" href="#how">How it works</a>
       </div>
     </div>
@@ -61,7 +47,7 @@
             <span class="dot" id="dot"></span>
             <span id="state">asleep</span>
           </span>
-          <span><span class="ms" id="ms">—</span></span>
+          <span><span class="ms" id="ms">--</span></span>
           <button id="wake" type="button">send a request</button>
         </div>
       </div>
@@ -82,19 +68,64 @@
   <div class="steps">
     <div class="step">
       <h3>Point us at your repo</h3>
-      <p>Public or private — paste a GitHub token for a private one. Node or
+      <p>Public or private. Paste a GitHub token for a private one. Node or
          Python. We read your <code>package.json</code> or
          <code>requirements.txt</code> and work out how to build it.</p>
     </div>
     <div class="step">
       <h3>We build it and give you a URL</h3>
-      <p>Your app gets <code>yourname.dormhost.app</code> with HTTPS already
+      <p>Your app gets <code>yourname.{{site.appDomain}}</code> with HTTPS already
          working, and a MongoDB database on the same machine.</p>
     </div>
     <div class="step">
       <h3>Share the link</h3>
-      <p>It stays up. When nobody visits for a while it sleeps, and the next
-         visitor wakes it before the page finishes loading.</p>
+      <p>It stays up. When nobody visits for {{policies.idleMinutes}} minutes it
+         sleeps, and the next visitor wakes it before the page finishes loading.</p>
+    </div>
+  </div>
+</section>
+
+<!-- The one dark band on the page: the night the whole brand is built on, and
+     the place the argument against the big platforms gets made. -->
+<section class="band">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow eyebrow-dim">Why not just use Vercel</p>
+      <h2>The big platforms are built for companies. This one is built for your project.</h2>
+      <p>They are excellent at what they do. What they do is not what a
+         final-year project needs.</p>
+    </div>
+
+    <div class="diffs">
+      <div class="diff">
+        <h3>A real process, not a function</h3>
+        <p>Vercel and Netlify run your backend as short-lived functions that
+           start and finish around a single request. A Discord bot, a WebSocket,
+           a queue worker, a scraper that runs for two minutes. None of those
+           fit that shape. Here your app is an ordinary Linux process. It holds
+           connections and keeps things in memory for as long as it is awake.</p>
+      </div>
+      <div class="diff">
+        <h3>Sleeping is common. Waking this fast is not</h3>
+        <p>Plenty of cheap hosting stops your app when it is idle. Most of them
+           are slow to bring it back, because they rebuild it or find it a new
+           machine first. We keep your built image on the same disk your app runs
+           on, so waking is just starting a container that is already there.
+           <strong>{{policies.wakeMs}} milliseconds</strong> on the machine,
+           under a second through the public internet.</p>
+      </div>
+      <div class="diff">
+        <h3>The database is included, and it is next door</h3>
+        <p>Not a second vendor, a second bill and a second free trial that
+           expires. Your MongoDB runs on the same machine as your app, so a query
+           is a loopback call rather than a trip across the internet.</p>
+      </div>
+      <div class="diff">
+        <h3>₹{{cheapest.monthly}} on UPI, not dollars on a card</h3>
+        <p>No international card, no currency conversion, no per-gigabyte
+           bandwidth line you find out about at the end of the month. You top up
+           a balance and we draw it down a day at a time.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -125,13 +156,13 @@
     </div>
     <div class="feature">
       <h3><span class="feature-icon"></span>HTTPS, already on</h3>
-      <p>Every app gets <code>yourname.dormhost.app</code> with a real
+      <p>Every app gets <code>yourname.{{site.appDomain}}</code> with a real
          certificate from the moment it deploys. Nothing to set up.</p>
     </div>
     <div class="feature">
       <h3><span class="feature-icon"></span>Your own domain</h3>
       <p>Point a domain you own at us and we handle the certificate. Works on
-         any paid plan.</p>
+         either plan.</p>
     </div>
     <div class="feature">
       <h3><span class="feature-icon"></span>Pick where it runs</h3>
@@ -155,8 +186,9 @@
     </div>
     <div class="feature">
       <h3><span class="feature-icon"></span>Nightly backups</h3>
-      <p>Your database is backed up every night and we keep seven days. Losing a
-         final-year project the week before submission should not be possible.</p>
+      <p>Your database is backed up every night and we keep
+         {{policies.backupRetentionDays}} days. Losing a final-year project the
+         week before submission should not be possible.</p>
     </div>
     <div class="feature">
       <h3><span class="feature-icon"></span>Sleeps, or does not</h3>
@@ -199,56 +231,76 @@
 
 <section id="pricing" class="wrap">
   <div class="section-head">
-    <h2>Pricing</h2>
-    <p>Prices include GST. Top up your balance with UPI and it is drawn down
-       daily — stop any time and you stop paying.</p>
+    <h2>Two plans. Both in rupees.</h2>
+    <p>{{company.gst.statement}} Top up your balance with {{payments.methods}}
+       and it is drawn down daily. Stop any time and you stop paying.</p>
   </div>
-  <div class="tiers">
-    <div class="tier">
-      <p class="tier-name">Static</p>
-      <p class="tier-price">Free</p>
-      <p class="tier-sub">React, Vue, plain HTML</p>
+
+  <div class="tiers tiers-2">
+    {{#each plans}}
+    <div class="tier{{#if featured}} featured{{/if}}">
+      {{#if featured}}<p class="tier-flag">Most students pick this</p>{{/if}}
+      <p class="tier-name">{{name}}</p>
+      <p class="tier-price">₹{{monthly}}<span class="tier-per">/month</span></p>
+      <p class="tier-year">or ₹{{yearly}} a year, saving ₹{{yearlySaving}}</p>
+      <p class="tier-sub">{{summary}}</p>
       <ul>
-        <li>Unlimited pages</li>
-        <li>1 GB storage</li>
-        <li>100 GB traffic a month</li>
-        <li>HTTPS included</li>
-        <li>No backend or database</li>
+        {{#each features}}<li>{{.}}</li>{{/each}}
       </ul>
+      <a class="btn btn-primary tier-cta" href="/pricing.html">Full description</a>
     </div>
-    <div class="tier featured">
-      <p class="tier-name">Nap</p>
-      <p class="tier-price">₹99</p>
-      <p class="tier-sub">per month — the usual choice</p>
-      <ul>
-        <li>Node or Python backend</li>
-        <li>Public or private repos</li>
-        <li>MongoDB database included</li>
-        <li>512 MB memory</li>
-        <li>Mumbai or London</li>
-        <li>Custom domain and HTTPS</li>
-        <li>Nightly backups, 7 days</li>
-        <li>Sleeps when idle, wakes on request</li>
-      </ul>
+    {{/each}}
+  </div>
+
+  <p class="tier-foot">
+    Prices are in Indian Rupees and charged in Indian Rupees.
+    See the <a href="/pricing.html">full plan descriptions</a>, the
+    <a href="/refunds.html">refund policy</a> and the
+    <a href="/cancellation.html">cancellation policy</a>.
+  </p>
+</section>
+
+<!-- The humble section. It is here because it is true, and because a student
+     who is talked out of paying us today comes back when they need a backend. -->
+<section class="wrap">
+  <div class="section-head">
+    <h2>When you should not use us.</h2>
+    <p>We would rather say this here than take ₹{{cheapest.monthly}} off you for
+       something you can get done better elsewhere.</p>
+  </div>
+  <div class="notfor">
+    <div class="notfor-row">
+      <h3>Your site is just HTML, CSS and JavaScript</h3>
+      <p>Then you do not need us. <a href="https://pages.github.com/" rel="noopener">GitHub Pages</a>
+         hosts static sites free, from the repo you already have, and it does it
+         well. We only charge for things that need a server running behind them:
+         a backend, a database, a login.</p>
     </div>
-    <div class="tier">
-      <p class="tier-name">Awake</p>
-      <p class="tier-price">₹249</p>
-      <p class="tier-sub">per month — never sleeps</p>
-      <ul>
-        <li>Everything in Nap</li>
-        <li>Never sleeps</li>
-        <li>For Discord bots, cron jobs, workers</li>
-        <li>512 MB memory</li>
-        <li>Mumbai or London</li>
-      </ul>
+    <div class="notfor-row">
+      <h3>You need a global CDN or edge functions</h3>
+      <p>Cloudflare and Vercel have machines in a hundred cities. We have two,
+         in Mumbai and London. If your users are spread across the world and
+         milliseconds matter, use them.</p>
+    </div>
+    <div class="notfor-row">
+      <h3>You are running a business on it</h3>
+      <p>We are two servers and one person. That is enough for a college project,
+         a club site or a portfolio. It is not enough for something people's
+         money or jobs depend on. For that, pay a real cloud.</p>
+    </div>
+    <div class="notfor-row">
+      <h3>You want to mine crypto or send bulk mail</h3>
+      <p>The whole price depends on most apps being asleep most of the time. Mining,
+         spam, proxies and traffic generators break that, so they are not allowed
+         and we do look. The <a href="/acceptable-use.html">acceptable use policy</a>
+         is short and says exactly what we mean.</p>
     </div>
   </div>
 </section>
 
 <section class="wrap">
   <div class="section-head">
-    <h2>Why it costs ₹99 and not ₹500.</h2>
+    <h2>Why it costs ₹{{cheapest.monthly}} and not ₹500.</h2>
   </div>
   <div class="faq">
     <div>
@@ -259,9 +311,10 @@
     </div>
     <div>
       <h3>So we stop charging for nothing</h3>
-      <p>When your app has had no visitors for fifteen minutes, we stop it. It
-         keeps its files and its database. The next request starts it again —
-         measured at about 200 milliseconds — and serves the page.</p>
+      <p>When your app has had no visitors for {{policies.idleMinutes}} minutes,
+         we stop it. It keeps its files and its database. The next request starts
+         it again, measured at about {{policies.wakeMs}} milliseconds, and
+         serves the page.</p>
     </div>
   </div>
 </section>
@@ -283,13 +336,20 @@
          time. Most students top up once a term.</p>
     </div>
     <div>
+      <h3>Is there a free plan?</h3>
+      <p>No. A free tier would be paid for by the students on the paid one, and
+         it is the first thing crypto miners sign up for. If your site is static,
+         GitHub Pages is free and better at it than we would be.</p>
+    </div>
+    <div>
       <h3>What happens if my balance runs out?</h3>
-      <p>Your app sleeps and we email you. Nothing is deleted for 30 days, so
-         topping up brings it straight back.</p>
+      <p>Your app sleeps and we email you. Nothing is deleted for
+         {{policies.dataRetentionDays}} days, so topping up brings it straight
+         back.</p>
     </div>
     <div>
       <h3>Is my database really included?</h3>
-      <p>Yes — a MongoDB database on the same machine as your app, so queries
+      <p>Yes. A MongoDB database on the same machine as your app, so queries
          do not cross the internet. Your connection string is in your dashboard.</p>
     </div>
     <div>
@@ -299,67 +359,28 @@
          GitHub and we stop being able to read it, immediately.</p>
     </div>
     <div>
-      <h3>Where does my app actually run?</h3>
-      <p>Mumbai by default, London if you choose it. Your database sits on the
-         same machine as your app, so queries between them never touch the
-         internet.</p>
-    </div>
-    <div>
-      <h3>Can I use my own domain?</h3>
-      <p>Yes, on any paid plan. Point it at us and HTTPS is set up for you.</p>
+      <h3>Can I get a refund?</h3>
+      <p>Yes. Ask within {{policies.refund.windowDays}} days and we refund you to
+         {{policies.refund.mode}}. The
+         <a href="/refunds.html">refund policy</a> spells out the timings.</p>
     </div>
     <div>
       <h3>What if I need more than 512 MB?</h3>
-      <p>Write to us. Bigger plans exist for projects that genuinely need them,
-         but almost no student project does.</p>
+      <p>Write to us at <a href="mailto:{{company.email}}">{{company.email}}</a>.
+         Bigger plans exist for projects that genuinely need them, but almost no
+         student project does.</p>
     </div>
   </div>
 </section>
 
 </main>
 
-<footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <a class="brand" href="/"><span class="brand-mark"></span>DormHost</a>
-        <p style="margin-top:.8rem;max-width:24rem;font-size:.92rem">
-          Cheap, honest hosting for students who just need their project to be
-          online.
-        </p>
-        <p style="margin-top:.9rem;font-size:.92rem">
-          <a href="mailto:support@dormhost.dev">support@dormhost.dev</a>
-        </p>
-      </div>
-      <div>
-        <h4>Product</h4>
-        <div class="foot-links">
-          <a href="#how">How it works</a>
-          <a href="#features">Features</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#faq">FAQ</a>
-        </div>
-      </div>
-      <div>
-        <h4>Company</h4>
-        <div class="foot-links">
-          <a href="/contact.html">Contact</a>
-          <a href="/terms.html">Terms of service</a>
-          <a href="/privacy.html">Privacy policy</a>
-          <a href="/refunds.html">Refunds &amp; cancellation</a>
-        </div>
-      </div>
-    </div>
-    <p class="foot-note">
-      © 2026 DormHost. Built in India.
-    </p>
-  </div>
-</footer>
+{{> footer}}
 
 <script>
 // The window is the page's one interactive claim: a sleeping app, woken on
 // demand, timed honestly. Numbers here match what the platform actually
-// measures — around 200ms on the node, a little more over the public path.
+// measures: around 200ms on the node, a little more over the public path.
 (function () {
   var panes = Array.prototype.slice.call(document.querySelectorAll('#panes .pane'));
   var button = document.getElementById('wake');
@@ -373,7 +394,7 @@
     panes.forEach(function (p) { p.classList.remove('lit'); });
     stateEl.textContent = 'asleep';
     dot.classList.remove('awake');
-    msEl.textContent = '—';
+    msEl.textContent = '--';
     button.textContent = 'send a request';
     button.disabled = false;
   }

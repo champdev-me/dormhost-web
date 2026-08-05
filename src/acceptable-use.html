@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> head}}
+<title>Acceptable use policy · {{site.name}}</title>
+<meta name="description" content="What you may not host on {{site.name}}: cryptocurrency mining, phishing, malware, spam, proxies, and content illegal in India.">
+<meta property="og:title" content="Acceptable use policy · {{site.name}}">
+<meta property="og:description" content="What you may not host on {{site.name}}, and what happens if you do.">
+</head>
+<body>
+
+{{> nav}}
+
+<main class="wrap prose">
+
+<h1>Acceptable use policy</h1>
+<p class="updated">Last updated {{policies.updated}} · Effective {{policies.effective}}</p>
+
+<div class="callout">
+  <p>
+    <strong>The short version.</strong> ₹{{cheapest.monthly}} a month works
+    because almost every app here is asleep almost all of the time, and because
+    nobody is using us to hurt anyone. Mining, spam and phishing break both of
+    those. They are not allowed, we do look, and accounts that do them are closed
+    without a refund.
+  </p>
+</div>
+
+<p>
+  This policy is part of the <a href="/terms.html">terms and conditions</a>. It
+  applies to everything you run on {{company.tradeName}}: your application, your
+  database, your scheduled jobs and anything your application sends or fetches.
+</p>
+
+<h2>Nothing that steals from people</h2>
+<ul>
+  <li><strong>Phishing.</strong> Pages that imitate a bank, a college, a payment
+      service, a government portal or any other organisation in order to collect
+      passwords, card numbers, OTPs, Aadhaar or PAN details. This includes pages
+      you describe as a demonstration or a test.</li>
+  <li><strong>Fraud of any kind</strong>, including fake shops, fake job postings, fake
+      scholarships, advance-fee scams, investment schemes promising returns,
+      Ponzi and multi-level marketing schemes.</li>
+  <li><strong>Impersonation.</strong> Presenting yourself as a person or an
+      organisation you are not, or registering a subdomain intended to be
+      mistaken for someone else's brand.</li>
+  <li><strong>Credential stuffing and account takeover</strong>, including
+      hosting the lists or the tooling.</li>
+</ul>
+
+<h2>Nothing that mines, or that is really a computer in disguise</h2>
+<ul>
+  <li><strong>Cryptocurrency mining</strong> of any coin, by any method,
+      including in a visitor's browser, and including "just testing".</li>
+  <li><strong>Hash cracking, brute forcing and password recovery.</strong></li>
+  <li><strong>Distributed compute for reward</strong>, including proof-of-work,
+      proof-of-space, bandwidth-sharing networks, airdrop farming, faucet claiming, and
+      any scheme that pays you for consuming a machine's resources.</li>
+  <li><strong>Artificial load.</strong> Requests generated to keep your own app
+      awake, to inflate your own traffic figures, or to work around the sleeping
+      behaviour of the Nap plan. If your app must stay running, the
+      <a href="/pricing.html#awake">Awake plan</a> exists and costs
+      ₹{{plansByName.awake.monthly}}.</li>
+  <li><strong>Deliberate resource abuse</strong>, including fork bombs, filling the disk,
+      memory exhaustion, or anything designed to degrade the machine for the
+      other people on it.</li>
+</ul>
+
+<h2>Nothing that attacks or hides</h2>
+<ul>
+  <li><strong>Attacking other systems</strong>, including denial of service, port
+      scanning, vulnerability scanning of hosts you do not own, exploitation
+      attempts, botnet command and control.</li>
+  <li><strong>Malware</strong>, meaning writing, hosting, distributing or serving
+      viruses, ransomware, keyloggers, stalkerware or remote access trojans.</li>
+  <li><strong>Open proxies, VPN exit nodes, Tor exit relays and open mail
+      relays.</strong> These attract abuse from other people that lands on our IP
+      addresses.</li>
+  <li><strong>Anonymising other people's traffic</strong> through your
+      application, whatever it is called.</li>
+</ul>
+
+<h2>Nothing that spams</h2>
+<ul>
+  <li><strong>Bulk or unsolicited email, SMS or WhatsApp messaging</strong>,
+      including through a third-party API from an app hosted here.</li>
+  <li><strong>Mailing list harvesting</strong>, and hosting lists you did not
+      collect with consent.</li>
+  <li><strong>Automated posting, following or messaging</strong> at scale on
+      other platforms, and bots that break the terms of the service they talk
+      to.</li>
+  <li><strong>Buying bots</strong> for tickets, sneakers, exam seats or
+      appointment slots.</li>
+  <li><strong>SEO link farms and doorway pages.</strong></li>
+</ul>
+
+<h2>Nothing illegal, and nothing that gets a payment processor closed</h2>
+<ul>
+  <li><strong>Child sexual abuse material.</strong> This is reported to the
+      authorities immediately and the data is preserved for them, not deleted.
+      There is no warning and no appeal.</li>
+  <li><strong>Content that is illegal in India</strong>, including anything
+      prohibited under the Information Technology Act, 2000 and the rules made
+      under it.</li>
+  <li><strong>Pirated software, films, music, books or course material</strong>,
+      and torrent trackers or seedboxes for them.</li>
+  <li><strong>Gambling, betting and real-money gaming</strong>, which is
+      regulated or prohibited across much of India.</li>
+  <li><strong>Pornographic content.</strong></li>
+  <li><strong>Sale of weapons, drugs, prescription medicines or counterfeit
+      goods.</strong></li>
+  <li><strong>Content inciting violence or hatred</strong> against a person or a
+      group.</li>
+  <li><strong>Handling other people's money</strong>, including exchanges, custodial
+      wallets, trading bots executing on someone else's funds, or any service
+      that would need an RBI or SEBI registration you do not have.</li>
+</ul>
+
+<h2>Nothing that resells us</h2>
+<ul>
+  <li>Reselling {{company.tradeName}} capacity as your own hosting service.</li>
+  <li>Sharing one plan between unrelated people or projects. One plan runs one
+      application, for you.</li>
+  <li>Opening several accounts to get around a suspension.</li>
+</ul>
+
+<h2>Scraping and automation</h2>
+<p>
+  Fetching public pages is fine. Ignoring a site's <code>robots.txt</code>, its
+  terms, or its rate limits is not, and neither is scraping personal data about
+  people who have not agreed to it. If a site asks us to stop your scraper, we
+  will pass the request on to you and expect you to comply.
+</p>
+
+<h2>What we actually watch</h2>
+<p>
+  We monitor the things a host has to monitor to stay online: CPU, memory, disk
+  and network use per container, outbound connection patterns, and abuse reports
+  sent to us by other people. Sustained full CPU on an app with no visitors is
+  the signal that finds mining, and it finds it quickly.
+</p>
+<p>
+  We do not read your source code, your database or your users' data as a matter
+  of routine. We look at them only when we are investigating a specific report or
+  when a court or the law requires it, and we tell you when we have, unless we
+  are legally prevented from doing so.
+</p>
+
+<h2>What happens if you break this policy</h2>
+<p>What we do depends on what happened.</p>
+<ul>
+  <li><strong>Probably a mistake.</strong> A runaway loop, a misconfigured job,
+      a dependency doing something you did not expect. We email you, and usually
+      throttle rather than stop the app. You get a reasonable time to fix it.</li>
+  <li><strong>Clearly deliberate.</strong> Mining, phishing, spam, attacks. The
+      application is stopped immediately and the account is suspended. You can
+      write to us and we will look again if you think we got it wrong.</li>
+  <li><strong>Illegal.</strong> The account is closed, and we report it and
+      preserve the evidence for the authorities.</li>
+</ul>
+<p>
+  <strong>Accounts closed for breaking this policy are not refunded.</strong>
+  This is the one exception to the <a href="/refunds.html">refund policy</a>, and
+  it exists because the alternative is honest students paying for other people's
+  mining.
+</p>
+<p>
+  Where an account is suspended rather than closed, your data is kept for
+  {{policies.dataRetentionDays}} days so you can get it back. Material that is
+  illegal to hold is an exception and is removed at once.
+</p>
+
+<h2>Telling us about abuse</h2>
+<p>
+  If something hosted on <code>{{site.appDomain}}</code> is doing any of the
+  above, write to
+  <a href="mailto:{{company.email}}">{{company.email}}</a> with the address and
+  what you saw. We read every report and we answer within one working day.
+</p>
+
+<h2>Contact</h2>
+<p>
+  {{company.legalName}}, trading as {{company.tradeName}}<br>
+  {{{company.address.html}}}<br>
+  <a href="mailto:{{company.email}}">{{company.email}}</a> · {{company.phone}}
+</p>
+
+</main>
+
+{{> footer}}
+
+</body>
+</html>

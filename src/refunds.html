@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> head}}
+<title>Return &amp; refund policy · {{site.name}}</title>
+<meta name="description" content="What {{site.name}} refunds, how the money reaches you, and how long it takes.">
+<meta property="og:title" content="Return &amp; refund policy · {{site.name}}">
+<meta property="og:description" content="What {{site.name}} refunds, how, and how long it takes.">
+</head>
+<body>
+
+{{> nav}}
+
+<main class="wrap prose">
+
+<h1>Return &amp; refund policy</h1>
+<p class="updated">Last updated {{policies.updated}} · Effective {{policies.effective}}</p>
+
+<div class="callout">
+  <p>
+    <strong>The short version.</strong> Ask within
+    {{policies.refund.windowDays}} days and you get your money back. It goes to
+    {{policies.refund.mode}}, and reaches you in
+    {{policies.refund.creditDays}} once approved.
+  </p>
+</div>
+
+<h2>There is nothing to return</h2>
+<p>
+  {{company.tradeName}} sells a digital service. Nothing is shipped to you, so
+  there is nothing to send back and no return address. This policy therefore
+  covers refunds only.
+</p>
+
+<h2>What you can get refunded</h2>
+
+<h3>Money you have added but not used</h3>
+<p>
+  Your balance is drawn down daily while your application is on a plan. Whatever
+  is left in your balance is yours, and we will refund it on request at any time.
+  There is no time limit on this and no fee for it.
+</p>
+
+<h3>A monthly plan you just paid for</h3>
+<p>
+  If you decide within {{policies.refund.windowDays}} days of a payment that the
+  service is not for you, we refund that payment in full, including any days you
+  used. You do not have to give a reason.
+</p>
+
+<h3>A yearly plan</h3>
+<ul>
+  <li>Within {{policies.refund.windowDays}} days of buying it: a full refund.</li>
+  <li>After {{policies.refund.windowDays}} days: we work out what you would have
+      paid on the monthly plan for the time you actually used, and refund the
+      difference. On the {{cheapest.name}} plan, using six months of a yearly
+      plan means we keep six months at the monthly rate
+      (₹{{cheapest.monthly}} each) and refund the rest.</li>
+</ul>
+
+<h3>An outage that was our fault</h3>
+<p>
+  If your application was unreachable for more than 24 hours in a row because of
+  a problem at our end, tell us and we will refund those days. We do not count
+  time your application was asleep, time it was down because of a bug in your own
+  code, or time your balance was empty.
+</p>
+
+<h3>A payment that should not have happened</h3>
+<p>
+  Charged twice, charged after you cancelled, or charged an amount you did not
+  authorise? Tell us and we refund it in full. We do not apply the
+  {{policies.refund.windowDays}} day window to our own mistakes.
+</p>
+
+<h2>What we do not refund</h2>
+<ul>
+  <li>Time your application was actually hosted and running, outside the
+      {{policies.refund.windowDays}} day window.</li>
+  <li>Accounts closed for breaking the
+      <a href="/acceptable-use.html">acceptable use policy</a>. Mining, phishing
+      and spam get you closed and keep your money, and that is deliberate.</li>
+  <li>Payments you have already raised a chargeback on with your bank. Please ask
+      us first. A chargeback costs us a fee and takes months, and asking us takes
+      a day.</li>
+  <li>Domain names, which we do not sell.</li>
+</ul>
+
+<h2>How to ask</h2>
+<p>
+  Email <a href="mailto:{{company.email}}">{{company.email}}</a> from the address
+  on your account, with the amount and roughly when you paid. That is all we
+  need. You can also call {{company.phone}} ({{company.phoneHours}}).
+</p>
+
+<h2>How long it takes</h2>
+<ol>
+  <li><strong>We reply within
+      {{policies.refund.decisionDays}} working days</strong> to say yes or,
+      rarely, why not.</li>
+  <li><strong>We send it to {{payments.gateway}} the same day we approve it.</strong></li>
+  <li><strong>It reaches you in {{policies.refund.creditDays}}</strong> from
+      approval. The last part is your bank's timing, not ours, and UPI is usually
+      faster than a card.</li>
+</ol>
+
+<h2>How the money reaches you</h2>
+<p>
+  Refunds go to {{policies.refund.mode}}. We cannot send a refund to a different
+  account, and we will not send it as a bank transfer or a cash payment, because
+  routing it back the way it came is what protects you against fraud.
+</p>
+<p>
+  If the original account is closed, tell us and we will work it out with
+  {{payments.gateway}}. This is slower and usually needs proof that the account
+  was yours.
+</p>
+<p>
+  If you would rather keep the money as balance on your account instead of having
+  it returned to your bank, say so and we will do that instead. It is instant.
+</p>
+
+<h2>Currency</h2>
+<p>
+  Everything is charged and refunded in Indian Rupees. You get back the same
+  number of rupees you paid. {{company.gst.statement}}
+</p>
+
+<h2>If you are not happy with the outcome</h2>
+<p>
+  Write to our Grievance Officer, {{company.grievanceOfficer.name}}, at
+  <a href="mailto:{{company.grievanceOfficer.email}}">{{company.grievanceOfficer.email}}</a>.
+  Complaints are acknowledged within
+  {{company.grievanceOfficer.acknowledgeHours}} hours and resolved within
+  {{company.grievanceOfficer.resolveDays}} days.
+</p>
+
+<h2>Contact</h2>
+<p>
+  {{company.legalName}}, trading as {{company.tradeName}}<br>
+  {{{company.address.html}}}<br>
+  <a href="mailto:{{company.email}}">{{company.email}}</a> · {{company.phone}}
+</p>
+
+</main>
+
+{{> footer}}
+
+</body>
+</html>

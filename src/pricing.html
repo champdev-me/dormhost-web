@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> head}}
+<title>Pricing · {{site.name}}</title>
+<meta name="description" content="What {{site.name}} sells and what it costs, in Indian Rupees. Two plans: ₹99 a month for an app that sleeps when idle, ₹249 a month for one that never sleeps.">
+<meta property="og:title" content="Pricing · {{site.name}}">
+<meta property="og:description" content="Two plans, in Indian Rupees. ₹99 a month, or ₹249 for an app that never sleeps.">
+</head>
+<body>
+
+{{> nav}}
+
+<main class="wrap">
+
+<div class="page-head">
+  <p class="eyebrow">Products and pricing</p>
+  <h1>What we sell, and what it costs.</h1>
+  <p class="lead">
+    {{payments.currencyNote}} {{company.gst.statement}}
+  </p>
+</div>
+
+<section class="products">
+  {{#each plans}}
+  <article class="product{{#if featured}} product-featured{{/if}}" id="{{slug}}">
+    <div class="product-head">
+      <div>
+        <h2>{{name}}</h2>
+        <p class="product-summary">{{summary}}</p>
+      </div>
+      <div class="product-price">
+        <p class="product-monthly">₹{{monthly}}<span>/month</span></p>
+        <p class="product-yearly">or ₹{{yearly}} a year<br><span>saves ₹{{yearlySaving}}, about ₹{{yearlyPerMonth}} a month</span></p>
+      </div>
+    </div>
+
+    <p class="product-desc">{{description}}</p>
+
+    <h3 class="product-sub">Included in this plan</h3>
+    <ul class="product-list">
+      {{#each features}}<li>{{.}}</li>{{/each}}
+    </ul>
+  </article>
+  {{/each}}
+</section>
+
+<section class="prose">
+  <h2>How billing works</h2>
+  <p>
+    You add money to a balance, and we take the day's share of your plan out of
+    it each day. A ₹{{cheapest.monthly}} plan costs roughly ₹{{cheapest.perDay}} a
+    day. Nothing renews automatically and nothing is charged to a saved card,
+    because we do not store one.
+  </p>
+  <p>
+    When your balance runs out your app sleeps and we email you. Your code,
+    your files and your database stay where they are for
+    {{policies.dataRetentionDays}} days, so adding money brings the app straight
+    back. After {{policies.dataRetentionDays}} days they are deleted permanently.
+  </p>
+
+  <h2>How you can pay</h2>
+  <p>
+    Payments are handled by {{payments.gateway}}. You can pay with
+    {{payments.methods}}. Every amount on this site is in Indian Rupees
+    (INR, ₹) and is charged in Indian Rupees. We never see or store your card
+    or UPI details.
+  </p>
+
+  <h2>Tax</h2>
+  <p>{{company.gst.statement}}</p>
+
+  <h2>What is not included</h2>
+  <ul>
+    <li>There is no free plan. If your site is only HTML, CSS and JavaScript,
+        <a href="https://pages.github.com/" rel="noopener">GitHub Pages</a> will
+        host it free and we would rather you used that.</li>
+    <li>Each plan runs one application. A second application is a second plan.</li>
+    <li>Memory above 512&nbsp;MB, extra disk and dedicated capacity are not sold
+        on this page. Write to
+        <a href="mailto:{{company.email}}">{{company.email}}</a> if you need them.</li>
+    <li>We do not sell domain names. Bring one you already own and we will set
+        up the certificate for it.</li>
+    <li>Uses listed in the <a href="/acceptable-use.html">acceptable use policy</a>,
+        such as mining, spam, proxies and phishing, are not sold at any price.</li>
+  </ul>
+
+  <h2>Changing or stopping a plan</h2>
+  <p>
+    You can move between plans at any time; the daily rate changes from the day
+    you switch. You can stop at any time with no notice and no fee. See the
+    <a href="/cancellation.html">cancellation policy</a>. If you want money back,
+    the <a href="/refunds.html">refund policy</a> sets out what we refund and how
+    long it takes.
+  </p>
+
+  <div class="callout">
+    <p>
+      <strong>Questions before you pay?</strong> Write to
+      <a href="mailto:{{company.email}}">{{company.email}}</a> or call
+      {{company.phone}} ({{company.phoneHours}}). We answer within one working
+      day.
+    </p>
+  </div>
+</section>
+
+</main>
+
+{{> footer}}
+
+</body>
+</html>

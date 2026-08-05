@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> head}}
+<title>Cancellation policy · {{site.name}}</title>
+<meta name="description" content="How to cancel {{site.name}}, when it takes effect, and what happens to your application and your data afterwards.">
+<meta property="og:title" content="Cancellation policy · {{site.name}}">
+<meta property="og:description" content="How to cancel, when it takes effect, and what happens to your data.">
+</head>
+<body>
+
+{{> nav}}
+
+<main class="wrap prose">
+
+<h1>Cancellation policy</h1>
+<p class="updated">Last updated {{policies.updated}} · Effective {{policies.effective}}</p>
+
+<div class="callout">
+  <p>
+    <strong>The short version.</strong> Cancel whenever you like. No notice
+    period, no fee, no phone call to sit through. Billing stops
+    {{policies.cancellation.effect}}, and your data stays put for
+    {{policies.dataRetentionDays}} days in case you change your mind.
+  </p>
+</div>
+
+<h2>How to cancel</h2>
+<p>Either of these works and both are equally final:</p>
+<ul>
+  <li>Delete the application from your dashboard, or close your account there.</li>
+  <li>Email <a href="mailto:{{company.email}}">{{company.email}}</a> from the
+      address on your account and say you want to cancel. We action it the same
+      working day and confirm by email.</li>
+</ul>
+<p>
+  You do not have to give a reason, and we will not make you talk to anyone
+  before we do it.
+</p>
+
+<h2>When it takes effect</h2>
+
+<h3>Monthly plans and balance</h3>
+<p>
+  Cancellation takes effect {{policies.cancellation.effect}}. We stop drawing
+  down your balance from that day. Your application keeps running until the end
+  of the day you have already paid for, then stops.
+</p>
+<p>
+  Whatever is left in your balance can be refunded to you under the
+  <a href="/refunds.html">refund policy</a>, or left on the account for later.
+  Balance does not expire.
+</p>
+
+<h3>Yearly plans</h3>
+<p>
+  Cancelling a yearly plan stops it renewing. Your application keeps running to
+  the end of the year you paid for, because you have paid for it.
+</p>
+<p>
+  If you want the money for the remaining months back instead of the remaining
+  months themselves, ask for a refund and we will work it out under the
+  <a href="/refunds.html">refund policy</a>. Say so when you cancel and we will
+  do both at once.
+</p>
+
+<h2>What happens to your application and your data</h2>
+<ol>
+  <li><strong>Straight away.</strong> The application stops. Its address stops
+      resolving. Nothing is deleted.</li>
+  <li><strong>For {{policies.dataRetentionDays}} days.</strong> Your code, your
+      files, your database and your backups sit exactly where they were. Restart
+      the plan in that window and everything comes back as it was, at the same
+      address if it is still free.</li>
+  <li><strong>After {{policies.dataRetentionDays}} days.</strong> All of it is
+      deleted permanently, including backups. We cannot get it back after that,
+      so please take a copy of your database before then.</li>
+</ol>
+<p>
+  Want it gone sooner? Ask, and we will delete everything within 7 days and
+  confirm when it is done.
+</p>
+
+<h2>Cancelling before your application is built</h2>
+<p>
+  If you pay and then cancel before your first deployment finishes, we refund
+  the full amount. Nothing was delivered, so there is nothing to charge for.
+</p>
+
+<h2>If we cancel</h2>
+<p>
+  We may end the service too, and here is exactly when:
+</p>
+<ul>
+  <li><strong>You broke the
+      <a href="/acceptable-use.html">acceptable use policy</a>.</strong>
+      Immediately, without notice, and without a refund. See that policy for what
+      counts.</li>
+  <li><strong>Your balance has been empty for
+      {{policies.dataRetentionDays}} days.</strong> We email you first, more than
+      once.</li>
+  <li><strong>We stop offering the service.</strong> You get at least
+      {{policies.cancellation.platformNoticeDays}} days' notice by email, help
+      getting your data out, and a refund of everything you have paid for time
+      you will not now get.</li>
+</ul>
+
+<h2>Getting your data out</h2>
+<p>
+  Your database can be exported from your dashboard at any time, and your code is
+  in your own GitHub repository already. If you need help getting something out
+  before a deletion date, email
+  <a href="mailto:{{company.email}}">{{company.email}}</a> and we will help. We
+  would rather spend ten minutes on that than have you lose a project.
+</p>
+
+<h2>Contact</h2>
+<p>
+  {{company.legalName}}, trading as {{company.tradeName}}<br>
+  {{{company.address.html}}}<br>
+  <a href="mailto:{{company.email}}">{{company.email}}</a> · {{company.phone}}
+</p>
+
+</main>
+
+{{> footer}}
+
+</body>
+</html>

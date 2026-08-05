@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="DormHost">
+  <defs>
+    <linearGradient id="dh-lamp" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F9CE87"/>
+      <stop offset="1" stop-color="#E8963A"/>
+    </linearGradient>
+    <linearGradient id="dh-spill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E8963A" stop-opacity="0.50"/>
+      <stop offset="1" stop-color="#E8963A" stop-opacity="0.03"/>
+    </linearGradient>
+    <linearGradient id="dh-core" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F9CE87" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#F9CE87" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="dh-clip"><rect width="64" height="64" rx="14"/></clipPath>
+  </defs>
+
+  <rect width="64" height="64" rx="14" fill="#161A38"/>
+
+  <g clip-path="url(#dh-clip)">
+    <polygon points="21,33 43,33 60,64 4,64" fill="url(#dh-spill)"/>
+    <polygon points="24,33 40,33 48,64 16,64" fill="url(#dh-core)"/>
+  </g>
+
+  <rect x="21" y="11" width="22" height="22" rx="3" fill="url(#dh-lamp)"/>
+  <rect x="30.75" y="11" width="2.5" height="22" fill="#161A38"/>
+  <rect x="21" y="20.75" width="22" height="2.5" fill="#161A38"/>
+</svg>

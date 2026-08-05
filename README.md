@@ -1,52 +1,70 @@
 # dormhost-web
 
-The public site for [DormHost](https://dormhost.dev) — cheap hosting for college
-students.
+The public site for [DormHost](https://dormhost.dev), cheap hosting for college
+students in India. Static HTML, no framework, no dependencies.
 
-## What is here
+## Editing content
+
+Almost everything you might want to change lives in **`content.json`**: the legal
+name and registered address, the support email and phone, the plans and their
+prices, the refund window, the retention periods. Change a value there and every
+page that mentions it updates on the next build.
+
+The build **fails** if any value still contains `FILL_ME`. That is deliberate:
+these facts appear on the pages a payment processor reviews, and a placeholder
+must not be able to reach production quietly.
+
+## Layout
 
 | Path | What it is |
 |---|---|
-| `index.html` | Marketing homepage |
-| `terms.html`, `privacy.html`, `refunds.html`, `contact.html` | Policy pages, required for payment-gateway onboarding |
-| `style.css` | All styling — one file, no build step |
-| `server.js` | 40-line Node static server, no dependencies |
+| `content.json` | Every legal, contact and pricing fact, in one place |
+| `src/*.html` | Page templates |
+| `src/partials/` | Shared head, nav and footer |
+| `src/style.css` | All styling, one file |
+| `assets/` | Logo masters and the rendered PNG icon set |
+| `build.js` | Fills the templates from `content.json` into `dist/` |
+| `server.js` | Serves `dist/`, standard library only |
+| `tools/` | Icon and social card rendering, run by hand |
 
-There is no build step and no JavaScript framework. The one piece of script is
-the wake demo on the homepage, inline at the bottom of `index.html`.
+## Templates
 
-## Running it locally
+`build.js` implements just enough of a template language to avoid repeating
+things:
 
-```bash
-node server.js
-# http://localhost:3000
+```
+{{company.email}}          escaped value
+{{{company.address.html}}} raw value, for pre-built markup
+{{> nav}}                  include src/partials/nav.html
+{{#each plans}}...{{/each}}  loop, {{.}} is the current item
+{{#if featured}}...{{/if}}   and {{#unless}}
 ```
 
-## Deploying with easypanel
+A placeholder with nothing behind it fails the build rather than rendering
+empty.
 
-Create a new **App** service and point it at this repository. The buildpack
-detects Node from `package.json` and runs `npm start`. Set the domain to
-`dormhost.dev` and enable HTTPS.
+## Running it
 
-There is deliberately no nginx and no Dockerfile: easypanel's proxy already
-terminates TLS and routes, so a second web server inside the container would
-only be another thing to configure. The app listens on `PORT`, which easypanel
-sets.
+```bash
+node build.js     # src/ + content.json -> dist/
+node server.js    # serve dist/ on :3000
+pnpm dev          # both
+```
 
-## Before submitting to a payment gateway
+## Icons
 
-The policy pages contain placeholders that a gateway's review **will** reject:
+`assets/logo.svg` is the master. The PNGs beside it are rendered from it and
+committed, because the runtime image is alpine and node and should not have to
+carry a headless browser to redraw five icons.
 
-- `[YOUR LEGAL ENTITY NAME]`
-- `[YOUR ADDRESS]`, `[YOUR CITY]`
-- `[YOUR CONTACT NUMBER]`
-- `[YOUR GSTIN]`
+After changing the logo:
 
-Search for `[YOUR` across the repo and replace every match with your registered
-details. Gateways verify these against your business registration.
+```bash
+pnpm icons        # needs Google Chrome, macOS
+```
 
-## Adding the admin panel later
+## Deployment
 
-The panel will live in `panel/` as a Next.js app, deployed as a second easypanel
-service on a subdomain. Keeping both in one repository means the site
-and the panel share styling and ship together.
+Pushing to `main` triggers a rebuild on easypanel, which builds the `Dockerfile`
+and serves the result at <https://dormhost.dev>. The image is built in two
+stages, so what ships is `dist/` plus `server.js` and nothing that made them.

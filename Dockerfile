@@ -1,14 +1,19 @@
-# node:22-alpine, nothing else. There are no dependencies to install — the
-# server is one file using only Node's standard library — so the image is the
-# base plus a handful of static files.
+# node:22-alpine, nothing else. There are no dependencies to install, since the
+# build script and the server both use only Node's standard library.
 #
-# Nixpacks would work, but it pulls a multi-hundred-megabyte builder to run
-# forty lines of Node. This builds in seconds and ships about 60 MB.
-FROM node:22-alpine
-
+# Two stages, so the running image carries the site and nothing that made it:
+# no templates, no content.json, no build script.
+FROM node:24-alpine AS build
 WORKDIR /app
-COPY server.js package.json ./
-COPY *.html style.css ./
+COPY content.json build.js ./
+COPY src ./src
+COPY assets ./assets
+RUN node build.js
+
+FROM node:24-alpine
+WORKDIR /app
+COPY package.json server.js ./
+COPY --from=build /app/dist ./dist
 
 ENV NODE_ENV=production
 ENV PORT=3000

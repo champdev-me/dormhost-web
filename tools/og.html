@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>og</title>
+<style>
+  @page { size: 1200px 630px; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    width: 1200px; height: 630px; overflow: hidden; position: relative;
+    background: #161A38; color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* The mark's own motif, blown up: light falling out of a window. */
+  .spill {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(178deg, rgba(249,206,135,.26) 0%, rgba(232,150,58,.04) 58%, rgba(232,150,58,0) 78%);
+    clip-path: polygon(62% 0, 100% 0, 100% 100%, 30% 100%);
+  }
+
+  .inner {
+    position: relative; height: 100%; box-sizing: border-box;
+    padding: 74px 80px; display: flex; flex-direction: column; justify-content: space-between;
+  }
+
+  .brand { display: flex; align-items: center; gap: 18px; }
+  .brand img { width: 56px; height: 56px; display: block; }
+  .brand b { font-size: 32px; font-weight: 800; letter-spacing: -.02em; }
+
+  h1 {
+    margin: 0; font-size: 74px; line-height: 1.06; font-weight: 800;
+    letter-spacing: -.032em; max-width: 15ch;
+  }
+  h1 em { font-style: normal; color: #F2B76A; }
+
+  .foot { display: flex; align-items: baseline; gap: 26px; }
+  .foot .dom {
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+    font-size: 24px; color: #98A0C4; letter-spacing: .01em;
+  }
+  .foot .sep { color: #5A6390; }
+  .foot .claim { font-size: 24px; color: #C7CCE4; }
+</style>
+</head>
+<body>
+  <div class="spill"></div>
+  <div class="inner">
+    <div class="brand">
+      <img src="../assets/logo.svg" alt="">
+      <b>DormHost</b>
+    </div>
+
+    <h1>Put your project online for <em>₹99</em> a month.</h1>
+
+    <div class="foot">
+      <span class="dom">dormhost.dev</span>
+      <span class="sep">·</span>
+      <span class="claim">Sleeps when idle. Wakes in 200&thinsp;ms.</span>
+    </div>
+  </div>
+</body>
+</html>

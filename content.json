@@ -1,0 +1,114 @@
+{
+  "_readme": "Single source of truth for every legal, contact and pricing fact on the site. Anything marked FILL_ME must be filled in before the site will build. See build.js. Change a value here and every page that mentions it updates on the next build.",
+
+  "site": {
+    "name": "DormHost",
+    "domain": "dormhost.dev",
+    "url": "https://dormhost.dev",
+    "appDomain": "dormhost.app",
+    "year": "2026"
+  },
+
+  "company": {
+    "tradeName": "DormHost",
+    "legalName": "Rohit Mahto",
+    "entity": "sole proprietorship",
+    "operatedBy": "This website is operated by Rohit Mahto, a sole proprietor trading as DormHost.",
+    "address": {
+      "line1": "FILL_ME_ADDRESS_LINE_1",
+      "line2": "FILL_ME_ADDRESS_LINE_2",
+      "city": "FILL_ME_CITY",
+      "state": "FILL_ME_STATE",
+      "pincode": "FILL_ME_PINCODE",
+      "country": "India"
+    },
+    "email": "support@dormhost.dev",
+    "phone": "FILL_ME_PHONE",
+    "phoneHours": "Monday to Friday, 10am to 6pm IST",
+    "gst": {
+      "registered": false,
+      "gstin": "",
+      "statement": "DormHost is not registered for GST. The price you see is the full amount charged. No tax is added at checkout."
+    },
+    "grievanceOfficer": {
+      "name": "Rohit Mahto",
+      "title": "Grievance Officer",
+      "email": "support@dormhost.dev",
+      "acknowledgeHours": 24,
+      "resolveDays": 15
+    }
+  },
+
+  "policies": {
+    "updated": "5 August 2026",
+    "effective": "5 August 2026",
+    "refund": {
+      "windowDays": 7,
+      "decisionDays": 2,
+      "creditDays": "5 to 7 business days",
+      "mode": "the original payment method, meaning the same UPI ID, card or bank account you paid from"
+    },
+    "cancellation": {
+      "noticeRequired": "none",
+      "effect": "immediately",
+      "platformNoticeDays": 30
+    },
+    "dataRetentionDays": 30,
+    "backupRetentionDays": 7,
+    "idleMinutes": 15,
+    "wakeMs": 200
+  },
+
+  "payments": {
+    "gateway": "PayU",
+    "methods": "UPI, debit card, credit card and net banking",
+    "currency": "INR",
+    "currencyNote": "All prices on this site are in Indian Rupees (INR, ₹) and are charged in Indian Rupees."
+  },
+
+  "plans": [
+    {
+      "slug": "nap",
+      "name": "Nap",
+      "featured": true,
+      "priceMonthly": 99,
+      "priceYearly": 999,
+      "summary": "The usual choice. Sleeps when nobody is using it.",
+      "description": "Hosting for one web application written in Node.js or Python, deployed from a public or private GitHub repository. Includes a MongoDB database on the same machine as the app, an HTTPS address at yourname.dormhost.app, support for a custom domain, 512 MB of memory, nightly database backups kept for seven days, and a choice of Mumbai or London. The application is stopped after fifteen minutes with no visitors and started again by the next request, typically in about 200 milliseconds.",
+      "features": [
+        "One Node.js or Python application",
+        "Public or private GitHub repositories",
+        "MongoDB database on the same machine",
+        "512 MB memory",
+        "HTTPS at yourname.dormhost.app",
+        "Custom domain with certificate",
+        "Mumbai or London",
+        "Nightly backups, kept 7 days",
+        "Build logs and rollback to any of your last 3 builds",
+        "Sleeps after 15 minutes idle, wakes on the next request"
+      ]
+    },
+    {
+      "slug": "awake",
+      "name": "Awake",
+      "featured": false,
+      "priceMonthly": 249,
+      "priceYearly": 2499,
+      "summary": "Never sleeps. For bots, workers and cron jobs.",
+      "description": "Everything in the Nap plan, with the application kept running at all times instead of being stopped when idle. Intended for workloads that cannot be paused: Discord and Telegram bots, scheduled jobs, queue workers, and anything holding a long-lived connection. Includes the same MongoDB database, 512 MB of memory, custom domain support, nightly backups and a choice of Mumbai or London.",
+      "features": [
+        "Everything in Nap",
+        "Never sleeps, so the process stays running",
+        "For Discord bots, cron jobs and queue workers",
+        "Holds WebSockets and long-lived connections",
+        "512 MB memory",
+        "Mumbai or London"
+      ]
+    }
+  ],
+
+  "annual": {
+    "monthsFree": "two",
+    "note": "Pay for ten months, get twelve. Yearly plans can be cancelled at any time and refunded under the refund policy."
+  }
+}

@@ -2,12 +2,16 @@
   "name": "dormhost-web",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "Public site for DormHost",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "build": "node build.js",
+    "start": "node server.js",
+    "dev": "node build.js && node server.js",
+    "icons": "./tools/render-icons.sh"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   }
 }

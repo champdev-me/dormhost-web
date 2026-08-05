@@ -1,0 +1,57 @@
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="/"><img class="brand-mark" src="/assets/logo.svg" width="22" height="22" alt="">{{site.name}}</a>
+        <p class="foot-blurb">
+          Cheap, honest hosting for students who just need their project to be
+          online.
+        </p>
+        <p class="foot-contact">
+          <a href="mailto:{{company.email}}">{{company.email}}</a><br>
+          <a href="tel:{{company.phone}}">{{company.phone}}</a>
+        </p>
+      </div>
+
+      <div>
+        <h4>Product</h4>
+        <div class="foot-links">
+          <a href="{{page.homePrefix}}#how">How it works</a>
+          <a href="{{page.homePrefix}}#features">Features</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="{{page.homePrefix}}#faq">FAQ</a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Company</h4>
+        <div class="foot-links">
+          <a href="/about.html">About us</a>
+          <a href="/contact.html">Contact</a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Legal</h4>
+        <div class="foot-links">
+          <a href="/terms.html">Terms &amp; conditions</a>
+          <a href="/privacy.html">Privacy policy</a>
+          <a href="/acceptable-use.html">Acceptable use</a>
+          <a href="/refunds.html">Refund policy</a>
+          <a href="/cancellation.html">Cancellation policy</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot-legal">
+      <p>
+        <strong>{{company.operatedBy}}</strong><br>
+        Registered address: {{company.address.oneLine}}
+      </p>
+      <p class="foot-note">
+        © {{site.year}} {{company.tradeName}}. Built in India.
+        {{company.gst.statement}}
+      </p>
+    </div>
+  </div>
+</footer>

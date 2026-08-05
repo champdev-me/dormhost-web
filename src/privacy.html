@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> head}}
+<title>Privacy policy · {{site.name}}</title>
+<meta name="description" content="What {{site.name}} collects, why, who else sees it, and how to get it deleted.">
+<meta property="og:title" content="Privacy policy · {{site.name}}">
+<meta property="og:description" content="What we collect, why, who else sees it, and how to get it deleted.">
+</head>
+<body>
+
+{{> nav}}
+
+<main class="wrap prose">
+
+<h1>Privacy policy</h1>
+<p class="updated">Last updated {{policies.updated}} · Effective {{policies.effective}}</p>
+
+<div class="callout">
+  <p>
+    <strong>The short version.</strong> We collect your email, what you deploy,
+    and what we need to bill you. We do not sell any of it, we do not run
+    advertising trackers, and we do not read your database unless you ask us to
+    or the law makes us.
+  </p>
+</div>
+
+<p>
+  This policy explains what {{company.legalName}}, trading as
+  {{company.tradeName}}, does with personal data. It covers this website and the
+  hosting service. It is written to comply with the Digital Personal Data
+  Protection Act, 2023 and the Information Technology Act, 2000.
+</p>
+
+<h2>What we collect</h2>
+
+<h3>Because you gave it to us</h3>
+<ul>
+  <li>Your email address, and a password we store only as a hash.</li>
+  <li>Your name, if you give us one.</li>
+  <li>Your GitHub username and, for private repositories, an access token, which
+      we store encrypted.</li>
+  <li>Anything you write to us in an email or a support message.</li>
+</ul>
+
+<h3>Because you use the service</h3>
+<ul>
+  <li>The repositories you deploy, the builds we run and the logs they produce.</li>
+  <li>Your applications' resource use: CPU, memory, disk, network and how often
+      the app wakes.</li>
+  <li>Server logs containing IP addresses, timestamps and requested paths, kept
+      for 30 days for security and debugging.</li>
+</ul>
+
+<h3>Because you paid us</h3>
+<ul>
+  <li>Your payment history: amounts, dates and a reference from
+      {{payments.gateway}}.</li>
+  <li>Billing details you enter for an invoice, if you ask for one.</li>
+</ul>
+<p>
+  <strong>We never see your card number, UPI PIN or bank credentials.</strong>
+  Those go straight to {{payments.gateway}}, who are certified to handle them. We
+  get back a reference and whether it worked.
+</p>
+
+<h3>What we do not collect</h3>
+<ul>
+  <li>No advertising trackers, no third-party analytics, no Google Analytics, no
+      Facebook pixel. This website sets no cookies at all.</li>
+  <li>No Aadhaar, no PAN, no government identity documents.</li>
+  <li>Nothing about your users beyond what lands in ordinary server logs. What
+      your application collects from its own visitors is your responsibility, and
+      you need your own privacy policy for it.</li>
+</ul>
+
+<h2>Why we have it</h2>
+<table class="table">
+  <thead>
+    <tr><th>What</th><th>Why</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Email and password</td><td>To let you in, and to email you when your app is down or your balance is low</td></tr>
+    <tr><td>GitHub token</td><td>To clone your repository when you deploy, and nothing else</td></tr>
+    <tr><td>Resource use</td><td>To bill you correctly and to catch mining and abuse</td></tr>
+    <tr><td>Server logs</td><td>To debug faults and investigate attacks</td></tr>
+    <tr><td>Payment records</td><td>Because tax law requires us to keep them</td></tr>
+  </tbody>
+</table>
+
+<h2>Your code and your database</h2>
+<p>
+  Your source code, your files and your database are yours. We store and run them
+  because that is the service. We do not read them, mine them, train anything on
+  them or share them.
+</p>
+<p>We will look only when:</p>
+<ul>
+  <li>you ask us to, because you want help with a problem;</li>
+  <li>we are investigating a specific abuse report or a security incident; or</li>
+  <li>a court or a law requires it.</li>
+</ul>
+<p>
+  In the first two cases we tell you. In the third we tell you too, unless we are
+  legally prevented from doing so.
+</p>
+
+<h2>Who else sees your data</h2>
+<p>We use a small number of companies to run the service:</p>
+<ul>
+  <li><strong>{{payments.gateway}}</strong>, for payments. They receive your
+      payment details and your email.</li>
+  <li><strong>Oracle Cloud Infrastructure</strong>, whose servers in Mumbai and
+      London your application runs on.</li>
+  <li><strong>Cloudflare</strong>, which sits in front of the service for DNS and
+      protection against attacks, and sees request metadata.</li>
+  <li><strong>An email provider</strong>, for account and support email.</li>
+</ul>
+<p>
+  That is the whole list. We do not sell personal data, we do not rent it, and we
+  do not share it for advertising. If we are ever bought or merged, your data
+  would move with the business and we would email you before it did.
+</p>
+
+<h2>Where your data is</h2>
+<p>
+  Applications run in Mumbai or London, whichever you chose. Account and billing
+  data is held in India. If you pick London, your application and its database
+  are in the United Kingdom, and you should account for that in your own privacy
+  policy if your users are in India.
+</p>
+
+<h2>How long we keep it</h2>
+<table class="table">
+  <thead>
+    <tr><th>What</th><th>How long</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Account details</td><td>Until you close the account, then {{policies.dataRetentionDays}} days</td></tr>
+    <tr><td>Applications, files and databases</td><td>{{policies.dataRetentionDays}} days after cancellation, then deleted permanently</td></tr>
+    <tr><td>Database backups</td><td>{{policies.backupRetentionDays}} days, rolling</td></tr>
+    <tr><td>Server logs</td><td>30 days</td></tr>
+    <tr><td>Build logs</td><td>Kept with your last 3 builds</td></tr>
+    <tr><td>Payment records</td><td>8 years, as Indian tax law requires</td></tr>
+  </tbody>
+</table>
+
+<h2>How we protect it</h2>
+<ul>
+  <li>HTTPS everywhere, with certificates issued automatically.</li>
+  <li>Passwords stored as hashes. GitHub tokens stored encrypted.</li>
+  <li>Every application in its own locked-down container, with its own database
+      credentials, unable to reach anyone else's.</li>
+  <li>Administrative access to servers over a private network only, never over
+      the public internet.</li>
+</ul>
+<p>
+  No system is perfectly secure. If there is a breach affecting your data, we
+  will tell you and CERT-In within 72 hours of finding out, and tell you what
+  happened and what to do.
+</p>
+
+<h2>Your rights</h2>
+<p>Under the Digital Personal Data Protection Act, 2023 you can:</p>
+<ul>
+  <li><strong>See what we hold</strong> about you, and get a copy.</li>
+  <li><strong>Correct</strong> anything wrong or out of date.</li>
+  <li><strong>Have it erased</strong>, except records tax law makes us keep.</li>
+  <li><strong>Withdraw consent</strong>, which means closing your account.</li>
+  <li><strong>Nominate someone</strong> to exercise these rights if you die or
+      become incapacitated.</li>
+  <li><strong>Complain</strong> to us, and then to the Data Protection Board of
+      India if we do not sort it out.</li>
+</ul>
+<p>
+  Email <a href="mailto:{{company.email}}">{{company.email}}</a> to use any of
+  these. We answer within {{company.grievanceOfficer.resolveDays}} days, free of
+  charge.
+</p>
+
+<h2>Children</h2>
+<p>
+  The service is not for children under 13. If you are under 18, a parent or
+  guardian must agree to the <a href="/terms.html">terms</a> for you. We do not
+  knowingly collect data from children under 13, and we delete it if we find we
+  have.
+</p>
+
+<h2>Email we send you</h2>
+<p>
+  We send email about your account: deploys, outages, low balance, receipts,
+  policy changes. You cannot opt out of those and still have an account, because
+  they are how the service tells you things. We do not send marketing email. If
+  we ever start, it will be opt-in with an unsubscribe link.
+</p>
+
+<h2>Changes to this policy</h2>
+<p>
+  If we change something that matters, we will email you at least 30 days before
+  it takes effect, and update the date at the top. Small corrections happen
+  without an email.
+</p>
+
+<h2>Grievance Officer</h2>
+<p>
+  {{company.grievanceOfficer.name}}, {{company.grievanceOfficer.title}}<br>
+  <a href="mailto:{{company.grievanceOfficer.email}}">{{company.grievanceOfficer.email}}</a><br>
+  {{{company.address.html}}}
+</p>
+<p>
+  Complaints are acknowledged within
+  {{company.grievanceOfficer.acknowledgeHours}} hours and resolved within
+  {{company.grievanceOfficer.resolveDays}} days.
+</p>
+
+<h2>Contact</h2>
+<p>
+  {{company.legalName}}, trading as {{company.tradeName}}<br>
+  {{{company.address.html}}}<br>
+  <a href="mailto:{{company.email}}">{{company.email}}</a> · {{company.phone}}
+</p>
+
+</main>
+
+{{> footer}}
+
+</body>
+</html>
