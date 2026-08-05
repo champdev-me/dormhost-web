@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DormHost — put your project online for ₹99 a month</title>
+<meta name="description" content="Hosting for college students. Push a repo, get a URL and a database. Your app sleeps when nobody is using it, which is why it costs ₹99 a month instead of ₹500.">
+<meta property="og:title" content="DormHost — put your project online for ₹99 a month">
+<meta property="og:description" content="Push a repo, get a URL and a database. No credit card. Pay with UPI.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23161A38'/><rect x='9' y='9' width='14' height='14' rx='2' fill='%23E8963A'/></svg>">
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="nav">
+    <a class="brand" href="/"><span class="brand-mark"></span>DormHost</a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  </nav>
+</div>
+
+<header class="wrap hero">
+  <div class="hero-grid">
+    <div>
+      <p class="eyebrow">Hosting for college students</p>
+      <h1>Put your project online for ₹99 a month.</h1>
+      <p class="lead">
+        Push your repo. Get a URL and a database. Your app sleeps when nobody is
+        using it and wakes in about a fifth of a second — which is the only
+        reason we can charge this little.
+      </p>
+
+      <div class="price-line">
+        <span class="price">₹99</span>
+        <span class="price-unit">/ month, all in</span>
+      </div>
+      <p class="price-note">No credit card. Pay with UPI, top up when you want.</p>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#pricing">See what you get</a>
+        <a class="btn btn-ghost" href="#how">How it works</a>
+      </div>
+    </div>
+
+    <!-- The mechanic, shown rather than described. -->
+    <div>
+      <div class="window">
+        <p class="window-label">your app · right now</p>
+        <div class="panes" id="panes">
+          <div class="pane"></div><div class="pane"></div><div class="pane"></div>
+          <div class="pane"></div><div class="pane"></div><div class="pane"></div>
+        </div>
+        <div class="window-readout">
+          <span class="readout-state">
+            <span class="dot" id="dot"></span>
+            <span id="state">asleep</span>
+          </span>
+          <span><span class="ms" id="ms">—</span></span>
+          <button id="wake" type="button">send a request</button>
+        </div>
+      </div>
+      <p class="window-caption">
+        A sleeping app uses disk, not memory. That is what makes the price work.
+      </p>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section id="how" class="wrap">
+  <div class="section-head">
+    <h2>Three steps, then it is online.</h2>
+    <p>No Dockerfile to write, no server to configure, no card to enter.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <h3>Point us at your repo</h3>
+      <p>Node or Python. We read your <code>package.json</code> or
+         <code>requirements.txt</code> and work out how to build it.</p>
+    </div>
+    <div class="step">
+      <h3>We build it and give you a URL</h3>
+      <p>Your app gets <code>yourname.dormhost.app</code> with HTTPS already
+         working, and a MongoDB database on the same machine.</p>
+    </div>
+    <div class="step">
+      <h3>Share the link</h3>
+      <p>It stays up. When nobody visits for a while it sleeps, and the next
+         visitor wakes it before the page finishes loading.</p>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="wrap">
+  <div class="section-head">
+    <h2>Pricing</h2>
+    <p>Prices include GST. Top up your balance with UPI and it is drawn down
+       daily — stop any time and you stop paying.</p>
+  </div>
+  <div class="tiers">
+    <div class="tier">
+      <p class="tier-name">Static</p>
+      <p class="tier-price">Free</p>
+      <p class="tier-sub">React, Vue, plain HTML</p>
+      <ul>
+        <li>Unlimited pages</li>
+        <li>1 GB storage</li>
+        <li>100 GB traffic a month</li>
+        <li>HTTPS included</li>
+        <li>No backend or database</li>
+      </ul>
+    </div>
+    <div class="tier featured">
+      <p class="tier-name">Nap</p>
+      <p class="tier-price">₹99</p>
+      <p class="tier-sub">per month — the usual choice</p>
+      <ul>
+        <li>Node or Python backend</li>
+        <li>512 MB memory</li>
+        <li>MongoDB database included</li>
+        <li>Sleeps when idle, wakes on request</li>
+        <li>Custom domain</li>
+      </ul>
+    </div>
+    <div class="tier">
+      <p class="tier-name">Awake</p>
+      <p class="tier-price">₹249</p>
+      <p class="tier-sub">per month — never sleeps</p>
+      <ul>
+        <li>Everything in Nap</li>
+        <li>Always running</li>
+        <li>For Discord bots, cron jobs, workers</li>
+        <li>512 MB memory</li>
+        <li>MongoDB database included</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <h2>Why it costs ₹99 and not ₹500.</h2>
+  </div>
+  <div class="faq">
+    <div>
+      <h3>Most student projects have no traffic</h3>
+      <p>A final-year project gets looked at by your guide, your panel, and
+         whoever you send the link to. The rest of the month it sits there. Other
+         hosts charge you for a machine that is doing nothing.</p>
+    </div>
+    <div>
+      <h3>So we stop charging for nothing</h3>
+      <p>When your app has had no visitors for fifteen minutes, we stop it. It
+         keeps its files and its database. The next request starts it again —
+         measured at about 200 milliseconds — and serves the page.</p>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="wrap">
+  <div class="section-head">
+    <h2>Questions</h2>
+  </div>
+  <div class="faq">
+    <div>
+      <h3>Will visitors notice the sleeping?</h3>
+      <p>Almost never. Waking takes around a fifth of a second, which is less
+         than the page would take to load anyway. If it ever runs long you see a
+         short "waking up" screen rather than an error.</p>
+    </div>
+    <div>
+      <h3>Do I need a credit card?</h3>
+      <p>No. Add money with UPI whenever you like and it is spent a day at a
+         time. Most students top up once a term.</p>
+    </div>
+    <div>
+      <h3>What happens if my balance runs out?</h3>
+      <p>Your app sleeps and we email you. Nothing is deleted for 30 days, so
+         topping up brings it straight back.</p>
+    </div>
+    <div>
+      <h3>Is my database really included?</h3>
+      <p>Yes — a MongoDB database on the same machine as your app, so queries
+         do not cross the internet. Your connection string is in your dashboard.</p>
+    </div>
+    <div>
+      <h3>Can I use my own domain?</h3>
+      <p>Yes, on any paid plan. Point it at us and HTTPS is set up for you.</p>
+    </div>
+    <div>
+      <h3>What if I need more than 512 MB?</h3>
+      <p>Write to us. Bigger plans exist for projects that genuinely need them,
+         but almost no student project does.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="/"><span class="brand-mark"></span>DormHost</a>
+        <p style="margin-top:.8rem;max-width:24rem;font-size:.92rem">
+          Cheap, honest hosting for students who just need their project to be
+          online.
+        </p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <div class="foot-links">
+          <a href="#how">How it works</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <div class="foot-links">
+          <a href="/contact.html">Contact</a>
+          <a href="/terms.html">Terms of service</a>
+          <a href="/privacy.html">Privacy policy</a>
+          <a href="/refunds.html">Refunds &amp; cancellation</a>
+        </div>
+      </div>
+    </div>
+    <p class="foot-note">
+      © 2026 DormHost. Built in India.
+    </p>
+  </div>
+</footer>
+
+<script>
+// The window is the page's one interactive claim: a sleeping app, woken on
+// demand, timed honestly. Numbers here match what the platform actually
+// measures — around 200ms on the node, a little more over the public path.
+(function () {
+  var panes = Array.prototype.slice.call(document.querySelectorAll('#panes .pane'));
+  var button = document.getElementById('wake');
+  var stateEl = document.getElementById('state');
+  var msEl = document.getElementById('ms');
+  var dot = document.getElementById('dot');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var busy = false;
+
+  function setAsleep() {
+    panes.forEach(function (p) { p.classList.remove('lit'); });
+    stateEl.textContent = 'asleep';
+    dot.classList.remove('awake');
+    msEl.textContent = '—';
+    button.textContent = 'send a request';
+    button.disabled = false;
+  }
+
+  function wake() {
+    if (busy) return;
+    busy = true;
+    button.disabled = true;
+    button.textContent = 'waking…';
+    stateEl.textContent = 'starting';
+
+    var total = 210;
+    var started = performance.now();
+
+    if (reduced) {
+      panes.forEach(function (p) { p.classList.add('lit'); });
+    } else {
+      panes.forEach(function (p, i) {
+        setTimeout(function () { p.classList.add('lit'); }, (total / panes.length) * i);
+      });
+    }
+
+    var tick = setInterval(function () {
+      msEl.textContent = Math.round(performance.now() - started) + 'ms';
+    }, 16);
+
+    setTimeout(function () {
+      clearInterval(tick);
+      msEl.textContent = Math.round(performance.now() - started) + 'ms';
+      stateEl.textContent = 'serving';
+      dot.classList.add('awake');
+      button.textContent = 'let it sleep';
+      button.disabled = false;
+      busy = false;
+
+      button.onclick = function () {
+        setAsleep();
+        button.onclick = wake;
+      };
+    }, total + 40);
+  }
+
+  button.onclick = wake;
+})();
+</script>
+
+</body>
+</html>
