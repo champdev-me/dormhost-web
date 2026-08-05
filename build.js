@@ -13,6 +13,7 @@
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, rmSync, cpSync, statSync, watch } from 'node:fs';
 import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 
 const root = dirname(fileURLToPath(import.meta.url));
 const SRC = join(root, 'src');
@@ -330,11 +331,26 @@ Sitemap: ${content.site.url}/sitemap.xml
 
 // ---------------------------------------------------------------- build
 
+const rev = (buf) => createHash('sha256').update(buf).digest('hex').slice(0, 8);
+
 function build() {
   const content = loadContent();
 
   rmSync(DIST, { recursive: true, force: true });
   mkdirSync(DIST, { recursive: true });
+
+  // The stylesheet ships under a content-hashed name, and the icons carry a
+  // hash in the query. Without this a CSS change is invisible behind a CDN
+  // for as long as the old file's max-age: fresh HTML lands against a stale
+  // stylesheet, and every rule added since the last deploy simply does not
+  // exist. Elements styled only by the new rules then fall back to their
+  // intrinsic size, which for an <svg> is 300x150. That shipped once.
+  const css = readFileSync(join(SRC, 'style.css'));
+  const cssName = `style.${rev(css)}.css`;
+  const assets = {
+    css: `/${cssName}`,
+    rev: rev(readFileSync(join(root, 'assets/logo.svg'))),
+  };
 
   const pages = readdirSync(SRC).filter((f) => f.endsWith('.html'));
   if (pages.length === 0) throw new Error('src/ has no .html pages');
@@ -345,6 +361,7 @@ function build() {
     const isHome = page === 'index.html';
     const ctx = {
       ...content,
+      assets,
       page: {
         name: basename(page, '.html'),
         file: page,
@@ -372,10 +389,8 @@ function build() {
   writeFileSync(join(DIST, 'sitemap.xml'), sitemap(pages, content));
   writeFileSync(join(DIST, 'robots.txt'), robots(content));
 
-  for (const asset of ['style.css', 'assets']) {
-    const from = join(root, asset === 'style.css' ? 'src/style.css' : asset);
-    cpSync(from, join(DIST, basename(from)), { recursive: true });
-  }
+  writeFileSync(join(DIST, cssName), css);
+  cpSync(join(root, 'assets'), join(DIST, 'assets'), { recursive: true });
 
   const bytes = readdirSync(DIST)
     .map((f) => statSync(join(DIST, f)))
@@ -412,5 +427,15 @@ if (watching) {
   };
   watch(SRC, { recursive: true }, rebuild);
   watch(join(root, 'content.json'), rebuild);
+
+  // A running watcher holds this file in memory, so editing it and carrying on
+  // would keep rebuilding with the old code and quietly write a wrong dist/.
+  // Stopping is the only honest option.
+  watch(join(root, 'build.js'), () => {
+    console.log('\nbuild.js changed. Stopping, because this watcher is still');
+    console.log('running the old copy. Start it again to pick up the change.\n');
+    process.exit(0);
+  });
+
   console.log('watching src/ and content.json');
 }

@@ -29,6 +29,9 @@ const TYPES = {
   '.webmanifest': 'application/manifest+json; charset=utf-8',
 }
 
+/** style.<8 hex>.css and friends: the name changes whenever the bytes do. */
+const HASHED = /\.[0-9a-f]{8}\.(css|js)$/
+
 /**
  * Resolves a URL to a file inside ROOT, or null.
  *
@@ -71,7 +74,14 @@ const server = http.createServer((req, res) => {
   const ext = path.extname(file)
   res.writeHead(200, {
     'content-type': TYPES[ext] || 'application/octet-stream',
-    'cache-control': ext === '.html' ? 'no-cache' : 'public, max-age=604800',
+    // Content-hashed filenames can be cached forever, because changing the
+    // content changes the URL. Everything else gets a day: long enough to be
+    // worth caching, short enough that a mistake heals on its own.
+    'cache-control': ext === '.html'
+      ? 'no-cache'
+      : HASHED.test(path.basename(file))
+        ? 'public, max-age=31536000, immutable'
+        : 'public, max-age=86400',
     'x-content-type-options': 'nosniff',
     'referrer-policy': 'strict-origin-when-cross-origin',
   })
