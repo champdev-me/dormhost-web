@@ -97,14 +97,32 @@
   <h2>Tax</h2>
   <p>{{company.gst.statement}}</p>
 
+  <h2>Storage and limits</h2>
+  <p>
+    {{limits.storageNote}} The Nap plan includes
+    {{plansByName.nap.storageGb}}&nbsp;GB and the Awake plan
+    {{plansByName.awake.storageGb}}&nbsp;GB, per application.
+  </p>
+  <p>
+    We keep {{limits.imagesText}}, and nothing older. That is what a rollback
+    uses, and holding only two means the allowance goes to your application
+    rather than to build history you will never return to.
+  </p>
+  <p>
+    If you go over, we email you rather than deleting anything. Applications
+    that stay over the limit after we have asked can be stopped, and the
+    <a href="/acceptable-use.html">acceptable use policy</a> covers deliberate
+    attempts to fill a disk.
+  </p>
+
   <h2>What is not included</h2>
   <ul>
     <li>There is no free plan. If your site is only HTML, CSS and JavaScript,
         <a href="https://pages.github.com/" rel="noopener">GitHub Pages</a> will
         host it free and we would rather you used that.</li>
     <li>Each plan runs one application. A second application is a second plan.</li>
-    <li>Memory above 512&nbsp;MB, extra disk and dedicated capacity are not sold
-        on this page. Write to
+    <li>Memory above 512&nbsp;MB, storage above your plan's allowance and
+        dedicated capacity are not sold on this page. Write to
         <a href="mailto:{{company.email}}">{{company.email}}</a> if you need them.</li>
     <li>We do not sell domain names. Bring one you already own and we will set
         up the certificate for it.</li>

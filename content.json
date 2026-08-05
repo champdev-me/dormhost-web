@@ -23,6 +23,12 @@
     }
   },
 
+  "limits": {
+    "imagesKept": 2,
+    "imagesText": "the build you are running and the one before it",
+    "storageNote": "Storage covers everything the application owns: your code, your uploads and your database, counted together."
+  },
+
   "runtimes": {
     "detected": ["Node.js", "Python", "Go", "Java", "Ruby", "PHP", ".NET"],
     "detectedText": "Node.js, Python, Go, Java, Ruby, PHP and .NET",
@@ -98,11 +104,13 @@
       "priceYearly": 999,
       "priceMonthlyUsd": 0.99,
       "priceYearlyUsd": 9.99,
+      "storageGb": 5,
       "summary": "The usual choice. Sleeps when nobody is using it.",
-      "description": "Hosting for one web application in any language, deployed from a public or private GitHub repository. Node.js, Python, Go, Java, Ruby, PHP and .NET are detected and built automatically; anything else builds from a Dockerfile in your repository. Includes a database on the same machine as the app, MongoDB, PostgreSQL or MariaDB as you prefer, an HTTPS address at yourname.dormhost.app, support for a custom domain, 512 MB of memory, nightly database backups kept for seven days, and a choice of Mumbai or London. The application is stopped after fifteen minutes with no visitors and started again by the next request, typically in about 200 milliseconds.",
+      "description": "Hosting for one web application in any language, deployed from a public or private GitHub repository. Node.js, Python, Go, Java, Ruby, PHP and .NET are detected and built automatically; anything else builds from a Dockerfile in your repository. Includes a database on the same machine as the app, MongoDB, PostgreSQL or MariaDB as you prefer, an HTTPS address at yourname.dormhost.app, support for a custom domain, 512 MB of memory, nightly database backups kept for seven days, 5 GB of storage covering code, uploads and database together, and a choice of Mumbai or London. The application is stopped after fifteen minutes with no visitors and started again by the next request, typically in about 200 milliseconds.",
       "specs": [
         { "icon": "memory", "label": "512 MB RAM" },
         { "icon": "cpu", "label": "Shared vCPU" },
+        { "icon": "disk", "label": "5 GB storage" },
         { "icon": "database", "label": "Database included" },
         { "icon": "moon", "label": "Sleeps when idle" }
       ],
@@ -118,7 +126,8 @@
         "Custom domain with certificate",
         "Mumbai or London",
         "Nightly backups, kept 7 days",
-        "Build logs and rollback to any of your last 3 builds",
+        "5 GB storage, including your database",
+        "Build logs, and rollback to your previous build",
         "Sleeps after 15 minutes idle, wakes on the next request"
       ]
     },
@@ -130,11 +139,13 @@
       "priceYearly": 2499,
       "priceMonthlyUsd": 2.49,
       "priceYearlyUsd": 24.99,
+      "storageGb": 10,
       "summary": "Never sleeps. For bots, workers and cron jobs.",
-      "description": "Everything in the Nap plan, with the application kept running at all times instead of being stopped when idle. Intended for workloads that cannot be paused: Discord and Telegram bots, scheduled jobs, queue workers, and anything holding a long-lived connection. Any language, built automatically or from your own Dockerfile. Includes the same choice of MongoDB, PostgreSQL or MariaDB database, 512 MB of memory, custom domain support, nightly backups and a choice of Mumbai or London.",
+      "description": "Everything in the Nap plan, with the application kept running at all times instead of being stopped when idle. Intended for workloads that cannot be paused: Discord and Telegram bots, scheduled jobs, queue workers, and anything holding a long-lived connection. Any language, built automatically or from your own Dockerfile. Includes the same choice of MongoDB, PostgreSQL or MariaDB database, 512 MB of memory, 10 GB of storage covering code, uploads and database together, custom domain support, nightly backups and a choice of Mumbai or London.",
       "specs": [
         { "icon": "memory", "label": "512 MB RAM" },
         { "icon": "cpu", "label": "Shared vCPU" },
+        { "icon": "disk", "label": "10 GB storage" },
         { "icon": "database", "label": "Database included" },
         { "icon": "bolt", "label": "Always running" }
       ],
@@ -145,6 +156,7 @@
         "Holds WebSockets and long-lived connections",
         "Any language, or your own Dockerfile",
         "512 MB memory",
+        "10 GB storage, including your database",
         "Mumbai or London"
       ]
     }

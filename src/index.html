@@ -183,6 +183,12 @@
          the connection string is waiting in your dashboard.</p>
     </div>
     <div class="feature">
+      <h3><svg class="feature-icon" aria-hidden="true"><use href="#i-disk"/></svg>{{plansByName.nap.storageGb}} GB of storage</h3>
+      <p>{{limits.storageNote}} {{plansByName.awake.storageGb}} GB on Awake.
+         One number to keep an eye on rather than three meters that each bill
+         separately.</p>
+    </div>
+    <div class="feature">
       <h3><svg class="feature-icon" aria-hidden="true"><use href="#i-vector"/></svg>Vector search, included</h3>
       <p>{{databases.vector.why}} Building a RAG chatbot for your final year? It
          works here without a second subscription.</p>
@@ -210,8 +216,9 @@
     </div>
     <div class="feature">
       <h3><svg class="feature-icon" aria-hidden="true"><use href="#i-rotate"/></svg>Roll back a bad deploy</h3>
-      <p>We keep your last three builds. If the one you just shipped is broken,
-         go back to the one that worked.</p>
+      <p>We keep {{limits.imagesText}}. If the one you just shipped is broken,
+         go back to the one that worked. Keeping two rather than ten is part of
+         why the storage allowance goes to your app instead of to old images.</p>
     </div>
     <div class="feature">
       <h3><svg class="feature-icon" aria-hidden="true"><use href="#i-clock"/></svg>Nightly backups</h3>
