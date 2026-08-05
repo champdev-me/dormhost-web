@@ -18,6 +18,7 @@
     <a class="brand" href="/"><span class="brand-mark"></span>DormHost</a>
     <div class="nav-links">
       <a href="#how">How it works</a>
+      <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
     </div>
@@ -81,7 +82,8 @@
   <div class="steps">
     <div class="step">
       <h3>Point us at your repo</h3>
-      <p>Node or Python. We read your <code>package.json</code> or
+      <p>Public or private — paste a GitHub token for a private one. Node or
+         Python. We read your <code>package.json</code> or
          <code>requirements.txt</code> and work out how to build it.</p>
     </div>
     <div class="step">
@@ -93,6 +95,104 @@
       <h3>Share the link</h3>
       <p>It stays up. When nobody visits for a while it sleeps, and the next
          visitor wakes it before the page finishes loading.</p>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="wrap">
+  <div class="section-head">
+    <h2>Everything you get.</h2>
+    <p>One price covers all of it. There is no add-on list and nothing is
+       metered separately.</p>
+  </div>
+
+  <div class="features">
+    <div class="feature">
+      <h3><span class="feature-icon"></span>Private repos</h3>
+      <p>Your college project does not have to be public. Paste a GitHub access
+         token and we clone it the same way. We use it to read your code and
+         nothing else, and you can revoke it whenever you like.</p>
+    </div>
+    <div class="feature">
+      <h3><span class="feature-icon"></span>Node and Python</h3>
+      <p>We detect which one from your repo and build it. No Dockerfile to
+         write, no build command to configure.</p>
+    </div>
+    <div class="feature">
+      <h3><span class="feature-icon"></span>A database, included</h3>
+      <p>A MongoDB database on the same machine as your app, so your queries
+         never leave the box. Connection string waiting in your dashboard.</p>
+    </div>
+    <div class="feature">
+      <h3><span class="feature-icon"></span>HTTPS, already on</h3>
+      <p>Every app gets <code>yourname.dormhost.app</code> with a real
+         certificate from the moment it deploys. Nothing to set up.</p>
+    </div>
+    <div class="feature">
+      <h3><span class="feature-icon"></span>Your own domain</h3>
+      <p>Point a domain you own at us and we handle the certificate. Works on
+         any paid plan.</p>
+    </div>
+    <div class="feature">
+      <h3><span class="feature-icon"></span>Pick where it runs</h3>
+      <p>Mumbai or London. Put it in Mumbai and your users in India get a reply
+         in a few milliseconds instead of a few hundred.</p>
+    </div>
+    <div class="feature">
+      <h3><span class="feature-icon"></span>Environment variables</h3>
+      <p>Your API keys and secrets live in the dashboard, not in your repo.
+         Change one and the app restarts with it.</p>
+    </div>
+    <div class="feature">
+      <h3><span class="feature-icon"></span>Build logs you can read</h3>
+      <p>When a deploy fails you see exactly what the build printed. No guessing
+         and no support ticket.</p>
+    </div>
+    <div class="feature">
+      <h3><span class="feature-icon"></span>Roll back a bad deploy</h3>
+      <p>We keep your last three builds. If the one you just shipped is broken,
+         go back to the one that worked.</p>
+    </div>
+    <div class="feature">
+      <h3><span class="feature-icon"></span>Nightly backups</h3>
+      <p>Your database is backed up every night and we keep seven days. Losing a
+         final-year project the week before submission should not be possible.</p>
+    </div>
+    <div class="feature">
+      <h3><span class="feature-icon"></span>Sleeps, or does not</h3>
+      <p>Nap apps sleep when idle and wake on the next request. Discord bots and
+         cron jobs need to stay up, so Awake apps never sleep.</p>
+    </div>
+    <div class="feature">
+      <h3><span class="feature-icon"></span>Isolated from everyone else</h3>
+      <p>Your app runs in its own locked-down container with its own database
+         credentials. Nobody else on the machine can reach it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <h2>Two places to run it.</h2>
+    <p>Pick the one nearest your users. You can move an app between them without
+       changing its address.</p>
+  </div>
+  <div class="regions">
+    <div class="region">
+      <span class="region-dot"></span>
+      <div>
+        <h3>Mumbai</h3>
+        <p>The default, and the right choice for almost every Indian project.</p>
+        <p class="ping">ap-mumbai</p>
+      </div>
+    </div>
+    <div class="region">
+      <span class="region-dot"></span>
+      <div>
+        <h3>London</h3>
+        <p>For projects with users outside India, or a guide reviewing from abroad.</p>
+        <p class="ping">uk-london</p>
+      </div>
     </div>
   </div>
 </section>
@@ -122,10 +222,13 @@
       <p class="tier-sub">per month — the usual choice</p>
       <ul>
         <li>Node or Python backend</li>
-        <li>512 MB memory</li>
+        <li>Public or private repos</li>
         <li>MongoDB database included</li>
+        <li>512 MB memory</li>
+        <li>Mumbai or London</li>
+        <li>Custom domain and HTTPS</li>
+        <li>Nightly backups, 7 days</li>
         <li>Sleeps when idle, wakes on request</li>
-        <li>Custom domain</li>
       </ul>
     </div>
     <div class="tier">
@@ -134,10 +237,10 @@
       <p class="tier-sub">per month — never sleeps</p>
       <ul>
         <li>Everything in Nap</li>
-        <li>Always running</li>
+        <li>Never sleeps</li>
         <li>For Discord bots, cron jobs, workers</li>
         <li>512 MB memory</li>
-        <li>MongoDB database included</li>
+        <li>Mumbai or London</li>
       </ul>
     </div>
   </div>
@@ -190,6 +293,18 @@
          do not cross the internet. Your connection string is in your dashboard.</p>
     </div>
     <div>
+      <h3>Can I deploy a private repo?</h3>
+      <p>Yes. Paste a GitHub personal access token with read access to that
+         repository. We use it to clone your code and nothing else. Revoke it on
+         GitHub and we stop being able to read it, immediately.</p>
+    </div>
+    <div>
+      <h3>Where does my app actually run?</h3>
+      <p>Mumbai by default, London if you choose it. Your database sits on the
+         same machine as your app, so queries between them never touch the
+         internet.</p>
+    </div>
+    <div>
       <h3>Can I use my own domain?</h3>
       <p>Yes, on any paid plan. Point it at us and HTTPS is set up for you.</p>
     </div>
@@ -217,6 +332,7 @@
         <h4>Product</h4>
         <div class="foot-links">
           <a href="#how">How it works</a>
+          <a href="#features">Features</a>
           <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
         </div>
