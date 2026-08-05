@@ -10,7 +10,7 @@
 //
 // No dependencies, by design: the runtime image is alpine + node and nothing else.
 
-import { readFileSync, writeFileSync, readdirSync, mkdirSync, rmSync, cpSync, statSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, mkdirSync, rmSync, cpSync, statSync, watch } from 'node:fs';
 import { join, dirname, basename } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -183,13 +183,12 @@ function loadContent() {
   })(c, '');
 
   if (unfilled.length) {
-    console.error('\ncontent.json still has placeholders:\n');
-    for (const u of unfilled) console.error(`  ${u}`);
-    console.error(
-      '\nThese appear on the public site and on the pages a payment processor reviews.\n' +
-      'Fill them in and build again.\n'
+    throw new Error(
+      'content.json still has placeholders:\n\n' +
+        unfilled.map((u) => `  ${u}`).join('\n') +
+        '\n\nThese appear on the public site and on the pages a payment processor\n' +
+        'reviews. Fill them in and build again.'
     );
-    process.exit(1);
   }
 
   return derive(c);
@@ -204,18 +203,130 @@ function derive(c) {
   a.html = [a.line1, a.line2, `${a.city}, ${a.state} ${a.pincode}`, a.country]
     .filter(Boolean).map(escape).join('<br>');
 
+  // One number, two shapes: tel: wants no spaces, a human wants them.
+  const digits = c.company.phone.replace(/[\s-]/g, '');
+  c.company.phoneHref = digits;
+  const indian = digits.match(/^(\+91)(\d{5})(\d{5})$/);
+  c.company.phoneDisplay = indian ? `${indian[1]} ${indian[2]} ${indian[3]}` : c.company.phone;
+
   for (const p of c.plans) {
     p.monthly = inr(p.priceMonthly);
     p.yearly = inr(p.priceYearly);
     p.yearlyPerMonth = inr(Math.round(p.priceYearly / 12));
     p.yearlySaving = inr(p.priceMonthly * 12 - p.priceYearly);
     p.perDay = (p.priceMonthly / 30).toFixed(2);
+
+    // Rupees for India, dollars for everyone else. Both are real prices in
+    // their own right, so neither is derived from an exchange rate.
+    p.usdMonthly = p.priceMonthlyUsd.toFixed(2);
+    p.usdYearly = p.priceYearlyUsd.toFixed(2);
+    p.usdYearlySaving = (p.priceMonthlyUsd * 12 - p.priceYearlyUsd).toFixed(2);
   }
 
   c.plansByName = Object.fromEntries(c.plans.map((p) => [p.slug, p]));
   c.cheapest = c.plans.reduce((lo, p) => (p.priceMonthly < lo.priceMonthly ? p : lo));
+
+  // Structured data is assembled here rather than hand-written in a <script>
+  // tag: JSON needs JSON escaping, and the template engine only does HTML
+  // escaping. Emitted with {{{ }}} so it reaches the page unaltered.
+  const a2 = c.company.address;
+  c.jsonld = {
+    organization: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: c.company.tradeName,
+      legalName: c.company.legalName,
+      url: c.site.url,
+      logo: `${c.site.url}/assets/icon-512.png`,
+      image: `${c.site.url}/assets/og.png`,
+      email: c.company.email,
+      telephone: c.company.phoneHref,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: [a2.line1, a2.line2].filter(Boolean).join(', '),
+        addressLocality: a2.city,
+        addressRegion: a2.state,
+        postalCode: a2.pincode,
+        addressCountry: 'IN',
+      },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'customer support',
+        email: c.company.email,
+        telephone: c.company.phoneHref,
+        availableLanguage: ['en', 'hi'],
+      },
+    }),
+
+    products: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': c.plans.map((p) => ({
+        '@type': 'Product',
+        name: `${c.site.name} ${p.name}`,
+        description: p.description,
+        brand: { '@type': 'Brand', name: c.site.name },
+        category: 'Web application hosting',
+        offers: [
+          {
+            '@type': 'Offer',
+            price: String(p.priceMonthly),
+            priceCurrency: 'INR',
+            eligibleRegion: { '@type': 'Country', name: 'IN' },
+            url: `${c.site.url}/pricing.html#${p.slug}`,
+            availability: 'https://schema.org/InStock',
+          },
+          {
+            '@type': 'Offer',
+            price: p.usdMonthly,
+            priceCurrency: 'USD',
+            url: `${c.site.url}/pricing.html#${p.slug}`,
+            availability: 'https://schema.org/InStock',
+          },
+        ],
+      })),
+    }),
+  };
+
   return c;
 }
+
+// ---------------------------------------------------------------- search
+
+// Crawl weight, highest first. Anything unlisted is a policy page at 0.5:
+// real, indexable, and not what we want ranking above the pricing page.
+const PRIORITY = {
+  'index.html': '1.0',
+  'pricing.html': '0.9',
+  'about.html': '0.7',
+  'contact.html': '0.7',
+};
+
+function sitemap(pages, content) {
+  const urls = pages
+    .map((page) => {
+      const loc = page === 'index.html' ? `${content.site.url}/` : `${content.site.url}/${page}`;
+      return [
+        '  <url>',
+        `    <loc>${escape(loc)}</loc>`,
+        `    <lastmod>${content.site.lastmod}</lastmod>`,
+        `    <priority>${PRIORITY[page] ?? '0.5'}</priority>`,
+        '  </url>',
+      ].join('\n');
+    })
+    .join('\n');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls}
+</urlset>
+`;
+}
+
+const robots = (content) => `User-agent: *
+Allow: /
+
+Sitemap: ${content.site.url}/sitemap.xml
+`;
 
 // ---------------------------------------------------------------- build
 
@@ -241,6 +352,8 @@ function build() {
         // Anchor links in the shared nav resolve in-page on the homepage and
         // jump back to it from anywhere else.
         homePrefix: isHome ? '' : '/',
+        // Canonical, and the og:url that goes with it.
+        url: isHome ? `${content.site.url}/` : `${content.site.url}/${page}`,
       },
     };
     const result = render(src, ctx, `src/${page}`);
@@ -249,11 +362,15 @@ function build() {
   }
 
   if (missing.length) {
-    console.error('\nTemplate placeholders with nothing behind them:\n');
-    for (const m of missing) console.error(`  ${m}`);
-    console.error('\nEither add the value to content.json or remove the placeholder.\n');
-    process.exit(1);
+    throw new Error(
+      'Template placeholders with nothing behind them:\n\n' +
+        missing.map((m) => `  ${m}`).join('\n') +
+        '\n\nEither add the value to content.json or remove the placeholder.'
+    );
   }
+
+  writeFileSync(join(DIST, 'sitemap.xml'), sitemap(pages, content));
+  writeFileSync(join(DIST, 'robots.txt'), robots(content));
 
   for (const asset of ['style.css', 'assets']) {
     const from = join(root, asset === 'style.css' ? 'src/style.css' : asset);
@@ -264,8 +381,36 @@ function build() {
     .map((f) => statSync(join(DIST, f)))
     .reduce((n, s) => n + (s.isFile() ? s.size : 0), 0);
 
-  console.log(`built ${pages.length} pages (${(bytes / 1024).toFixed(0)} kB) → dist/`);
-  for (const page of pages.sort()) console.log(`  /${page === 'index.html' ? '' : page}`);
+  return { pages: pages.length, kb: (bytes / 1024).toFixed(0) };
 }
 
-build();
+// ---------------------------------------------------------------- entry
+
+const watching = process.argv.includes('--watch');
+
+function once() {
+  try {
+    const { pages, kb } = build();
+    const at = watching ? new Date().toTimeString().slice(0, 8) + '  ' : '';
+    console.log(`${at}built ${pages} pages (${kb} kB) → dist/`);
+    return true;
+  } catch (err) {
+    console.error(`\n${err.message}\n`);
+    if (!watching) process.exit(1);
+    return false;
+  }
+}
+
+once();
+
+if (watching) {
+  // Coalesce the burst of events an editor emits for a single save.
+  let timer = null;
+  const rebuild = () => {
+    clearTimeout(timer);
+    timer = setTimeout(once, 80);
+  };
+  watch(SRC, { recursive: true }, rebuild);
+  watch(join(root, 'content.json'), rebuild);
+  console.log('watching src/ and content.json');
+}

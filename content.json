@@ -6,7 +6,27 @@
     "domain": "dormhost.dev",
     "url": "https://dormhost.dev",
     "appDomain": "dormhost.app",
-    "year": "2026"
+    "year": "2026",
+    "lastmod": "2026-08-05",
+    "locale": "en_IN"
+  },
+
+  "databases": {
+    "list": ["MongoDB", "PostgreSQL", "MariaDB"],
+    "text": "MongoDB, PostgreSQL or MariaDB",
+    "textLong": "MongoDB, PostgreSQL or MariaDB, which is MySQL",
+    "note": "Pick whichever your project needs. It runs on the same machine as your application, so a query is a loopback call and never crosses the internet.",
+    "vector": {
+      "extension": "pgvector",
+      "short": "Vector search is included. PostgreSQL ships with pgvector switched on.",
+      "why": "A separate vector database would want its own memory and its own bill. pgvector is an extension rather than another service, so your embeddings sit in the same database as the rest of your data and cost nothing extra."
+    }
+  },
+
+  "runtimes": {
+    "detected": ["Node.js", "Python", "Go", "Java", "Ruby", "PHP", ".NET"],
+    "detectedText": "Node.js, Python, Go, Java, Ruby, PHP and .NET",
+    "note": "We read your repository and work out how to build it. If your language is not on that list, or you want the build done your way, add a Dockerfile and we build that instead. Rust, Elixir, Deno, Bun, C++, anything that starts and listens on a port."
   },
 
   "company": {
@@ -15,16 +35,16 @@
     "entity": "sole proprietorship",
     "operatedBy": "This website is operated by Rohit Mahto, a sole proprietor trading as DormHost.",
     "address": {
-      "line1": "FILL_ME_ADDRESS_LINE_1",
-      "line2": "FILL_ME_ADDRESS_LINE_2",
-      "city": "FILL_ME_CITY",
-      "state": "FILL_ME_STATE",
-      "pincode": "FILL_ME_PINCODE",
+      "line1": "Laxmi Niwash, Near Bridge",
+      "line2": "Muraidih",
+      "city": "Dhanbad",
+      "state": "Jharkhand",
+      "pincode": "828306",
       "country": "India"
     },
     "email": "support@dormhost.dev",
-    "phone": "FILL_ME_PHONE",
-    "phoneHours": "Monday to Friday, 10am to 6pm IST",
+    "phone": "+918271374755",
+    "phoneHours": "All days, 10am to 6pm IST",
     "gst": {
       "registered": false,
       "gstin": "",
@@ -43,9 +63,9 @@
     "updated": "5 August 2026",
     "effective": "5 August 2026",
     "refund": {
-      "windowDays": 7,
-      "decisionDays": 2,
-      "creditDays": "5 to 7 business days",
+      "windowDays": 15,
+      "decisionDays": 7,
+      "creditDays": "15 days after approval",
       "mode": "the original payment method, meaning the same UPI ID, card or bank account you paid from"
     },
     "cancellation": {
@@ -62,8 +82,11 @@
   "payments": {
     "gateway": "PayU",
     "methods": "UPI, debit card, credit card and net banking",
+    "methodsIntl": "Visa, Mastercard and American Express",
     "currency": "INR",
-    "currencyNote": "All prices on this site are in Indian Rupees (INR, ₹) and are charged in Indian Rupees."
+    "currencyIntl": "USD",
+    "currencyNote": "Customers in India are charged in Indian Rupees (INR, ₹). Everyone else is charged in US Dollars (USD, $). The price you are shown at checkout is the price you pay, and nothing is converted afterwards.",
+    "currencyShort": "₹ in India, $ everywhere else"
   },
 
   "plans": [
@@ -73,12 +96,23 @@
       "featured": true,
       "priceMonthly": 99,
       "priceYearly": 999,
+      "priceMonthlyUsd": 0.99,
+      "priceYearlyUsd": 9.99,
       "summary": "The usual choice. Sleeps when nobody is using it.",
-      "description": "Hosting for one web application written in Node.js or Python, deployed from a public or private GitHub repository. Includes a MongoDB database on the same machine as the app, an HTTPS address at yourname.dormhost.app, support for a custom domain, 512 MB of memory, nightly database backups kept for seven days, and a choice of Mumbai or London. The application is stopped after fifteen minutes with no visitors and started again by the next request, typically in about 200 milliseconds.",
+      "description": "Hosting for one web application in any language, deployed from a public or private GitHub repository. Node.js, Python, Go, Java, Ruby, PHP and .NET are detected and built automatically; anything else builds from a Dockerfile in your repository. Includes a database on the same machine as the app, MongoDB, PostgreSQL or MariaDB as you prefer, an HTTPS address at yourname.dormhost.app, support for a custom domain, 512 MB of memory, nightly database backups kept for seven days, and a choice of Mumbai or London. The application is stopped after fifteen minutes with no visitors and started again by the next request, typically in about 200 milliseconds.",
+      "specs": [
+        { "icon": "memory", "label": "512 MB RAM" },
+        { "icon": "cpu", "label": "Shared vCPU" },
+        { "icon": "database", "label": "Database included" },
+        { "icon": "moon", "label": "Sleeps when idle" }
+      ],
       "features": [
-        "One Node.js or Python application",
+        "One application, in any language",
+        "Automatic builds for Node.js, Python, Go, Java, Ruby, PHP and .NET",
+        "Or bring your own Dockerfile for anything else",
         "Public or private GitHub repositories",
-        "MongoDB database on the same machine",
+        "MongoDB, PostgreSQL or MariaDB, on the same machine",
+        "pgvector on PostgreSQL for embeddings and similarity search",
         "512 MB memory",
         "HTTPS at yourname.dormhost.app",
         "Custom domain with certificate",
@@ -94,13 +128,22 @@
       "featured": false,
       "priceMonthly": 249,
       "priceYearly": 2499,
+      "priceMonthlyUsd": 2.49,
+      "priceYearlyUsd": 24.99,
       "summary": "Never sleeps. For bots, workers and cron jobs.",
-      "description": "Everything in the Nap plan, with the application kept running at all times instead of being stopped when idle. Intended for workloads that cannot be paused: Discord and Telegram bots, scheduled jobs, queue workers, and anything holding a long-lived connection. Includes the same MongoDB database, 512 MB of memory, custom domain support, nightly backups and a choice of Mumbai or London.",
+      "description": "Everything in the Nap plan, with the application kept running at all times instead of being stopped when idle. Intended for workloads that cannot be paused: Discord and Telegram bots, scheduled jobs, queue workers, and anything holding a long-lived connection. Any language, built automatically or from your own Dockerfile. Includes the same choice of MongoDB, PostgreSQL or MariaDB database, 512 MB of memory, custom domain support, nightly backups and a choice of Mumbai or London.",
+      "specs": [
+        { "icon": "memory", "label": "512 MB RAM" },
+        { "icon": "cpu", "label": "Shared vCPU" },
+        { "icon": "database", "label": "Database included" },
+        { "icon": "bolt", "label": "Always running" }
+      ],
       "features": [
         "Everything in Nap",
         "Never sleeps, so the process stays running",
         "For Discord bots, cron jobs and queue workers",
         "Holds WebSockets and long-lived connections",
+        "Any language, or your own Dockerfile",
         "512 MB memory",
         "Mumbai or London"
       ]

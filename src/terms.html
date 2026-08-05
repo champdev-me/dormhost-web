@@ -27,7 +27,7 @@
   </p>
   <p>
     Contact: <a href="mailto:{{company.email}}">{{company.email}}</a> ·
-    {{company.phone}}
+    {{company.phoneDisplay}}
   </p>
 </div>
 
@@ -105,8 +105,8 @@
 
 <h2>7. Payment</h2>
 <p>
-  Prices are shown on the <a href="/pricing.html">pricing page</a> in Indian
-  Rupees and are charged in Indian Rupees. {{company.gst.statement}}
+  Prices are shown on the <a href="/pricing.html">pricing page</a>.
+  {{payments.currencyNote}} {{company.gst.statement}}
 </p>
 <p>
   You pay by adding money to a balance using {{payments.methods}} through
@@ -221,7 +221,7 @@
 <p>
   {{company.legalName}}, trading as {{company.tradeName}}<br>
   {{{company.address.html}}}<br>
-  <a href="mailto:{{company.email}}">{{company.email}}</a> · {{company.phone}}
+  <a href="mailto:{{company.email}}">{{company.email}}</a> · {{company.phoneDisplay}}
 </p>
 
 </main>

@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
 {{> head}}
-<title>{{site.name}}: put your project online for ₹{{cheapest.monthly}} a month</title>
-<meta name="description" content="Hosting for college students. Push a repo, get a URL and a database. Your app sleeps when nobody is using it, which is why it costs ₹{{cheapest.monthly}} a month.">
-<meta property="og:title" content="{{site.name}}: put your project online for ₹{{cheapest.monthly}} a month">
-<meta property="og:description" content="Push a repo, get a URL and a database. No credit card. Pay with UPI.">
+<title>{{site.name}}: hosting for students, ₹{{cheapest.monthly}} or ${{cheapest.usdMonthly}} a month</title>
+<meta name="description" content="Hosting for college students in any language. Push a repo, get a URL and a database. Your app sleeps when nobody is using it, which is why it costs ₹{{cheapest.monthly}} a month in India and ${{cheapest.usdMonthly}} everywhere else.">
+<meta property="og:title" content="{{site.name}}: hosting for students, ₹{{cheapest.monthly}} or ${{cheapest.usdMonthly}} a month">
+<meta property="og:description" content="Push a repo in any language, get a URL and a database. Sleeps when idle, wakes in {{policies.wakeMs}} ms.">
 </head>
 <body>
 
+{{> icons}}
 {{> nav}}
 
 <header class="wrap hero">
@@ -24,9 +25,17 @@
 
       <div class="price-line">
         <span class="price">₹{{cheapest.monthly}}</span>
-        <span class="price-unit">/ month, all in</span>
+        <span class="price-unit">/ month per app, in India</span>
+        <span class="price-alt">${{cheapest.usdMonthly}} everywhere else</span>
       </div>
-      <p class="price-note">No credit card. Pay with UPI, top up when you want.</p>
+      <p class="no-card">
+        <svg class="no-card-icon" aria-hidden="true"><use href="#i-shield"/></svg>
+        No credit card required
+      </p>
+      <p class="price-note">
+        Pay by UPI in India. Nothing is saved, nothing auto-renews, and you top
+        up only when you want to.
+      </p>
 
       <div class="cta-row">
         <a class="btn btn-primary" href="/pricing.html">See what you get</a>
@@ -36,12 +45,21 @@
 
     <!-- The mechanic, shown rather than described. -->
     <div>
-      <div class="window">
+      <div class="window" id="window">
         <p class="window-label">your app · right now</p>
+        <!-- Six panes, six of the things students actually deploy here. -->
+        <span class="zzz" aria-hidden="true"><span>z</span><span>z</span><span>z</span></span>
         <div class="panes" id="panes">
-          <div class="pane"></div><div class="pane"></div><div class="pane"></div>
-          <div class="pane"></div><div class="pane"></div><div class="pane"></div>
+          <div class="pane"><svg class="pane-icon" aria-hidden="true"><use href="#a-bot"/></svg></div>
+          <div class="pane"><svg class="pane-icon" aria-hidden="true"><use href="#a-chat"/></svg></div>
+          <div class="pane"><svg class="pane-icon" aria-hidden="true"><use href="#a-chart"/></svg></div>
+          <div class="pane"><svg class="pane-icon" aria-hidden="true"><use href="#a-api"/></svg></div>
+          <div class="pane"><svg class="pane-icon" aria-hidden="true"><use href="#a-cart"/></svg></div>
+          <div class="pane"><svg class="pane-icon" aria-hidden="true"><use href="#a-globe"/></svg></div>
         </div>
+        <!-- The light falls out of the window onto this, exactly as it does in
+             the logo. It is what stops the dark state reading as empty boxes. -->
+        <div class="sill" id="sill"><span class="spill"></span></div>
         <div class="window-readout">
           <span class="readout-state">
             <span class="dot" id="dot"></span>
@@ -63,19 +81,19 @@
 <section id="how" class="wrap">
   <div class="section-head">
     <h2>Three steps, then it is online.</h2>
-    <p>No Dockerfile to write, no server to configure, no card to enter.</p>
+    <p>Any language, no server to configure, no card to enter.</p>
   </div>
   <div class="steps">
     <div class="step">
       <h3>Point us at your repo</h3>
-      <p>Public or private. Paste a GitHub token for a private one. Node or
-         Python. We read your <code>package.json</code> or
-         <code>requirements.txt</code> and work out how to build it.</p>
+      <p>Public or private. Paste a GitHub token for a private one. We read the
+         repository and work out how to build it, whatever it is written in. Add
+         a <code>Dockerfile</code> and we build exactly that instead.</p>
     </div>
     <div class="step">
       <h3>We build it and give you a URL</h3>
       <p>Your app gets <code>yourname.{{site.appDomain}}</code> with HTTPS already
-         working, and a MongoDB database on the same machine.</p>
+         working, and your choice of {{databases.text}} on the same machine.</p>
     </div>
     <div class="step">
       <h3>Share the link</h3>
@@ -117,14 +135,17 @@
       <div class="diff">
         <h3>The database is included, and it is next door</h3>
         <p>Not a second vendor, a second bill and a second free trial that
-           expires. Your MongoDB runs on the same machine as your app, so a query
+           expires. Your {{databases.text}} runs on the same machine as your app, so a query
            is a loopback call rather than a trip across the internet.</p>
       </div>
       <div class="diff">
-        <h3>₹{{cheapest.monthly}} on UPI, not dollars on a card</h3>
-        <p>No international card, no currency conversion, no per-gigabyte
-           bandwidth line you find out about at the end of the month. You top up
-           a balance and we draw it down a day at a time.</p>
+        <h3>Priced in your own currency</h3>
+        <p>₹{{cheapest.monthly}} a month in India, paid by UPI, with no
+           international card and no conversion fee.
+           ${{cheapest.usdMonthly}} a month everywhere else. Either way you top up
+           a balance and we draw it down a day at a time, and there is no
+           per-gigabyte bandwidth line you find out about at the end of the
+           month.</p>
       </div>
     </div>
   </div>
@@ -133,70 +154,78 @@
 <section id="features" class="wrap">
   <div class="section-head">
     <h2>Everything you get.</h2>
-    <p>One price covers all of it. There is no add-on list and nothing is
-       metered separately.</p>
+    <p>One price per app covers all of it. There is no add-on list and nothing
+       is metered separately.</p>
   </div>
 
   <div class="features">
     <div class="feature">
-      <h3><span class="feature-icon"></span>Private repos</h3>
+      <h3><svg class="feature-icon" aria-hidden="true"><use href="#i-code"/></svg>Any language</h3>
+      <p>{{runtimes.detectedText}} are detected from your repository and built
+         for you. No build command to configure and nothing to install.</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" aria-hidden="true"><use href="#i-container"/></svg>Or your own Dockerfile</h3>
+      <p>Writing Rust, Elixir, Deno, Bun, or something nobody has heard of? Put a
+         <code>Dockerfile</code> in your repository and we build that instead. If
+         it starts and listens on a port, it runs here.</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" aria-hidden="true"><use href="#i-git"/></svg>Private repos</h3>
       <p>Your college project does not have to be public. Paste a GitHub access
          token and we clone it the same way. We use it to read your code and
          nothing else, and you can revoke it whenever you like.</p>
     </div>
     <div class="feature">
-      <h3><span class="feature-icon"></span>Node and Python</h3>
-      <p>We detect which one from your repo and build it. No Dockerfile to
-         write, no build command to configure.</p>
+      <h3><svg class="feature-icon" aria-hidden="true"><use href="#i-database"/></svg>A database, included</h3>
+      <p>{{databases.textLong}}. Pick the one your project needs. It runs on
+         the same machine as your app, so your queries never leave the box, and
+         the connection string is waiting in your dashboard.</p>
     </div>
     <div class="feature">
-      <h3><span class="feature-icon"></span>A database, included</h3>
-      <p>A MongoDB database on the same machine as your app, so your queries
-         never leave the box. Connection string waiting in your dashboard.</p>
+      <h3><svg class="feature-icon" aria-hidden="true"><use href="#i-vector"/></svg>Vector search, included</h3>
+      <p>{{databases.vector.why}} Building a RAG chatbot for your final year? It
+         works here without a second subscription.</p>
     </div>
     <div class="feature">
-      <h3><span class="feature-icon"></span>HTTPS, already on</h3>
+      <h3><svg class="feature-icon" aria-hidden="true"><use href="#i-lock"/></svg>HTTPS and your own domain</h3>
       <p>Every app gets <code>yourname.{{site.appDomain}}</code> with a real
-         certificate from the moment it deploys. Nothing to set up.</p>
+         certificate the moment it deploys. Point a domain you own at us and we
+         handle that certificate too.</p>
     </div>
     <div class="feature">
-      <h3><span class="feature-icon"></span>Your own domain</h3>
-      <p>Point a domain you own at us and we handle the certificate. Works on
-         either plan.</p>
-    </div>
-    <div class="feature">
-      <h3><span class="feature-icon"></span>Pick where it runs</h3>
+      <h3><svg class="feature-icon" aria-hidden="true"><use href="#i-globe"/></svg>Pick where it runs</h3>
       <p>Mumbai or London. Put it in Mumbai and your users in India get a reply
          in a few milliseconds instead of a few hundred.</p>
     </div>
     <div class="feature">
-      <h3><span class="feature-icon"></span>Environment variables</h3>
+      <h3><svg class="feature-icon" aria-hidden="true"><use href="#i-key"/></svg>Environment variables</h3>
       <p>Your API keys and secrets live in the dashboard, not in your repo.
          Change one and the app restarts with it.</p>
     </div>
     <div class="feature">
-      <h3><span class="feature-icon"></span>Build logs you can read</h3>
+      <h3><svg class="feature-icon" aria-hidden="true"><use href="#i-terminal"/></svg>Build logs you can read</h3>
       <p>When a deploy fails you see exactly what the build printed. No guessing
          and no support ticket.</p>
     </div>
     <div class="feature">
-      <h3><span class="feature-icon"></span>Roll back a bad deploy</h3>
+      <h3><svg class="feature-icon" aria-hidden="true"><use href="#i-rotate"/></svg>Roll back a bad deploy</h3>
       <p>We keep your last three builds. If the one you just shipped is broken,
          go back to the one that worked.</p>
     </div>
     <div class="feature">
-      <h3><span class="feature-icon"></span>Nightly backups</h3>
+      <h3><svg class="feature-icon" aria-hidden="true"><use href="#i-clock"/></svg>Nightly backups</h3>
       <p>Your database is backed up every night and we keep
          {{policies.backupRetentionDays}} days. Losing a final-year project the
          week before submission should not be possible.</p>
     </div>
     <div class="feature">
-      <h3><span class="feature-icon"></span>Sleeps, or does not</h3>
+      <h3><svg class="feature-icon" aria-hidden="true"><use href="#i-moon"/></svg>Sleeps, or does not</h3>
       <p>Nap apps sleep when idle and wake on the next request. Discord bots and
          cron jobs need to stay up, so Awake apps never sleep.</p>
     </div>
     <div class="feature">
-      <h3><span class="feature-icon"></span>Isolated from everyone else</h3>
+      <h3><svg class="feature-icon" aria-hidden="true"><use href="#i-shield"/></svg>Isolated from everyone else</h3>
       <p>Your app runs in its own locked-down container with its own database
          credentials. Nobody else on the machine can reach it.</p>
     </div>
@@ -231,8 +260,10 @@
 
 <section id="pricing" class="wrap">
   <div class="section-head">
-    <h2>Two plans. Both in rupees.</h2>
-    <p>{{company.gst.statement}} Top up your balance with {{payments.methods}}
+    <h2>Two plans, priced per app.</h2>
+    <p>{{payments.currencyShort}}. One plan runs one application, so a second
+       app is a second plan. {{company.gst.statement}} Top up your balance with
+       {{payments.methods}} in India, or {{payments.methodsIntl}} anywhere else,
        and it is drawn down daily. Stop any time and you stop paying.</p>
   </div>
 
@@ -241,9 +272,18 @@
     <div class="tier{{#if featured}} featured{{/if}}">
       {{#if featured}}<p class="tier-flag">Most students pick this</p>{{/if}}
       <p class="tier-name">{{name}}</p>
-      <p class="tier-price">₹{{monthly}}<span class="tier-per">/month</span></p>
-      <p class="tier-year">or ₹{{yearly}} a year, saving ₹{{yearlySaving}}</p>
+      <p class="tier-price">₹{{monthly}}<span class="tier-per">/month per app</span></p>
+      <p class="tier-alt">${{usdMonthly}} / month per app outside India</p>
+      <p class="tier-year">Yearly: ₹{{yearly}} or ${{usdYearly}}, saving ₹{{yearlySaving}}</p>
       <p class="tier-sub">{{summary}}</p>
+      <div class="specs">
+        {{#each specs}}
+        <div class="spec">
+          <svg class="spec-icon" aria-hidden="true"><use href="#i-{{icon}}"/></svg>
+          <span>{{label}}</span>
+        </div>
+        {{/each}}
+      </div>
       <ul>
         {{#each features}}<li>{{.}}</li>{{/each}}
       </ul>
@@ -332,8 +372,10 @@
     </div>
     <div>
       <h3>Do I need a credit card?</h3>
-      <p>No. Add money with UPI whenever you like and it is spent a day at a
-         time. Most students top up once a term.</p>
+      <p>No. In India you can do everything with UPI. Outside India you can use
+         a card, but nothing is stored and nothing renews on its own. You add
+         money when you want to and it is spent a day at a time. Most students
+         top up once a term.</p>
     </div>
     <div>
       <h3>Is there a free plan?</h3>
@@ -349,8 +391,15 @@
     </div>
     <div>
       <h3>Is my database really included?</h3>
-      <p>Yes. A MongoDB database on the same machine as your app, so queries
-         do not cross the internet. Your connection string is in your dashboard.</p>
+      <p>Yes, and you choose which one: {{databases.textLong}}. It sits on the
+         same machine as your app, so queries do not cross the internet, and the
+         connection string is in your dashboard.</p>
+    </div>
+    <div>
+      <h3>Which languages can I use?</h3>
+      <p>{{runtimes.detectedText}} are detected and built automatically. For
+         anything else, put a <code>Dockerfile</code> in your repository and we
+         build that, so the language is your choice rather than ours.</p>
     </div>
     <div>
       <h3>Can I deploy a private repo?</h3>
@@ -387,11 +436,15 @@
   var stateEl = document.getElementById('state');
   var msEl = document.getElementById('ms');
   var dot = document.getElementById('dot');
+  var sill = document.getElementById('sill');
+  var windowEl = document.getElementById('window');
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var busy = false;
 
   function setAsleep() {
     panes.forEach(function (p) { p.classList.remove('lit'); });
+    sill.classList.remove('lit');
+    windowEl.classList.remove('awake');
     stateEl.textContent = 'asleep';
     dot.classList.remove('awake');
     msEl.textContent = '--';
@@ -405,16 +458,20 @@
     button.disabled = true;
     button.textContent = 'waking…';
     stateEl.textContent = 'starting';
+    windowEl.classList.add('awake'); // the snoring stops first
 
     var total = 210;
     var started = performance.now();
 
     if (reduced) {
       panes.forEach(function (p) { p.classList.add('lit'); });
+      sill.classList.add('lit');
     } else {
       panes.forEach(function (p, i) {
         setTimeout(function () { p.classList.add('lit'); }, (total / panes.length) * i);
       });
+      // The light reaches the sill once most of the panes are up.
+      setTimeout(function () { sill.classList.add('lit'); }, total * 0.6);
     }
 
     var tick = setInterval(function () {

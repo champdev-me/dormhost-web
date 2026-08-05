@@ -54,7 +54,7 @@ a:hover { text-decoration-color: var(--lamp); }
 :focus-visible { outline: 2px solid var(--lamp); outline-offset: 3px; border-radius: 2px; }
 
 h1, h2, h3 { letter-spacing: -.025em; line-height: 1.1; margin: 0; text-wrap: balance; }
-h1 { font-size: clamp(2.4rem, 6.5vw, 4.2rem); font-weight: 800; }
+h1 { font-size: clamp(2.05rem, 6.5vw, 4.2rem); font-weight: 800; }
 h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 750; }
 h3 { font-size: 1.05rem; font-weight: 700; }
 p  { margin: 0 0 1rem; }
@@ -80,7 +80,8 @@ code {
   text-decoration: none; color: inherit;
 }
 .brand-mark { display: block; width: 1.3rem; height: 1.3rem; flex: none; }
-.nav-links { display: flex; gap: 1.4rem; font-size: .93rem; flex-wrap: wrap; }
+.nav-links { display: flex; gap: .9rem; font-size: .93rem; flex-wrap: wrap; }
+@media (min-width: 34rem) { .nav-links { gap: 1.4rem; } }
 .nav-links a { text-decoration: none; color: var(--muted); }
 .nav-links a:hover { color: var(--ink); }
 
@@ -90,13 +91,27 @@ code {
 @media (min-width: 62rem) { .hero-grid { grid-template-columns: 1.05fr .95fr; gap: 4rem; } }
 
 .hero p.lead { font-size: 1.16rem; color: var(--muted); max-width: 34rem; margin-top: 1.2rem; }
-.price-line { display: flex; align-items: baseline; gap: .6rem; margin: 1.8rem 0 .3rem; }
+.price-line { display: flex; align-items: baseline; flex-wrap: wrap; gap: .3rem .6rem; margin: 1.8rem 0 .3rem; }
+.price-alt {
+  font-family: var(--mono); font-size: .88rem; color: var(--faint);
+  padding-left: .6rem; border-left: 1px solid var(--rule);
+}
 .price {
   font-family: var(--mono); font-size: clamp(2.6rem, 7vw, 3.6rem);
   font-weight: 700; letter-spacing: -.04em; font-variant-numeric: tabular-nums;
 }
 .price-unit { color: var(--muted); font-size: 1rem; }
-.price-note { color: var(--faint); font-size: .9rem; margin: 0; }
+.price-note { color: var(--faint); font-size: .9rem; margin: 0; max-width: 30rem; }
+
+/* The objection most students have is the card, so it gets a badge rather
+   than a footnote. */
+.no-card {
+  display: inline-flex; align-items: center; gap: .45rem;
+  margin: 1rem 0 .6rem; padding: .4rem .85rem .4rem .62rem;
+  background: var(--night); color: #fff; border-radius: 999px;
+  font-size: .85rem; font-weight: 650; letter-spacing: -.005em;
+}
+.no-card-icon { width: 1.05rem; height: 1.05rem; color: var(--lamp); flex: none; }
 
 .cta-row { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
 .btn {
@@ -112,7 +127,7 @@ code {
 
 /* -------------------------------------------------- the window (signature) */
 .window {
-  background: var(--night); border-radius: 12px; padding: 1.6rem;
+  position: relative; background: var(--night); border-radius: 12px; padding: 1.6rem;
   box-shadow: 0 24px 60px -30px rgba(16,19,43,.6);
 }
 .window-label {
@@ -120,20 +135,85 @@ code {
   text-transform: uppercase; color: #6E77A0; margin-bottom: 1rem;
 }
 .panes { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; }
+/* Dark glass, not an empty box: a graded pane plus one diagonal reflection is
+   what makes the asleep state read as a window you could look through. */
 .pane {
-  aspect-ratio: 3 / 4; border-radius: 5px; background: var(--night-soft);
-  border: 1px solid #2C3357; transition: background .5s ease, box-shadow .5s ease;
+  aspect-ratio: 3 / 4; border-radius: 5px; position: relative; overflow: hidden;
+  background: linear-gradient(158deg, #2E3560 0%, #1C2147 54%, #262C4E 100%);
+  border: 1px solid #343C69;
+  transition: background .5s ease, box-shadow .5s ease, border-color .5s ease;
 }
+.pane { display: grid; place-items: center; }
+.pane::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(118deg, rgba(255,255,255,.075) 0 34%, rgba(255,255,255,0) 34%);
+}
+.pane-icon {
+  position: relative; z-index: 1; /* above the glass reflection */
+  width: 52%; max-width: 2.3rem; height: auto; aspect-ratio: 1;
+  color: #626DA8; transition: color .5s ease;
+}
+.pane.lit .pane-icon { color: #7C4A11; animation: pane-wake .42s ease both; }
+@keyframes pane-wake {
+  0%   { transform: scale(.72); opacity: .35; }
+  62%  { transform: scale(1.09); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Asleep, the window snores. It is the one bit of whimsy on the page and it
+   stops the idle state looking like a loading failure. */
+.zzz {
+  position: absolute; top: 1.15rem; right: 1.5rem;
+  display: flex; align-items: flex-end; gap: .12rem;
+  font-family: var(--mono); color: var(--lamp); line-height: 1;
+  transition: opacity .3s ease;
+}
+.zzz span { opacity: 0; animation: snore 3.2s ease-in-out infinite; }
+.zzz span:nth-child(1) { font-size: .68rem; animation-delay: 0s; }
+.zzz span:nth-child(2) { font-size: .84rem; animation-delay: .38s; }
+.zzz span:nth-child(3) { font-size: 1rem; animation-delay: .76s; }
+@keyframes snore {
+  0%   { opacity: 0; transform: translate(0, 5px); }
+  22%  { opacity: .9; }
+  65%  { opacity: .45; transform: translate(3px, -7px); }
+  100% { opacity: 0; transform: translate(6px, -14px); }
+}
+.window.awake .zzz { opacity: 0; }
 .pane.lit {
-  background: linear-gradient(180deg, #F2B76A 0%, var(--lamp) 100%);
+  background: linear-gradient(180deg, #F9CE87 0%, var(--lamp) 100%);
   border-color: var(--lamp);
   box-shadow: 0 0 26px -4px rgba(232,150,58,.55);
 }
-@media (prefers-reduced-motion: reduce) { .pane { transition: none; } }
+
+/* The sill catches the light when the app wakes, the same way it does in the
+   logo. Asleep it is just the ledge the window sits on. */
+.sill {
+  position: relative; height: .5rem; margin-top: .9rem; border-radius: 3px;
+  background: #262C4E; border: 1px solid #343C69;
+  transition: background .5s ease, border-color .5s ease;
+}
+.sill .spill {
+  position: absolute; left: 0; right: 0; top: 100%; height: 2.4rem;
+  background: linear-gradient(180deg, rgba(232,150,58,.32), rgba(232,150,58,0));
+  clip-path: polygon(14% 0, 86% 0, 100% 100%, 0 100%);
+  opacity: 0; transition: opacity .5s ease; pointer-events: none;
+}
+.sill.lit {
+  background: linear-gradient(90deg, #8A6033 0%, #F9CE87 50%, #8A6033 100%);
+  border-color: var(--lamp);
+}
+.sill.lit .spill { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pane, .sill, .sill .spill, .pane-icon, .zzz { transition: none; }
+  .pane.lit .pane-icon { animation: none; }
+  .zzz span { animation: none; opacity: .6; }
+}
 
 .window-readout {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 1rem; margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--on-night-rule);
+  position: relative; z-index: 1; /* above the light spilling off the sill */
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  gap: .6rem 1rem; margin-top: 1.6rem; padding-top: 1rem; border-top: 1px solid var(--on-night-rule);
   font-family: var(--mono); font-size: .82rem; color: var(--on-night-dim);
 }
 .readout-state { display: inline-flex; align-items: center; gap: .45rem; }
@@ -150,7 +230,8 @@ code {
 .window-caption { color: var(--faint); font-size: .85rem; margin: .9rem 0 0; }
 
 /* ---------------------------------------------------------------- sections */
-section { padding-top: 4rem; padding-bottom: 4rem; }
+section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+@media (min-width: 48rem) { section { padding-top: 5.5rem; padding-bottom: 5.5rem; } }
 .section-head { margin-bottom: 2.2rem; max-width: 40rem; }
 .section-head p { color: var(--muted); margin: .7rem 0 0; }
 
@@ -192,7 +273,9 @@ section.band {
 .diff strong { color: #fff; }
 
 /* ---------------------------------------------------------------- pricing */
-.tiers { display: grid; gap: 1rem; grid-template-columns: 1fr; align-items: start; }
+/* stretch, not start: both cards run to the height of the taller one, so the
+   prices line up and the buttons sit on the same baseline. */
+.tiers { display: grid; gap: 1rem; grid-template-columns: 1fr; align-items: stretch; }
 @media (min-width: 52rem) {
   .tiers { grid-template-columns: repeat(3, 1fr); }
   .tiers-2 { grid-template-columns: repeat(2, 1fr); }
@@ -200,7 +283,9 @@ section.band {
 .tier {
   background: var(--surface); border: 1px solid var(--rule);
   border-radius: 10px; padding: 1.5rem; position: relative;
+  display: flex; flex-direction: column;
 }
+.tier ul { flex: 1 1 auto; }
 .tier.featured { border-color: var(--night); box-shadow: 0 12px 34px -22px rgba(22,26,56,.5); }
 /* Overlaid on the card's top edge rather than sitting in the flow, so the
    featured card's price still lines up with its neighbour's. */
@@ -216,8 +301,19 @@ section.band {
   margin: .5rem 0 .15rem; font-variant-numeric: tabular-nums; letter-spacing: -.03em;
 }
 .tier-per { font-size: .9rem; font-weight: 500; color: var(--faint); letter-spacing: 0; }
+.tier-alt { font-family: var(--mono); font-size: .82rem; color: var(--muted); margin: 0 0 .35rem; }
 .tier-year { font-size: .85rem; color: var(--muted); margin: 0 0 .7rem; }
-.tier-sub { color: var(--faint); font-size: .88rem; margin: 0 0 1.1rem; }
+.tier-sub { color: var(--faint); font-size: .88rem; margin: 0 0 1rem; }
+
+/* The spec strip: the four numbers people actually compare, given icons so
+   they read at a glance rather than as another bullet list. */
+.specs {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: .6rem .9rem;
+  padding: .95rem 0; margin: 0 0 1.1rem;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+}
+.spec { display: flex; align-items: center; gap: .5rem; font-size: .84rem; color: var(--muted); }
+.spec-icon { width: 1.05rem; height: 1.05rem; flex: none; color: var(--lamp); }
 .tier ul { list-style: none; margin: 0; padding: 0; font-size: .93rem; color: var(--muted); }
 .tier li { padding: .35rem 0; border-top: 1px solid var(--rule); }
 .tier li:first-child { border-top: none; }
@@ -245,7 +341,8 @@ section.band {
   letter-spacing: -.035em; margin: 0; font-variant-numeric: tabular-nums;
 }
 .product-monthly span { font-size: .9rem; font-weight: 500; color: var(--faint); letter-spacing: 0; }
-.product-yearly { font-size: .9rem; color: var(--muted); margin: .3rem 0 0; }
+.product-alt { font-family: var(--mono); font-size: .85rem; color: var(--muted); margin: .25rem 0 0; }
+.product-yearly { font-size: .9rem; color: var(--muted); margin: .45rem 0 0; }
 .product-yearly span { color: var(--faint); font-size: .85rem; }
 .product-desc { color: var(--muted); font-size: .97rem; max-width: 46rem; }
 .product-sub {
@@ -294,11 +391,11 @@ section.band {
   .feature:nth-child(2n) { padding-left: 0; border-left: none; }
   .feature:not(:nth-child(3n+1)) { padding-left: 1.5rem; border-left: 1px solid var(--rule); }
 }
-.feature h3 { display: flex; align-items: baseline; gap: .5rem; margin-bottom: .35rem; }
+.feature h3 { display: flex; align-items: flex-start; gap: .55rem; margin-bottom: .4rem; }
 .feature p { color: var(--muted); font-size: .93rem; margin: 0; }
 .feature-icon {
-  width: .45rem; height: .45rem; border-radius: 1px; background: var(--lamp);
-  flex: none; transform: translateY(-.15rem);
+  width: 1.2rem; height: 1.2rem; flex: none; color: var(--lamp);
+  transform: translateY(-.02rem);
 }
 
 /* ---------------------------------------------------------------- regions */

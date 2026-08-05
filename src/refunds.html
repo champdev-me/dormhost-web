@@ -90,7 +90,7 @@
 <p>
   Email <a href="mailto:{{company.email}}">{{company.email}}</a> from the address
   on your account, with the amount and roughly when you paid. That is all we
-  need. You can also call {{company.phone}} ({{company.phoneHours}}).
+  need. You can also call {{company.phoneDisplay}} ({{company.phoneHours}}).
 </p>
 
 <h2>How long it takes</h2>
@@ -122,8 +122,10 @@
 
 <h2>Currency</h2>
 <p>
-  Everything is charged and refunded in Indian Rupees. You get back the same
-  number of rupees you paid. {{company.gst.statement}}
+  {{payments.currencyNote}} A refund is always made in the currency you were
+  charged in, for the same amount you paid. We do not convert between
+  currencies, so exchange rates cannot move against you between the payment and
+  the refund. {{company.gst.statement}}
 </p>
 
 <h2>If you are not happy with the outcome</h2>
@@ -139,7 +141,7 @@
 <p>
   {{company.legalName}}, trading as {{company.tradeName}}<br>
   {{{company.address.html}}}<br>
-  <a href="mailto:{{company.email}}">{{company.email}}</a> · {{company.phone}}
+  <a href="mailto:{{company.email}}">{{company.email}}</a> · {{company.phoneDisplay}}
 </p>
 
 </main>

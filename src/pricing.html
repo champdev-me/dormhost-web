@@ -3,12 +3,14 @@
 <head>
 {{> head}}
 <title>Pricing · {{site.name}}</title>
-<meta name="description" content="What {{site.name}} sells and what it costs, in Indian Rupees. Two plans: ₹99 a month for an app that sleeps when idle, ₹249 a month for one that never sleeps.">
+<meta name="description" content="What {{site.name}} sells and what it costs. Two plans: ₹{{cheapest.monthly}} or ${{cheapest.usdMonthly}} a month for an app that sleeps when idle, and one that never sleeps.">
 <meta property="og:title" content="Pricing · {{site.name}}">
-<meta property="og:description" content="Two plans, in Indian Rupees. ₹99 a month, or ₹249 for an app that never sleeps.">
+<meta property="og:description" content="Two plans. ₹{{cheapest.monthly}} a month in India, ${{cheapest.usdMonthly}} everywhere else.">
+<script type="application/ld+json">{{{jsonld.products}}}</script>
 </head>
 <body>
 
+{{> icons}}
 {{> nav}}
 
 <main class="wrap">
@@ -30,9 +32,19 @@
         <p class="product-summary">{{summary}}</p>
       </div>
       <div class="product-price">
-        <p class="product-monthly">₹{{monthly}}<span>/month</span></p>
-        <p class="product-yearly">or ₹{{yearly}} a year<br><span>saves ₹{{yearlySaving}}, about ₹{{yearlyPerMonth}} a month</span></p>
+        <p class="product-monthly">₹{{monthly}}<span>/month per app</span></p>
+        <p class="product-alt">${{usdMonthly}}/month per app outside India</p>
+        <p class="product-yearly">Yearly ₹{{yearly}} or ${{usdYearly}}<br><span>saves ₹{{yearlySaving}}, about ₹{{yearlyPerMonth}} a month</span></p>
       </div>
+    </div>
+
+    <div class="specs">
+      {{#each specs}}
+      <div class="spec">
+        <svg class="spec-icon" aria-hidden="true"><use href="#i-{{icon}}"/></svg>
+        <span>{{label}}</span>
+      </div>
+      {{/each}}
     </div>
 
     <p class="product-desc">{{description}}</p>
@@ -62,10 +74,24 @@
 
   <h2>How you can pay</h2>
   <p>
-    Payments are handled by {{payments.gateway}}. You can pay with
-    {{payments.methods}}. Every amount on this site is in Indian Rupees
-    (INR, ₹) and is charged in Indian Rupees. We never see or store your card
-    or UPI details.
+    Payments are handled by {{payments.gateway}}. In India you can pay with
+    {{payments.methods}}. Outside India, {{payments.methodsIntl}}. We never see
+    or store your card or UPI details.
+  </p>
+
+  <h2>Currency</h2>
+  <p>{{payments.currencyNote}}</p>
+  <p>
+    The two prices are set separately rather than converted, so a move in the
+    exchange rate does not change what you pay. Refunds are made in the currency
+    you were charged in. See the <a href="/refunds.html">refund policy</a>.
+  </p>
+
+  <h2>What you can build on it</h2>
+  <p>{{runtimes.note}}</p>
+  <p>
+    Every plan includes a database on the same machine as your application:
+    {{databases.textLong}}. {{databases.note}} {{databases.vector.short}}
   </p>
 
   <h2>Tax</h2>
@@ -99,7 +125,7 @@
     <p>
       <strong>Questions before you pay?</strong> Write to
       <a href="mailto:{{company.email}}">{{company.email}}</a> or call
-      {{company.phone}} ({{company.phoneHours}}). We answer within one working
+      {{company.phoneDisplay}} ({{company.phoneHours}}). We answer within one working
       day.
     </p>
   </div>
