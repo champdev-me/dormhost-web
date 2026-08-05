@@ -83,6 +83,14 @@ code {
 .nav-links { display: flex; gap: .9rem; font-size: .93rem; flex-wrap: wrap; }
 @media (min-width: 34rem) { .nav-links { gap: 1.4rem; } }
 .nav-links a { text-decoration: none; color: var(--muted); }
+/* The only way into the product from here, so it does not look like the rest
+   of the navigation. */
+.nav-cta {
+  color: var(--ink) !important; font-weight: 650;
+  border: 1px solid var(--rule); border-radius: 6px;
+  padding: .28rem .7rem; background: var(--surface);
+}
+.nav-cta:hover { border-color: var(--night); }
 .nav-links a:hover { color: var(--ink); }
 
 /* ---------------------------------------------------------------- hero */

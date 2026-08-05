@@ -5,6 +5,7 @@
     "name": "DormHost",
     "domain": "dormhost.dev",
     "url": "https://dormhost.dev",
+    "dashboardUrl": "https://dash.dormhost.dev",
     "appDomain": "dormhost.app",
     "year": "2026",
     "lastmod": "2026-08-05",
