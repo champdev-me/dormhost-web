@@ -8,7 +8,13 @@ Comments short. No em dashes anywhere, including page copy and legal text.
 
 ## Tooling
 
-`pnpm` for anything that needs it. Never `npm` or `yarn`.
+`pnpm` for anything that needs it, and **pnpm 10**: package.json pins it.
+Never `npm` or `yarn`.
+
+## Before committing
+
+Run `pnpm test`, which builds the site. The build fails on an unfilled
+placeholder, so it is the check that matters here.
 
 ## Git
 
