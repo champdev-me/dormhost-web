@@ -224,11 +224,15 @@ function derive(c) {
     // month, so both rates round to the same number and the comparison would
     // say there is no saving when there is one.
 
-    // Rupees for India, dollars for everyone else. Both are real prices in
-    // their own right, so neither is derived from an exchange rate.
-    p.usdMonthly = p.priceMonthlyUsd.toFixed(2);
-    p.usdYearly = p.priceYearlyUsd.toFixed(2);
-    p.usdYearlySaving = (p.priceMonthlyUsd * 12 - p.priceYearlyUsd).toFixed(2);
+    // One price, in rupees, and a dollar approximation of it. They used to be
+    // two independent prices, which was a promise the platform could not keep:
+    // PayU settles in rupees only, so a dollar account would have had its
+    // "$2.49" handed to the gateway and charged as ₹2.49. Derived from a
+    // pegged rate so the two can never contradict each other.
+    const rate = c.payments.fxRate;
+    p.usdMonthly = (p.priceMonthly / rate).toFixed(2);
+    p.usdYearly = (p.priceYearly / rate).toFixed(2);
+    p.usdYearlySaving = ((p.priceMonthly * 12 - p.priceYearly) / rate).toFixed(2);
   }
 
   c.plansByName = Object.fromEntries(c.plans.map((p) => [p.slug, p]));
@@ -274,23 +278,15 @@ function derive(c) {
         description: p.description,
         brand: { '@type': 'Brand', name: c.site.name },
         category: 'Web application hosting',
-        offers: [
-          {
-            '@type': 'Offer',
-            price: String(p.priceMonthly),
-            priceCurrency: 'INR',
-            eligibleRegion: { '@type': 'Country', name: 'IN' },
-            url: `${c.site.url}/pricing.html#${p.slug}`,
-            availability: 'https://schema.org/InStock',
-          },
-          {
-            '@type': 'Offer',
-            price: p.usdMonthly,
-            priceCurrency: 'USD',
-            url: `${c.site.url}/pricing.html#${p.slug}`,
-            availability: 'https://schema.org/InStock',
-          },
-        ],
+        // One offer, in rupees. A second in dollars would be structured data
+        // claiming a price we cannot take: the gateway settles in INR only.
+        offers: {
+          '@type': 'Offer',
+          price: String(p.priceMonthly),
+          priceCurrency: 'INR',
+          url: `${c.site.url}/pricing.html#${p.slug}`,
+          availability: 'https://schema.org/InStock',
+        },
       })),
     }),
   };

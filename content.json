@@ -98,11 +98,13 @@
   "payments": {
     "gateway": "PayU",
     "methods": "UPI, debit card, credit card and net banking",
-    "methodsIntl": "Visa, Mastercard and American Express",
+    "methodsIntl": "Visa, Mastercard and American Express, charged in Indian Rupees",
     "currency": "INR",
-    "currencyIntl": "USD",
-    "currencyNote": "Customers in India are charged in Indian Rupees (INR, ₹). Everyone else is charged in US Dollars (USD, $). The price you are shown at checkout is the price you pay, and nothing is converted afterwards.",
-    "currencyShort": "₹ in India, $ everywhere else"
+    "currencyNote": "Everything is priced and charged in Indian Rupees (INR, ₹), wherever you are. An international card works: your bank converts the rupee amount at its own rate and may add a foreign transaction fee, so the figure on your statement will be close to, but not exactly, the dollar approximation shown here.",
+    "currencyShort": "Priced and charged in ₹, wherever you are",
+    "fxNote": "The dollar figures on this site are an approximation, to give an idea of the price. The amount charged is always the rupee one.",
+    "fxRate": 87,
+    "fxReviewed": "6 August 2026"
   },
   "plans": [
     {
@@ -111,8 +113,6 @@
       "featured": true,
       "priceMonthly": 99,
       "priceYearly": 999,
-      "priceMonthlyUsd": 0.99,
-      "priceYearlyUsd": 9.99,
       "storageGb": 5,
       "summary": "The usual choice. Sleeps when nobody is using it.",
       "description": "Hosting for one web application in any language, deployed from a public or private GitHub repository. Node.js, Python, Go, Java, Ruby, PHP and .NET are detected and built automatically; anything else builds from a Dockerfile in your repository. Includes a database on the same machine as the app, MongoDB, PostgreSQL or MariaDB as you prefer, an HTTPS address at yourname.dormhost.app, support for a custom domain, 512 MB of memory, a 5 GB storage allowance covering code, uploads and database together, persistent storage at /data that survives a deploy, one backup you take yourself, and hosting in Mumbai or London. The application is stopped after fifteen minutes with no visitors and started again by the next request, typically in about 200 milliseconds.",
@@ -164,8 +164,6 @@
       "featured": false,
       "priceMonthly": 249,
       "priceYearly": 2499,
-      "priceMonthlyUsd": 2.49,
-      "priceYearlyUsd": 24.99,
       "storageGb": 10,
       "summary": "Never sleeps. For bots, workers and cron jobs.",
       "description": "Everything in the Nap plan, with the application kept running at all times instead of being stopped when idle. Intended for workloads that cannot be paused: Discord and Telegram bots, scheduled jobs, queue workers, and anything holding a long-lived connection. Any language, built automatically or from your own Dockerfile. Includes the same choice of MongoDB, PostgreSQL or MariaDB database, 512 MB of memory, 10 GB of storage covering code, uploads and database together, custom domain support, persistent storage at /data that survives a deploy, a nightly backup of that storage, your database and your settings kept for seven days, and a choice of Mumbai or London.",

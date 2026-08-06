@@ -26,8 +26,8 @@
 
       <div class="price-line">
         <span class="price">₹{{cheapest.monthly}}</span>
-        <span class="price-unit">/ month per app, in India</span>
-        <span class="price-alt">${{cheapest.usdMonthly}} everywhere else</span>
+        <span class="price-unit">/ month per app</span>
+        <span class="price-alt">about ${{cheapest.usdMonthly}}, charged in ₹</span>
       </div>
       <p class="no-card">
         <svg class="no-card-icon" width="24" height="24" aria-hidden="true"><use href="#i-shield"/></svg>
@@ -156,10 +156,11 @@
         <h3><svg class="diff-icon" width="24" height="24" aria-hidden="true"><use href="#i-rupee"/></svg>Priced in your own currency</h3>
         <p>₹{{cheapest.monthly}} a month in India, paid by UPI, with no
            international card and no conversion fee.
-           ${{cheapest.usdMonthly}} a month everywhere else. Either way you top up
-           a balance and we draw it down a day at a time, and there is no
-           per-gigabyte bandwidth line you find out about at the end of the
-           month.</p>
+           An international card works too: it is still ₹{{cheapest.monthly}},
+           about ${{cheapest.usdMonthly}}, and your own bank does the conversion.
+           Either way you top up a balance and we draw it down a day at a time,
+           and there is no per-gigabyte bandwidth line you find out about at the
+           end of the month.</p>
       </div>
     </div>
   </div>
@@ -301,8 +302,8 @@
       {{#if featured}}<p class="tier-flag">Most students pick this</p>{{/if}}
       <p class="tier-name">{{name}}</p>
       <p class="tier-price">₹{{monthly}}<span class="tier-per">/month per app</span></p>
-      <p class="tier-alt">${{usdMonthly}} / month per app outside India</p>
-      <p class="tier-year">Yearly: ₹{{yearly}} or ${{usdYearly}}, saving ₹{{yearlySaving}}</p>
+      <p class="tier-alt">about ${{usdMonthly}} a month, charged in ₹</p>
+      <p class="tier-year">Yearly: ₹{{yearly}}, about ${{usdYearly}}, saving ₹{{yearlySaving}}</p>
       <p class="tier-sub">{{summary}}</p>
       <div class="specs">
         {{#each specs}}

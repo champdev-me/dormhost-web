@@ -3,9 +3,9 @@
 <head>
 {{> head}}
 <title>Pricing · {{site.name}}</title>
-<meta name="description" content="What {{site.name}} sells and what it costs. Two plans: ₹{{cheapest.monthly}} or ${{cheapest.usdMonthly}} a month for an app that sleeps when idle, and one that never sleeps.">
+<meta name="description" content="What {{site.name}} sells and what it costs. Two plans from ₹{{cheapest.monthly}} a month, about ${{cheapest.usdMonthly}}, for an app that sleeps when idle and one that never sleeps.">
 <meta property="og:title" content="Pricing · {{site.name}}">
-<meta property="og:description" content="Two plans. ₹{{cheapest.monthly}} a month in India, ${{cheapest.usdMonthly}} everywhere else.">
+<meta property="og:description" content="Two plans, from ₹{{cheapest.monthly}} a month. Priced and charged in rupees, wherever you are.">
 <script type="application/ld+json">{{{jsonld.products}}}</script>
 </head>
 <body>
@@ -32,8 +32,8 @@
       </div>
       <div class="product-price">
         <p class="product-monthly">₹{{monthly}}<span>/month per app</span></p>
-        <p class="product-alt">${{usdMonthly}}/month per app outside India</p>
-        <p class="product-yearly">Yearly ₹{{yearly}} or ${{usdYearly}}<br><span>saves ₹{{yearlySaving}}, about ₹{{yearlyPerMonth}} a month</span></p>
+        <p class="product-alt">about ${{usdMonthly}} a month, charged in ₹</p>
+        <p class="product-yearly">Yearly ₹{{yearly}}, about ${{usdYearly}}<br><span>saves ₹{{yearlySaving}}, about ₹{{yearlyPerMonth}} a month</span></p>
       </div>
     </div>
 
@@ -76,8 +76,9 @@
     <li>
       <strong>{{name}}</strong>: about ₹{{perDay}} a day paying monthly, or
       about ₹{{perDayYearly}} a day if you add a year of credit at once.
-      Outside India the same plan is ${{usdMonthly}} a month, or ${{usdYearly}}
-      for a year, which saves ${{usdYearlySaving}}.
+      That is about ${{usdMonthly}} a month or ${{usdYearly}} for a year at
+      today's rate, saving about ${{usdYearlySaving}}. The rupee figure is the
+      one you are charged.
     </li>
     {{/each}}
   </ul>
@@ -98,9 +99,15 @@
   <h2>Currency</h2>
   <p>{{payments.currencyNote}}</p>
   <p>
-    The two prices are set separately rather than converted, so a move in the
-    exchange rate does not change what you pay. Refunds are made in the currency
-    you were charged in. See the <a href="/refunds.html">refund policy</a>.
+    {{payments.fxNote}} It is worked out at ₹{{payments.fxRate}} to the dollar,
+    last reviewed on {{payments.fxReviewed}}, and the rupee price does not move
+    when that rate does.
+  </p>
+  <p>
+    Refunds are made in Indian Rupees, to the method you paid from. If your bank
+    converted on the way in it will convert on the way out, at whatever rate
+    applies then, so the amount landing back on an international card may differ
+    a little from what left it. See the <a href="/refunds.html">refund policy</a>.
   </p>
 
   <h2>What you can build on it</h2>
