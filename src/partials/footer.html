@@ -8,37 +8,39 @@
           online.
         </p>
         <p class="foot-contact">
-          <a href="mailto:{{company.email}}">{{company.email}}</a><br>
-          <a href="tel:{{company.phoneHref}}">{{company.phoneDisplay}}</a>
+          <a href="mailto:{{company.email}}">
+            <svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-mail"/></svg>{{company.email}}</a><br>
+          <a href="tel:{{company.phoneHref}}">
+            <svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-phone"/></svg>{{company.phoneDisplay}}</a>
         </p>
       </div>
 
       <div>
-        <h4>Product</h4>
+        <h4><svg class="foot-head-icon" width="24" height="24" aria-hidden="true"><use href="#i-container"/></svg>Product</h4>
         <div class="foot-links">
-          <a href="{{page.homePrefix}}#how">How it works</a>
-          <a href="{{page.homePrefix}}#features">Features</a>
-          <a href="/pricing.html">Pricing</a>
-          <a href="{{page.homePrefix}}#faq">FAQ</a>
+          <a href="{{page.homePrefix}}#how"><svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-bolt"/></svg>How it works</a>
+          <a href="{{page.homePrefix}}#features"><svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-check"/></svg>Features</a>
+          <a href="/pricing.html"><svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-rupee"/></svg>Pricing</a>
+          <a href="{{page.homePrefix}}#faq"><svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-info"/></svg>FAQ</a>
         </div>
       </div>
 
       <div>
-        <h4>Company</h4>
+        <h4><svg class="foot-head-icon" width="24" height="24" aria-hidden="true"><use href="#i-briefcase"/></svg>Company</h4>
         <div class="foot-links">
-          <a href="/about.html">About us</a>
-          <a href="/contact.html">Contact</a>
+          <a href="/about.html"><svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-moon"/></svg>About us</a>
+          <a href="/contact.html"><svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-mail"/></svg>Contact</a>
         </div>
       </div>
 
       <div>
-        <h4>Legal</h4>
+        <h4><svg class="foot-head-icon" width="24" height="24" aria-hidden="true"><use href="#i-scale"/></svg>Legal</h4>
         <div class="foot-links">
-          <a href="/terms.html">Terms &amp; conditions</a>
-          <a href="/privacy.html">Privacy policy</a>
-          <a href="/acceptable-use.html">Acceptable use</a>
-          <a href="/refunds.html">Refund policy</a>
-          <a href="/cancellation.html">Cancellation policy</a>
+          <a href="/terms.html"><svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-file"/></svg>Terms &amp; conditions</a>
+          <a href="/privacy.html"><svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-lock"/></svg>Privacy policy</a>
+          <a href="/acceptable-use.html"><svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-ban"/></svg>Acceptable use</a>
+          <a href="/refunds.html"><svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-rotate"/></svg>Refund policy</a>
+          <a href="/cancellation.html"><svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-shield"/></svg>Cancellation policy</a>
         </div>
       </div>
     </div>
@@ -46,7 +48,7 @@
     <div class="foot-legal">
       <p>
         <strong>{{company.operatedBy}}</strong><br>
-        Registered address: {{company.address.oneLine}}
+        <svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-pin"/></svg>Registered address: {{company.address.oneLine}}
       </p>
       <p class="foot-note">
         © {{site.year}} {{company.tradeName}}. Built in India.

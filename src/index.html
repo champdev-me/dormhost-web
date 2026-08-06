@@ -2,20 +2,21 @@
 <html lang="en">
 <head>
 {{> head}}
-<title>{{site.name}}: hosting for students, ₹{{cheapest.monthly}} or ${{cheapest.usdMonthly}} a month</title>
-<meta name="description" content="Hosting for college students in any language. Push a repo, get a URL and a database. Your app sleeps when nobody is using it, which is why it costs ₹{{cheapest.monthly}} a month in India and ${{cheapest.usdMonthly}} everywhere else.">
-<meta property="og:title" content="{{site.name}}: hosting for students, ₹{{cheapest.monthly}} or ${{cheapest.usdMonthly}} a month">
-<meta property="og:description" content="Push a repo in any language, get a URL and a database. Sleeps when idle, wakes in {{policies.wakeMs}} ms.">
+<title>Cheap Node.js, Python and Docker hosting for students | {{site.name}}</title>
+<meta name="description" content="Node.js, Python, Go, Java, PHP or your own Dockerfile, hosted from ₹{{cheapest.monthly}} a month. No credit card required. Push a GitHub repo, get a URL, HTTPS and a database. Sleeps when idle, wakes in {{policies.wakeMs}} ms.">
+<meta name="keywords" content="cheap hosting for students, free nodejs hosting alternative, node.js hosting India, python hosting, django hosting, flask hosting, express hosting, discord bot hosting, docker hosting, student project hosting, no credit card required, UPI hosting, MongoDB hosting, PostgreSQL hosting">
+<meta property="og:title" content="Cheap Node.js, Python and Docker hosting for students, from ₹{{cheapest.monthly}} a month">
+<meta property="og:description" content="Push a repo in any language, get a URL and a database. No credit card required. Sleeps when idle, wakes in {{policies.wakeMs}} ms.">
+<script type="application/ld+json">{{{jsonld.products}}}</script>
 </head>
 <body>
 
-{{> icons}}
 {{> nav}}
 
 <header class="wrap hero">
   <div class="hero-grid">
     <div>
-      <p class="eyebrow">Hosting for college students</p>
+      <p class="eyebrow">Node.js, Python and Docker hosting for college students</p>
       <h1>Put your project online for ₹{{cheapest.monthly}} a month.</h1>
       <p class="lead">
         Push your repo. Get a URL and a database. Your app sleeps when nobody is
@@ -30,7 +31,7 @@
       </div>
       <p class="no-card">
         <svg class="no-card-icon" width="24" height="24" aria-hidden="true"><use href="#i-shield"/></svg>
-        {{trial.days}} days free, no credit card
+        {{trial.days}} days free, no credit card required
       </p>
       <p class="price-note">
         {{trial.short}} Pay by UPI in India after that. Nothing is saved,
@@ -40,6 +41,19 @@
       <div class="cta-row">
         <a class="btn btn-primary" href="{{site.dashboardUrl}}">Start with GitHub</a>
         <a class="btn btn-ghost" href="/pricing.html">See what you get</a>
+      </div>
+
+      <!-- The languages, as text, because "any language" is the claim people
+           search for by name. -->
+      <div class="runtimes">
+        <p class="runtimes-label">
+          <svg class="runtimes-icon" width="24" height="24" aria-hidden="true"><use href="#i-code"/></svg>
+          Detected and built for you
+        </p>
+        <ul class="runtime-list">
+          {{#each runtimes.detected}}<li>{{.}}</li>{{/each}}
+          <li class="runtime-more">or your own Dockerfile</li>
+        </ul>
       </div>
     </div>
 
@@ -85,18 +99,18 @@
   </div>
   <div class="steps">
     <div class="step">
-      <h3>Point us at your repo</h3>
+      <h3><svg class="step-icon" width="24" height="24" aria-hidden="true"><use href="#i-git"/></svg>Point us at your repo</h3>
       <p>Public or private. Paste a GitHub token for a private one. We read the
          repository and work out how to build it, whatever it is written in. Add
          a <code>Dockerfile</code> and we build exactly that instead.</p>
     </div>
     <div class="step">
-      <h3>We build it and give you a URL</h3>
+      <h3><svg class="step-icon" width="24" height="24" aria-hidden="true"><use href="#i-container"/></svg>We build it and give you a URL</h3>
       <p>Your app gets <code>yourname.{{site.appDomain}}</code> with HTTPS already
          working, and your choice of {{databases.text}} on the same machine.</p>
     </div>
     <div class="step">
-      <h3>Share the link</h3>
+      <h3><svg class="step-icon" width="24" height="24" aria-hidden="true"><use href="#i-link"/></svg>Share the link</h3>
       <p>It stays up. When nobody visits for {{policies.idleMinutes}} minutes it
          sleeps, and the next visitor wakes it before the page finishes loading.</p>
     </div>
@@ -116,7 +130,7 @@
 
     <div class="diffs">
       <div class="diff">
-        <h3>A real process, not a function</h3>
+        <h3><svg class="diff-icon" width="24" height="24" aria-hidden="true"><use href="#i-terminal"/></svg>A real process, not a function</h3>
         <p>Vercel and Netlify run your backend as short-lived functions that
            start and finish around a single request. A Discord bot, a WebSocket,
            a queue worker, a scraper that runs for two minutes. None of those
@@ -124,7 +138,7 @@
            connections and keeps things in memory for as long as it is awake.</p>
       </div>
       <div class="diff">
-        <h3>Sleeping is common. Waking this fast is not</h3>
+        <h3><svg class="diff-icon" width="24" height="24" aria-hidden="true"><use href="#i-bolt"/></svg>Sleeping is common. Waking this fast is not</h3>
         <p>Plenty of cheap hosting stops your app when it is idle. Most of them
            are slow to bring it back, because they rebuild it or find it a new
            machine first. We keep your built image on the same disk your app runs
@@ -133,13 +147,13 @@
            under a second through the public internet.</p>
       </div>
       <div class="diff">
-        <h3>The database is included, and it is next door</h3>
+        <h3><svg class="diff-icon" width="24" height="24" aria-hidden="true"><use href="#i-database"/></svg>The database is included, and it is next door</h3>
         <p>Not a second vendor, a second bill and a second free trial that
            expires. Your {{databases.text}} runs on the same machine as your app, so a query
            is a loopback call rather than a trip across the internet.</p>
       </div>
       <div class="diff">
-        <h3>Priced in your own currency</h3>
+        <h3><svg class="diff-icon" width="24" height="24" aria-hidden="true"><use href="#i-rupee"/></svg>Priced in your own currency</h3>
         <p>₹{{cheapest.monthly}} a month in India, paid by UPI, with no
            international card and no conversion fee.
            ${{cheapest.usdMonthly}} a month everywhere else. Either way you top up
@@ -254,17 +268,17 @@
   </div>
   <div class="regions">
     <div class="region">
-      <span class="region-dot"></span>
+      <svg class="region-icon" width="24" height="24" aria-hidden="true"><use href="#i-pin"/></svg>
       <div>
-        <h3>Mumbai</h3>
+        <h3>Mumbai <span class="region-dot"></span></h3>
         <p>The default, and the right choice for almost every Indian project.</p>
         <p class="ping">ap-mumbai</p>
       </div>
     </div>
     <div class="region">
-      <span class="region-dot"></span>
+      <svg class="region-icon" width="24" height="24" aria-hidden="true"><use href="#i-pin"/></svg>
       <div>
-        <h3>London</h3>
+        <h3>London <span class="region-dot"></span></h3>
         <p>For projects with users outside India, or a guide reviewing from abroad.</p>
         <p class="ping">uk-london</p>
       </div>
@@ -299,7 +313,7 @@
         {{/each}}
       </div>
       <ul>
-        {{#each features}}<li>{{.}}</li>{{/each}}
+        {{#each features}}<li><svg class="tier-check" width="24" height="24" aria-hidden="true"><use href="#i-check"/></svg>{{.}}</li>{{/each}}
       </ul>
       <a class="btn btn-primary tier-cta" href="/pricing.html">Full description</a>
     </div>
@@ -324,26 +338,26 @@
   </div>
   <div class="notfor">
     <div class="notfor-row">
-      <h3>Your site is just HTML, CSS and JavaScript</h3>
+      <h3><svg class="notfor-icon" width="24" height="24" aria-hidden="true"><use href="#i-file"/></svg>Your site is just HTML, CSS and JavaScript</h3>
       <p>Then you do not need us. <a href="https://pages.github.com/" rel="noopener">GitHub Pages</a>
          hosts static sites free, from the repo you already have, and it does it
          well. We only charge for things that need a server running behind them:
          a backend, a database, a login.</p>
     </div>
     <div class="notfor-row">
-      <h3>You need a global CDN or edge functions</h3>
+      <h3><svg class="notfor-icon" width="24" height="24" aria-hidden="true"><use href="#i-globe"/></svg>You need a global CDN or edge functions</h3>
       <p>Cloudflare and Vercel have machines in a hundred cities. We have two,
          in Mumbai and London. If your users are spread across the world and
          milliseconds matter, use them.</p>
     </div>
     <div class="notfor-row">
-      <h3>You are running a business on it</h3>
+      <h3><svg class="notfor-icon" width="24" height="24" aria-hidden="true"><use href="#i-briefcase"/></svg>You are running a business on it</h3>
       <p>We are two servers and one person. That is enough for a college project,
          a club site or a portfolio. It is not enough for something people's
          money or jobs depend on. For that, pay a real cloud.</p>
     </div>
     <div class="notfor-row">
-      <h3>You want to mine crypto or send bulk mail</h3>
+      <h3><svg class="notfor-icon" width="24" height="24" aria-hidden="true"><use href="#i-ban"/></svg>You want to mine crypto or send bulk mail</h3>
       <p>The whole price depends on most apps being asleep most of the time. Mining,
          spam, proxies and traffic generators break that, so they are not allowed
          and we do look. The <a href="/acceptable-use.html">acceptable use policy</a>
@@ -392,10 +406,15 @@
          top up once a term.</p>
     </div>
     <div>
-      <h3>Is there a free plan?</h3>
-      <p>No. A free tier would be paid for by the students on the paid one, and
-         it is the first thing crypto miners sign up for. If your site is static,
-         GitHub Pages is free and better at it than we would be.</p>
+      <h3>I came here looking for free Node.js hosting</h3>
+      <p>Then read this one first. There is no free plan here, and we would
+         rather say so than waste your time. A free tier gets paid for by the
+         students on the paid one, and it is the first thing crypto miners sign
+         up for. What you get instead is {{trial.days}} days free to try it, no
+         credit card required, and ₹{{cheapest.monthly}} a month after that.
+         If your site is only HTML, CSS and JavaScript,
+         <a href="https://pages.github.com/" rel="noopener">GitHub Pages</a> is
+         genuinely free and better at it than we would be.</p>
     </div>
     <div>
       <h3>Is there a free trial?</h3>
