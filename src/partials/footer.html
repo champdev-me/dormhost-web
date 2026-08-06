@@ -46,8 +46,11 @@
     </div>
 
     <div class="foot-legal">
+      <!-- Legal name and registered address on every page, because PayU asked
+           for both on the website and a reviewer should not have to hunt. -->
       <p>
         <strong>{{company.operatedBy}}</strong><br>
+        Legal name: {{company.legalName}}<br>
         <svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-pin"/></svg>Registered address: {{company.address.oneLine}}
       </p>
       <p class="foot-note">
