@@ -60,16 +60,29 @@
 <section class="prose">
   <h2>How billing works</h2>
   <p>
-    You add money to a balance, and we take the day's share of your plan out of
-    it each day. A ₹{{cheapest.monthly}} plan costs roughly ₹{{cheapest.perDay}} a
-    day. Nothing renews automatically and nothing is charged to a saved card,
-    because we do not store one.
+    {{wallet.howItWorks}} A month of daily charges comes to exactly the monthly
+    price, and a year of them comes to exactly the yearly price.
   </p>
   <p>
-    When your balance runs out your app sleeps and we email you. Your code,
-    your files and your database stay where they are for
-    {{policies.dataRetentionDays}} days, so adding money brings the app straight
-    back. After {{policies.dataRetentionDays}} days they are deleted permanently.
+    {{wallet.firstDay}}
+  </p>
+
+  <h3>What a day costs</h3>
+  <ul>
+    {{#each plans}}
+    <li>
+      <strong>{{name}}</strong>: about ₹{{perDay}} a day paying monthly, or
+      about ₹{{perDayYearly}} a day if you add a year of credit at once.
+      Outside India the same plan is ${{usdMonthly}} a month, or ${{usdYearly}}
+      for a year, which saves ${{usdYearlySaving}}.
+    </li>
+    {{/each}}
+  </ul>
+  <p>
+    {{annual.whatItIs}}
+  </p>
+  <p>
+    {{wallet.empty}}
   </p>
 
   <h2>How you can pay</h2>

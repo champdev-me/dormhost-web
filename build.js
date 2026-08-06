@@ -215,7 +215,14 @@ function derive(c) {
     p.yearly = inr(p.priceYearly);
     p.yearlyPerMonth = inr(Math.round(p.priceYearly / 12));
     p.yearlySaving = inr(p.priceMonthly * 12 - p.priceYearly);
+    // Both rates, because a student comparing plans is comparing days. The
+    // platform charges the day's slice of the period rather than this average,
+    // so the copy says "about" and the period totals are the exact numbers.
     p.perDay = (p.priceMonthly / 30).toFixed(2);
+    p.perDayYearly = (p.priceYearly / 365).toFixed(2);
+    // No per-day figure in dollars: a cent is a third of a day at $0.99 a
+    // month, so both rates round to the same number and the comparison would
+    // say there is no saving when there is one.
 
     // Rupees for India, dollars for everyone else. Both are real prices in
     // their own right, so neither is derived from an exchange rate.

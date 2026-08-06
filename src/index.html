@@ -189,6 +189,12 @@
          separately.</p>
     </div>
     <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-disk"/></svg>Files that survive a deploy</h3>
+      <p>{{limits.persistentNote}} Uploads, generated files, an SQLite file if
+         you want one: put them in {{limits.persistentPath}} and they are still
+         there after you push.</p>
+    </div>
+    <div class="feature">
       <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-vector"/></svg>Vector search, included</h3>
       <p>{{databases.vector.why}} Building a RAG chatbot for your final year? It
          works here without a second subscription.</p>
@@ -222,10 +228,10 @@
          why the storage allowance goes to your app instead of to old images.</p>
     </div>
     <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-clock"/></svg>Nightly backups</h3>
-      <p>Your database is backed up every night and we keep
-         {{policies.backupRetentionDays}} days. Losing a final-year project the
-         week before submission should not be possible.</p>
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-clock"/></svg>Backups you control</h3>
+      <p>Take one whenever you want, before a risky change. Awake also backs up
+         every night and keeps {{policies.backupRetentionDays}} days. Download
+         any of them, or put one back, from your dashboard.</p>
     </div>
     <div class="feature">
       <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-moon"/></svg>Sleeps, or does not</h3>
@@ -393,9 +399,10 @@
     </div>
     <div>
       <h3>What happens if my balance runs out?</h3>
-      <p>Your app sleeps and we email you. Nothing is deleted for
+      <p>Your app is stopped and we email you. That is not the same as sleeping:
+         it stays down until you add credit. Nothing is deleted for
          {{policies.dataRetentionDays}} days, so topping up brings it straight
-         back.</p>
+         back exactly as it was.</p>
     </div>
     <div>
       <h3>Is my database really included?</h3>
