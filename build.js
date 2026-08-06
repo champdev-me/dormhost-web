@@ -199,6 +199,10 @@ const inr = (n) => n.toLocaleString('en-IN');
 
 // Values assembled from other values live here, so a template never does arithmetic.
 function derive(c) {
+  // From package.json, not content.json: a version that has to be edited in
+  // two places is a version that disagrees with the tag it was built from.
+  c.site.version = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')).version;
+
   const a = c.company.address;
   a.oneLine = [a.line1, a.line2, a.city, a.state, a.pincode, a.country].filter(Boolean).join(', ');
   a.html = [a.line1, a.line2, `${a.city}, ${a.state} ${a.pincode}`, a.country]

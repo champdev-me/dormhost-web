@@ -572,3 +572,5 @@ footer .brand { color: #fff; }
 .foot-legal p { font-size: .85rem; color: #8891B8; margin: 0 0 .6rem; line-height: 1.6; }
 .foot-legal strong { color: #C7CCE4; font-weight: 600; }
 .foot-note { color: #6E77A0; margin-bottom: 0; }
+/* Quiet on purpose: it is here so a bug report can name a build, not to be read. */
+.foot-version { font-family: var(--mono); font-size: .8em; opacity: .65; }
