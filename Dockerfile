@@ -5,7 +5,10 @@
 # no templates, no content.json, no build script.
 FROM node:24-alpine AS build
 WORKDIR /app
-COPY content.json build.js ./
+# package.json is a build input, not just a runtime file: build.js reads the
+# version out of it for the footer. Without it here the build fails and the
+# old image keeps serving, which is how the site stopped deploying for an hour.
+COPY content.json build.js package.json ./
 COPY src ./src
 COPY assets ./assets
 RUN node build.js
