@@ -10,6 +10,12 @@
     "lastmod": "2026-08-06",
     "locale": "en_IN"
   },
+  "banner": {
+    "label": "In development",
+    "text": "Your apps run on real machines and nothing here is a demo, but expect rough edges and the occasional restart while we finish building.",
+    "linkText": "Tell us what breaks",
+    "linkHref": "/contact.html"
+  },
   "databases": {
     "list": [
       {
