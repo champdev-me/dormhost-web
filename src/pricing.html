@@ -11,6 +11,7 @@
 <body>
 
 {{> nav}}
+{{> marks}}
 
 <main class="wrap">
 
@@ -112,10 +113,17 @@
 
   <h2>What you can build on it</h2>
   <p>{{runtimes.note}}</p>
+  <ul class="chip-list">
+    {{#each runtimes.detected}}<li><svg class="chip-icon" width="16" height="16" aria-hidden="true"><use href="#l-{{id}}"/></svg>{{name}}</li>{{/each}}
+    <li class="runtime-more"><svg class="chip-icon" width="16" height="16" aria-hidden="true"><use href="#l-docker"/></svg>or your own Dockerfile</li>
+  </ul>
   <p>
     Every plan includes a database on the same machine as your application:
     {{databases.textLong}}. {{databases.note}} {{databases.vector.short}}
   </p>
+  <ul class="chip-list">
+    {{#each databases.list}}<li><svg class="chip-icon" width="16" height="16" aria-hidden="true"><use href="#d-{{id}}"/></svg>{{name}}</li>{{/each}}
+  </ul>
 
   <h2>Tax</h2>
   <p>{{company.gst.statement}}</p>

@@ -144,13 +144,19 @@ code {
   text-transform: uppercase; color: var(--faint);
 }
 .runtimes-icon { width: 1rem; height: 1rem; flex: none; color: var(--lamp); }
-.runtime-list { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; margin: 0; padding: 0; }
-.runtime-list li {
+.runtime-list, .chip-list { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; margin: 0; padding: 0; }
+.runtime-list li, .chip-list li {
+  display: inline-flex; align-items: center; gap: .38rem;
   font-size: .84rem; color: var(--muted); background: var(--surface);
-  border: 1px solid var(--rule); border-radius: 999px; padding: .18rem .7rem;
+  border: 1px solid var(--rule); border-radius: 999px; padding: .18rem .7rem .18rem .5rem;
 }
-/* Scoped, not !important: `.runtime-list li` already outranks a bare class. */
-.runtime-list .runtime-more { color: var(--faint); border-style: dashed; }
+/* Scoped, not !important: the `li` selectors above already outrank a bare class. */
+.runtime-list .runtime-more,
+.chip-list .runtime-more { color: var(--faint); border-style: dashed; }
+/* The marks are in their own colours, so they carry no currentColor. */
+.chip-icon { width: 1rem; height: 1rem; flex: none; }
+/* The hero row sits under its own label; these follow a paragraph. */
+.chip-list { margin: .85rem 0 1.5rem; }
 .btn {
   display: inline-block; padding: .78rem 1.5rem; border-radius: 6px;
   font-weight: 650; font-size: .96rem; text-decoration: none; border: 1px solid transparent;

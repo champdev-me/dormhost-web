@@ -235,6 +235,17 @@ function derive(c) {
     p.usdYearlySaving = ((p.priceMonthly * 12 - p.priceYearly) / rate).toFixed(2);
   }
 
+  // Written once, as a list of {id, name}, and turned into prose here. Two
+  // hand-maintained copies is how a language gets renamed in one and not the
+  // other, and how an icon ends up beside the wrong word.
+  const names = (list) => list.map((x) => x.name);
+  const sentence = (parts) =>
+    parts.length < 2 ? (parts[0] ?? '') : `${parts.slice(0, -1).join(', ')} and ${parts[parts.length - 1]}`;
+
+  c.runtimes.detectedText = sentence(names(c.runtimes.detected));
+  c.databases.text = names(c.databases.list).join(', ').replace(/, ([^,]*)$/, ' or $1');
+  c.databases.textLong = `${c.databases.text}, which is MySQL`;
+
   c.plansByName = Object.fromEntries(c.plans.map((p) => [p.slug, p]));
   c.cheapest = c.plans.reduce((lo, p) => (p.priceMonthly < lo.priceMonthly ? p : lo));
 

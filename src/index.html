@@ -12,6 +12,7 @@
 <body>
 
 {{> nav}}
+{{> marks}}
 
 <header class="wrap hero">
   <div class="hero-grid">
@@ -51,8 +52,8 @@
           Detected and built for you
         </p>
         <ul class="runtime-list">
-          {{#each runtimes.detected}}<li>{{.}}</li>{{/each}}
-          <li class="runtime-more">or your own Dockerfile</li>
+          {{#each runtimes.detected}}<li><svg class="chip-icon" width="16" height="16" aria-hidden="true"><use href="#l-{{id}}"/></svg>{{name}}</li>{{/each}}
+          <li class="runtime-more"><svg class="chip-icon" width="16" height="16" aria-hidden="true"><use href="#l-docker"/></svg>or your own Dockerfile</li>
         </ul>
       </div>
     </div>
@@ -196,6 +197,9 @@
       <p>{{databases.textLong}}. Pick the one your project needs. It runs on
          the same machine as your app, so your queries never leave the box, and
          the connection string is waiting in your dashboard.</p>
+      <ul class="chip-list">
+        {{#each databases.list}}<li><svg class="chip-icon" width="16" height="16" aria-hidden="true"><use href="#d-{{id}}"/></svg>{{name}}</li>{{/each}}
+      </ul>
     </div>
     <div class="feature">
       <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-disk"/></svg>{{plansByName.nap.storageGb}} GB of storage</h3>

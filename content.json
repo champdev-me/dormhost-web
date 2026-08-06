@@ -12,12 +12,19 @@
   },
   "databases": {
     "list": [
-      "MongoDB",
-      "PostgreSQL",
-      "MariaDB"
+      {
+        "id": "mongo",
+        "name": "MongoDB"
+      },
+      {
+        "id": "postgres",
+        "name": "PostgreSQL"
+      },
+      {
+        "id": "mariadb",
+        "name": "MariaDB"
+      }
     ],
-    "text": "MongoDB, PostgreSQL or MariaDB",
-    "textLong": "MongoDB, PostgreSQL or MariaDB, which is MySQL",
     "note": "Pick whichever your project needs. It runs on the same machine as your application, so a query is a loopback call and never crosses the internet.",
     "vector": {
       "extension": "pgvector",
@@ -34,15 +41,35 @@
   },
   "runtimes": {
     "detected": [
-      "Node.js",
-      "Python",
-      "Go",
-      "Java",
-      "Ruby",
-      "PHP",
-      ".NET"
+      {
+        "id": "node",
+        "name": "Node.js"
+      },
+      {
+        "id": "python",
+        "name": "Python"
+      },
+      {
+        "id": "go",
+        "name": "Go"
+      },
+      {
+        "id": "java",
+        "name": "Java"
+      },
+      {
+        "id": "ruby",
+        "name": "Ruby"
+      },
+      {
+        "id": "php",
+        "name": "PHP"
+      },
+      {
+        "id": "dotnet",
+        "name": ".NET"
+      }
     ],
-    "detectedText": "Node.js, Python, Go, Java, Ruby, PHP and .NET",
     "note": "We read your repository and work out how to build it. If your language is not on that list, or you want the build done your way, add a Dockerfile and we build that instead. Rust, Elixir, Deno, Bun, C++, anything that starts and listens on a port."
   },
   "company": {
