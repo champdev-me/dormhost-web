@@ -28,7 +28,7 @@
   "limits": {
     "imagesKept": 2,
     "imagesText": "the build you are running and the one before it",
-    "storageNote": "Storage covers everything the application owns: your code, the files it writes, your uploads and your database, counted together.",
+    "storageNote": "The storage allowance is a ceiling, not a reservation, and it covers everything the application owns: your code, the files it writes, your uploads and your database, counted together.",
     "persistentPath": "/data",
     "persistentNote": "Anything your application writes to /data stays there through a deploy. Files it writes anywhere else are part of the container and go when you next push."
   },
@@ -115,7 +115,7 @@
       "priceYearly": 999,
       "storageGb": 2.5,
       "summary": "The usual choice. Sleeps when nobody is using it.",
-      "description": "Hosting for one web application in any language, deployed from a public or private GitHub repository. Node.js, Python, Go, Java, Ruby, PHP and .NET are detected and built automatically; anything else builds from a Dockerfile in your repository. Includes a database on the same machine as the app, MongoDB, PostgreSQL or MariaDB as you prefer, an HTTPS address at yourname.dormhost.app, support for a custom domain, up to 256 MB of memory, a 2.5 GB storage allowance covering code, uploads and database together, persistent storage at /data that survives a deploy, one backup you take yourself, and hosting in Mumbai or London. The application is stopped after fifteen minutes with no visitors and started again by the next request, typically in about 200 milliseconds.",
+      "description": "Hosting for one web application in any language, deployed from a public or private GitHub repository. Node.js, Python, Go, Java, Ruby, PHP and .NET are detected and built automatically; anything else builds from a Dockerfile in your repository. Includes a database on the same machine as the app, MongoDB, PostgreSQL or MariaDB as you prefer, an HTTPS address at yourname.dormhost.app, support for a custom domain, up to 256 MB of memory, up to 2.5 GB of storage covering code, uploads and database together, persistent storage at /data that survives a deploy, one backup you take yourself, and hosting in Mumbai or London. The application is stopped after fifteen minutes with no visitors and started again by the next request, typically in about 200 milliseconds.",
       "specs": [
         {
           "icon": "memory",
@@ -123,11 +123,11 @@
         },
         {
           "icon": "cpu",
-          "label": "Shared vCPU"
+          "label": "Up to 1 shared vCPU"
         },
         {
           "icon": "disk",
-          "label": "2.5 GB storage"
+          "label": "Up to 2.5 GB storage"
         },
         {
           "icon": "database",
@@ -151,7 +151,7 @@
         "Hosted in Mumbai or London, whichever has room",
         "Persistent storage at /data, which survives every deploy",
         "One backup you take yourself, whenever you want one",
-        "2.5 GB storage, including your database",
+        "Up to 2.5 GB storage, including your database",
         "Build logs, and rollback to your previous build",
         "Sleeps after 15 minutes idle, wakes on the next request"
       ],
@@ -166,7 +166,7 @@
       "priceYearly": 2499,
       "storageGb": 5,
       "summary": "Never sleeps. For bots, workers and cron jobs.",
-      "description": "Everything in the Nap plan, with the application kept running at all times instead of being stopped when idle. Intended for workloads that cannot be paused: Discord and Telegram bots, scheduled jobs, queue workers, and anything holding a long-lived connection. Any language, built automatically or from your own Dockerfile. Includes the same choice of MongoDB, PostgreSQL or MariaDB database, up to 512 MB of memory, 5 GB of storage covering code, uploads and database together, custom domain support, persistent storage at /data that survives a deploy, a nightly backup of that storage, your database and your settings kept for seven days, and a choice of Mumbai or London.",
+      "description": "Everything in the Nap plan, with the application kept running at all times instead of being stopped when idle. Intended for workloads that cannot be paused: Discord and Telegram bots, scheduled jobs, queue workers, and anything holding a long-lived connection. Any language, built automatically or from your own Dockerfile. Includes the same choice of MongoDB, PostgreSQL or MariaDB database, up to 512 MB of memory, up to 5 GB of storage covering code, uploads and database together, custom domain support, persistent storage at /data that survives a deploy, a nightly backup of that storage, your database and your settings kept for seven days, and a choice of Mumbai or London.",
       "specs": [
         {
           "icon": "memory",
@@ -174,11 +174,11 @@
         },
         {
           "icon": "cpu",
-          "label": "Shared vCPU"
+          "label": "Up to 1 shared vCPU"
         },
         {
           "icon": "disk",
-          "label": "5 GB storage"
+          "label": "Up to 5 GB storage"
         },
         {
           "icon": "database",
@@ -198,7 +198,7 @@
         "Holds WebSockets and long-lived connections",
         "Any language, or your own Dockerfile",
         "Up to 512 MB memory, double Nap",
-        "5 GB storage, double Nap",
+        "Up to 5 GB storage, double Nap",
         "Choose your region: Mumbai or London"
       ],
       "perDayMonthly": 8.3,
