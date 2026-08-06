@@ -138,7 +138,7 @@
   </thead>
   <tbody>
     <tr><td>Account details</td><td>Until you close the account, then {{policies.dataRetentionDays}} days</td></tr>
-    <tr><td>Applications, files and databases</td><td>{{policies.dataRetentionDays}} days after cancellation, then deleted permanently</td></tr>
+    <tr><td>Applications, files and databases</td><td>{{policies.dataRetentionDays}} days after cancellation, or {{policies.trialRetentionDays}} days for an account that never added credit, then deleted permanently</td></tr>
     <tr><td>Database backups</td><td>{{policies.backupRetentionDays}} days, rolling</td></tr>
     <tr><td>Server logs</td><td>30 days</td></tr>
     <tr><td>Build logs</td><td>Kept with {{limits.imagesText}}</td></tr>

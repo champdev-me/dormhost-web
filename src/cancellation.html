@@ -76,7 +76,10 @@
       free.</li>
   <li><strong>After {{policies.dataRetentionDays}} days.</strong> All of it is
       deleted permanently, including backups. We cannot get it back after that,
-      so please take a copy of your database before then.</li>
+      so please take a copy of your database before then. If you have never
+      added credit of your own, this happens after
+      {{policies.trialRetentionDays}} days rather than
+      {{policies.dataRetentionDays}}.</li>
 </ol>
 <p>
   Want it gone sooner? Ask, and we will delete everything within 7 days and

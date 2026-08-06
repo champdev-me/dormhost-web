@@ -30,11 +30,11 @@
       </div>
       <p class="no-card">
         <svg class="no-card-icon" width="24" height="24" aria-hidden="true"><use href="#i-shield"/></svg>
-        No credit card required
+        {{trial.days}} days free, no credit card
       </p>
       <p class="price-note">
-        Pay by UPI in India. Nothing is saved, nothing auto-renews, and you top
-        up only when you want to.
+        {{trial.short}} Pay by UPI in India after that. Nothing is saved,
+        nothing auto-renews, and you top up only when you want to.
       </p>
 
       <div class="cta-row">
@@ -396,6 +396,10 @@
       <p>No. A free tier would be paid for by the students on the paid one, and
          it is the first thing crypto miners sign up for. If your site is static,
          GitHub Pages is free and better at it than we would be.</p>
+    </div>
+    <div>
+      <h3>Is there a free trial?</h3>
+      <p>{{trial.what}} {{trial.limits}} {{trial.noCard}}</p>
     </div>
     <div>
       <h3>What happens if my balance runs out?</h3>
