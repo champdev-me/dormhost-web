@@ -170,6 +170,49 @@
     long it takes.
   </p>
 
+  <h2 id="ai">AI, priced per request</h2>
+  <p>
+    {{ai.pitch}} Every price below is live: it follows the provider's list
+    price at our daily exchange rate, so what you see is what the next request
+    costs.
+  </p>
+  <div class="table-scroll">
+    <table class="table">
+      <thead>
+        <tr><th>Model</th><th>Price</th></tr>
+      </thead>
+      <tbody data-ai-prices>
+        <tr><td colspan="2">Loading live prices…</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p data-ai-fallback hidden>Live prices are on your dashboard.</p>
+  <p>
+    {{ai.billing}} {{ai.injected}} Using the AI endpoint means agreeing to the
+    <a href="/ai-terms.html">AI terms</a>.
+  </p>
+  <script>
+    fetch('{{ai.endpoint}}/models')
+      .then(function (r) { return r.json() })
+      .then(function (out) {
+        var body = document.querySelector('[data-ai-prices]')
+        body.innerHTML = out.data
+          .map(function (m) {
+            var price =
+              m.kind === 'image'
+                ? 'up to ₹' + m.pricing.inr_per_image_up_to.toFixed(2) + ' per image'
+                : '₹' + m.pricing.inr_per_m_input.toFixed(2) + ' in / ₹' +
+                  m.pricing.inr_per_m_output.toFixed(2) + ' out, per M tokens'
+            return '<tr><td>' + m.id + '</td><td>' + price + '</td></tr>'
+          })
+          .join('')
+      })
+      .catch(function () {
+        document.querySelector('[data-ai-prices]').innerHTML = ''
+        document.querySelector('[data-ai-fallback]').hidden = false
+      })
+  </script>
+
   <div class="callout">
     <p>
       <strong>Questions before you pay?</strong> Write to

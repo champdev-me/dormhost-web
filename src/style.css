@@ -342,6 +342,24 @@ section.band {
 .diff p { color: var(--on-night); font-size: .95rem; margin: 0; }
 .diff strong { color: #fff; }
 
+/* ---------------------------------------------------------------- ai band */
+.ai-points { display: grid; gap: 1.5rem; grid-template-columns: 1fr; margin: 0 0 2rem; }
+@media (min-width: 48rem) { .ai-points { grid-template-columns: repeat(3, 1fr); } }
+.ai-point h3 {
+  display: flex; align-items: flex-start; gap: .5rem;
+  color: var(--lamp-lit); margin-bottom: .5rem; font-size: 1.02rem;
+}
+.ai-point p { color: var(--on-night); font-size: .95rem; margin: 0; }
+.ai-point a { color: var(--lamp-lit); }
+.ai-code {
+  overflow-x: auto; margin: 0 0 1.2rem; padding: 1rem 1.2rem;
+  border: 1px solid var(--on-night-rule); border-radius: .6rem;
+  font-family: var(--mono); font-size: .82rem; line-height: 1.6;
+  color: var(--on-night); background: rgba(0, 0, 0, .25);
+}
+.band .tier-foot { color: var(--on-night-dim); }
+.band .tier-foot a { color: var(--on-night); }
+
 /* ---------------------------------------------------------------- pricing */
 /* stretch, not start: both cards run to the height of the taller one, so the
    prices line up and the buttons sit on the same baseline. */
@@ -528,6 +546,7 @@ section.band {
 .callout p:last-child { margin-bottom: 0; }
 .callout-address { line-height: 1.5; }
 
+.table-scroll { overflow-x: auto; }
 .table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: .93rem; }
 .table th, .table td {
   text-align: left; vertical-align: top; padding: .6rem .8rem .6rem 0;

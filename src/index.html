@@ -343,6 +343,44 @@
   </p>
 </section>
 
+<section id="ai" class="band">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>AI built in.</h2>
+      <p>{{ai.pitch}} Text and image models, billed per request from your
+         DormHost balance.</p>
+    </div>
+
+    <div class="ai-points">
+      <div class="ai-point">
+        <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-rupee"/></svg>Rupees, not dollars</h3>
+        <p>Most AI APIs want an international card and a $10 minimum.
+           Here it comes out of the same balance that runs your app.
+           {{ai.example}}</p>
+      </div>
+      <div class="ai-point">
+        <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-check"/></svg>A curated dozen models</h3>
+        <p>Cheap and fast, mid-tier, frontier, coders and image models,
+           each priced per million tokens on the
+           <a href="/pricing.html#ai">pricing page</a>.</p>
+      </div>
+      <div class="ai-point">
+        <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-bolt"/></svg>Zero config in your app</h3>
+        <p>{{ai.injected}}</p>
+      </div>
+    </div>
+
+    <pre class="ai-code">curl {{ai.endpoint}}/chat/completions \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -d '{"model":"openai/gpt-5.6-luna","messages":[{"role":"user","content":"hi"}]}'</pre>
+
+    <p class="tier-foot">
+      {{ai.billing}} Using it means agreeing to the
+      <a href="/ai-terms.html">AI terms</a>.
+    </p>
+  </div>
+</section>
+
 <!-- The humble section. It is here because it is true, and because a student
      who is talked out of paying us today comes back when they need a backend. -->
 <section class="wrap">

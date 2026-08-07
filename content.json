@@ -251,6 +251,13 @@
     "empty": "If your balance reaches zero your application is stopped, not deleted. Add credit and it starts again with everything as you left it. We keep your data for 30 days after that.",
     "leftover": "Whatever is left in your balance is yours. We refund it on request under the refund policy, or you can leave it on the account for later."
   },
+  "ai": {
+    "endpoint": "https://ai.dormhost.dev/v1",
+    "pitch": "Pay for AI in rupees from the balance you already have. No card, no minimum, and it works with any OpenAI SDK.",
+    "injected": "Apps hosted on DormHost get OPENAI_BASE_URL and OPENAI_API_KEY set automatically, so AI works from inside your app with zero configuration. Set either variable yourself, to use OpenAI directly for example, and your value wins.",
+    "billing": "Billed per request from the provider's reported cost at our daily exchange rate. Trial credit does not cover AI; it needs paid balance.",
+    "example": "A short chat on the cheapest model costs well under a rupee, and an image is a few rupees."
+  },
   "trial": {
     "days": 7,
     "headline": "Seven days free, no card",

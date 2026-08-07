@@ -39,6 +39,7 @@
           <a href="/terms.html"><svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-file"/></svg>Terms &amp; conditions</a>
           <a href="/privacy.html"><svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-lock"/></svg>Privacy policy</a>
           <a href="/acceptable-use.html"><svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-ban"/></svg>Acceptable use</a>
+          <a href="/ai-terms.html"><svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-bolt"/></svg>AI terms</a>
           <a href="/refunds.html"><svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-rotate"/></svg>Refund policy</a>
           <a href="/cancellation.html"><svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-shield"/></svg>Cancellation policy</a>
         </div>
@@ -47,11 +48,15 @@
 
     <div class="foot-legal">
       <!-- Legal name and registered address on every page, because PayU asked
-           for both on the website and a reviewer should not have to hunt. -->
+           for both on the website and a reviewer should not have to hunt.
+           Once: operatedBy already carries the name. -->
       <p>
         <strong>{{company.operatedBy}}</strong><br>
-        Legal name: {{company.legalName}}<br>
         <svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-pin"/></svg>Registered address: {{company.address.oneLine}}
+      </p>
+      <p class="foot-note">
+        {{site.name}} runs on {{site.domain}}; student apps are served from
+        {{site.appDomain}}. Both domains are owned and operated by us.
       </p>
       <p class="foot-note">
         © {{site.year}} {{company.tradeName}}. Built in India.
