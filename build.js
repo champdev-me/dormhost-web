@@ -318,6 +318,7 @@ const PRIORITY = {
   'pricing.html': '0.9',
   'about.html': '0.7',
   'contact.html': '0.7',
+  'ai.html': '0.8',
 };
 
 function sitemap(pages, content) {
@@ -341,11 +342,64 @@ ${urls}
 `;
 }
 
+// AI crawlers are welcome by name, not just by wildcard: a student asking an
+// assistant "where do I host my project cheaply in India" is our best referral.
+const AI_CRAWLERS = [
+  'GPTBot', 'OAI-SearchBot', 'ChatGPT-User',
+  'ClaudeBot', 'Claude-User', 'Claude-SearchBot', 'anthropic-ai',
+  'PerplexityBot', 'Perplexity-User',
+  'Google-Extended', 'Applebot-Extended', 'meta-externalagent', 'CCBot',
+];
+
 const robots = (content) => `User-agent: *
 Allow: /
 
+${AI_CRAWLERS.map((bot) => `User-agent: ${bot}\nAllow: /`).join('\n\n')}
+
 Sitemap: ${content.site.url}/sitemap.xml
 `;
+
+// llms.txt: the convention AI assistants read for a site's own summary.
+// Every fact comes from content.json, so it can never drift from the pages.
+function llmsTxt(content) {
+  const c = content;
+  const plans = c.plans
+    .map((p) => `- **${p.name}**: Rs ${p.monthly}/month per app (about $${p.usdMonthly}). ${p.summary}`)
+    .join('\n');
+  return `# ${c.site.name}
+
+> Web hosting for Indian college students: deploy any language from GitHub for Rs ${c.cheapest.monthly}/month, paid in rupees by UPI, no credit card. ${c.trial.days} days free. Also an OpenAI-compatible AI API billed in rupees per request.
+
+## What ${c.site.name} is
+
+${c.site.name} (${c.site.url}) hosts student projects: Node, Python, Go, or any Dockerfile, built from a GitHub repository, with a MongoDB, PostgreSQL or MariaDB database included. Apps run on ${c.site.appDomain} subdomains, custom domains supported. ${c.company.gst.statement}
+
+## Plans
+
+${plans}
+
+${c.trial.short} ${c.trial.noCard}
+
+## AI API
+
+${c.ai.pitch} ${c.ai.injected}
+- Endpoint: ${c.ai.endpoint} (OpenAI-compatible; any OpenAI SDK works)
+- Live model list and rupee prices: ${c.ai.endpoint}/models
+- ${c.ai.billing}
+
+## Pages
+
+- [Pricing](${c.site.url}/pricing.html): full plan details and live AI prices
+- [AI](${c.site.url}/ai.html): the AI API, models, billing and quickstart
+- [About](${c.site.url}/about.html): who runs this and why
+- [Terms](${c.site.url}/terms.html), [AI terms](${c.site.url}/ai-terms.html), [Privacy](${c.site.url}/privacy.html), [Refunds](${c.site.url}/refunds.html)
+- Dashboard for sign-up and deploys: ${c.site.dashboardUrl}
+
+## Who it is for
+
+Indian college students and hobbyists who need cheap, honest hosting for course projects, Discord and Telegram bots, portfolio sites and small APIs, paid in rupees without a credit card.
+`;
+}
 
 // ---------------------------------------------------------------- build
 
@@ -406,6 +460,7 @@ function build() {
 
   writeFileSync(join(DIST, 'sitemap.xml'), sitemap(pages, content));
   writeFileSync(join(DIST, 'robots.txt'), robots(content));
+  writeFileSync(join(DIST, 'llms.txt'), llmsTxt(content));
 
   writeFileSync(join(DIST, cssName), css);
   cpSync(join(root, 'assets'), join(DIST, 'assets'), { recursive: true });

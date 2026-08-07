@@ -14,7 +14,8 @@
 
 <main>
 
-<div class="wrap page-head">
+<div class="wrap">
+<div class="page-head">
   <p class="eyebrow">DormHost AI</p>
   <h1>AI for your project, paid in rupees.</h1>
   <p class="lead">
@@ -22,6 +23,7 @@
     request, and it works from anywhere: your laptop, a college lab machine,
     or an app we host.
   </p>
+</div>
 </div>
 
 <section class="band">
@@ -58,7 +60,8 @@ curl $OPENAI_BASE_URL/chat/completions \
   </div>
 </section>
 
-<section class="wrap prose">
+<div class="wrap">
+<section class="prose">
   <h2 id="prices">Models and prices, live</h2>
   <p>
     Every price below is fetched as you read this: it follows the provider's
@@ -115,6 +118,7 @@ curl $OPENAI_BASE_URL/chat/completions \
     </p>
   </div>
 </section>
+</div>
 
 <script>
   fetch('{{ai.endpoint}}/models')
