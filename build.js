@@ -368,7 +368,7 @@ function llmsTxt(content) {
     .join('\n');
   return `# ${c.site.name}
 
-> Web hosting for Indian college students: deploy any language from GitHub for Rs ${c.cheapest.monthly}/month, paid in rupees by UPI, no credit card. ${c.trial.days} days free. Also an OpenAI-compatible AI API billed in rupees per request.
+> Web hosting for college students, built in India: deploy any language from GitHub for Rs ${c.cheapest.monthly}/month (about $${c.cheapest.usdMonthly}). Pay by UPI in India or by card from anywhere; no card needed to start, ${c.trial.days} days free. Also an OpenAI-compatible AI API billed in rupees per request.
 
 ## What ${c.site.name} is
 
@@ -397,7 +397,7 @@ ${c.ai.pitch} ${c.ai.injected}
 
 ## Who it is for
 
-Indian college students and hobbyists who need cheap, honest hosting for course projects, Discord and Telegram bots, portfolio sites and small APIs, paid in rupees without a credit card.
+College students and hobbyists anywhere who need cheap, honest hosting for course projects, Discord and Telegram bots, portfolio sites and small APIs. Built in India and especially friendly there (UPI, rupee pricing, no card), with international cards working from everywhere else and hosting in Mumbai or London.
 `;
 }
 
