@@ -14,12 +14,14 @@
 <!-- Above the nav, so it is read before anything is decided. The icon is
      inline rather than a <use>: the sprite is the first line of nav.html, so
      from here it would be a forward reference. -->
+{{#if banner}}
 <div class="notice">
   <p class="wrap notice-inner">
     <svg class="notice-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5Z"/></svg>
     <span><b>{{banner.label}}.</b> {{banner.text}} <a href="{{banner.linkHref}}">{{banner.linkText}}</a>.</span>
   </p>
 </div>
+{{/if}}
 
 {{> nav}}
 {{> marks}}

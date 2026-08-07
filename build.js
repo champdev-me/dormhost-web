@@ -199,6 +199,11 @@ const inr = (n) => n.toLocaleString('en-IN');
 
 // Values assembled from other values live here, so a template never does arithmetic.
 function derive(c) {
+  // The development notice, killable without a code change: set
+  // DORM_SITE_BANNER=off on the site service and redeploy. A static site
+  // cannot take a runtime toggle, so the build env is the switch.
+  if (process.env.DORM_SITE_BANNER === 'off') delete c.banner;
+
   // From package.json, not content.json: a version that has to be edited in
   // two places is a version that disagrees with the tag it was built from.
   c.site.version = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')).version;
