@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> head}}
+<title>AI in rupees · {{site.name}}</title>
+<meta name="description" content="Text and image AI models, billed per request in rupees from your {{site.name}} balance. No card, no minimum, works with any OpenAI SDK.">
+<meta property="og:title" content="AI in rupees · {{site.name}}">
+<meta property="og:description" content="{{ai.pitch}}">
+</head>
+<body>
+
+{{> nav}}
+{{> marks}}
+
+<main>
+
+<div class="wrap page-head">
+  <p class="eyebrow">DormHost AI</p>
+  <h1>AI for your project, paid in rupees.</h1>
+  <p class="lead">
+    {{ai.pitch}} It is the same balance that runs your app, drawn down per
+    request, and it works from anywhere: your laptop, a college lab machine,
+    or an app we host.
+  </p>
+</div>
+
+<section class="band">
+  <div class="wrap">
+    <div class="ai-points">
+      <div class="ai-point">
+        <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-rupee"/></svg>Rupees, not dollars</h3>
+        <p>Most AI APIs want an international card and a $10 minimum.
+           Here it comes out of the same balance that runs your app.
+           {{ai.example}}</p>
+      </div>
+      <div class="ai-point">
+        <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-check"/></svg>A curated catalog</h3>
+        <p>Cheap and fast, mid-tier, frontier, coders and image models. The
+           full list with live prices is below.</p>
+      </div>
+      <div class="ai-point">
+        <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-bolt"/></svg>Zero config in your app</h3>
+        <p>{{ai.injected}}</p>
+      </div>
+    </div>
+
+    <pre class="ai-code">export OPENAI_BASE_URL={{ai.endpoint}}
+export OPENAI_API_KEY=dh_ai_...   # from your dashboard, or already set in your app
+
+curl $OPENAI_BASE_URL/chat/completions \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -d '{"model":"openai/gpt-5.6-luna","messages":[{"role":"user","content":"hi"}]}'</pre>
+
+    <p class="tier-foot">
+      Any OpenAI SDK works unchanged: Python, Node, whatever your project
+      already uses. Point it at <code>{{ai.endpoint}}</code> and go.
+    </p>
+  </div>
+</section>
+
+<section class="wrap prose">
+  <h2 id="prices">Models and prices, live</h2>
+  <p>
+    Every price below is fetched as you read this: it follows the provider's
+    list price at our daily exchange rate, so what you see is what the next
+    request costs.
+  </p>
+  <div class="table-scroll">
+    <table class="table">
+      <thead>
+        <tr><th>Model</th><th>Price</th></tr>
+      </thead>
+      <tbody data-ai-prices>
+        <tr><td colspan="2">Loading live prices…</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p data-ai-fallback hidden>Live prices are on your dashboard.</p>
+  <p data-ai-asof hidden>Priced at today's exchange rate<span data-ai-day></span>.</p>
+  <p>{{ai.billing}}</p>
+
+  <h2>How billing works</h2>
+  <ul>
+    <li>Prepaid only. A request is refused, never overdrawn: your balance can
+        not go negative through AI use.</li>
+    <li>Each request is billed from the provider's reported cost for that
+        exact request, converted at our daily rate. Small charges accumulate
+        and appear as one line a day in your wallet history.</li>
+    <li>A request that fails costs nothing.</li>
+    <li>Free trial credit does not cover AI. A paid top-up is required.</li>
+  </ul>
+
+  <h2>Getting a key</h2>
+  <p>
+    Sign in to the <a href="{{site.dashboardUrl}}/ai">dashboard's AI page</a>
+    to create and manage keys. Apps hosted on {{site.name}} already carry a
+    key in their environment; set <code>OPENAI_BASE_URL</code> or
+    <code>OPENAI_API_KEY</code> yourself and your value wins, so using another
+    provider directly always stays possible.
+  </p>
+
+  <h2>The fine print</h2>
+  <p>
+    Use of the endpoint is governed by the <a href="/ai-terms.html">AI
+    terms</a> alongside the <a href="/terms.html">terms and conditions</a>:
+    acceptable use, liability, and what we store (metadata only, never your
+    prompts or outputs).
+  </p>
+
+  <div class="callout">
+    <p>
+      <strong>Questions?</strong> Write to
+      <a href="mailto:{{company.email}}">{{company.email}}</a> and you will
+      hear back within one working day.
+    </p>
+  </div>
+</section>
+
+<script>
+  fetch('{{ai.endpoint}}/models')
+    .then(function (r) { return r.json() })
+    .then(function (out) {
+      var body = document.querySelector('[data-ai-prices]')
+      body.innerHTML = out.data
+        .map(function (m) {
+          var price =
+            m.kind === 'image'
+              ? 'up to ₹' + m.pricing.inr_per_image_up_to.toFixed(2) + ' per image'
+              : '₹' + m.pricing.inr_per_m_input.toFixed(2) + ' in / ₹' +
+                m.pricing.inr_per_m_output.toFixed(2) + ' out, per M tokens'
+          return '<tr><td>' + m.id + '</td><td>' + price + '</td></tr>'
+        })
+        .join('')
+      if (out.as_of) {
+        document.querySelector('[data-ai-day]').textContent = ', ' + out.as_of
+        document.querySelector('[data-ai-asof]').hidden = false
+      }
+    })
+    .catch(function () {
+      document.querySelector('[data-ai-prices]').innerHTML = ''
+      document.querySelector('[data-ai-fallback]').hidden = false
+    })
+</script>
+
+</main>
+
+{{> footer}}
+
+</body>
+</html>

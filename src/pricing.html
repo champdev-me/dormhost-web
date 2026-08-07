@@ -187,6 +187,7 @@
     </table>
   </div>
   <p data-ai-fallback hidden>Live prices are on your dashboard.</p>
+  <p data-ai-asof hidden>Priced at today's exchange rate<span data-ai-day></span>.</p>
   <p>
     {{ai.billing}} {{ai.injected}} Using the AI endpoint means agreeing to the
     <a href="/ai-terms.html">AI terms</a>.
@@ -206,6 +207,10 @@
             return '<tr><td>' + m.id + '</td><td>' + price + '</td></tr>'
           })
           .join('')
+        if (out.as_of) {
+          document.querySelector('[data-ai-day]').textContent = ', ' + out.as_of
+          document.querySelector('[data-ai-asof]').hidden = false
+        }
       })
       .catch(function () {
         document.querySelector('[data-ai-prices]').innerHTML = ''

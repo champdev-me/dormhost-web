@@ -255,7 +255,7 @@
     "endpoint": "https://ai.dormhost.dev/v1",
     "pitch": "Pay for AI in rupees from the balance you already have. No card, no minimum, and it works with any OpenAI SDK.",
     "injected": "Apps hosted on DormHost get OPENAI_BASE_URL and OPENAI_API_KEY set automatically, so AI works from inside your app with zero configuration. Set either variable yourself, to use OpenAI directly for example, and your value wins.",
-    "billing": "Billed per request from the provider's reported cost at our daily exchange rate. Trial credit does not cover AI; it needs paid balance.",
+    "billing": "Billed per request from the provider's reported cost at our daily exchange rate. Prices can change daily and without notice, whenever provider list prices or the exchange rate move. Trial credit does not cover AI; it needs paid balance.",
     "example": "A short chat on the cheapest model costs well under a rupee, and an image is a few rupees."
   },
   "trial": {
