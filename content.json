@@ -260,11 +260,11 @@
   },
   "trial": {
     "days": 7,
-    "headline": "Seven days free, no card",
+    "headline": "Seven days free, no credit card required",
     "short": "Sign in with GitHub and we put seven days of Nap credit in your balance.",
     "what": "Signing in with GitHub for the first time puts seven days of Nap credit in your balance. It is real credit and it is spent the same way as any other: a day at a time, so you can see exactly what your app costs while you try it.",
     "limits": "Free credit runs one application on the Nap plan. Adding any credit of your own lifts that, and you can then run as many applications as your balance covers, on either plan.",
     "after": "When the free credit runs out your application is stopped, not deleted. Add credit and it comes back exactly as it was. One free trial per GitHub account.",
-    "noCard": "We do not ask for a card and there is nothing to cancel."
+    "noCard": "We do not ask for a credit card and there is nothing to cancel."
   }
 }
