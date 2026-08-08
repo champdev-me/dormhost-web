@@ -199,11 +199,6 @@ const inr = (n) => n.toLocaleString('en-IN');
 
 // Values assembled from other values live here, so a template never does arithmetic.
 function derive(c) {
-  // The development notice, killable without a code change: set
-  // DORM_SITE_BANNER=off on the site service and redeploy. A static site
-  // cannot take a runtime toggle, so the build env is the switch.
-  if (process.env.DORM_SITE_BANNER === 'off') delete c.banner;
-
   // From package.json, not content.json: a version that has to be edited in
   // two places is a version that disagrees with the tag it was built from.
   c.site.version = JSON.parse(readFileSync(join(root, 'package.json'), 'utf8')).version;
@@ -258,6 +253,16 @@ function derive(c) {
   c.plansByName = Object.fromEntries(c.plans.map((p) => [p.slug, p]));
   c.cheapest = c.plans.reduce((lo, p) => (p.priceMonthly < lo.priceMonthly ? p : lo));
 
+  // Who wins a comparison row, as booleans a template can read without doing
+  // string equality. A row with no "who" is neutral (Best for, usually) and
+  // gets no icon.
+  for (const cp of c.compares) {
+    for (const row of cp.rows) {
+      row.oursWin = row.who === 'ours';
+      row.theirsWin = row.who === 'theirs';
+    }
+  }
+
   // Structured data is assembled here rather than hand-written in a <script>
   // tag: JSON needs JSON escaping, and the template engine only does HTML
   // escaping. Emitted with {{{ }}} so it reaches the page unaltered.
@@ -309,9 +314,38 @@ function derive(c) {
         },
       })),
     }),
+
+    // The homepage's visible FAQ, mirrored as structured data. Questions that
+    // match how people search ("is it really free", "what can I host") are
+    // what FAQPage rich results are for, so the two must not drift.
+    faq: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: c.faq.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    }),
   };
 
   return c;
+}
+
+// A crumb trail for the generated pages. Site is the first crumb, the section
+// is the second, and the item itself is the last, so a page never claims a
+// trail that does not exist in the navigation.
+function breadcrumb(site, crumbs) {
+  return JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: crumbs.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.name,
+      item: c.url,
+    })),
+  });
 }
 
 // ---------------------------------------------------------------- search
@@ -321,28 +355,43 @@ function derive(c) {
 const PRIORITY = {
   'index.html': '1.0',
   'pricing.html': '0.9',
+  'features.html': '0.8',
+  'docs.html': '0.8',
+  'ai.html': '0.8',
   'about.html': '0.7',
   'contact.html': '0.7',
-  'ai.html': '0.8',
+  'students.html': '0.7',
+  'blog.html': '0.6',
+  'security.html': '0.5',
+  'status.html': '0.4',
+  'changelog.html': '0.4',
 };
 
-function sitemap(pages, content) {
-  const urls = pages
-    .map((page) => {
-      const loc = page === 'index.html' ? `${content.site.url}/` : `${content.site.url}/${page}`;
-      return [
-        '  <url>',
-        `    <loc>${escape(loc)}</loc>`,
-        `    <lastmod>${content.site.lastmod}</lastmod>`,
-        `    <priority>${PRIORITY[page] ?? '0.5'}</priority>`,
-        '  </url>',
-      ].join('\n');
-    })
-    .join('\n');
+// Generated pages rank by what they are. A use-case page answers a search
+// question, a compare page answers a choice, a blog post answers an intent;
+// none of them outrank the pricing page they funnel into.
+const GENERATED_PRIORITY = {
+  'use-cases/': '0.6',
+  'compare/': '0.5',
+  'blog/': '0.5',
+};
 
+const urlEntry = (path, priority, content) => {
+  const loc = path === 'index.html' ? `${content.site.url}/` : `${content.site.url}/${path}`;
+  return [
+    '  <url>',
+    `    <loc>${escape(loc)}</loc>`,
+    `    <lastmod>${content.site.lastmod}</lastmod>`,
+    `    <priority>${priority}</priority>`,
+    '  </url>',
+  ].join('\n');
+};
+
+function sitemap(urls, content) {
+  const xml = urls.map((u) => urlEntry(u.path, u.priority, content)).join('\n');
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls}
+${xml}
 </urlset>
 `;
 }
@@ -396,9 +445,27 @@ ${c.ai.pitch} ${c.ai.injected}
 
 - [Pricing](${c.site.url}/pricing.html): full plan details and live AI prices
 - [AI](${c.site.url}/ai.html): the AI API, models, billing and quickstart
+- [Features](${c.site.url}/features.html): deploy, run, data, networking and developer experience
+- [Student projects](${c.site.url}/students.html): what to deploy, by project type
+- [Docs](${c.site.url}/docs.html): quickstart, deploy and troubleshoot
+- [Security](${c.site.url}/security.html): isolation, HTTPS, backups and credentials
+- [Status](${c.site.url}/status.html): what is up, honestly
+- [Changelog](${c.site.url}/changelog.html): what shipped and when
 - [About](${c.site.url}/about.html): who runs this and why
 - [Terms](${c.site.url}/terms.html), [AI terms](${c.site.url}/ai-terms.html), [Privacy](${c.site.url}/privacy.html), [Refunds](${c.site.url}/refunds.html)
 - Dashboard for sign-up and deploys: ${c.site.dashboardUrl}
+
+## Use cases
+
+${c.useCases.map((u) => `- [${u.title}](${c.site.url}/use-cases/${u.slug}.html): ${u.meta}`).join('\n')}
+
+## Comparisons
+
+${c.compares.map((cp) => `- [${cp.title}](${c.site.url}/compare/${cp.slug}.html): ${cp.meta}`).join('\n')}
+
+## Blog
+
+${c.blogPosts.map((p) => `- [${p.title}](${c.site.url}/blog/${p.slug}.html): ${p.meta}`).join('\n')}
 
 ## Who it is for
 
@@ -432,27 +499,73 @@ function build() {
   const pages = readdirSync(SRC).filter((f) => f.endsWith('.html'));
   if (pages.length === 0) throw new Error('src/ has no .html pages');
 
+  // Every page gets the whole content tree plus a small, page-specific header.
+  const pageCtx = (content, assets, file, extra = {}) => ({
+    ...content,
+    ...extra,
+    assets,
+    page: {
+      name: basename(file, '.html'),
+      file,
+      isHome: file === 'index.html',
+      // Anchor links in the shared nav resolve in-page on the homepage and
+      // jump back to it from anywhere else.
+      homePrefix: file === 'index.html' ? '' : '/',
+      // Canonical, and the og:url that goes with it.
+      url: file === 'index.html' ? `${content.site.url}/` : `${content.site.url}/${file}`,
+    },
+  });
+
   const missing = [];
   for (const page of pages) {
     const src = readFileSync(join(SRC, page), 'utf8');
-    const isHome = page === 'index.html';
-    const ctx = {
-      ...content,
-      assets,
-      page: {
-        name: basename(page, '.html'),
-        file: page,
-        isHome,
-        // Anchor links in the shared nav resolve in-page on the homepage and
-        // jump back to it from anywhere else.
-        homePrefix: isHome ? '' : '/',
-        // Canonical, and the og:url that goes with it.
-        url: isHome ? `${content.site.url}/` : `${content.site.url}/${page}`,
-      },
-    };
+    const ctx = pageCtx(content, assets, page);
     const result = render(src, ctx, `src/${page}`);
     missing.push(...result.missing);
     writeFileSync(join(DIST, page), result.html);
+  }
+
+  // Generated pages: one HTML file per entry in content.json, rendered from a
+  // template in src/templates/. They live in subdirectories (use-cases/,
+  // compare/, blog/) so each gets its own URL and can rank on its own.
+  const generated = (tpl, file, item, crumbs) => {
+    const url = `${content.site.url}/${file}`;
+    item.jsonldBreadcrumb = breadcrumb(content.site, crumbs);
+    const ctx = pageCtx(content, assets, file, item);
+    const tplPath = `src/templates/${tpl}.html`;
+    const result = render(readFileSync(join(SRC, 'templates', `${tpl}.html`), 'utf8'), ctx, tplPath);
+    missing.push(...result.missing);
+    mkdirSync(dirname(join(DIST, file)), { recursive: true });
+    writeFileSync(join(DIST, file), result.html);
+  };
+
+  const urls = pages.map((page) => ({ path: page, priority: PRIORITY[page] ?? '0.5' }));
+
+  for (const uc of content.useCases) {
+    generated('use-case', `use-cases/${uc.slug}.html`, uc, [
+      { name: content.site.name, url: `${content.site.url}/` },
+      { name: 'Student projects', url: `${content.site.url}/students.html` },
+      { name: uc.title, url: `${content.site.url}/use-cases/${uc.slug}.html` },
+    ]);
+    urls.push({ path: `use-cases/${uc.slug}.html`, priority: GENERATED_PRIORITY['use-cases/'] });
+  }
+
+  for (const cp of content.compares) {
+    generated('compare', `compare/${cp.slug}.html`, cp, [
+      { name: content.site.name, url: `${content.site.url}/` },
+      { name: 'Pricing', url: `${content.site.url}/pricing.html` },
+      { name: cp.title, url: `${content.site.url}/compare/${cp.slug}.html` },
+    ]);
+    urls.push({ path: `compare/${cp.slug}.html`, priority: GENERATED_PRIORITY['compare/'] });
+  }
+
+  for (const post of content.blogPosts) {
+    generated('post', `blog/${post.slug}.html`, post, [
+      { name: content.site.name, url: `${content.site.url}/` },
+      { name: 'Blog', url: `${content.site.url}/blog.html` },
+      { name: post.title, url: `${content.site.url}/blog/${post.slug}.html` },
+    ]);
+    urls.push({ path: `blog/${post.slug}.html`, priority: GENERATED_PRIORITY['blog/'] });
   }
 
   if (missing.length) {
@@ -463,7 +576,7 @@ function build() {
     );
   }
 
-  writeFileSync(join(DIST, 'sitemap.xml'), sitemap(pages, content));
+  writeFileSync(join(DIST, 'sitemap.xml'), sitemap(urls, content));
   writeFileSync(join(DIST, 'robots.txt'), robots(content));
   writeFileSync(join(DIST, 'llms.txt'), llmsTxt(content));
 
@@ -474,7 +587,10 @@ function build() {
     .map((f) => statSync(join(DIST, f)))
     .reduce((n, s) => n + (s.isFile() ? s.size : 0), 0);
 
-  return { pages: pages.length, kb: (bytes / 1024).toFixed(0) };
+  return {
+    pages: pages.length + content.useCases.length + content.compares.length + content.blogPosts.length,
+    kb: (bytes / 1024).toFixed(0),
+  };
 }
 
 // ---------------------------------------------------------------- entry

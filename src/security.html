@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> head}}
+<title>Security · {{site.name}}</title>
+<meta name="description" content="How {{site.name}} keeps student projects separate, served over HTTPS, and backed up. Isolation, credentials, data and abuse handling.">
+<meta property="og:title" content="Security · {{site.name}}">
+<meta property="og:description" content="Isolation, HTTPS, credentials and backups. The honest version.">
+</head>
+<body>
+
+{{> nav}}
+
+<main class="wrap">
+
+<div class="page-head">
+  <p class="eyebrow">Security</p>
+  <h1>Separation, HTTPS, and secrets that never touch a repository.</h1>
+  <p class="lead">
+    This page says what we do, and equally what we do not promise. Security
+    claims are only worth as much as the honesty behind them, so ours are
+    deliberately narrow.
+  </p>
+</div>
+
+<div class="prose">
+
+<h2>Isolation</h2>
+<p>
+  Every application runs in its own container on a shared machine. Containers
+  do not share a file system or a process, and one application cannot read
+  another's environment variables or database. Your data is your application's
+  data.
+</p>
+<p>
+  The management console that runs the platform holds no database credential
+  and no payment detail. It talks to the machines over an operator API token,
+  so a compromise of the console cannot reach the money tables directly.
+</p>
+
+<h2>HTTPS</h2>
+<p>
+  Every application is served over HTTPS from its first deploy, at
+  {{site.appAddress}} or on a custom domain pointed through your own
+  Cloudflare. Cloudflare sits in front for DNS and DDoS protection. The origin
+  serves traffic to Cloudflare over a private link, and the certificate your
+  visitors see is issued and renewed at the edge.
+</p>
+
+<h2>Credentials</h2>
+<ul>
+  <li>We connect to GitHub with a deploy token we can remove at any time, never with your password.</li>
+  <li>Environment variables live in the dashboard, are injected when the app starts, and never appear in build logs or the repository.</li>
+  <li>Payments are handled by {{payments.gateway}}. We never see or store your card or UPI details.</li>
+  <li>The AI API uses its own key, scoped to the balance on your account.</li>
+</ul>
+
+<h2>Data and backups</h2>
+<p>
+  Awake keeps a nightly backup of your storage, your database and your
+  settings, held for {{policies.backupRetentionDays}} days and restorable from
+  the dashboard. Nap keeps one backup you take yourself, whenever you want one.
+</p>
+<p>
+  {{limits.storageNote}} {{policies.retentionNote}}
+</p>
+
+<h2>Abuse</h2>
+<p>
+  The price only works if the machines stay mostly idle and the IP addresses
+  stay clean, so we are firm about what we host. Mining, phishing, spam,
+  proxies and the rest are listed in the
+  <a href="/acceptable-use.html">acceptable use policy</a> and are not sold at
+  any price.
+</p>
+
+<h2>Responsible disclosure</h2>
+<p>
+  Found something? Tell us at <a href="mailto:{{company.email}}">{{company.email}}</a>
+  before telling the world, and we will take it seriously. This is a small
+  platform run by one person, so please be patient: there is no bug bounty
+  budget, but a real report gets a real reply and a real fix.
+</p>
+
+<div class="callout">
+  <p>
+    <strong>Worried about something specific?</strong> Write to
+    <a href="mailto:{{company.email}}">{{company.email}}</a> and ask. You will
+    get a straight answer about what we can and cannot promise.
+  </p>
+</div>
+
+</div>
+
+</main>
+
+{{> footer}}
+
+</body>
+</html>

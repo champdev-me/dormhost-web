@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> head}}
+<title>Changelog · {{site.name}}</title>
+<meta name="description" content="What has shipped on {{site.name}}, month by month.">
+<meta property="og:title" content="Changelog · {{site.name}}">
+<meta property="og:description" content="What shipped, and when.">
+</head>
+<body>
+
+{{> nav}}
+
+<main class="wrap">
+
+<div class="page-head">
+  <p class="eyebrow">Changelog</p>
+  <h1>What shipped, and when.</h1>
+  <p class="lead">
+    {{site.name}} is still in development, and this page is the record of what
+    is actually running rather than what we plan. If a feature is not listed
+    here, it does not exist yet.
+  </p>
+</div>
+
+<section class="prose">
+  {{#each changelog}}
+  <h2>{{month}}</h2>
+  <ul>
+    {{#each entries}}
+    <li>{{.}}</li>
+    {{/each}}
+  </ul>
+  {{/each}}
+
+  <div class="callout">
+    <p>
+      <strong>Want to know what is next?</strong> Tell us what is missing at
+      <a href="mailto:{{company.email}}">{{company.email}}</a>. The roadmap is
+      whatever the students using the platform keep asking for.
+    </p>
+  </div>
+</section>
+
+<div class="cta-row">
+  <a class="btn btn-ghost" href="/status.html">Live status</a>
+  <a class="btn btn-ghost" href="/contact.html">Contact</a>
+</div>
+
+</main>
+
+{{> footer}}
+
+</body>
+</html>

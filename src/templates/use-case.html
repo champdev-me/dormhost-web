@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> head}}
+<title>{{title}} · {{site.name}}</title>
+<meta name="description" content="{{meta}}">
+<meta property="og:title" content="{{title}} · {{site.name}}">
+<meta property="og:description" content="{{og}}">
+<script type="application/ld+json">{{{jsonldBreadcrumb}}}</script>
+</head>
+<body>
+
+{{> nav}}
+
+<main class="wrap">
+
+<div class="page-head">
+  <p class="eyebrow">Student projects</p>
+  <h1>{{h1}}</h1>
+  <p class="lead">{{lede}}</p>
+</div>
+
+<div class="callout">
+  <p><strong>What you get.</strong></p>
+  <p>{{og}}</p>
+</div>
+
+<div class="prose">
+  <h2>How it fits</h2>
+  <ul>
+    {{#each bullets}}
+    <li>{{.}}</li>
+    {{/each}}
+  </ul>
+  <h2>Deploy it, step by step</h2>
+  <p>The dashboard flow is the same for every project:</p>
+  <ol>
+    {{#each howto.quickstart}}
+    <li><strong>{{title}}.</strong> {{text}}</li>
+    {{/each}}
+  </ol>
+
+  <h2>What is different about {{title}}</h2>
+  <ol>
+    {{#each steps}}
+    <li>{{.}}</li>
+    {{/each}}
+  </ol>
+
+  <p>
+    Hosting is ₹{{cheapest.monthly}} a month on Nap, all in: the build, the
+    running app, the database and the storage. Nothing is metered separately,
+    so the bill cannot surprise you. Start with {{trial.days}} days of free
+    credit, no card required. The <a href="/docs.html">docs</a> cover databases,
+    domains and what to do when a build fails.
+  </p>
+</div>
+
+<div class="cta-row">
+  <a class="btn btn-primary" href="{{site.dashboardUrl}}">{{cta}}</a>
+  <a class="btn btn-ghost" href="/pricing.html">See the plans</a>
+</div>
+
+</main>
+
+{{> footer}}
+</body>
+</html>

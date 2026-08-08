@@ -57,6 +57,40 @@
   {{/each}}
 </section>
 
+<div class="callout">
+  <p>
+    <strong>Not sure which one?</strong> Start with Nap. It is the right plan
+    for almost every student project, it is the one the free trial covers, and
+    you can move to Awake later if your app needs to stay running.
+  </p>
+</div>
+
+<section class="prose">
+  <h2>Nap versus Awake at a glance</h2>
+  <p>Both plans are one application, any language, with a database on the same machine. The table is the whole difference.</p>
+  <div class="table-scroll">
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Nap</th>
+          <th>Awake</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th>Price</th><td>₹{{plansByName.nap.monthly}}/month</td><td>₹{{plansByName.awake.monthly}}/month</td></tr>
+        <tr><th>Yearly</th><td>₹{{plansByName.nap.yearly}}, about ₹{{plansByName.nap.yearlyPerMonth}}/month</td><td>₹{{plansByName.awake.yearly}}, about ₹{{plansByName.awake.yearlyPerMonth}}/month</td></tr>
+        <tr><th>Sleeps when idle</th><td>Yes, after {{policies.idleMinutes}} minutes</td><td>Never</td></tr>
+        <tr><th>Wakes in</th><td>About {{policies.wakeMs}} ms</td><td>Always running</td></tr>
+        <tr><th>Memory</th><td>Up to 256 MB</td><td>Up to 512 MB</td></tr>
+        <tr><th>Storage</th><td>Up to {{plansByName.nap.storageGb}} GB</td><td>Up to {{plansByName.awake.storageGb}} GB</td></tr>
+        <tr><th>Backups</th><td>One you take yourself</td><td>Nightly, kept {{policies.backupRetentionDays}} days</td></tr>
+        <tr><th>Good for</th><td>Web apps and APIs, most projects</td><td>Bots, workers, cron jobs, WebSockets</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
 <section class="prose">
   <h2>Trying it first</h2>
   <p>{{trial.what}}</p>

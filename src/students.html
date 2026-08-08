@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> head}}
+<title>Student projects · {{site.name}}</title>
+<meta name="description" content="Deploy your college project online in minutes: GitHub to a live URL, with a database included. Hosting for students from ₹{{cheapest.monthly}} a month, in rupees.">
+<meta property="og:title" content="Student projects · {{site.name}}">
+<meta property="og:description" content="Your college project, live on the internet. Pick your stack and follow the path.">
+</head>
+<body>
+
+{{> nav}}
+
+<main class="wrap">
+
+<div class="page-head">
+  <p class="eyebrow">Student projects</p>
+  <h1>Built a college project? Get it online.</h1>
+  <p class="lead">
+    A live URL beats a localhost demo every time, for a viva, a hackathon or a
+    resume. Pick the stack you wrote it in below: each page has the steps for
+    that stack, on top of the <a href="/docs.html">five step quickstart</a>.
+  </p>
+</div>
+
+<section>
+  <div class="section-head">
+    <h2>What are you building?</h2>
+    <p>Pick your stack and follow the exact path.</p>
+  </div>
+  <div class="features">
+    {{#each useCases}}
+    <div class="feature">
+      <h3><a href="/use-cases/{{slug}}.html">{{title}}</a></h3>
+      <p>{{og}}</p>
+    </div>
+    {{/each}}
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <h2>Choosing between us and someone else</h2>
+    <p>We are not the only host that runs student projects, so read a side-by-side before you decide.</p>
+  </div>
+  <div class="features">
+    {{#each compares}}
+    <div class="feature">
+      <h3><a href="/compare/{{slug}}.html">{{title}}</a></h3>
+      <p>{{og}}</p>
+    </div>
+    {{/each}}
+  </div>
+</section>
+
+<div class="callout">
+  <p>
+    <strong>Cheap enough to justify for one semester.</strong> Hosting is
+    ₹{{cheapest.monthly}} a month, charged in rupees with UPI or a card.
+    Cancel any time, and unused credit comes back to you under the
+    <a href="/refunds.html">refund policy</a>. Start with {{trial.days}} days
+    free, no card required.
+  </p>
+</div>
+
+<div class="cta-row">
+  <a class="btn btn-primary" href="{{site.dashboardUrl}}">Deploy your project</a>
+  <a class="btn btn-ghost" href="/docs.html">Read the quickstart</a>
+</div>
+
+</main>
+
+{{> footer}}
+
+</body>
+</html>

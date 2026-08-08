@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> head}}
+<title>Features · {{site.name}}</title>
+<meta name="description" content="Deploy from GitHub, run on a real machine in Mumbai or London, with a database included. Features of {{site.name}}, from ₹{{cheapest.monthly}} a month.">
+<meta property="og:title" content="Features · {{site.name}}">
+<meta property="og:description" content="Deploy, run, store and go live. Everything a student project needs, without a server to manage.">
+</head>
+<body>
+
+{{> nav}}
+
+<main class="wrap">
+
+<div class="page-head">
+  <p class="eyebrow">Features</p>
+  <h1>Everything your project needs to be online, without a server to run.</h1>
+  <p class="lead">
+    One plan covers the whole journey: a repository becomes a running
+    application with an address, a certificate, a database and a backup. Here
+    is how each part works, and what it costs (one flat price, ₹{{cheapest.monthly}} a month).
+  </p>
+</div>
+
+<section>
+  <div class="section-head">
+    <h2>Deploy</h2>
+    <p>From a repository you already have to a running app, in minutes.</p>
+  </div>
+  <div class="features">
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-git"/></svg>Connect GitHub</h3>
+      <p>Public or private repository. We use a deploy token we can remove at any time, so you never hand over your password.</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-container"/></svg>Builds itself</h3>
+      <p>{{runtimes.detectedText}} are detected and built automatically. Anything else builds from a Dockerfile in your repository.</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-terminal"/></svg>Build logs</h3>
+      <p>Every build prints its log to the dashboard. When a build fails, the reason is there in front of you, not hidden.</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-key"/></svg>Environment variables</h3>
+      <p>Secrets live in the dashboard, never in the repository. Your tokens are injected when the app starts.</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-rotate"/></svg>Rollback</h3>
+      <p>Every push deploys, and the previous build stays ready. One click takes you back if a deploy goes wrong.</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-bolt"/></svg>Any language</h3>
+      <p>{{runtimes.note}}</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <h2>Run</h2>
+    <p>A real machine, in a region you can pick from.</p>
+  </div>
+  <div class="features">
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-container"/></svg>Real machine</h3>
+      <p>Your app runs in a container on a real server, not a function that wakes up per request. Processes, sockets and state all behave normally.</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-moon"/></svg>Sleeps when idle</h3>
+      <p>On Nap, the app stops after {{policies.idleMinutes}} minutes with no visitors and starts on the next request, typically in about {{policies.wakeMs}} milliseconds.</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-bolt"/></svg>Never sleeps on Awake</h3>
+      <p>Bots, workers and anything holding a connection run on Awake, which stays up around the clock.</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-globe"/></svg>Two regions</h3>
+      <p>Hosted in Mumbai or London, in whichever has room. Your database sits on the same machine, either way.</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-lock"/></svg>HTTPS from day one</h3>
+      <p>Every app gets an HTTPS address at {{site.appAddress}}. No certificate to buy or configure.</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-rupee"/></svg>Honest billing</h3>
+      <p>One flat price, nothing metered separately. No per-request fees, no surprise on the bill.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <h2>Data</h2>
+    <p>Storage and databases on the same machine as the app, so nothing crosses the internet.</p>
+  </div>
+  <div class="features">
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-database"/></svg>Database included</h3>
+      <p>{{databases.textLong}}. {{databases.note}}</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-vector"/></svg>pgvector</h3>
+      <p>{{databases.vector.short}} {{databases.vector.why}}</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-disk"/></svg>Persistent /data</h3>
+      <p>Anything the app writes to {{limits.persistentPath}} survives a deploy. {{limits.persistentNote}}</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-shield"/></svg>Backups</h3>
+      <p>Awake backs up your data and settings nightly, kept {{policies.backupRetentionDays}} days, restorable from the dashboard. Nap keeps one backup you take yourself.</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-disk"/></svg>One storage ceiling</h3>
+      <p>{{limits.storageNote}}</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-clock"/></svg>If you run out</h3>
+      <p>Your app is stopped, not deleted. We keep everything for {{policies.dataRetentionDays}} days and email you before anything goes.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <h2>Go live</h2>
+    <p>A public address, and your own name on it.</p>
+  </div>
+  <div class="features">
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-link"/></svg>Your own domain</h3>
+      <p>Point a domain you own through your own Cloudflare at your application and HTTPS is handled for you. We do not sell domains, so you keep full control.</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-globe"/></svg>Shareable URL</h3>
+      <p>Every app is online at an HTTPS URL from the moment it deploys, ready to put in a viva demo, a hackathon form or a resume.</p>
+    </div>
+  </div>
+</section>
+
+<div class="callout">
+  <p>
+    <strong>See it on your own project.</strong> Sign in with GitHub and you get
+    {{trial.days}} days of credit, no card required. Hosting is
+    ₹{{cheapest.monthly}} a month on Nap after that, or ₹{{plansByName.awake.monthly}} on Awake if your project must never sleep.
+  </p>
+</div>
+
+<div class="cta-row">
+  <a class="btn btn-primary" href="{{site.dashboardUrl}}">Deploy for free</a>
+  <a class="btn btn-ghost" href="/pricing.html">See the plans</a>
+</div>
+
+</main>
+
+{{> footer}}
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> head}}
+<title>Blog · {{site.name}}</title>
+<meta name="description" content="Guides for getting a college project online: deploying a MERN project, hosting a Python project, and putting your final year project on the internet.">
+<meta property="og:title" content="Blog · {{site.name}}">
+<meta property="og:description" content="Guides for getting a project online, written by the people who run the hosting.">
+</head>
+<body>
+
+{{> nav}}
+
+<main class="wrap">
+
+<div class="page-head">
+  <p class="eyebrow">Blog</p>
+  <h1>Getting a project online.</h1>
+  <p class="lead">
+    Short guides for the parts of deployment that trip students up, written by
+    the person who runs the platform. Every guide ends with something you can
+    actually deploy.
+  </p>
+</div>
+
+<section>
+  <div class="posts">
+    {{#each blogPosts}}
+    <article class="post-card">
+      <p class="post-date">{{date}}</p>
+      <h2><a href="/blog/{{slug}}.html">{{title}}</a></h2>
+      <p class="post-lede">{{lede}}</p>
+      <p class="post-read"><a href="/blog/{{slug}}.html">Read the post →</a></p>
+    </article>
+    {{/each}}
+  </div>
+</section>
+
+<div class="callout">
+  <p>
+    <strong>Do not see your stack?</strong> Tell us what you are building at
+    <a href="mailto:{{company.email}}">{{company.email}}</a>. If students keep
+    deploying it, a guide appears.
+  </p>
+</div>
+
+</main>
+
+{{> footer}}
+
+</body>
+</html>

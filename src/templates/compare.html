@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> head}}
+<title>{{title}} · {{site.name}}</title>
+<meta name="description" content="{{meta}}">
+<meta property="og:title" content="{{title}} · {{site.name}}">
+<meta property="og:description" content="{{og}}">
+<script type="application/ld+json">{{{jsonldBreadcrumb}}}</script>
+</head>
+<body>
+
+{{> nav}}
+
+<main class="wrap">
+
+<div class="page-head">
+  <p class="eyebrow">Choosing hosting</p>
+  <h1>{{h1}}</h1>
+  <p class="lead">{{lede}}</p>
+</div>
+
+<div class="table-scroll">
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>{{them}}</th>
+        <th>{{site.name}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each rows}}
+      <tr>
+        <th>{{label}}</th>
+        <td class="cmp-theirs">
+          {{#if theirsWin}}<svg class="cmp-icon cmp-ok" width="16" height="16" aria-hidden="true"><use href="#i-check"/></svg>{{/if}}
+          {{#if oursWin}}<svg class="cmp-icon cmp-bad" width="16" height="16" aria-hidden="true"><use href="#i-x"/></svg>{{/if}}
+          {{theirs}}
+        </td>
+        <td class="cmp-ours">
+          {{#if oursWin}}<svg class="cmp-icon cmp-ok" width="16" height="16" aria-hidden="true"><use href="#i-check"/></svg>{{/if}}
+          {{#if theirsWin}}<svg class="cmp-icon cmp-bad" width="16" height="16" aria-hidden="true"><use href="#i-x"/></svg>{{/if}}
+          {{ours}}
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+
+<div class="callout">
+  <p><strong>The short answer.</strong></p>
+  <p>{{verdict}}</p>
+</div>
+
+<div class="cta-row">
+  <a class="btn btn-primary" href="{{site.dashboardUrl}}">Start with {{trial.days}} days free</a>
+  <a class="btn btn-ghost" href="/pricing.html">See the plans</a>
+</div>
+
+</main>
+
+{{> footer}}
+</body>
+</html>

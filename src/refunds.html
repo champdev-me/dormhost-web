@@ -18,10 +18,11 @@
 
 <div class="callout">
   <p>
-    <strong>The short version.</strong> Ask within
-    {{policies.refund.windowDays}} days and you get your money back. It goes to
-    {{policies.refund.mode}}, and reaches you in
-    {{policies.refund.creditDays}} once approved.
+    <strong>The short version.</strong> {{policies.refund.short}} A top-up has
+    to be {{policies.refund.minAgeDays}} days old, and what is left has to be
+    worth at least {{policies.refund.minBalanceDays}} days of your plan.
+    Refunds go back to {{policies.refund.mode}}, and reach you
+    {{policies.refund.creditDays}}.
   </p>
 </div>
 
@@ -37,15 +38,18 @@
 <h3>Money you have added but not used</h3>
 <p>
   Your balance is drawn down daily while your application is on a plan. Whatever
-  is left in your balance is yours, and we will refund it on request at any time.
-  There is no time limit on this and no fee for it.
+  is left is yours, and we refund it on request. You do not have to give a
+  reason, and there is no fee.
 </p>
-
-<h3>A monthly plan you just paid for</h3>
 <p>
-  If you decide within {{policies.refund.windowDays}} days of a payment that the
-  service is not for you, we refund that payment in full, including any days you
-  used. You do not have to give a reason.
+  Two limits, and they exist because ₹{{cheapest.monthly}} a month is already
+  close to what the machine costs. A top-up can be refunded once it is
+  {{policies.refund.minAgeDays}} days old, so the free trial is not simply
+  bought and returned. And the amount left has to be worth at least
+  {{policies.refund.minBalanceDays}} days of your plan, because a smaller
+  refund costs more in gateway fees than it returns. Anything under that stays
+  on your account as credit, which never expires and which you can spend
+  whenever you like.
 </p>
 
 <h3>A year of credit</h3>
@@ -53,13 +57,8 @@
   Adding a year's price in one payment buys a cheaper daily rate for 365 days,
   not a year of service. There is no term to break, so refunding it is the same
   as refunding any other credit: whatever is left in your balance comes back to
-  you on request, at any time.
-</p>
-<p>
-  Within {{policies.refund.windowDays}} days of the payment you can have the
-  whole payment back, including the days you used. After that we refund what is
-  left. We do not go back and recharge the days you already used at the higher
-  monthly rate.
+  you on request, under the two limits above. We do not go back and recharge the
+  days you already used at the higher monthly rate.
 </p>
 
 <h3>An outage that was our fault</h3>
@@ -74,14 +73,17 @@
 <h3>A payment that should not have happened</h3>
 <p>
   Charged twice, charged after you cancelled, or charged an amount you did not
-  authorise? Tell us and we refund it in full. We do not apply the
-  {{policies.refund.windowDays}} day window to our own mistakes.
+  authorise? Tell us and we refund it in full. {{policies.refund.faultOfOurs}}
 </p>
 
 <h2>What we do not refund</h2>
 <ul>
-  <li>Time your application was actually hosted and running, outside the
-      {{policies.refund.windowDays}} day window.</li>
+  <li>Time your application was actually hosted and running. The price is a
+      daily one, and a day that has been served has been served.</li>
+  <li>A leftover balance worth less than {{policies.refund.minBalanceDays}} days
+      of your plan, or a top-up less than {{policies.refund.minAgeDays}} days
+      old. Both stay on the account as credit rather than going back to your
+      bank.</li>
   <li>Accounts closed for breaking the
       <a href="/acceptable-use.html">acceptable use policy</a>. Mining, phishing
       and spam get you closed and keep your money, and that is deliberate.</li>

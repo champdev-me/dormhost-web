@@ -3,25 +3,14 @@
 <head>
 {{> head}}
 <title>Cheap Node.js, Python and Docker hosting for students | {{site.name}}</title>
-<meta name="description" content="Node.js, Python, Go, Java, PHP or your own Dockerfile, hosted from ₹{{cheapest.monthly}} a month. No credit card required. Push a GitHub repo, get a URL, HTTPS and a database. Sleeps when idle, wakes in {{policies.wakeMs}} ms.">
+<meta name="description" content="Put your college project online. Deploy Node.js, Python or Docker projects in minutes from ₹{{cheapest.monthly}} a month. Database included. No VPS, no DevOps, no credit card required.">
 <meta name="keywords" content="cheap hosting for students, free nodejs hosting alternative, node.js hosting India, python hosting, django hosting, flask hosting, express hosting, discord bot hosting, docker hosting, student project hosting, no credit card required, UPI hosting, MongoDB hosting, PostgreSQL hosting">
-<meta property="og:title" content="Cheap Node.js, Python and Docker hosting for students, from ₹{{cheapest.monthly}} a month">
-<meta property="og:description" content="Push a repo in any language, get a URL and a database. No credit card required. Sleeps when idle, wakes in {{policies.wakeMs}} ms.">
+<meta property="og:title" content="Put your college project online, from ₹{{cheapest.monthly}} a month">
+<meta property="og:description" content="Deploy Node.js, Python or Docker projects in minutes. Database included. No VPS, no DevOps, no credit card required.">
 <script type="application/ld+json">{{{jsonld.products}}}</script>
+<script type="application/ld+json">{{{jsonld.faq}}}</script>
 </head>
 <body>
-
-<!-- Above the nav, so it is read before anything is decided. The icon is
-     inline rather than a <use>: the sprite is the first line of nav.html, so
-     from here it would be a forward reference. -->
-{{#if banner}}
-<div class="notice">
-  <p class="wrap notice-inner">
-    <svg class="notice-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4.5 13.5H11l-1 8.5 8.5-11.5H12l1-8.5Z"/></svg>
-    <span><b>{{banner.label}}.</b> {{banner.text}} <a href="{{banner.linkHref}}">{{banner.linkText}}</a>.</span>
-  </p>
-</div>
-{{/if}}
 
 {{> nav}}
 {{> marks}}
@@ -30,11 +19,11 @@
   <div class="hero-grid">
     <div>
       <p class="eyebrow">Node.js, Python and Docker hosting for college students</p>
-      <h1>Put your project online for ₹{{cheapest.monthly}} a month.</h1>
+      <h1>Put your college project online.</h1>
       <p class="lead">
-        Push your repo. Get a URL and a database. Your app sleeps when nobody is
-        using it and wakes in about a fifth of a second, which is the only
-        reason we can charge this little.
+        Deploy Node.js, Python or Docker projects in minutes.
+        ₹{{cheapest.monthly}} a month, database included.
+        No VPS. No DevOps.
       </p>
 
       <div class="price-line">
@@ -52,7 +41,7 @@
       </p>
 
       <div class="cta-row">
-        <a class="btn btn-primary" href="{{site.dashboardUrl}}">Start with GitHub</a>
+        <a class="btn btn-primary" href="{{site.dashboardUrl}}">Deploy for free →</a>
         <a class="btn btn-ghost" href="/pricing.html">See what you get</a>
       </div>
 
@@ -97,7 +86,8 @@
         </div>
       </div>
       <p class="window-caption">
-        A sleeping app uses disk, not memory. That is what makes the price work.
+        Your app sleeps when nobody is using it and wakes on the next visit. A
+        sleeping app uses disk, not memory, which is what makes ₹{{cheapest.monthly}} work.
       </p>
     </div>
   </div>
@@ -105,211 +95,44 @@
 
 <main>
 
+<!-- The whole product as one picture. Everything it implies (databases, HTTPS,
+     sleeping) is expanded on its own page rather than repeated here. -->
 <section id="how" class="wrap">
   <div class="section-head">
-    <h2>Three steps, then it is online.</h2>
-    <p>Any language, no server to configure, no card to enter.</p>
+    <h2>Repo in. Site out.</h2>
+    <p>Nothing between those two is yours to run.</p>
   </div>
-  <div class="steps">
-    <div class="step">
-      <h3><svg class="step-icon" width="24" height="24" aria-hidden="true"><use href="#i-git"/></svg>Point us at your repo</h3>
-      <p>Public or private. Paste a GitHub token for a private one. We read the
-         repository and work out how to build it, whatever it is written in. Add
-         a <code>Dockerfile</code> and we build exactly that instead.</p>
-    </div>
-    <div class="step">
-      <h3><svg class="step-icon" width="24" height="24" aria-hidden="true"><use href="#i-container"/></svg>We build it and give you a URL</h3>
-      <p>Your app gets <code>yourname.{{site.appDomain}}</code> with HTTPS already
-         working, and your choice of {{databases.text}} on the same machine.</p>
-    </div>
-    <div class="step">
-      <h3><svg class="step-icon" width="24" height="24" aria-hidden="true"><use href="#i-link"/></svg>Share the link</h3>
-      <p>It stays up. When nobody visits for {{policies.idleMinutes}} minutes it
-         sleeps, and the next visitor wakes it before the page finishes loading.</p>
-    </div>
-  </div>
-</section>
-
-<!-- The one dark band on the page: the night the whole brand is built on, and
-     the place the argument against the big platforms gets made. -->
-<section class="band">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow eyebrow-dim">Why not just use Vercel</p>
-      <h2>The big platforms are built for companies. This one is built for your project.</h2>
-      <p>They are excellent at what they do. What they do is not what a
-         final-year project needs.</p>
-    </div>
-
-    <div class="diffs">
-      <div class="diff">
-        <h3><svg class="diff-icon" width="24" height="24" aria-hidden="true"><use href="#i-terminal"/></svg>A real process, not a function</h3>
-        <p>Vercel and Netlify run your backend as short-lived functions that
-           start and finish around a single request. A Discord bot, a WebSocket,
-           a queue worker, a scraper that runs for two minutes. None of those
-           fit that shape. Here your app is an ordinary Linux process. It holds
-           connections and keeps things in memory for as long as it is awake.</p>
-      </div>
-      <div class="diff">
-        <h3><svg class="diff-icon" width="24" height="24" aria-hidden="true"><use href="#i-bolt"/></svg>Sleeping is common. Waking this fast is not</h3>
-        <p>Plenty of cheap hosting stops your app when it is idle. Most of them
-           are slow to bring it back, because they rebuild it or find it a new
-           machine first. We keep your built image on the same disk your app runs
-           on, so waking is just starting a container that is already there.
-           <strong>{{policies.wakeMs}} milliseconds</strong> on the machine,
-           under a second through the public internet.</p>
-      </div>
-      <div class="diff">
-        <h3><svg class="diff-icon" width="24" height="24" aria-hidden="true"><use href="#i-database"/></svg>The database is included, and it is next door</h3>
-        <p>Not a second vendor, a second bill and a second free trial that
-           expires. Your {{databases.text}} runs on the same machine as your app, so a query
-           is a loopback call rather than a trip across the internet.</p>
-      </div>
-      <div class="diff">
-        <h3><svg class="diff-icon" width="24" height="24" aria-hidden="true"><use href="#i-rupee"/></svg>Priced in your own currency</h3>
-        <p>₹{{cheapest.monthly}} a month in India, paid by UPI, with no
-           international card and no conversion fee.
-           An international card works too: it is still ₹{{cheapest.monthly}},
-           about ${{cheapest.usdMonthly}}, and your own bank does the conversion.
-           Either way you top up a balance and we draw it down a day at a time,
-           and there is no per-gigabyte bandwidth line you find out about at the
-           end of the month.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="features" class="wrap">
-  <div class="section-head">
-    <h2>Everything you get.</h2>
-    <p>One price per app covers all of it. There is no add-on list and nothing
-       is metered separately.</p>
-  </div>
-
-  <div class="features">
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-code"/></svg>Any language</h3>
-      <p>{{runtimes.detectedText}} are detected from your repository and built
-         for you. No build command to configure and nothing to install.</p>
-    </div>
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-container"/></svg>Or your own Dockerfile</h3>
-      <p>Writing Rust, Elixir, Deno, Bun, or something nobody has heard of? Put a
-         <code>Dockerfile</code> in your repository and we build that instead. If
-         it starts and listens on a port, it runs here.</p>
-    </div>
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-git"/></svg>Private repos</h3>
-      <p>Your college project does not have to be public. Paste a GitHub access
-         token and we clone it the same way. We use it to read your code and
-         nothing else, and you can revoke it whenever you like.</p>
-    </div>
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-database"/></svg>A database, included</h3>
-      <p>{{databases.textLong}}. Pick the one your project needs. It runs on
-         the same machine as your app, so your queries never leave the box, and
-         the connection string is waiting in your dashboard.</p>
-      <ul class="chip-list">
-        {{#each databases.list}}<li><svg class="chip-icon" width="16" height="16" aria-hidden="true"><use href="#d-{{id}}"/></svg>{{name}}</li>{{/each}}
-      </ul>
-    </div>
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-disk"/></svg>{{plansByName.nap.storageGb}} GB of storage</h3>
-      <p>{{limits.storageNote}} {{plansByName.awake.storageGb}} GB on Awake.
-         One number to keep an eye on rather than three meters that each bill
-         separately.</p>
-    </div>
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-disk"/></svg>Files that survive a deploy</h3>
-      <p>{{limits.persistentNote}} Uploads, generated files, an SQLite file if
-         you want one: put them in {{limits.persistentPath}} and they are still
-         there after you push.</p>
-    </div>
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-vector"/></svg>Vector search, included</h3>
-      <p>{{databases.vector.why}} Building a RAG chatbot for your final year? It
-         works here without a second subscription.</p>
-    </div>
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-lock"/></svg>HTTPS and your own domain</h3>
-      <p>Every app gets <code>yourname.{{site.appDomain}}</code> with a real
-         certificate the moment it deploys. Point a domain you own at us through
-         your own Cloudflare, free, and the dashboard walks you through it.</p>
-    </div>
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-globe"/></svg>Pick where it runs</h3>
-      <p>Mumbai or London, on the Awake plan. Put it in Mumbai and your users in
-         India get a reply in a few milliseconds instead of a few hundred. Nap
-         apps go wherever there is most room.</p>
-    </div>
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-key"/></svg>Environment variables</h3>
-      <p>Your API keys and secrets live in the dashboard, not in your repo.
-         Change one and the app restarts with it.</p>
-    </div>
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-terminal"/></svg>Build logs you can read</h3>
-      <p>When a deploy fails you see exactly what the build printed. No guessing
-         and no support ticket.</p>
-    </div>
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-rotate"/></svg>Roll back a bad deploy</h3>
-      <p>We keep {{limits.imagesText}}. If the one you just shipped is broken,
-         go back to the one that worked. Keeping two rather than ten is part of
-         why the storage allowance goes to your app instead of to old images.</p>
-    </div>
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-clock"/></svg>Backups you control</h3>
-      <p>Take one whenever you want, before a risky change. Awake also backs up
-         every night and keeps {{policies.backupRetentionDays}} days. Download
-         any of them, or put one back, from your dashboard.</p>
-    </div>
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-moon"/></svg>Sleeps, or does not</h3>
-      <p>Nap apps sleep when idle and wake on the next request. Discord bots and
-         cron jobs need to stay up, so Awake apps never sleep.</p>
-    </div>
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-shield"/></svg>Isolated from everyone else</h3>
-      <p>Your app runs in its own locked-down container with its own database
-         credentials. Nobody else on the machine can reach it.</p>
-    </div>
-  </div>
-</section>
-
-<section class="wrap">
-  <div class="section-head">
-    <h2>Two places to run it.</h2>
-    <p>Pick the one nearest your users. You can move an app between them without
-       changing its address.</p>
-  </div>
-  <div class="regions">
-    <div class="region">
-      <svg class="region-icon" width="24" height="24" aria-hidden="true"><use href="#i-pin"/></svg>
-      <div>
-        <h3>Mumbai <span class="region-dot"></span></h3>
-        <p>The default, and the right choice for almost every Indian project.</p>
-        <p class="ping">ap-mumbai</p>
-      </div>
-    </div>
-    <div class="region">
-      <svg class="region-icon" width="24" height="24" aria-hidden="true"><use href="#i-pin"/></svg>
-      <div>
-        <h3>London <span class="region-dot"></span></h3>
-        <p>For projects with users outside India, or a guide reviewing from abroad.</p>
-        <p class="ping">uk-london</p>
-      </div>
-    </div>
-  </div>
+  <ol class="flow">
+    <li class="flow-node">
+      <svg class="flow-icon" width="24" height="24" aria-hidden="true"><use href="#i-git"/></svg>
+      <p class="flow-label">Your GitHub repo</p>
+      <p class="flow-note">Public or private, in any language.</p>
+      <code class="flow-code">github.com/you/project</code>
+    </li>
+    <li class="flow-node">
+      <svg class="flow-icon" width="24" height="24" aria-hidden="true"><use href="#i-container"/></svg>
+      <p class="flow-label">We build it</p>
+      <p class="flow-note">Detected, built and started for you.</p>
+      <code class="flow-code">detect · install · build · run</code>
+    </li>
+    <li class="flow-node flow-live">
+      <svg class="flow-icon" width="24" height="24" aria-hidden="true"><use href="#i-globe"/></svg>
+      <p class="flow-label">Your live site</p>
+      <p class="flow-note">HTTPS and a database, on a real machine.</p>
+      <code class="flow-code">{{site.appAddress}}</code>
+    </li>
+  </ol>
+  <p class="tier-foot">
+    <a href="/docs.html">The five step quickstart</a>, with the dashboard
+    controls named.
+  </p>
 </section>
 
 <section id="pricing" class="wrap">
   <div class="section-head">
-    <h2>Two plans, priced per app.</h2>
-    <p>{{payments.currencyShort}}. One plan runs one application, so a second
-       app is a second plan. {{company.gst.statement}} Top up your balance with
-       {{payments.methods}} in India, or {{payments.methodsIntl}} anywhere else,
-       and it is drawn down daily. Stop any time and you stop paying.</p>
+    <h2>₹{{cheapest.monthly}} a month, per app.</h2>
+    <p>Two plans, one price each, nothing metered separately. Start with Nap and
+       upgrade whenever you want.</p>
   </div>
 
   <div class="tiers tiers-2">
@@ -329,28 +152,146 @@
         </div>
         {{/each}}
       </div>
-      <ul>
-        {{#each features}}<li><svg class="tier-check" width="24" height="24" aria-hidden="true"><use href="#i-check"/></svg>{{.}}</li>{{/each}}
-      </ul>
-      <a class="btn btn-primary tier-cta" href="/pricing.html">Full description</a>
+      <a class="btn btn-primary tier-cta" href="/pricing.html#{{slug}}">What {{name}} includes</a>
     </div>
     {{/each}}
   </div>
 
   <p class="tier-foot">
-    Prices are in Indian Rupees and charged in Indian Rupees.
-    See the <a href="/pricing.html">full plan descriptions</a>, the
-    <a href="/refunds.html">refund policy</a> and the
-    <a href="/cancellation.html">cancellation policy</a>.
+    One plan runs one application. Top up with {{payments.methods}} in India or
+    {{payments.methodsIntl}} anywhere else, and it is drawn down a day at a time.
+    Stop any time and you stop paying. See the
+    <a href="/pricing.html">full plan descriptions</a>.
+  </p>
+</section>
+
+<section id="students" class="wrap">
+  <div class="section-head">
+    <h2>Your project should not require DevOps.</h2>
+    <p>These are the things students actually deploy here. If yours needs a
+       backend, a database or a process that keeps running, it fits.</p>
+  </div>
+  <ul class="chip-list">
+    <li>MERN and full-stack projects</li>
+    <li>Node.js APIs</li>
+    <li>Python, Flask and FastAPI</li>
+    <li>Final-year projects</li>
+    <li>Hackathon projects</li>
+    <li>Discord and Telegram bots</li>
+    <li>College portals and management systems</li>
+    <li>Small personal projects</li>
+  </ul>
+  <p class="tier-foot">
+    <a href="/students.html">Pick your stack and follow the exact path</a>, or
+    <a href="/docs.html">read the quickstart</a>.
+  </p>
+</section>
+
+<section id="features" class="wrap">
+  <div class="section-head">
+    <h2>Everything you get.</h2>
+    <p>One price per app covers all of it. There is no add-on list and nothing
+       is metered separately.</p>
+  </div>
+
+  <div class="features">
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-code"/></svg>Any language</h3>
+      <p>Seven runtimes build themselves from your repository. Anything else builds from a Dockerfile.</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-git"/></svg>Private repos</h3>
+      <p>Your project does not have to be public. A revocable token clones it the same way.</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-lock"/></svg>HTTPS and your own domain</h3>
+      <p>A real certificate the moment it deploys, and a custom domain through your own Cloudflare.</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-disk"/></svg>Files that survive a deploy</h3>
+      <p>Write to {{limits.persistentPath}} and your uploads and database are still there after you push.</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-key"/></svg>Environment variables</h3>
+      <p>Secrets live in the dashboard, not the repo, and the app restarts when you change one.</p>
+    </div>
+    <div class="feature">
+      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-terminal"/></svg>Build logs, and a way back</h3>
+      <p>Failed builds show you the error, and the previous working build is one click away.</p>
+    </div>
+  </div>
+
+  <p class="tier-foot">
+    <a href="/features.html">Every feature, in detail</a>. Deploy, run, data and
+    networking each get their own section.
+  </p>
+</section>
+
+<!-- The one dark band on the page: the night the whole brand is built on, and
+     the place the positioning gets made without naming a competitor as an enemy. -->
+<section class="band">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow eyebrow-dim">Why {{site.name}}</p>
+      <h2>Built specifically for small student projects.</h2>
+      <p>The big platforms are excellent at what they do. What they do is not
+         what a final-year project needs.</p>
+    </div>
+
+    <div class="diffs">
+      <div class="diff">
+        <h3><svg class="diff-icon" width="24" height="24" aria-hidden="true"><use href="#i-terminal"/></svg>A real process, not a function</h3>
+        <p>Frontend hosts run short-lived functions. A bot, a WebSocket or a
+           queue worker needs an ordinary process that stays around.
+           <a href="/compare/dormhost-vs-vercel.html">DormHost versus Vercel</a>.</p>
+      </div>
+      <div class="diff">
+        <h3><svg class="diff-icon" width="24" height="24" aria-hidden="true"><use href="#i-bolt"/></svg>Sleeping is common. Waking this fast is not</h3>
+        <p>We keep your built image on the disk your app runs on, so waking is
+           just starting a container that is already there:
+           <strong>about {{policies.wakeMs}} milliseconds</strong>.</p>
+      </div>
+      <div class="diff">
+        <h3><svg class="diff-icon" width="24" height="24" aria-hidden="true"><use href="#i-database"/></svg>The database is included, and it is next door</h3>
+        <p>Not a second vendor, a second bill and a second expiring trial. Your
+           {{databases.text}} runs on the same machine as your app, and storage
+           at {{limits.persistentPath}} comes with it.</p>
+      </div>
+      <div class="diff">
+        <h3><svg class="diff-icon" width="24" height="24" aria-hidden="true"><use href="#i-rupee"/></svg>Priced in your own currency</h3>
+        <p>₹{{cheapest.monthly}} a month in India, paid by UPI, or about
+           ${{cheapest.usdMonthly}} from anywhere else, still charged in ₹. No
+           international card, no conversion fee, and no per-gigabyte bandwidth
+           line you find out about at the end of the month.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <h2>Your code stays yours.</h2>
+    <p>An ordinary container, an ordinary database, ordinary environment
+       variables. Nothing here is built to make leaving difficult.</p>
+  </div>
+  <ul class="chip-list">
+    <li>GitHub stays your source of truth</li>
+    <li>Backups you can download</li>
+    <li>No contract, no notice period</li>
+    <li>Runs anywhere that takes a Dockerfile</li>
+  </ul>
+  <p class="tier-foot">
+    <a href="/security.html">Isolation, HTTPS, credentials and backups</a>, and
+    the <a href="/refunds.html">refund policy</a> for what is left in your balance.
   </p>
 </section>
 
 <section id="ai" class="band">
   <div class="wrap">
     <div class="section-head">
-      <h2>AI built in.</h2>
-      <p>{{ai.pitch}} Text and image models, billed per request from your
-         DormHost balance.</p>
+      <h2>Building an AI project?</h2>
+      <p>Host your backend, your database and your AI calls in one place.
+         {{ai.pitch}}</p>
     </div>
 
     <div class="ai-points">
@@ -361,24 +302,23 @@
            {{ai.example}}</p>
       </div>
       <div class="ai-point">
-        <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-check"/></svg>A curated dozen models</h3>
-        <p>Cheap and fast, mid-tier, frontier, coders and image models,
-           each priced per million tokens on the
-           <a href="/pricing.html#ai">pricing page</a>.</p>
+        <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-vector"/></svg>Vector search, included</h3>
+        <p>PostgreSQL ships with {{databases.vector.extension}} switched on, so a
+           RAG chatbot for your final year keeps its embeddings in the database
+           you already have, without a second subscription.</p>
       </div>
       <div class="ai-point">
         <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-bolt"/></svg>Zero config in your app</h3>
-        <p>{{ai.injected}}</p>
+        <p>Apps here get <code>OPENAI_BASE_URL</code> and
+           <code>OPENAI_API_KEY</code> set for them, so any OpenAI SDK works
+           without a line of setup.</p>
       </div>
     </div>
 
-    <pre class="ai-code">curl {{ai.endpoint}}/chat/completions \
-  -H "Authorization: Bearer $OPENAI_API_KEY" \
-  -d '{"model":"openai/gpt-5.6-luna","messages":[{"role":"user","content":"hi"}]}'</pre>
-
     <p class="tier-foot">
-      {{ai.billing}} Using it means agreeing to the
-      <a href="/ai-terms.html">AI terms</a>.
+      {{ai.billing}} See the <a href="/ai.html">AI page</a> for the models and
+      the <a href="/pricing.html#ai">rupee prices</a>. Using it means agreeing to
+      the <a href="/ai-terms.html">AI terms</a>.
     </p>
   </div>
 </section>
@@ -387,59 +327,32 @@
      who is talked out of paying us today comes back when they need a backend. -->
 <section class="wrap">
   <div class="section-head">
-    <h2>When you should not use us.</h2>
-    <p>We would rather say this here than take ₹{{cheapest.monthly}} off you for
-       something you can get done better elsewhere.</p>
+    <h2>Built small. Priced honestly.</h2>
+    <p>{{site.name}} is independently operated and intentionally simple. Which
+       means there are things we would rather send you elsewhere for than take
+       ₹{{cheapest.monthly}} off you for.</p>
   </div>
   <div class="notfor">
     <div class="notfor-row">
       <h3><svg class="notfor-icon" width="24" height="24" aria-hidden="true"><use href="#i-file"/></svg>Your site is just HTML, CSS and JavaScript</h3>
-      <p>Then you do not need us. <a href="https://pages.github.com/" rel="noopener">GitHub Pages</a>
-         hosts static sites free, from the repo you already have, and it does it
-         well. We only charge for things that need a server running behind them:
-         a backend, a database, a login.</p>
+      <p>Then you do not need us. <a href="https://pages.github.com/" rel="noopener">GitHub Pages</a> hosts static sites free.</p>
     </div>
     <div class="notfor-row">
       <h3><svg class="notfor-icon" width="24" height="24" aria-hidden="true"><use href="#i-globe"/></svg>You need a global CDN or edge functions</h3>
-      <p>Cloudflare and Vercel have machines in a hundred cities. We have two,
-         in Mumbai and London. If your users are spread across the world and
-         milliseconds matter, use them.</p>
+      <p>We have two regions, Mumbai and London. If milliseconds worldwide matter, use Cloudflare or Vercel.</p>
     </div>
     <div class="notfor-row">
       <h3><svg class="notfor-icon" width="24" height="24" aria-hidden="true"><use href="#i-briefcase"/></svg>You are running a business on it</h3>
-      <p>We are two servers and one person. That is enough for a college project,
-         a club site or a portfolio. It is not enough for something people's
-         money or jobs depend on. For that, pay a real cloud.</p>
+      <p>This is enough for a college project, a club site or a portfolio. Not for something people's money or jobs depend on.</p>
     </div>
     <div class="notfor-row">
       <h3><svg class="notfor-icon" width="24" height="24" aria-hidden="true"><use href="#i-ban"/></svg>You want to mine crypto or send bulk mail</h3>
-      <p>The whole price depends on most apps being asleep most of the time. Mining,
-         spam, proxies and traffic generators break that, so they are not allowed
-         and we do look. The <a href="/acceptable-use.html">acceptable use policy</a>
-         is short and says exactly what we mean.</p>
+      <p>Mining, spam, proxies and traffic generators break the price, so they are not allowed. The <a href="/acceptable-use.html">acceptable use policy</a> says exactly where the line is.</p>
     </div>
   </div>
-</section>
-
-<section class="wrap">
-  <div class="section-head">
-    <h2>Why it costs ₹{{cheapest.monthly}} and not ₹500.</h2>
-  </div>
-  <div class="faq">
-    <div>
-      <h3>Most student projects have no traffic</h3>
-      <p>A final-year project gets looked at by your guide, your panel, and
-         whoever you send the link to. The rest of the month it sits there. Other
-         hosts charge you for a machine that is doing nothing.</p>
-    </div>
-    <div>
-      <h3>So we stop charging for nothing</h3>
-      <p>When your app has had no visitors for {{policies.idleMinutes}} minutes,
-         we stop it. It keeps its files and its database. The next request starts
-         it again, measured at about {{policies.wakeMs}} milliseconds, and
-         serves the page.</p>
-    </div>
-  </div>
+  <p class="tier-foot">
+    <a href="/about.html">Who runs this, where it runs, and the honest full story</a>.
+  </p>
 </section>
 
 <section id="faq" class="wrap">
@@ -447,71 +360,27 @@
     <h2>Questions</h2>
   </div>
   <div class="faq">
+    {{#each faq}}
     <div>
-      <h3>Will visitors notice the sleeping?</h3>
-      <p>Almost never. Waking takes around a fifth of a second, which is less
-         than the page would take to load anyway. If it ever runs long you see a
-         short "waking up" screen rather than an error.</p>
+      <h3>{{q}}</h3>
+      <p>{{a}}</p>
     </div>
-    <div>
-      <h3>Do I need a credit card?</h3>
-      <p>No. In India you can do everything with UPI. Outside India you can use
-         a card, but nothing is stored and nothing renews on its own. You add
-         money when you want to and it is spent a day at a time. Most students
-         top up once a term.</p>
-    </div>
-    <div>
-      <h3>I came here looking for free Node.js hosting</h3>
-      <p>Then read this one first. There is no free plan here, and we would
-         rather say so than waste your time. A free tier gets paid for by the
-         students on the paid one, and it is the first thing crypto miners sign
-         up for. What you get instead is {{trial.days}} days free to try it, no
-         credit card required, and ₹{{cheapest.monthly}} a month after that.
-         If your site is only HTML, CSS and JavaScript,
-         <a href="https://pages.github.com/" rel="noopener">GitHub Pages</a> is
-         genuinely free and better at it than we would be.</p>
-    </div>
-    <div>
-      <h3>Is there a free trial?</h3>
-      <p>{{trial.what}} {{trial.limits}} {{trial.noCard}}</p>
-    </div>
-    <div>
-      <h3>What happens if my balance runs out?</h3>
-      <p>Your app is stopped and we email you. That is not the same as sleeping:
-         it stays down until you add credit. Nothing is deleted for
-         {{policies.dataRetentionDays}} days, so topping up brings it straight
-         back exactly as it was.</p>
-    </div>
-    <div>
-      <h3>Is my database really included?</h3>
-      <p>Yes, and you choose which one: {{databases.textLong}}. It sits on the
-         same machine as your app, so queries do not cross the internet, and the
-         connection string is in your dashboard.</p>
-    </div>
-    <div>
-      <h3>Which languages can I use?</h3>
-      <p>{{runtimes.detectedText}} are detected and built automatically. For
-         anything else, put a <code>Dockerfile</code> in your repository and we
-         build that, so the language is your choice rather than ours.</p>
-    </div>
-    <div>
-      <h3>Can I deploy a private repo?</h3>
-      <p>Yes. Paste a GitHub personal access token with read access to that
-         repository. We use it to clone your code and nothing else. Revoke it on
-         GitHub and we stop being able to read it, immediately.</p>
-    </div>
-    <div>
-      <h3>Can I get a refund?</h3>
-      <p>Yes. Ask within {{policies.refund.windowDays}} days and we refund you to
-         {{policies.refund.mode}}. The
-         <a href="/refunds.html">refund policy</a> spells out the timings.</p>
-    </div>
-    <div>
-      <h3>What if I need more than 512 MB?</h3>
-      <p>Write to us at <a href="mailto:{{company.email}}">{{company.email}}</a>.
-         Bigger plans exist for projects that genuinely need them, but almost no
-         student project does.</p>
-    </div>
+    {{/each}}
+  </div>
+  <p class="tier-foot">
+    More in the <a href="/docs.html">docs</a>, and anything still unanswered at
+    <a href="mailto:{{company.email}}">{{company.email}}</a>.
+  </p>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <h2>Your college project. Online in minutes.</h2>
+    <p>Bring the repository. We will do the rest of it.</p>
+  </div>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="{{site.dashboardUrl}}">Deploy for free →</a>
+    <a class="btn btn-ghost" href="/pricing.html">See the plans</a>
   </div>
 </section>
 

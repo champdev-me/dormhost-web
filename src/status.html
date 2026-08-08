@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> head}}
+<title>Status · {{site.name}}</title>
+<meta name="description" content="Live status of {{site.name}}: API, dashboard, deployments, regions, databases and the AI API.">
+<meta property="og:title" content="Status · {{site.name}}">
+<meta property="og:description" content="What is up right now, honestly.">
+</head>
+<body>
+
+{{> nav}}
+
+<main class="wrap">
+
+<div class="page-head">
+  <p class="eyebrow">Status</p>
+  <h1>What is running right now.</h1>
+  <p class="lead">
+    Everything on this page is monitored by the person who runs the platform,
+    and the note below is honest about that limit.
+  </p>
+</div>
+
+<div class="callout">
+  <p>{{status.note}}</p>
+</div>
+
+<section>
+  <div class="section-head">
+    <h2>Components</h2>
+    <p>Last checked manually. Anything down is fixed and then noted here and in the <a href="/changelog.html">changelog</a>.</p>
+  </div>
+  <div class="features">
+    {{#each status.components}}
+    <div class="feature">
+      <h3>{{name}}</h3>
+      <p><span class="dot {{class}}"></span> {{status}}</p>
+    </div>
+    {{/each}}
+  </div>
+</section>
+
+<div class="cta-row">
+  <a class="btn btn-ghost" href="/changelog.html">What changed recently</a>
+  <a class="btn btn-ghost" href="/contact.html">Report a problem</a>
+</div>
+
+</main>
+
+{{> footer}}
+
+</body>
+</html>

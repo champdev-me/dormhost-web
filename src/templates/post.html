@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> head}}
+<title>{{title}} · {{site.name}}</title>
+<meta name="description" content="{{meta}}">
+<meta property="og:title" content="{{title}} · {{site.name}}">
+<meta property="og:description" content="{{lede}}">
+<script type="application/ld+json">{{{jsonldBreadcrumb}}}</script>
+</head>
+<body>
+
+{{> nav}}
+
+<main class="wrap">
+
+<div class="page-head">
+  <p class="eyebrow">Blog</p>
+  <p class="updated">{{date}}</p>
+  <h1>{{title}}</h1>
+  <p class="lead">{{lede}}</p>
+</div>
+
+<div class="prose">
+  {{#each body}}
+  <p>{{.}}</p>
+  {{/each}}
+
+  <h2>Step by step</h2>
+  <ol>
+    {{#each steps}}
+    <li>{{.}}</li>
+    {{/each}}
+  </ol>
+
+  <p>
+    Every step above is a control that exists in the dashboard today. The
+    <a href="/docs.html">docs</a> go further: custom domains, backups, rolling
+    back a bad deploy, and what to read when a build fails.
+  </p>
+</div>
+
+<div class="callout">
+  <p>
+    <strong>Ready to try it?</strong> Sign in with GitHub and put
+    {{trial.days}} days of {{site.name}} credit in your balance, no card
+    required. Hosting is ₹{{cheapest.monthly}} a month on Nap afterwards.
+  </p>
+</div>
+
+<div class="cta-row">
+  <a class="btn btn-primary" href="{{site.dashboardUrl}}">{{cta}}</a>
+  <a class="btn btn-ghost" href="/blog.html">More posts</a>
+</div>
+
+</main>
+
+{{> footer}}
+</body>
+</html>

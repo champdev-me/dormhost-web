@@ -6,15 +6,10 @@
     "url": "https://dormhost.dev",
     "dashboardUrl": "https://dash.dormhost.dev",
     "appDomain": "dormhost.app",
+    "appAddress": "yourapp-yourlogin.dormhost.app",
     "year": "2026",
-    "lastmod": "2026-08-07",
+    "lastmod": "2026-08-08",
     "locale": "en_IN"
-  },
-  "banner": {
-    "label": "In development",
-    "text": "Your apps run on real machines and nothing here is a demo, but expect rough edges and the occasional restart while we finish building.",
-    "linkText": "Tell us what breaks",
-    "linkHref": "/contact.html"
   },
   "databases": {
     "list": [
@@ -111,10 +106,13 @@
     "updated": "6 August 2026",
     "effective": "6 August 2026",
     "refund": {
-      "windowDays": 15,
+      "minAgeDays": 7,
+      "minBalanceDays": 7,
       "decisionDays": 7,
       "creditDays": "15 days after approval",
-      "mode": "the original payment method, meaning the same UPI ID, card or bank account you paid from"
+      "mode": "the original payment method, meaning the same UPI ID, card or bank account you paid from",
+      "short": "We refund credit you have not spent. Days your application was actually hosted are not refunded, because the price does not carry a free trial period twice.",
+      "faultOfOurs": "Neither of the two limits applies when the fault is ours."
     },
     "cancellation": {
       "noticeRequired": "none",
@@ -148,7 +146,7 @@
       "priceYearly": 999,
       "storageGb": 2.5,
       "summary": "The usual choice. Sleeps when nobody is using it.",
-      "description": "Hosting for one web application in any language, deployed from a public or private GitHub repository. Node.js, Python, Go, Java, Ruby, PHP and .NET are detected and built automatically; anything else builds from a Dockerfile in your repository. Includes a database on the same machine as the app, MongoDB, PostgreSQL or MariaDB as you prefer, an HTTPS address at yourname.dormhost.app, support for a custom domain, up to 256 MB of memory, up to 2.5 GB of storage covering code, uploads and database together, persistent storage at /data that survives a deploy, one backup you take yourself, and hosting in Mumbai or London. The application is stopped after fifteen minutes with no visitors and started again by the next request, typically in about 200 milliseconds.",
+      "description": "Hosting for one web application in any language, deployed from a public or private GitHub repository. Node.js, Python, Go, Java, Ruby, PHP and .NET are detected and built automatically; anything else builds from a Dockerfile in your repository. Includes a database on the same machine as the app, MongoDB, PostgreSQL or MariaDB as you prefer, an HTTPS address at yourapp-yourlogin.dormhost.app, support for a custom domain, up to 256 MB of memory, up to 2.5 GB of storage covering code, uploads and database together, persistent storage at /data that survives a deploy, one backup you take yourself, and hosting in Mumbai or London. The application is stopped after fifteen minutes with no visitors and started again by the next request, typically in about 200 milliseconds.",
       "specs": [
         {
           "icon": "memory",
@@ -179,7 +177,7 @@
         "MongoDB, PostgreSQL or MariaDB, on the same machine",
         "pgvector on PostgreSQL for embeddings and similarity search",
         "Up to 256 MB memory",
-        "HTTPS at yourname.dormhost.app",
+        "HTTPS at yourapp-yourlogin.dormhost.app",
         "Custom domain, pointed through your own Cloudflare",
         "Hosted in Mumbai or London, whichever has room",
         "Persistent storage at /data, which survives every deploy",
@@ -241,7 +239,7 @@
   "annual": {
     "monthsFree": "two",
     "note": "Pay for ten months, get twelve. Adding a year of credit in one go changes what you are charged each day for that plan, for 365 days.",
-    "whatItIs": "It changes your daily rate, not your term. Your balance still goes down every day, so running two applications on the plan uses a year of credit in about half a year. Whatever is left is yours and can be refunded at any time.",
+    "whatItIs": "It changes your daily rate, not your term. Your balance still goes down every day, so running two applications on the plan uses a year of credit in about half a year. Whatever is left is yours, and refundable under the refund policy.",
     "perDay": "Nap works out at about ₹3.30 a day paying monthly, or about ₹2.74 a day if you add a year at once. Awake is about ₹8.30 a day monthly, or about ₹6.85 a day for the year. We take the day's share out of your balance each morning, and a full month or a full year always adds up to exactly the price on this page."
   },
   "wallet": {
@@ -249,7 +247,7 @@
     "firstDay": "Creating an application charges its first day straight away, so you need enough in your balance to cover that day before you can create one.",
     "whenItRuns": "The day's charge is taken once each day, on UTC. A full month of daily charges comes to exactly the monthly price, and a full year comes to exactly the yearly price.",
     "empty": "If your balance reaches zero your application is stopped, not deleted. Add credit and it starts again with everything as you left it. We keep your data for 30 days after that.",
-    "leftover": "Whatever is left in your balance is yours. We refund it on request under the refund policy, or you can leave it on the account for later."
+    "leftover": "Whatever is left in your balance is yours. We refund it on request under the refund policy, or you can leave it on the account for later, where it does not expire."
   },
   "ai": {
     "endpoint": "https://ai.dormhost.dev/v1",
@@ -266,5 +264,440 @@
     "limits": "Free credit runs one application on the Nap plan. Adding any credit of your own lifts that, and you can then run as many applications as your balance covers, on either plan.",
     "after": "When the free credit runs out your application is stopped, not deleted. Add credit and it comes back exactly as it was. One free trial per GitHub account.",
     "noCard": "We do not ask for a credit card and there is nothing to cancel."
-  }
+  },
+  "howto": {
+    "_readme": "The dashboard procedure, written once. Every step names a control that exists in the dashboard today. If the dashboard changes, change it here and every page follows.",
+    "quickstart": [
+      {
+        "title": "Sign in with GitHub",
+        "text": "Go to the dashboard and sign in. Your first sign-in puts seven days of Nap credit in your balance, with no card and nothing to cancel."
+      },
+      {
+        "title": "Create an application",
+        "text": "Press New app and give it a name: three characters or more, letters, numbers and hyphens. The address is shown under the field as you type, and it is yourapp-yourlogin.dormhost.app."
+      },
+      {
+        "title": "Pick the plan",
+        "text": "Nap sleeps when nobody is using it. Awake never sleeps, which is what a bot, a worker or a scheduled job needs. Awake also lets you choose Mumbai or London; Nap goes wherever there is room."
+      },
+      {
+        "title": "Point it at your repository",
+        "text": "Paste the GitHub URL and the branch. Press Connect GitHub to pick from a list instead, which is also how a private repository is deployed. Then press Create and deploy."
+      },
+      {
+        "title": "Watch the build log",
+        "text": "The application opens on Overview, and Live logs streams the build. Listen on the port in the PORT variable we set, or EXPOSE one port in your Dockerfile, and the address answers as soon as the build finishes."
+      }
+    ],
+    "next": [
+      {
+        "title": "Add a database",
+        "text": "Open the Database section, choose PostgreSQL with pgvector, MongoDB or MariaDB, and press Add a database. The connection string arrives in your app as DATABASE_URL, or MONGODB_URI on MongoDB, so there is nothing to copy."
+      },
+      {
+        "title": "Set environment variables",
+        "text": "The Environment section takes both variables and whole files, for a service-account JSON or a certificate. Saving restarts the app, which takes a few seconds."
+      },
+      {
+        "title": "Deploy on every push",
+        "text": "The Deploy card on Overview has a Deploy on push switch. Turn it on, then copy the payload URL and secret it shows into your repository on GitHub, under Settings, Webhooks, Add webhook. Content type application/json, and only the push event."
+      },
+      {
+        "title": "Point your own domain at it",
+        "text": "In Domains, add the name, then add your domain to your own Cloudflare, add a CNAME to your dormhost.app address, and press Check. Your app answers on both addresses."
+      },
+      {
+        "title": "Roll back, and take a backup",
+        "text": "Images keeps the build you are running and the one before it, so a bad deploy is one click from the working one. Backups takes one on demand, and Awake also takes one every night."
+      }
+    ]
+  },
+  "useCases": [
+    {
+      "slug": "mern",
+      "title": "MERN",
+      "h1": "Deploy a MERN project online",
+      "meta": "Host your MERN stack project online: MongoDB, Express, React and Node.js, built automatically from GitHub from ₹99 a month.",
+      "og": "Deploy a MERN stack project online with MongoDB and Node.js, from ₹99 a month.",
+      "lede": "MERN is the most common stack in college projects: React on the front, Express on the back, MongoDB for data. DormHost reads the repository, installs and builds it, and runs the Express API and the React frontend as one application on a real machine.",
+      "bullets": [
+        "Node.js is detected and built automatically, with your package.json scripts",
+        "MongoDB runs on the same machine, so your API talks to it over a loopback call",
+        "The React frontend is served by the same process, so there is no separate static host",
+        "An HTTPS address at yourapp-yourlogin.dormhost.app, or a custom domain through your own Cloudflare"
+      ],
+      "steps": [
+        "Make Express listen on the port we set: app.listen(process.env.PORT || 3000). That is the one line most MERN projects have to change.",
+        "Build React into the folder Express serves, from the build script in the root package.json, so one deploy ships the API and the frontend together.",
+        "Add MongoDB in the Database section. It arrives in the app as MONGODB_URI, so read that rather than a hard-coded localhost string.",
+        "Put your JWT secret and any API keys in the Environment section. They are set at start and never sit in the repository."
+      ],
+      "cta": "Deploy your MERN project for free"
+    },
+    {
+      "slug": "nodejs",
+      "title": "Node.js",
+      "h1": "Deploy a Node.js project online",
+      "meta": "Deploy a Node.js app or API online in minutes. Express, NestJS, Next.js, bots and workers, with MongoDB, PostgreSQL or MariaDB included.",
+      "og": "Host Node.js apps and APIs from ₹99 a month, with a database on the same machine.",
+      "lede": "Whatever you wrote it with, if it is Node.js we can run it: Express and Fastify APIs, NestJS apps, Discord and Telegram bots, workers and cron jobs, even a Next.js app with its own server. Point us at the repository and the build runs itself.",
+      "bullets": [
+        "Express, Fastify, NestJS, Koa and anything that starts with node",
+        "Next.js runs with its own server, not as a static export",
+        "Workers and queues keep running too, on Awake",
+        "MongoDB, PostgreSQL or MariaDB on the same machine, or none at all",
+        "Environment variables for your tokens, exactly as they were in your .env"
+      ],
+      "steps": [
+        "Keep npm start working locally: the start script in package.json is what runs here too.",
+        "Listen on the port in the PORT variable we set. A hard-coded 3000 builds fine and then answers nothing.",
+        "A Discord or Telegram bot has no HTTP port and must not sleep, so create it on Awake rather than Nap.",
+        "Add a database in the Database section: MongoDB arrives as MONGODB_URI, PostgreSQL and MariaDB as DATABASE_URL.",
+        "Turn on Deploy on push from the Deploy card on Overview, add the webhook it shows you on GitHub, and every commit to the branch deploys itself."
+      ],
+      "cta": "Deploy your Node.js app for free"
+    },
+    {
+      "slug": "python",
+      "title": "Python",
+      "h1": "Deploy a Python project online",
+      "meta": "Host a Python project online: Flask, FastAPI, Django, bots and scripts. Automatic builds from GitHub from ₹99 a month.",
+      "og": "Deploy Flask, FastAPI or Django projects online from ₹99 a month.",
+      "lede": "Python projects go online without a server of your own. We detect the framework from your repository, install dependencies from requirements.txt or pyproject.toml, and run the app on a machine in Mumbai or London.",
+      "bullets": [
+        "Flask and FastAPI web apps and APIs",
+        "Database migration commands run before the app starts if your build script says so",
+        "PostgreSQL with pgvector for embeddings, MongoDB or MariaDB on the same machine",
+        "Background workers share the same machine and the same memory budget"
+      ],
+      "steps": [
+        "Commit requirements.txt or pyproject.toml. The build installs exactly what is listed there.",
+        "Bind to 0.0.0.0 and the port we set: uvicorn app:app --host 0.0.0.0 --port $PORT, or the gunicorn equivalent.",
+        "Add PostgreSQL in the Database section and it arrives as DATABASE_URL, with pgvector already switched on.",
+        "Scrapers and bots belong on Awake. Anything on a schedule goes in the Crons section instead of a sleep loop.",
+        "Read secrets with os.environ and set them in the Environment section, never in the repository."
+      ],
+      "cta": "Deploy your Python project for free"
+    },
+    {
+      "slug": "fastapi",
+      "title": "FastAPI",
+      "h1": "Deploy a FastAPI project online",
+      "meta": "Deploy a FastAPI app online: install from requirements, run with uvicorn, and point a domain at it. From ₹99 a month, with a database included.",
+      "og": "Deploy FastAPI online in minutes, from ₹99 a month.",
+      "lede": "FastAPI projects are small to move online: install the dependencies, start uvicorn, done. That is exactly what DormHost does, and it is a great fit for AI projects because FastAPI pairs naturally with pgvector for embeddings.",
+      "bullets": [
+        "Automatic API docs at /docs just work",
+        "pgvector is on by default on PostgreSQL, for similarity search",
+        "Long-running or streaming responses need Awake, which never sleeps",
+        "Custom domain and HTTPS through your own Cloudflare"
+      ],
+      "steps": [
+        "Commit requirements.txt with fastapi and uvicorn in it.",
+        "Start uvicorn on the port we set: uvicorn main:app --host 0.0.0.0 --port $PORT. Leave out --reload.",
+        "Open /docs on your dormhost.app address once the build finishes. If the schema loads, the deploy is good.",
+        "Add PostgreSQL in the Database section for pgvector and embeddings. It arrives as DATABASE_URL.",
+        "Streaming or long-polling endpoints should be on Awake, since a sleeping app drops the connection."
+      ],
+      "cta": "Deploy your FastAPI app for free"
+    },
+    {
+      "slug": "django",
+      "title": "Django",
+      "h1": "Deploy a Django project online",
+      "meta": "Deploy a Django project online with PostgreSQL, static files and a real domain, from ₹99 a month. Migrations run from your build script.",
+      "og": "Host Django projects on a real machine from ₹99 a month.",
+      "lede": "Django wants a real database and a place for static files, which is exactly what a DormHost application is. PostgreSQL is a loopback call away, and the admin site and your APIs run on the same process.",
+      "bullets": [
+        "PostgreSQL runs on the same machine, ready to use",
+        "Static and media files go in the application's storage, which survives deploys",
+        "The Django admin and your API are served from the same address",
+        "Custom domain through your own Cloudflare, with HTTPS"
+      ],
+      "steps": [
+        "Put your dormhost.app address in ALLOWED_HOSTS, and SECRET_KEY in the Environment section rather than in settings.py.",
+        "Run migrate and collectstatic from your build script, so they finish before the new version starts serving.",
+        "Add PostgreSQL in the Database section. It arrives as DATABASE_URL, which dj-database-url reads directly.",
+        "Bind gunicorn to the port we set: gunicorn project.wsgi --bind 0.0.0.0:$PORT.",
+        "Point MEDIA_ROOT at /data. Uploads written anywhere else are part of the container and go on the next deploy."
+      ],
+      "cta": "Deploy your Django project for free"
+    },
+    {
+      "slug": "docker",
+      "title": "Docker",
+      "h1": "Deploy a Docker project online",
+      "meta": "Deploy anything with a Dockerfile: Rust, Elixir, Deno, Bun, C++, games, anything that starts and listens on a port. From ₹99 a month.",
+      "og": "Bring a Dockerfile and deploy anything online, from ₹99 a month.",
+      "lede": "If your project builds from a Dockerfile, your language is supported. Rust, Elixir, Deno, Bun, C++, a game server, a legacy stack, anything that starts and listens on a port. We build the image, run it, and keep your data on the same machine.",
+      "bullets": [
+        "Any language or stack with a Dockerfile",
+        "Docker builds and runs as-is, no platform config to translate",
+        "Bots and long-lived servers should be on Awake, which never sleeps",
+        "A database on the same machine, in any of three engines"
+      ],
+      "steps": [
+        "Put the Dockerfile in the repository root. It wins over automatic detection, and there is no setting to switch.",
+        "EXPOSE exactly one port. We read it from the built image and route HTTPS to it, so a second port is a guess we will get wrong.",
+        "Or read the PORT variable we set and listen on that, which works whatever the image declares.",
+        "Write anything you want to keep to /data. It is mounted already and it survives every deploy.",
+        "Keep the image small with a multi-stage build. A smaller image builds faster and wakes faster."
+      ],
+      "cta": "Deploy your Docker project for free"
+    },
+    {
+      "slug": "final-year-project",
+      "title": "Final year project",
+      "h1": "Host your final year project online",
+      "meta": "Put your final year project online for your viva and demo: a live URL beats a laptop demo. Hosting from ₹99 a month, in Indian Rupees.",
+      "og": "A live URL for your final year project, priced in rupees from ₹99 a month.",
+      "lede": "A viva demo over a live URL lands better than one on a laptop. Hosting for a final year project starts at ₹99 a month, charged in rupees, and you can cancel and get your balance back any time, so it is easy to justify for one semester.",
+      "bullets": [
+        "A live URL to show examiners, not a localhost demo",
+        "UPI, debit card, credit card or net banking, charged in rupees",
+        "Cancel any time, and unused credit comes back under the refund policy",
+        "The report can include the architecture: real machine, real database, real domain",
+        "Keep the project up after the viva, or delete it in a click"
+      ],
+      "steps": [
+        "Create it on Nap. It sleeps between rehearsals and wakes on the next visit in about 200 milliseconds, which is why it costs ₹99.",
+        "Move every credential out of the repository and into the Environment section before you submit the code.",
+        "Take a backup from the Backups section the night before the viva. Images also keeps the previous build, so a late change can be rolled back in one click.",
+        "Put the live address in the report. It is yourapp-yourlogin.dormhost.app until you point a domain of your own at it in the Domains section.",
+        "Visit the app once a few minutes before the demo so it is already awake when the panel opens it."
+      ],
+      "cta": "Deploy your final year project for free"
+    },
+    {
+      "slug": "hackathon",
+      "title": "Hackathon",
+      "h1": "Deploy your hackathon project online",
+      "meta": "Get a working URL for your hackathon project in minutes. Deploy from GitHub during the event, with a database and a custom domain.",
+      "og": "Deploy during the hackathon: a live URL in minutes, from GitHub.",
+      "lede": "Hackathon judges want a working URL, and you do not want to lose the last two hours to deployment. DormHost is built to get a project online in minutes, from a repository you already have.",
+      "bullets": [
+        "Deploy from GitHub, no terminal and no Docker expertise needed",
+        "A database on the same machine if your project needs one",
+        "Environment variables for API keys, straight from the dashboard",
+        "Point a custom domain at it through your own Cloudflare"
+      ],
+      "steps": [
+        "Create the app early, on whatever is pushed. The build log finds the missing dependency faster than you will.",
+        "Turn on Deploy on push from the Deploy card on Overview and add the webhook it gives you on GitHub, then every commit ships without anyone leaving the editor.",
+        "Add the database from the Database section. The connection string is already in the app's environment, so nobody has to share credentials.",
+        "Put the address on the submission form as soon as the first build is green, and keep pushing.",
+        "Delete the app from Settings when the weekend is over, or leave it up: the trial credit covers both."
+      ],
+      "cta": "Deploy your hackathon project for free"
+    }
+  ],
+  "compares": [
+    {
+      "slug": "dormhost-vs-vercel",
+      "them": "Vercel",
+      "title": "DormHost vs Vercel",
+      "h1": "DormHost vs Vercel: which one for a student project?",
+      "meta": "Vercel is superb for frontends and serverless functions. DormHost is built for small full-stack projects that need a backend, a database or a process that stays running.",
+      "og": "Vercel for frontends, DormHost for full-stack student projects.",
+      "lede": "Vercel is genuinely great at what it does: static sites, Next.js frontends and serverless functions, with a free tier that is hard to beat. It is not built for a full-stack project with a real backend and a database of its own, and that is the gap DormHost fills.",
+      "rows": [
+        { "label": "Best for", "theirs": "Frontends, Next.js sites, serverless functions", "ours": "Small full-stack projects with a backend and a database" },
+        { "label": "Backend", "theirs": "Serverless functions, on demand", "ours": "A real process that runs on a machine", "who": "ours" },
+        { "label": "Database", "theirs": "A separate add-on, billed separately", "ours": "MongoDB, PostgreSQL or MariaDB on the same machine, included", "who": "ours" },
+        { "label": "WebSockets and bots", "theirs": "Not really a fit", "ours": "Yes, on Awake, which never sleeps", "who": "ours" },
+        { "label": "Persistent storage", "theirs": "An object storage add-on", "ours": "Included at /data, and it survives deploys", "who": "ours" },
+        { "label": "Price for a student project", "theirs": "Free tier is fine for static; a backend adds up", "ours": "₹99 a month, all in", "who": "ours" },
+        { "label": "Pay with UPI", "theirs": "No", "ours": "Yes, plus cards and net banking", "who": "ours" }
+      ],
+      "verdict": "Use Vercel for a frontend. If your project has a real backend, a database or anything that must stay running, DormHost is the fit."
+    },
+    {
+      "slug": "dormhost-vs-render",
+      "them": "Render",
+      "title": "DormHost vs Render",
+      "h1": "DormHost vs Render: which one for a student project?",
+      "meta": "Render hosts full-stack apps with paid sleep. DormHost is the same shape, built for student budgets, in rupees, with a database included.",
+      "og": "Render versus DormHost for full-stack student hosting.",
+      "lede": "Render is a good home for full-stack apps, and its free tier is popular in tutorials. Its paid plans and add-ons add up quickly though, and pricing is in dollars. DormHost matches the shape and aims it squarely at student budgets.",
+      "rows": [
+        { "label": "Best for", "theirs": "Backend services and full-stack web apps", "ours": "The same shape, built for student projects" },
+        { "label": "Price", "theirs": "From around $7 a month, plus database and storage add-ons", "ours": "₹99 a month, everything included", "who": "ours" },
+        { "label": "Database", "theirs": "A paid add-on, priced separately", "ours": "Included on the same machine", "who": "ours" },
+        { "label": "Sleeping", "theirs": "Paid sleep on some plans", "ours": "Nap sleeps by default and wakes in about 200 ms", "who": "ours" },
+        { "label": "Currency", "theirs": "US dollars", "ours": "Indian Rupees, with UPI", "who": "ours" },
+        { "label": "Persistent storage", "theirs": "A paid add-on", "ours": "Included at /data", "who": "ours" },
+        { "label": "Card required", "theirs": "Yes", "ours": "No, start with seven free days", "who": "ours" }
+      ],
+      "verdict": "Both run full-stack apps. Render bills in dollars with paid add-ons; DormHost is a flat rupee price with the database included."
+    },
+    {
+      "slug": "dormhost-vs-railway",
+      "them": "Railway",
+      "title": "DormHost vs Railway",
+      "h1": "DormHost vs Railway: which one for a student project?",
+      "meta": "Railway deploys full-stack apps but bills by usage, which can surprise a student. DormHost is a flat ₹99 a month with a database included.",
+      "og": "Railway versus DormHost: flat price versus usage-based.",
+      "lede": "Railway makes deploying full-stack apps easy, and its templates are popular. It bills by usage, so a database, a volume and traffic all add line items, and the bill can grow without the project changing. DormHost is one flat price.",
+      "rows": [
+        { "label": "Best for", "theirs": "Full-stack apps and quick deploys", "ours": "The same idea, sized for student budgets" },
+        { "label": "Pricing", "theirs": "Usage-based, with separate charges for resources", "ours": "Flat ₹99 a month, whatever the project does", "who": "ours" },
+        { "label": "Database", "theirs": "A paid add-on", "ours": "Included on the same machine", "who": "ours" },
+        { "label": "Persistent volume", "theirs": "A paid add-on", "ours": "Included at /data", "who": "ours" },
+        { "label": "Payment", "theirs": "Card, in dollars", "ours": "UPI, cards or net banking, in rupees", "who": "ours" },
+        { "label": "Sleeping", "theirs": "Configurable, and it still bills", "ours": "Nap sleeps after 15 minutes idle, waking on the next request", "who": "ours" }
+      ],
+      "verdict": "Railway is powerful but bills per resource. If you want one number that does not move, DormHost is the simpler answer."
+    },
+    {
+      "slug": "dormhost-vs-vps",
+      "them": "a VPS",
+      "title": "DormHost vs a VPS",
+      "h1": "DormHost vs a VPS: which one for a student project?",
+      "meta": "A VPS gives you full control and full responsibility. DormHost is a rupee-priced alternative with no server to install, patch or back up.",
+      "og": "A VPS versus DormHost: who runs the machine?",
+      "lede": "A cheap VPS looks attractive at first, then you spend the semester becoming its sysadmin: installing Node, configuring nginx, fighting SSL, patching security holes, backing up the database. DormHost runs the machine so you can stay a student.",
+      "rows": [
+        { "label": "Best for", "theirs": "Full control over a real server", "ours": "A project online without running a server" },
+        { "label": "Your job", "theirs": "Install, secure, patch and back up everything", "ours": "Push from GitHub and read the build logs", "who": "ours" },
+        { "label": "Price", "theirs": "₹300 to ₹1000 a month, plus your time", "ours": "₹99 a month, all in", "who": "ours" },
+        { "label": "Database", "theirs": "You install it and you back it up", "ours": "Included, backed up nightly on Awake", "who": "ours" },
+        { "label": "HTTPS", "theirs": "You configure the certificate", "ours": "Works from the moment you deploy", "who": "ours" },
+        { "label": "Uptime", "theirs": "As reliable as your own patching", "ours": "Awake keeps the app running at all times", "who": "ours" }
+      ],
+      "verdict": "A VPS is a learning exercise in its own right. If the project is the point, DormHost removes the sysadmin work for less money."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Is there a free tier?",
+      "a": "No, and we would rather say so. What you get is seven days of Nap credit for signing in with GitHub, no credit card, spent a day at a time like any other credit. After that it is ₹99 a month on Nap or ₹249 on Awake."
+    },
+    {
+      "q": "What can I host on DormHost?",
+      "a": "Any web application in any language. Node.js, Python, Go, Java, Ruby, PHP and .NET are detected and built automatically, anything else builds from a Dockerfile, and bots or workers run on Awake, which never sleeps."
+    },
+    {
+      "q": "Do I need a database elsewhere?",
+      "a": "No. MongoDB, PostgreSQL or MariaDB run on the same machine as your application, so queries are loopback calls, and PostgreSQL includes pgvector for embeddings."
+    },
+    {
+      "q": "How do I deploy every time I push?",
+      "a": "Turn on Deploy on push from the Deploy card on your application's Overview, then add the payload URL and secret it gives you as a webhook on GitHub. Until that hook exists, deploys happen when you ask for them."
+    },
+    {
+      "q": "Will visitors notice the sleeping?",
+      "a": "Almost never. Waking takes about 200 milliseconds, less than the page would take to load anyway."
+    },
+    {
+      "q": "Where are the servers?",
+      "a": "In Mumbai and London. Awake lets you choose between them; a Nap application is placed wherever there is room."
+    },
+    {
+      "q": "Can I use my own domain?",
+      "a": "Yes. Point a domain you own through your own Cloudflare at your application and HTTPS is handled for you."
+    },
+    {
+      "q": "Can I cancel any time?",
+      "a": "Yes. There is nothing to renew and no card on file. Unused credit is refundable under the refund policy, which asks that a top-up be 7 days old and worth at least 7 days of your plan before it goes back to your bank."
+    }
+  ],
+  "changelog": [
+    {
+      "month": "August 2026",
+      "entries": [
+        "Added Docker deployments: any Dockerfile builds and runs as-is.",
+        "Added a live AI model catalog, with per-request pricing in rupees."
+      ]
+    },
+    {
+      "month": "July 2026",
+      "entries": [
+        "Custom domains, pointed through your own Cloudflare.",
+        "Nightly backups on the Awake plan, kept seven days."
+      ]
+    },
+    {
+      "month": "June 2026",
+      "entries": [
+        "PostgreSQL, MongoDB and MariaDB on the same machine as your app.",
+        "Automatic build detection for Node.js, Python, Go, Java, Ruby, PHP and .NET."
+      ]
+    }
+  ],
+  "status": {
+    "note": "No third-party uptime monitor is running yet, so this page is honest rather than automatic. If something is down we say so here, in the changelog and on the contact page.",
+    "components": [
+      { "name": "API", "status": "Operational", "class": "ok" },
+      { "name": "Dashboard", "status": "Operational", "class": "ok" },
+      { "name": "Deployments", "status": "Operational", "class": "ok" },
+      { "name": "Mumbai region", "status": "Operational", "class": "ok" },
+      { "name": "London region", "status": "Operational", "class": "ok" },
+      { "name": "PostgreSQL", "status": "Operational", "class": "ok" },
+      { "name": "MongoDB", "status": "Operational", "class": "ok" },
+      { "name": "AI API", "status": "Operational", "class": "ok" }
+    ]
+  },
+  "blogPosts": [
+    {
+      "slug": "deploy-mern-project",
+      "title": "How to deploy a MERN project online",
+      "date": "2026-08-01",
+      "meta": "Deploy a MERN stack project online: connect your GitHub repo, add your MongoDB connection string, and get a live URL in minutes.",
+      "lede": "A MERN project is four moving parts, but only two need hosting: the Node.js server and the database. React is built and served by that same server. So a MERN deploy is really a Node.js deploy plus a MongoDB connection string.",
+      "body": [
+        "The React build is served by the Express process, so the frontend and the API are one deploy rather than two, and there is no CORS to configure."
+      ],
+      "steps": [
+        "Change one line before you start: app.listen(process.env.PORT || 3000). A hard-coded port builds cleanly and then answers nothing.",
+        "Make the root build script build React into the folder Express serves, so npm run build produces the whole application.",
+        "Sign in to the dashboard with GitHub, press New app, and name it. The address under the field is the one you will share.",
+        "Choose Nap, paste the repository URL and branch, and press Create and deploy. Press Connect GitHub first if the repository is private.",
+        "Open Database, choose MongoDB, and press Add a database. It appears in the app as MONGODB_URI, so read that instead of a localhost string.",
+        "Open Environment and add your JWT secret and any API keys. Saving restarts the app with them.",
+        "Watch Live logs until the build finishes, then open the address. Turn on Deploy on push from the Deploy card, add the webhook it shows you on GitHub, and the next commit deploys itself."
+      ],
+      "cta": "Deploy your MERN project for free"
+    },
+    {
+      "slug": "host-python-project",
+      "title": "How to host a Python project online (Flask or FastAPI)",
+      "date": "2026-07-20",
+      "meta": "Host a Flask or FastAPI project online: install from requirements.txt, run the app, and add a database on the same machine.",
+      "lede": "Python web projects are mostly Flask or FastAPI, and both go online the same way: install the dependencies and run the app. The database is the part students usually get stuck on, which is why DormHost puts one on the same machine.",
+      "body": [
+        "Flask and FastAPI deploy the same way. The only difference is the command that starts the server, and both have to bind the port the platform hands them rather than a port they choose."
+      ],
+      "steps": [
+        "Commit requirements.txt or pyproject.toml. The build installs from it, so anything missing there is missing in production.",
+        "Bind to 0.0.0.0 and the PORT variable: uvicorn main:app --host 0.0.0.0 --port $PORT for FastAPI, gunicorn app:app --bind 0.0.0.0:$PORT for Flask.",
+        "Sign in to the dashboard with GitHub, press New app, name it, and pick Nap. Awake is for bots, scrapers and scheduled work.",
+        "Paste the repository URL and branch, then press Create and deploy. Live logs shows the pip install and the start command as they run.",
+        "Open Database, choose PostgreSQL, and press Add a database. It arrives as DATABASE_URL with pgvector already enabled, which is what an embeddings project needs.",
+        "Open Environment for your API keys and read them with os.environ. Saving restarts the app.",
+        "If the app crashes at start, the traceback is in Live logs. It is almost always a missing dependency or a port that was not read from PORT."
+      ],
+      "cta": "Deploy your Python project for free"
+    },
+    {
+      "slug": "deploy-final-year-project",
+      "title": "How to deploy your final year project online",
+      "date": "2026-07-05",
+      "meta": "Get your final year project online for the viva: a live URL, a real database and hosting priced in rupees from ₹99 a month.",
+      "lede": "A final year project deserves a live demo, not a laptop passed around the room. A URL is also something concrete to put in the report and on the resume. Here is how to get one without a credit card or a server of your own.",
+      "body": [
+        "Hosting is ₹99 a month on Nap, charged in rupees by UPI or card, and unused credit is refundable under the refund policy. A semester of it costs less than the printing bill for the report."
+      ],
+      "steps": [
+        "Sign in to the dashboard with GitHub. The first sign-in puts seven days of credit in your balance, with no card, which is enough to rehearse the demo.",
+        "Push the project to GitHub. Node.js, Python, Go, Java, Ruby, PHP and .NET are detected automatically; anything else needs a Dockerfile in the repository root.",
+        "Press New app, name it, choose Nap, and paste the repository URL and branch. The address shown under the name field is what goes in your report.",
+        "Press Create and deploy, then watch Live logs. Your app has to listen on the port in the PORT variable, which is the usual reason a first deploy answers nothing.",
+        "Open Database, pick the engine your project uses, and press Add a database. The connection string is set in the app already, as DATABASE_URL or MONGODB_URI.",
+        "Move every credential out of settings files and into the Environment section before you submit the code.",
+        "The night before the viva, take a backup from the Backups section and check that the previous build is still in Images, so a late change can be undone in one click.",
+        "Open the app a few minutes before you present. A Nap app sleeps after fifteen minutes idle, and this way the panel gets it already awake."
+      ],
+      "cta": "Deploy your final year project for free"
+    }
+  ]
 }

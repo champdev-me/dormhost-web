@@ -8,8 +8,6 @@
   --lamp:       #E8963A;
   --lamp-lit:   #F9CE87;
   --lamp-dim:   #8A6033;
-  /* Warm, so the notice bar reads as a different surface from --paper's grey
-     rather than as the page failing to load a background. */
   --lamp-wash:  #FDF3E6;
   --lamp-edge:  #F1DBB8;
   --paper:      #F3F5FA;
@@ -19,6 +17,7 @@
   --faint:      #8B93A6;
   --rule:       #DFE3EC;
   --live:       #1F8A62;
+  --danger:     #B4443B;
 
   /* On the dark band, where --muted and --faint have no contrast. */
   --on-night:      #C7CCE4;
@@ -72,23 +71,6 @@ code {
   font-family: var(--mono); font-size: .72rem; letter-spacing: .16em;
   text-transform: uppercase; color: var(--faint); margin: 0 0 1rem;
 }
-
-/* ------------------------------------------------------------- notice */
-/* Amber, not red: this is a state of the product, not a fault. */
-.notice { background: var(--lamp-wash); border-bottom: 1px solid var(--lamp-edge); }
-/* Must stay after .wrap. Same specificity, so source order is what stops
-   .wrap's longhand padding rule and this one from cancelling out. */
-.notice-inner {
-  display: flex; align-items: flex-start; gap: .55rem;
-  /* Longhand: a `margin: 0` shorthand here would drop .wrap's `0 auto` and
-     the bar would start at the window edge while the nav stayed centred. */
-  margin-top: 0; margin-bottom: 0;
-  padding-top: .62rem; padding-bottom: .62rem;
-  font-size: .87rem; line-height: 1.5; color: var(--ink);
-}
-.notice-icon { width: 1rem; height: 1rem; flex: none; color: var(--lamp); margin-top: .2rem; }
-.notice b { font-weight: 700; }
-.notice a { color: var(--ink); text-decoration-color: var(--lamp); white-space: nowrap; }
 
 /* ---------------------------------------------------------------- nav */
 .nav {
@@ -169,8 +151,11 @@ code {
 .runtime-list li, .chip-list li {
   display: inline-flex; align-items: center; gap: .38rem;
   font-size: .84rem; color: var(--muted); background: var(--surface);
-  border: 1px solid var(--rule); border-radius: 999px; padding: .18rem .7rem .18rem .5rem;
+  border: 1px solid var(--rule); border-radius: 999px; padding: .18rem .7rem;
 }
+/* The narrower left gutter is for the icon, so a text-only chip keeps both. */
+.runtime-list li:has(.chip-icon),
+.chip-list li:has(.chip-icon) { padding-left: .5rem; }
 /* Scoped, not !important: the `li` selectors above already outrank a bare class. */
 .runtime-list .runtime-more,
 .chip-list .runtime-more { color: var(--faint); border-style: dashed; }
@@ -283,6 +268,7 @@ code {
 .readout-state { display: inline-flex; align-items: center; gap: .45rem; }
 .dot { width: .5rem; height: .5rem; border-radius: 50%; background: #4B5480; flex: none; }
 .dot.awake { background: var(--live); box-shadow: 0 0 0 3px rgba(31,138,98,.22); }
+.dot.ok { background: var(--live); box-shadow: 0 0 0 3px rgba(31,138,98,.22); }
 .ms { color: #fff; font-variant-numeric: tabular-nums; }
 .window button {
   font: inherit; font-family: var(--mono); font-size: .8rem;
@@ -294,8 +280,8 @@ code {
 .window-caption { color: var(--faint); font-size: .85rem; margin: .9rem 0 0; }
 
 /* ---------------------------------------------------------------- sections */
-section { padding-top: 2.5rem; padding-bottom: 2.5rem; }
-@media (min-width: 48rem) { section { padding-top: 3.75rem; padding-bottom: 3.75rem; } }
+section { padding-top: 2.25rem; padding-bottom: 2.25rem; }
+@media (min-width: 48rem) { section { padding-top: 3rem; padding-bottom: 3rem; } }
 .section-head { margin-bottom: 1.6rem; max-width: 40rem; }
 .section-head p { color: var(--muted); margin: .6rem 0 0; }
 
@@ -305,6 +291,33 @@ section { padding-top: 2.5rem; padding-bottom: 2.5rem; }
 
 .steps { display: grid; gap: 1.5rem; grid-template-columns: 1fr; counter-reset: step; }
 @media (min-width: 48rem) { .steps { grid-template-columns: repeat(3, 1fr); } }
+/* Repo, build, site. The arrow is a pseudo-element on every node but the
+   first, so the row and the stacked column need no extra markup. */
+.flow { list-style: none; margin: 0; padding: 0; display: grid; gap: 2.4rem; grid-template-columns: 1fr; }
+@media (min-width: 46rem) { .flow { grid-template-columns: repeat(3, 1fr); gap: 2.8rem; } }
+.flow-node {
+  position: relative; background: var(--surface); border: 1px solid var(--rule);
+  border-radius: 10px; padding: 1.3rem 1.4rem 1.2rem;
+}
+.flow-node + .flow-node::before {
+  content: "↓"; position: absolute; left: 50%; top: -1.75rem; transform: translateX(-50%);
+  font-family: var(--mono); font-size: 1.05rem; line-height: 1; color: var(--lamp);
+}
+@media (min-width: 46rem) {
+  .flow-node + .flow-node::before {
+    content: "→"; left: -1.9rem; top: 50%; transform: translateY(-50%);
+  }
+}
+/* The last node is the lit one, the same way the window is when it wakes. */
+.flow-live { border-color: var(--lamp-edge); background: var(--lamp-wash); }
+.flow-icon { width: 1.35rem; height: 1.35rem; color: var(--lamp); display: block; }
+.flow-label { font-weight: 700; margin: .7rem 0 .2rem; }
+.flow-note { color: var(--muted); font-size: .92rem; margin: 0 0 .9rem; }
+.flow-code {
+  display: block; background: none; padding: 0;
+  font-size: .78rem; color: var(--faint); word-break: break-all;
+}
+
 .step { position: relative; padding-top: 1.9rem; }
 .step::before {
   counter-increment: step; content: counter(step);
@@ -312,6 +325,9 @@ section { padding-top: 2.5rem; padding-bottom: 2.5rem; }
   font-family: var(--mono); font-size: .78rem; color: var(--lamp);
   border-top: 2px solid var(--lamp); padding-top: .45rem; width: 100%;
 }
+/* Same cards, no numbers: these are things to do when you need them, not an
+   order to do them in. */
+.steps-plain .step::before { content: ""; }
 .step h3 { display: flex; align-items: center; gap: .5rem; }
 .step-icon { width: 1.15rem; height: 1.15rem; flex: none; color: var(--lamp); }
 .step p { color: var(--muted); font-size: .95rem; margin: .4rem 0 0; }
@@ -357,6 +373,8 @@ section.band {
   font-family: var(--mono); font-size: .82rem; line-height: 1.6;
   color: var(--on-night); background: rgba(0, 0, 0, .25);
 }
+/* The page's code style is a dark tint on white, which is invisible here. */
+.band code { background: rgba(255,255,255,.09); color: var(--lamp-lit); }
 .band .tier-foot { color: var(--on-night-dim); }
 .band .tier-foot a { color: var(--on-night); }
 
@@ -373,7 +391,6 @@ section.band {
   border-radius: 10px; padding: 1.5rem; position: relative;
   display: flex; flex-direction: column;
 }
-.tier ul { flex: 1 1 auto; }
 .tier.featured { border-color: var(--night); box-shadow: 0 12px 34px -22px rgba(22,26,56,.5); }
 /* Overlaid on the card's top edge rather than sitting in the flow, so the
    featured card's price still lines up with its neighbour's. */
@@ -404,15 +421,10 @@ section.band {
 /* An odd number of specs would leave a gap, so the last one spans the row. */
 .spec:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .spec-icon { width: 1.05rem; height: 1.05rem; flex: none; color: var(--lamp); }
-.tier ul { list-style: none; margin: 0; padding: 0; font-size: .93rem; color: var(--muted); }
-.tier li {
-  display: flex; align-items: flex-start; gap: .5rem;
-  padding: .35rem 0; border-top: 1px solid var(--rule);
-}
-.tier li:first-child { border-top: none; }
-.tier-check { width: .95rem; height: .95rem; flex: none; color: var(--live); margin-top: .3rem; }
-.tier-cta { margin-top: 1.3rem; width: 100%; text-align: center; }
-.tier-foot { margin-top: 1.5rem; font-size: .9rem; color: var(--faint); }
+/* auto, not a fixed gap: with the feature list gone the button is what holds
+   the two cards to the same height, so both sit on the same baseline. */
+.tier-cta { margin-top: auto; width: 100%; text-align: center; }
+.tier-foot { margin-top: 1.2rem; font-size: .9rem; color: var(--faint); }
 
 /* --------------------------------------------------------- product detail */
 .products { display: grid; gap: 1.25rem; grid-template-columns: 1fr; padding: 1.5rem 0 0; }
@@ -465,6 +477,24 @@ section.band {
 .notfor-icon { width: 1.1rem; height: 1.1rem; flex: none; color: var(--faint); margin-top: .05rem; }
 .notfor-row p { color: var(--muted); font-size: .95rem; margin: .3rem 0 0; }
 @media (min-width: 46rem) { .notfor-row p { margin: 0; } }
+
+/* ---------------------------------------------------------------- blog */
+.posts { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
+@media (min-width: 46rem) { .posts { grid-template-columns: repeat(3, 1fr); } }
+.post-card {
+  display: flex; flex-direction: column; gap: .55rem;
+  background: var(--surface); border: 1px solid var(--rule);
+  border-radius: 10px; padding: 1.4rem 1.5rem 1.3rem;
+}
+.post-card:hover { border-color: var(--lamp); }
+.post-date { font-family: var(--mono); font-size: .78rem; color: var(--faint); margin: 0; }
+.post-card h2 { font-size: 1.12rem; line-height: 1.35; margin: 0; }
+.post-card h2 a { color: var(--ink); text-decoration: none; }
+.post-card h2 a:hover { text-decoration: underline; text-decoration-color: var(--lamp); }
+.post-lede { color: var(--muted); font-size: .92rem; margin: 0; }
+.post-read { margin: auto 0 0; }
+.post-read a { color: var(--lamp-dim); font-weight: 650; text-decoration-color: var(--lamp); }
+.post-read a:hover { color: var(--ink); }
 
 /* ---------------------------------------------------------------- faq */
 .faq { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
@@ -556,6 +586,12 @@ section.band {
 .table td { color: var(--muted); }
 .table thead th { font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); font-weight: 500; }
 .table tbody th { width: 12rem; }
+/* The green tick / red cross in a comparison table. The icon leads the cell
+   and the colour carries the verdict, so the table still scans if colours are
+   not available. */
+.cmp-icon { width: .95rem; height: .95rem; flex: none; vertical-align: -.14em; margin-right: .45rem; }
+.cmp-ok { color: var(--live); }
+.cmp-bad { color: var(--danger); }
 /* A 12rem nowrap header plus a cell does not fit a small phone, so let them
    both wrap rather than pushing the page sideways. */
 @media (max-width: 40rem) {

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+{{> head}}
+<title>Docs · {{site.name}}</title>
+<meta name="description" content="Get your first {{site.name}} application online in five minutes. Quickstart, then how deployments, databases, configuration and troubleshooting work.">
+<meta property="og:title" content="Docs · {{site.name}}">
+<meta property="og:description" content="A five minute quickstart, then everything else you will need.">
+</head>
+<body>
+
+{{> nav}}
+
+<main class="wrap">
+
+<div class="page-head">
+  <p class="eyebrow">Docs</p>
+  <h1>Get your first project online.</h1>
+  <p class="lead">
+    Five steps, none of them a terminal, and every one of them names a control
+    that is in the dashboard today. If you get stuck, Live logs says what
+    happened and the troubleshooting section below covers the usual suspects.
+  </p>
+</div>
+
+<section>
+  <div class="section-head">
+    <h2>Quickstart</h2>
+    <p>Five steps from a repository to a live address.</p>
+  </div>
+  <div class="steps">
+    {{#each howto.quickstart}}
+    <div class="step">
+      <h3>{{title}}</h3>
+      <p>{{text}}</p>
+    </div>
+    {{/each}}
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <h2>Then, when you need it</h2>
+    <p>Each of these is a section in the rail on your application's page.</p>
+  </div>
+  <div class="steps steps-plain">
+    {{#each howto.next}}
+    <div class="step">
+      <h3>{{title}}</h3>
+      <p>{{text}}</p>
+    </div>
+    {{/each}}
+  </div>
+</section>
+
+<div class="prose">
+
+<h2>Deployments</h2>
+<p>
+  Creating an application deploys it. After that, the Deploy card on the
+  application's Overview builds the branch again on demand, and the Deploy on
+  push switch on that same card gives you a payload URL and a secret. Add them
+  on GitHub under Settings, Webhooks, Add webhook, with the content type set to
+  <code>application/json</code> and only the push event selected. Until that
+  webhook exists, a push does nothing on its own.
+</p>
+<p>
+  A build runs your package manager, then whatever your build script says, and a
+  <code>Dockerfile</code> in the repository root replaces both. Images keeps
+  {{limits.imagesText}}, so rolling back a bad deploy is one click; the storage
+  allowance goes to your application rather than to build history.
+</p>
+
+<h2>Ports</h2>
+<p>
+  We set <code>PORT</code> in your application's environment and route HTTPS to
+  it. Read it and bind <code>0.0.0.0</code>, because a hard-coded port builds
+  perfectly and then answers nothing. A Dockerfile that <code>EXPOSE</code>s
+  exactly one port works too: we read the port out of the built image.
+</p>
+
+<h2>Databases</h2>
+<p>
+  {{databases.textLong}}. Open the Database section, pick the engine, and press
+  Add a database. {{databases.note}}
+</p>
+<p>
+  The connection string is set in your application for you, as
+  <code>DATABASE_URL</code>, or <code>MONGODB_URI</code> on MongoDB. There is
+  nothing to copy and nothing to commit. {{databases.vector.short}}
+</p>
+
+<h2>Configuration</h2>
+<p>
+  The Environment section takes variables and whole files, for a service-account
+  JSON or a certificate that does not fit in a variable. Saving restarts the
+  application, which takes a few seconds. {{runtimes.note}}
+</p>
+<p>
+  Anything your application writes to {{limits.persistentPath}} stays there
+  through a deploy. {{limits.persistentNote}}
+</p>
+
+<h2>Domains</h2>
+<p>
+  Your application answers on its {{site.appDomain}} address from the moment it
+  deploys. To add your own: put the domain in the Domains section, add it to
+  your own Cloudflare, point a CNAME at your {{site.appDomain}} address, then
+  press Check. Cloudflare terminates HTTPS for the name you own, which is why
+  the domain has to sit in your account rather than ours.
+</p>
+
+<h2>Troubleshooting</h2>
+<ul>
+  <li><strong>The build failed.</strong> Open the build log. The failing command and its error are the last lines. A missing dependency, a typo in a config file, or a build script that expects secrets is the usual cause.</li>
+  <li><strong>The app deployed but shows an error.</strong> It is probably crashing at start. Live logs shows the traceback. Check that it binds <code>0.0.0.0</code> on the port in <code>PORT</code>, and that the variables it reads are set in Environment.</li>
+  <li><strong>The first visit is slow.</strong> On Nap the app sleeps after {{policies.idleMinutes}} minutes idle and wakes on the next request in about {{policies.wakeMs}} milliseconds. Waking is usually faster than the page would have loaded anyway.</li>
+  <li><strong>The database is unreachable.</strong> Use the connection string from the dashboard, not one you remembered from your laptop. It is loopback, so there is nothing to open in a firewall.</li>
+  <li><strong>My custom domain is not loading.</strong> Check the CNAME points at your {{site.appDomain}} address, that the domain sits in your own Cloudflare, and press Check in the Domains section. We do not sell domains, so the record stays with you.</li>
+  <li><strong>I need help.</strong> Write to <a href="mailto:{{company.email}}">{{company.email}}</a>. The person who replies is the person who built the platform.</li>
+</ul>
+
+<div class="callout">
+  <p>
+    <strong>Still on the fence?</strong> You get {{trial.days}} days of credit
+    when you sign in with GitHub, no card required. Enough time to deploy
+    your real project and see it work.
+  </p>
+</div>
+
+</div>
+
+<div class="cta-row">
+  <a class="btn btn-primary" href="{{site.dashboardUrl}}">Start the quickstart</a>
+  <a class="btn btn-ghost" href="/students.html">Guides by stack</a>
+</div>
+
+</main>
+
+{{> footer}}
+
+</body>
+</html>
