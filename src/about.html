@@ -56,7 +56,7 @@
 
 <h2>Who runs it</h2>
 <p>
-  {{company.tradeName}} is run by {{company.legalName}}, a software engineer in
+  {{company.tradeName}} is run by one individual, a software engineer in
   India, as a {{company.entity}}. It is not a funded startup and there is no
   team. When you email support, the person who replies is the person who wrote
   the thing you are emailing about.
@@ -69,10 +69,10 @@
 
 <h2>Where it runs</h2>
 <p>
-  On two servers, one in Mumbai and one in London, both Oracle Cloud ARM
-  machines. Your database runs on the same machine as your application, so a
-  query never crosses the internet. Cloudflare sits in front for DNS and
-  protection against attacks.
+  On two servers, one in Mumbai and one in London, both ARM cloud machines.
+  Your database runs on the same machine as your application, so a query
+  never crosses the internet. Cloudflare sits in front for DNS and protection
+  against attacks.
 </p>
 <p>
   Everything runs on ordinary Linux, ordinary containers and open source
@@ -122,7 +122,6 @@
 <table class="table">
   <tbody>
     <tr><th>Trade name</th><td>{{company.tradeName}}</td></tr>
-    <tr><th>Legal name</th><td>{{company.legalName}}</td></tr>
     <tr><th>Type of business</th><td>{{company.entity}}</td></tr>
     <tr><th>Registered address</th><td>{{{company.address.html}}}</td></tr>
     <tr><th>Email</th><td><a href="mailto:{{company.email}}">{{company.email}}</a></td></tr>
