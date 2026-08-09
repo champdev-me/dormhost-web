@@ -122,7 +122,7 @@
     "dataRetentionDays": 30,
     "backupRetentionDays": 7,
     "idleMinutes": 15,
-    "wakeMs": 200,
+    "wakeMs": 300,
     "trialRetentionDays": 7,
     "retentionNote": "If your balance runs out we keep everything for 30 days, or 7 days if you have never added credit of your own. We email you before anything is deleted, and adding credit at any point stops it."
   },
@@ -146,7 +146,7 @@
       "priceYearly": 999,
       "storageGb": 2.5,
       "summary": "The usual choice. Sleeps when nobody is using it.",
-      "description": "Hosting for one web application in any language, deployed from a public or private GitHub repository. Node.js, Python, Go, Java, Ruby, PHP and .NET are detected and built automatically; anything else builds from a Dockerfile in your repository. Includes a database on the same machine as the app, MongoDB, PostgreSQL or MariaDB as you prefer, an HTTPS address at yourapp-yourlogin.dormhost.app, support for a custom domain, up to 256 MB of memory, up to 2.5 GB of storage covering code, uploads and database together, persistent storage at /data that survives a deploy, one backup you take yourself, and hosting in Mumbai or London. The application is stopped after fifteen minutes with no visitors and started again by the next request, typically in about 200 milliseconds.",
+      "description": "Hosting for one web application in any language, deployed from a public or private GitHub repository. Node.js, Python, Go, Java, Ruby, PHP and .NET are detected and built automatically; anything else builds from a Dockerfile in your repository. Includes a database on the same machine as the app, MongoDB, PostgreSQL or MariaDB as you prefer, an HTTPS address at yourapp-yourlogin.dormhost.app, support for a custom domain, up to 256 MB of memory, up to 2.5 GB of storage covering code, uploads and database together, persistent storage at /data that survives a deploy, one backup you take yourself, and hosting in Mumbai or London. The application is stopped after fifteen minutes with no visitors and started again by the next request, typically in about 300 milliseconds.",
       "specs": [
         {
           "icon": "memory",
@@ -314,6 +314,32 @@
   },
   "useCases": [
     {
+      "slug": "wordpress",
+      "selfInstalled": true,
+      "title": "WordPress",
+      "h1": "Host a WordPress site",
+      "meta": "One-click WordPress hosting from \u20b999 a month. No repository, no server to configure. Plugins, themes and uploads are kept, and MariaDB is created for you.",
+      "og": "WordPress hosting for students from \u20b999 a month, with the database included.",
+      "lede": "WordPress here is not a repository you push. Pick it on the create form, give the site a name, and we run the official image and create its database. Open the address and WordPress asks you for a title and an admin user, which is its own five minute install and the only setup there is.",
+      "bullets": [
+        "No repository and no build; the site exists as soon as it is created",
+        "MariaDB is created with the app, so there is no connection string to copy",
+        "Plugins, themes and uploads are kept, and survive a restart",
+        "WordPress updates its own core, in place",
+        "An HTTPS address immediately, or a custom domain through your own Cloudflare",
+        "Backups cover the whole site: the files and the database together"
+      ],
+      "steps": [
+        "Sign in to the dashboard and press New app.",
+        "Choose WordPress under \"What are you deploying?\". The repository fields disappear, because there is no repository.",
+        "Name it and pick a plan. Nap sleeps when nobody is visiting, which makes the first visit after that take a few seconds. Awake stays up.",
+        "Press Create my site, then open your address. WordPress asks for a site title and an admin user.",
+        "Install an SMTP plugin before you rely on password resets. Mail does not leave the container, so WordPress cannot send you a reset link on its own.",
+        "Take a backup from the Backups section before you install anything risky. It captures the files and the database in one archive."
+      ],
+      "cta": "Create your WordPress site"
+    },
+    {
       "slug": "mern",
       "title": "MERN",
       "h1": "Deploy a MERN project online",
@@ -460,7 +486,7 @@
         "Keep the project up after the viva, or delete it in a click"
       ],
       "steps": [
-        "Create it on Nap. It sleeps between rehearsals and wakes on the next visit in about 200 milliseconds, which is why it costs ₹99.",
+        "Create it on Nap. It sleeps between rehearsals and wakes on the next visit in about 300 milliseconds, which is why it costs ₹99.",
         "Move every credential out of the repository and into the Environment section before you submit the code.",
         "Take a backup from the Backups section the night before the viva. Images also keeps the previous build, so a late change can be rolled back in one click.",
         "Put the live address in the report. It is yourapp-yourlogin.dormhost.app until you point a domain of your own at it in the Domains section.",
@@ -586,7 +612,7 @@
     },
     {
       "q": "Will visitors notice the sleeping?",
-      "a": "Almost never. Waking takes about 200 milliseconds, less than the page would take to load anyway."
+      "a": "Almost never. Waking takes about 300 milliseconds, less than the page would take to load anyway."
     },
     {
       "q": "Where are the servers?",

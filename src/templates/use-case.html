@@ -32,6 +32,7 @@
     <li>{{.}}</li>
     {{/each}}
   </ul>
+  {{#unless selfInstalled}}
   <h2>Deploy it, step by step</h2>
   <p>The dashboard flow is the same for every project:</p>
   <ol>
@@ -39,8 +40,10 @@
     <li><strong>{{title}}.</strong> {{text}}</li>
     {{/each}}
   </ol>
+  {{/unless}}
 
-  <h2>What is different about {{title}}</h2>
+  {{#if selfInstalled}}<h2>How it works</h2>{{/if}}
+  {{#unless selfInstalled}}<h2>What is different about {{title}}</h2>{{/unless}}
   <ol>
     {{#each steps}}
     <li>{{.}}</li>
