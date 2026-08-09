@@ -307,6 +307,10 @@
         "text": "In Domains, add the name, then add your domain to your own Cloudflare, add a CNAME to your dormhost.app address, and press Check. Your app answers on both addresses."
       },
       {
+        "title": "Or run WordPress instead",
+        "text": "Choose WordPress on the create form and there is no repository at all. We run it, create its MariaDB, finish the install and show you the admin password on the app page, where you can also reset it."
+      },
+      {
         "title": "Roll back, and take a backup",
         "text": "Images keeps the build you are running and the one before it, so a bad deploy is one click from the working one. Backups takes one on demand, and Awake also takes one every night."
       }
