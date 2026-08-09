@@ -390,8 +390,8 @@
 
 <script>
 // The window is the page's one interactive claim: a sleeping app, woken on
-// demand, timed honestly. Numbers here match what the platform actually
-// measures: around 300ms on the node, a little more over the public path.
+// demand, timed honestly. This is the measured figure, around 235ms on the
+// node. The published claim is rounded up to 300, which is deliberate.
 (function () {
   var panes = Array.prototype.slice.call(document.querySelectorAll('#panes .pane'));
   var button = document.getElementById('wake');
@@ -422,7 +422,7 @@
     stateEl.textContent = 'starting';
     windowEl.classList.add('awake'); // the snoring stops first
 
-    var total = 310;
+    var total = 235;
     var started = performance.now();
 
     if (reduced) {
