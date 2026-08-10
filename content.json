@@ -923,27 +923,6 @@
         "since": "August 2026",
         "note": "Closest to most of North America, and to the APIs a lot of student projects call."
       }
-    ],
-    "planned": [
-      {
-        "city": "Singapore",
-        "country": "Singapore",
-        "lat": 1.35,
-        "lon": 103.82
-      },
-      {
-        "city": "Sydney",
-        "country": "Australia",
-        "lat": -33.87,
-        "lon": 151.21
-      },
-      {
-        "city": "São Paulo",
-        "country": "Brazil",
-        "lat": -23.55,
-        "lon": -46.63
-      }
-    ],
-    "plannedNote": "Nothing is promised with a date on it. A region opens when enough people are waiting for one and it can be paid for, and this page changes on the day it does, not before."
+    ]
   }
 }

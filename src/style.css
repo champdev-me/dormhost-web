@@ -645,6 +645,7 @@ footer .brand { color: #fff; }
   padding: clamp(.75rem, 3vw, 1.75rem);
   overflow: hidden;
 }
+.map-plot { position: relative; }
 .map-svg { display: block; width: 100%; height: auto; }
 .map-land { fill: #222A50; stroke: #2E376A; stroke-width: .6; }
 
@@ -653,23 +654,16 @@ footer .brand { color: #fff; }
   display: block; width: .7rem; height: .7rem; border-radius: 50%;
   background: var(--lamp); box-shadow: 0 0 0 4px rgba(232,150,58,.22);
 }
-.map-pin-soon .map-dot {
-  width: .6rem; height: .6rem;
-  background: transparent; border: 2px solid var(--on-night-dim); box-shadow: none;
-}
 .map-label {
   position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
   display: flex; flex-direction: column; line-height: 1.15;
   white-space: nowrap; font-size: .78rem; font-weight: 700; color: #fff;
   text-shadow: 0 1px 3px rgba(16,19,43,.9);
 }
-.map-pin-soon .map-label { color: var(--on-night-dim); font-weight: 600; }
-.map-pin-flip .map-label { left: auto; right: 1rem; align-items: flex-end; text-align: right; }
 .map-id {
   font-family: var(--mono); font-size: .66rem; font-weight: 500;
   color: var(--lamp-lit); letter-spacing: .02em;
 }
-.map-pin-soon .map-id { color: var(--on-night-dim); }
 
 .map-key {
   display: flex; gap: 1.25rem; flex-wrap: wrap;
@@ -677,7 +671,6 @@ footer .brand { color: #fff; }
 }
 .map-key-item { display: inline-flex; align-items: center; gap: .45rem; }
 .map-key .map-dot { width: .55rem; height: .55rem; box-shadow: none; }
-.map-key .map-dot-soon { background: transparent; border: 2px solid var(--faint); }
 
 /* Six labels cannot fit beside six dots at phone width without overlapping,
    and an unreadable map is worse than none. The cards carry the same facts. */
@@ -704,5 +697,3 @@ footer .brand { color: #fff; }
   margin: .9rem 0 0; font-size: .8rem; color: var(--muted);
   display: flex; align-items: center; gap: .45rem;
 }
-.soon-list { margin: 1.25rem 0 0; padding-left: 1.1rem; color: var(--muted); }
-.soon-list li { margin-bottom: .4rem; }

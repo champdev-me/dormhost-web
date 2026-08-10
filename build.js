@@ -260,12 +260,9 @@ function derive(c) {
     // Percentages so the labels sit on the map at any width, without JS.
     r.xPct = Math.round((r.x / MAP.w) * 1000) / 10;
     r.yPct = Math.round((r.y / MAP.h) * 1000) / 10;
-    // The frame clips, so a label near the right edge has to open leftwards.
-    r.flip = r.xPct > 72;
     return r;
   };
   c.regions.live.forEach(project);
-  c.regions.planned.forEach(project);
   c.regions.liveCount = c.regions.live.length;
 
   c.plansByName = Object.fromEntries(c.plans.map((p) => [p.slug, p]));
