@@ -248,7 +248,7 @@ function derive(c) {
 
   c.runtimes.detectedText = sentence(names(c.runtimes.detected));
   c.databases.text = names(c.databases.list).join(', ').replace(/, ([^,]*)$/, ' or $1');
-  c.databases.textLong = `${c.databases.text}, which is MySQL`;
+  c.databases.textLong = c.databases.text;
 
   // Map coordinates, projected here rather than stored: content.json holds the
   // real latitude and longitude, so a marker cannot drift away from the truth.
@@ -441,7 +441,7 @@ function llmsTxt(content) {
 
 ## What ${c.site.name} is
 
-${c.site.name} (${c.site.url}) hosts student projects: Node, Python, Go, or any Dockerfile, built from a GitHub repository, with a MongoDB, PostgreSQL or MariaDB database included. Apps run on ${c.site.appDomain} subdomains, custom domains supported. ${c.company.gst.statement}
+${c.site.name} (${c.site.url}) hosts student projects: Node, Python, Go, or any Dockerfile, built from a GitHub repository, with a MongoDB, PostgreSQL or MySQL database included. Apps run on ${c.site.appDomain} subdomains, custom domains supported. ${c.company.gst.statement}
 
 ## Plans
 

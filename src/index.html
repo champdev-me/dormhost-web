@@ -13,7 +13,6 @@
 <body>
 
 {{> nav}}
-{{> marks}}
 
 <header class="wrap hero">
   <div class="hero-grid">
@@ -53,8 +52,8 @@
           Detected and built for you
         </p>
         <ul class="runtime-list">
-          {{#each runtimes.detected}}<li><svg class="chip-icon" width="16" height="16" aria-hidden="true"><use href="#l-{{id}}"/></svg>{{name}}</li>{{/each}}
-          <li class="runtime-more"><svg class="chip-icon" width="16" height="16" aria-hidden="true"><use href="#l-docker"/></svg>or your own Dockerfile</li>
+          {{#each runtimes.detected}}<li><img class="chip-icon" src="/assets/logos/{{id}}.svg?v={{assets.rev}}" width="16" height="16" alt="" loading="lazy" decoding="async">{{name}}</li>{{/each}}
+          <li class="runtime-more"><img class="chip-icon" src="/assets/logos/docker.svg?v={{assets.rev}}" width="16" height="16" alt="" loading="lazy" decoding="async">or your own Dockerfile</li>
           <li class="runtime-more"><svg class="chip-icon" width="16" height="16" aria-hidden="true"><use href="#i-globe"/></svg>or WordPress, no repo needed</li>
         </ul>
       </div>
