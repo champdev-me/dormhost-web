@@ -146,7 +146,7 @@
       "priceYearly": 999,
       "storageGb": 2.5,
       "summary": "The usual choice. Sleeps when nobody is using it.",
-      "description": "Hosting for one web application in any language, deployed from a public or private GitHub repository. Node.js, Python, Go, Java, Ruby, PHP and .NET are detected and built automatically; anything else builds from a Dockerfile in your repository. Includes a database on the same machine as the app, MongoDB, PostgreSQL or MariaDB as you prefer, an HTTPS address at yourapp-yourlogin.dormhost.app, support for a custom domain, up to 256 MB of memory, up to 2.5 GB of storage covering code, uploads and database together, persistent storage at /data that survives a deploy, one backup you take yourself, and hosting in Mumbai or London. The application is stopped after fifteen minutes with no visitors and started again by the next request, typically in about 300 milliseconds.",
+      "description": "Hosting for one web application in any language, deployed from a public or private GitHub repository. Node.js, Python, Go, Java, Ruby, PHP and .NET are detected and built automatically; anything else builds from a Dockerfile in your repository. Includes a database on the same machine as the app, MongoDB, PostgreSQL or MariaDB as you prefer, an HTTPS address at yourapp-yourlogin.dormhost.app, support for a custom domain, up to 256 MB of memory, up to 2.5 GB of storage covering code, uploads and database together, persistent storage at /data that survives a deploy, one backup you take yourself, and hosting in Mumbai, London or Ashburn. The application is stopped after fifteen minutes with no visitors and started again by the next request, typically in about 300 milliseconds.",
       "specs": [
         {
           "icon": "memory",
@@ -179,7 +179,7 @@
         "Up to 256 MB memory",
         "HTTPS at yourapp-yourlogin.dormhost.app",
         "Custom domain, pointed through your own Cloudflare",
-        "Hosted in Mumbai or London, whichever has room",
+        "Hosted in Mumbai, London or Ashburn, whichever has room",
         "Persistent storage at /data, which survives every deploy",
         "One backup you take yourself, whenever you want one",
         "Up to 2.5 GB storage, including your database",
@@ -197,7 +197,7 @@
       "priceYearly": 2499,
       "storageGb": 5,
       "summary": "Never sleeps. For bots, workers and cron jobs.",
-      "description": "Everything in the Nap plan, with the application kept running at all times instead of being stopped when idle. Intended for workloads that cannot be paused: Discord and Telegram bots, scheduled jobs, queue workers, and anything holding a long-lived connection. Any language, built automatically or from your own Dockerfile. Includes the same choice of MongoDB, PostgreSQL or MariaDB database, up to 512 MB of memory, up to 5 GB of storage covering code, uploads and database together, custom domain support, persistent storage at /data that survives a deploy, a nightly backup of that storage, your database and your settings kept for seven days, and a choice of Mumbai or London.",
+      "description": "Everything in the Nap plan, with the application kept running at all times instead of being stopped when idle. Intended for workloads that cannot be paused: Discord and Telegram bots, scheduled jobs, queue workers, and anything holding a long-lived connection. Any language, built automatically or from your own Dockerfile. Includes the same choice of MongoDB, PostgreSQL or MariaDB database, up to 512 MB of memory, up to 5 GB of storage covering code, uploads and database together, custom domain support, persistent storage at /data that survives a deploy, a nightly backup of that storage, your database and your settings kept for seven days, and a choice of Mumbai, London or Ashburn.",
       "specs": [
         {
           "icon": "memory",
@@ -230,7 +230,7 @@
         "Any language, or your own Dockerfile",
         "Up to 512 MB memory, double Nap",
         "Up to 5 GB storage, double Nap",
-        "Choose your region: Mumbai or London"
+        "Choose your region: Mumbai, London or Ashburn"
       ],
       "perDayMonthly": 8.3,
       "perDayYearly": 6.85
@@ -278,7 +278,7 @@
       },
       {
         "title": "Pick the plan",
-        "text": "Nap sleeps when nobody is using it. Awake never sleeps, which is what a bot, a worker or a scheduled job needs. Awake also lets you choose Mumbai or London; Nap goes wherever there is room."
+        "text": "Nap sleeps when nobody is using it. Awake never sleeps, which is what a bot, a worker or a scheduled job needs. Awake also lets you choose Mumbai, London or Ashburn; Nap goes wherever there is room."
       },
       {
         "title": "Point it at your repository",
@@ -393,7 +393,7 @@
       "h1": "Deploy a Python project online",
       "meta": "Host a Python project online: Flask, FastAPI, Django, bots and scripts. Automatic builds from GitHub from ₹99 a month.",
       "og": "Deploy Flask, FastAPI or Django projects online from ₹99 a month.",
-      "lede": "Python projects go online without a server of your own. We detect the framework from your repository, install dependencies from requirements.txt or pyproject.toml, and run the app on a machine in Mumbai or London.",
+      "lede": "Python projects go online without a server of your own. We detect the framework from your repository, install dependencies from requirements.txt or pyproject.toml, and run the app on a machine in Mumbai, London or Ashburn.",
       "bullets": [
         "Flask and FastAPI web apps and APIs",
         "Database migration commands run before the app starts if your build script says so",
@@ -620,7 +620,7 @@
     },
     {
       "q": "Where are the servers?",
-      "a": "In Mumbai and London. Awake lets you choose between them; a Nap application is placed wherever there is room."
+      "a": "In Mumbai, London and Ashburn. Awake lets you choose between them; a Nap application is placed wherever there is room."
     },
     {
       "q": "Can I use my own domain?",
@@ -662,6 +662,7 @@
       { "name": "Deployments", "status": "Operational", "class": "ok" },
       { "name": "Mumbai region", "status": "Operational", "class": "ok" },
       { "name": "London region", "status": "Operational", "class": "ok" },
+      { "name": "Ashburn region", "status": "Operational", "class": "ok" },
       { "name": "PostgreSQL", "status": "Operational", "class": "ok" },
       { "name": "MongoDB", "status": "Operational", "class": "ok" },
       { "name": "AI API", "status": "Operational", "class": "ok" }

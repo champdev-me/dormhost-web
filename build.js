@@ -469,7 +469,7 @@ ${c.blogPosts.map((p) => `- [${p.title}](${c.site.url}/blog/${p.slug}.html): ${p
 
 ## Who it is for
 
-College students and hobbyists anywhere who need cheap, honest hosting for course projects, Discord and Telegram bots, portfolio sites and small APIs. Built in India and especially friendly there (UPI, rupee pricing, no card), with international cards working from everywhere else and hosting in Mumbai or London.
+College students and hobbyists anywhere who need cheap, honest hosting for course projects, Discord and Telegram bots, portfolio sites and small APIs. Built in India and especially friendly there (UPI, rupee pricing, no card), with international cards working from everywhere else and hosting in Mumbai, London or Ashburn.
 `;
 }
 
