@@ -27,27 +27,32 @@
     </svg>
 
     {{#each regions.live}}
-    <span class="map-pin map-pin-live" style="left:{{xPct}}%;top:{{yPct}}%">
+    <span class="map-pin{{#if flip}} map-pin-flip{{/if}}" style="left:{{xPct}}%;top:{{yPct}}%">
       <span class="map-dot"></span>
       <span class="map-label">{{city}}<span class="map-id">{{id}}</span></span>
     </span>
     {{/each}}
 
     {{#each regions.planned}}
-    <span class="map-pin map-pin-soon" style="left:{{xPct}}%;top:{{yPct}}%">
+    <span class="map-pin map-pin-soon{{#if flip}} map-pin-flip{{/if}}" style="left:{{xPct}}%;top:{{yPct}}%">
       <span class="map-dot"></span>
       <span class="map-label">{{city}}<span class="map-id">considering</span></span>
     </span>
     {{/each}}
   </div>
   <figcaption class="map-key">
-    <span class="map-key-item"><span class="map-dot map-dot-live"></span>Running now</span>
+    <span class="map-key-item"><span class="map-dot"></span>Running now</span>
     <span class="map-key-item"><span class="map-dot map-dot-soon"></span>Being considered</span>
   </figcaption>
 </figure>
 
-<section class="section">
-  <h2>The {{regions.liveCount}} regions you can pick</h2>
+<section>
+  <div class="section-head">
+    <h2>The {{regions.liveCount}} regions you can pick</h2>
+    <p>Awake lets you choose. A Nap application goes wherever there is most room,
+       because it is asleep almost all the time and the distance costs you nothing
+       you would notice.</p>
+  </div>
   <div class="region-cards">
     {{#each regions.live}}
     <article class="region-card">
@@ -57,33 +62,32 @@
       </header>
       <p class="region-where">{{country}} · {{lat}}, {{lon}}</p>
       <p class="region-note">{{note}}</p>
-      <p class="region-since"><span class="dot dot-live"></span>Running since {{since}}</p>
+      <p class="region-since"><span class="dot ok"></span>Running since {{since}}</p>
     </article>
     {{/each}}
   </div>
-  <p class="note">
-    Awake lets you choose. A Nap application goes wherever there is most room,
-    because it is asleep almost all the time and the distance costs you nothing
-    you would notice.
-  </p>
 </section>
 
-<section class="section">
-  <h2>More, when they are real</h2>
-  <p>{{regions.plannedNote}}</p>
+<section>
+  <div class="section-head">
+    <h2>More, when they are real</h2>
+    <p>{{regions.plannedNote}}</p>
+  </div>
   <ul class="soon-list">
     {{#each regions.planned}}
     <li><strong>{{city}}</strong>, {{country}}</li>
     {{/each}}
   </ul>
-  <p class="note">
-    Want one of these, or somewhere else? <a href="/contact.html">Tell us</a>.
-    Knowing who is waiting is how the next one gets chosen.
-  </p>
+  <div class="callout">
+    <p>Want one of these, or somewhere else? <a href="/contact.html">Tell us</a>.
+    Knowing who is waiting is how the next one gets chosen.</p>
+  </div>
 </section>
 
-<section class="section">
-  <h2>What a region does and does not change</h2>
+<section>
+  <div class="section-head">
+    <h2>What a region does and does not change</h2>
+  </div>
   <div class="diffs">
     <div class="diff">
       <svg class="diff-icon" width="24" height="24" aria-hidden="true"><use href="#i-check"/></svg>
@@ -109,6 +113,11 @@
     </div>
   </div>
 </section>
+
+<div class="cta-row">
+  <a class="btn btn-primary" href="{{site.dashboardUrl}}">Deploy in any region</a>
+  <a class="btn btn-ghost" href="/pricing.html">See pricing</a>
+</div>
 
 </main>
 
