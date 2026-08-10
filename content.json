@@ -22,8 +22,8 @@
         "name": "PostgreSQL"
       },
       {
-        "id": "mariadb",
-        "name": "MariaDB"
+        "id": "mysql",
+        "name": "MySQL"
       }
     ],
     "note": "Pick whichever your project needs. It runs on the same machine as your application, so a query is a loopback call and never crosses the internet.",
@@ -69,6 +69,18 @@
       {
         "id": "dotnet",
         "name": ".NET"
+      },
+      {
+        "id": "mysql",
+        "name": "MySQL"
+      },
+      {
+        "id":"postgres",
+        "name":"PostgreSQL & PGVector"
+      },
+      {
+        "id":"mongo",
+        "name":"MongoDB"
       }
     ],
     "note": "We read your repository and work out how to build it. If your language is not on that list, or you want the build done your way, add a Dockerfile and we build that instead. Rust, Elixir, Deno, Bun, C++, anything that starts and listens on a port."
@@ -146,7 +158,7 @@
       "priceYearly": 999,
       "storageGb": 2.5,
       "summary": "The usual choice. Sleeps when nobody is using it.",
-      "description": "Hosting for one web application in any language, deployed from a public or private GitHub repository. Node.js, Python, Go, Java, Ruby, PHP and .NET are detected and built automatically; anything else builds from a Dockerfile in your repository. Includes a database on the same machine as the app, MongoDB, PostgreSQL or MariaDB as you prefer, an HTTPS address at yourapp-yourlogin.dormhost.app, support for a custom domain, up to 256 MB of memory, up to 2.5 GB of storage covering code, uploads and database together, persistent storage at /data that survives a deploy, one backup you take yourself, and hosting in Mumbai, London or Ashburn. The application is stopped after fifteen minutes with no visitors and started again by the next request, typically in about 300 milliseconds.",
+      "description": "Hosting for one web application in any language, deployed from a public or private GitHub repository. Node.js, Python, Go, Java, Ruby, PHP and .NET are detected and built automatically; anything else builds from a Dockerfile in your repository. Includes a database on the same machine as the app, MongoDB, PostgreSQL or MySQL as you prefer, an HTTPS address at yourapp-yourlogin.dormhost.app, support for a custom domain, up to 256 MB of memory, up to 2.5 GB of storage covering code, uploads and database together, persistent storage at /data that survives a deploy, one backup you take yourself, and hosting in Mumbai, London or Ashburn. The application is stopped after fifteen minutes with no visitors and started again by the next request, typically in about 300 milliseconds.",
       "specs": [
         {
           "icon": "memory",
@@ -174,12 +186,12 @@
         "Automatic builds for Node.js, Python, Go, Java, Ruby, PHP and .NET",
         "Or bring your own Dockerfile for anything else",
         "Public or private GitHub repositories",
-        "MongoDB, PostgreSQL or MariaDB, on the same machine",
+        "MongoDB, PostgreSQL or MySQL, on the same machine",
         "pgvector on PostgreSQL for embeddings and similarity search",
         "Up to 256 MB memory",
         "HTTPS at yourapp-yourlogin.dormhost.app",
         "Custom domain, pointed through your own Cloudflare",
-        "Hosted in Mumbai, London or Ashburn, whichever has room",
+        "Choose your region: Mumbai, London or Ashburn",
         "Persistent storage at /data, which survives every deploy",
         "One backup you take yourself, whenever you want one",
         "Up to 2.5 GB storage, including your database",
@@ -197,7 +209,7 @@
       "priceYearly": 2499,
       "storageGb": 5,
       "summary": "Never sleeps. For bots, workers and cron jobs.",
-      "description": "Everything in the Nap plan, with the application kept running at all times instead of being stopped when idle. Intended for workloads that cannot be paused: Discord and Telegram bots, scheduled jobs, queue workers, and anything holding a long-lived connection. Any language, built automatically or from your own Dockerfile. Includes the same choice of MongoDB, PostgreSQL or MariaDB database, up to 512 MB of memory, up to 5 GB of storage covering code, uploads and database together, custom domain support, persistent storage at /data that survives a deploy, a nightly backup of that storage, your database and your settings kept for seven days, and a choice of Mumbai, London or Ashburn.",
+      "description": "Everything in the Nap plan, with the application kept running at all times instead of being stopped when idle. Intended for workloads that cannot be paused: Discord and Telegram bots, scheduled jobs, queue workers, and anything holding a long-lived connection. Any language, built automatically or from your own Dockerfile. Includes the same choice of MongoDB, PostgreSQL or MySQL database, up to 512 MB of memory, up to 5 GB of storage covering code, uploads and database together, custom domain support, persistent storage at /data that survives a deploy, a nightly backup of that storage, your database and your settings kept for seven days, and a choice of Mumbai, London or Ashburn.",
       "specs": [
         {
           "icon": "memory",
@@ -278,7 +290,7 @@
       },
       {
         "title": "Pick the plan",
-        "text": "Nap sleeps when nobody is using it. Awake never sleeps, which is what a bot, a worker or a scheduled job needs. Awake also lets you choose Mumbai, London or Ashburn; Nap goes wherever there is room."
+        "text": "Nap sleeps when nobody is using it. Awake never sleeps, which is what a bot, a worker or a scheduled job needs. Either way, you choose Mumbai, London or Ashburn."
       },
       {
         "title": "Point it at your repository",
@@ -292,7 +304,7 @@
     "next": [
       {
         "title": "Add a database",
-        "text": "Open the Database section, choose PostgreSQL with pgvector, MongoDB or MariaDB, and press Add a database. The connection string arrives in your app as DATABASE_URL, or MONGODB_URI on MongoDB, so there is nothing to copy."
+        "text": "Open the Database section, choose PostgreSQL with pgvector, MongoDB or MySQL, and press Add a database. The connection string arrives in your app as DATABASE_URL, or MONGODB_URI on MongoDB, so there is nothing to copy."
       },
       {
         "title": "Set environment variables",
@@ -308,7 +320,7 @@
       },
       {
         "title": "Or run WordPress instead",
-        "text": "Choose WordPress on the create form and there is no repository at all. We run it, create its MariaDB, finish the install and show you the admin password on the app page, where you can also reset it."
+        "text": "Choose WordPress on the create form and there is no repository at all. We run it, create its MySQL, finish the install and show you the admin password on the app page, where you can also reset it."
       },
       {
         "title": "Roll back, and take a backup",
@@ -322,12 +334,12 @@
       "selfInstalled": true,
       "title": "WordPress",
       "h1": "Host a WordPress site",
-      "meta": "One-click WordPress hosting from ₹99 a month. No repository, no server to configure. Plugins, themes and uploads are kept, and MariaDB is created for you.",
+      "meta": "One-click WordPress hosting from ₹99 a month. No repository, no server to configure. Plugins, themes and uploads are kept, and MySQL is created for you.",
       "og": "WordPress hosting for students from ₹99 a month, with the database included.",
       "lede": "WordPress here is not a repository you push. Pick it on the create form, give the site a name, and we run the official image and create its database. Open the address and WordPress asks you for a title and an admin user, which is its own five minute install and the only setup there is.",
       "bullets": [
         "No repository and no build; the site exists as soon as it is created",
-        "MariaDB is created with the app, so there is no connection string to copy",
+        "MySQL is created with the app, so there is no connection string to copy",
         "Plugins, themes and uploads are kept, and survive a restart",
         "WordPress updates its own core, in place",
         "An HTTPS address immediately, or a custom domain through your own Cloudflare",
@@ -368,21 +380,21 @@
       "slug": "nodejs",
       "title": "Node.js",
       "h1": "Deploy a Node.js project online",
-      "meta": "Deploy a Node.js app or API online in minutes. Express, NestJS, Next.js, bots and workers, with MongoDB, PostgreSQL or MariaDB included.",
+      "meta": "Deploy a Node.js app or API online in minutes. Express, NestJS, Next.js, bots and workers, with MongoDB, PostgreSQL or MySQL included.",
       "og": "Host Node.js apps and APIs from ₹99 a month, with a database on the same machine.",
       "lede": "Whatever you wrote it with, if it is Node.js we can run it: Express and Fastify APIs, NestJS apps, Discord and Telegram bots, workers and cron jobs, even a Next.js app with its own server. Point us at the repository and the build runs itself.",
       "bullets": [
         "Express, Fastify, NestJS, Koa and anything that starts with node",
         "Next.js runs with its own server, not as a static export",
         "Workers and queues keep running too, on Awake",
-        "MongoDB, PostgreSQL or MariaDB on the same machine, or none at all",
+        "MongoDB, PostgreSQL or MySQL on the same machine, or none at all",
         "Environment variables for your tokens, exactly as they were in your .env"
       ],
       "steps": [
         "Keep npm start working locally: the start script in package.json is what runs here too.",
         "Listen on the port in the PORT variable we set. A hard-coded 3000 builds fine and then answers nothing.",
         "A Discord or Telegram bot has no HTTP port and must not sleep, so create it on Awake rather than Nap.",
-        "Add a database in the Database section: MongoDB arrives as MONGODB_URI, PostgreSQL and MariaDB as DATABASE_URL.",
+        "Add a database in the Database section: MongoDB arrives as MONGODB_URI, PostgreSQL and MySQL as DATABASE_URL.",
         "Turn on Deploy on push from the Deploy card on Overview, add the webhook it shows you on GitHub, and every commit to the branch deploys itself."
       ],
       "cta": "Deploy your Node.js app for free"
@@ -397,7 +409,7 @@
       "bullets": [
         "Flask and FastAPI web apps and APIs",
         "Database migration commands run before the app starts if your build script says so",
-        "PostgreSQL with pgvector for embeddings, MongoDB or MariaDB on the same machine",
+        "PostgreSQL with pgvector for embeddings, MongoDB or MySQL on the same machine",
         "Background workers share the same machine and the same memory budget"
       ],
       "steps": [
@@ -545,7 +557,7 @@
         {
           "label": "Database",
           "theirs": "A separate add-on, billed separately",
-          "ours": "MongoDB, PostgreSQL or MariaDB on the same machine, included",
+          "ours": "MongoDB, PostgreSQL or MySQL on the same machine, included",
           "who": "ours"
         },
         {
@@ -734,7 +746,7 @@
     },
     {
       "q": "Do I need a database elsewhere?",
-      "a": "No. MongoDB, PostgreSQL or MariaDB run on the same machine as your application, so queries are loopback calls, and PostgreSQL includes pgvector for embeddings."
+      "a": "No. MongoDB, PostgreSQL or MySQL run on the same machine as your application, so queries are loopback calls, and PostgreSQL includes pgvector for embeddings."
     },
     {
       "q": "How do I deploy every time I push?",
@@ -746,7 +758,7 @@
     },
     {
       "q": "Where are the servers?",
-      "a": "In Mumbai, London and Ashburn. Awake lets you choose between them; a Nap application is placed wherever there is room."
+      "a": "In Mumbai, London and Ashburn. You choose which one when you create your application, on either plan."
     },
     {
       "q": "Can I use my own domain?",
@@ -775,7 +787,7 @@
     {
       "month": "June 2026",
       "entries": [
-        "PostgreSQL, MongoDB and MariaDB on the same machine as your app.",
+        "PostgreSQL, MongoDB and MySQL on the same machine as your app.",
         "Automatic build detection for Node.js, Python, Go, Java, Ruby, PHP and .NET."
       ]
     }
