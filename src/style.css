@@ -629,3 +629,80 @@ footer .brand { color: #fff; }
 .foot-note { color: #6E77A0; margin-bottom: 0; }
 /* Quiet on purpose: it is here so a bug report can name a build, not to be read. */
 .foot-version { font-family: var(--mono); font-size: .8em; opacity: .65; }
+
+/* ---------------------------------------------------------------- regions map
+   Land is one path from Natural Earth (public domain), simplified and cropped
+   north of Antarctica. Markers are positioned in percent so they stay on their
+   coastline at any width, with no script. */
+.map-figure { margin: 0 0 var(--gap-lg); }
+.map-frame {
+  position: relative;
+  background: var(--night-deep);
+  border: 1px solid var(--night-soft);
+  border-radius: 14px;
+  padding: clamp(0.75rem, 3vw, 1.75rem);
+  overflow: hidden;
+}
+.map-svg { display: block; width: 100%; height: auto; }
+.map-land { fill: #222A50; stroke: #2E376A; stroke-width: 0.6; }
+
+.map-pin { position: absolute; transform: translate(-50%, -50%); pointer-events: none; }
+.map-dot {
+  display: block; width: 11px; height: 11px; border-radius: 50%;
+  background: var(--lamp); box-shadow: 0 0 0 4px rgb(232 150 58 / 0.22);
+}
+.map-pin-soon .map-dot {
+  background: transparent; border: 2px solid var(--on-night-dim); box-shadow: none;
+  width: 9px; height: 9px;
+}
+.map-label {
+  position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; line-height: 1.15; white-space: nowrap;
+  font-size: 0.78rem; font-weight: 700; color: #FFF;
+  text-shadow: 0 1px 3px rgb(16 19 43 / 0.9);
+}
+.map-pin-soon .map-label { color: var(--on-night-dim); font-weight: 600; }
+.map-id {
+  font-family: var(--mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: 0.66rem; font-weight: 500; color: var(--lamp-lit); letter-spacing: 0.02em;
+}
+.map-pin-soon .map-id { color: var(--on-night-dim); }
+
+.map-key {
+  display: flex; gap: 1.25rem; flex-wrap: wrap;
+  margin-top: 0.75rem; font-size: 0.8rem; color: var(--muted);
+}
+.map-key-item { display: inline-flex; align-items: center; gap: 0.45rem; }
+.map-key .map-dot { width: 9px; height: 9px; box-shadow: none; }
+.map-dot-soon { background: transparent; border: 2px solid var(--faint); }
+
+/* Narrow screens cannot fit labels beside every dot without collisions, and a
+   map nobody can read is worse than a list. The cards below carry the same
+   information, so the labels go rather than overlap. */
+@media (max-width: 640px) {
+  .map-label { display: none; }
+}
+
+.region-cards {
+  display: grid; gap: var(--gap); margin: var(--gap) 0;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+.region-card {
+  border: 1px solid var(--rule); border-radius: 12px;
+  background: var(--surface); padding: 1.1rem 1.2rem;
+}
+.region-head { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; }
+.region-head h3 { margin: 0; font-size: 1.05rem; }
+.region-id {
+  font-size: 0.72rem; color: var(--muted);
+  background: var(--paper); border: 1px solid var(--rule);
+  border-radius: 6px; padding: 0.1rem 0.4rem;
+}
+.region-where { margin: 0.35rem 0 0; font-size: 0.78rem; color: var(--faint); }
+.region-note { margin: 0.6rem 0 0; font-size: 0.9rem; color: var(--muted); }
+.region-since {
+  margin: 0.8rem 0 0; font-size: 0.78rem; color: var(--muted);
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.soon-list { margin: var(--gap) 0; padding-left: 1.1rem; color: var(--muted); }
+.soon-list li { margin-bottom: 0.35rem; }

@@ -322,8 +322,8 @@
       "selfInstalled": true,
       "title": "WordPress",
       "h1": "Host a WordPress site",
-      "meta": "One-click WordPress hosting from \u20b999 a month. No repository, no server to configure. Plugins, themes and uploads are kept, and MariaDB is created for you.",
-      "og": "WordPress hosting for students from \u20b999 a month, with the database included.",
+      "meta": "One-click WordPress hosting from ₹99 a month. No repository, no server to configure. Plugins, themes and uploads are kept, and MariaDB is created for you.",
+      "og": "WordPress hosting for students from ₹99 a month, with the database included.",
       "lede": "WordPress here is not a repository you push. Pick it on the create form, give the site a name, and we run the official image and create its database. Open the address and WordPress asks you for a title and an admin user, which is its own five minute install and the only setup there is.",
       "bullets": [
         "No repository and no build; the site exists as soon as it is created",
@@ -531,13 +531,47 @@
       "og": "Vercel for frontends, DormHost for full-stack student projects.",
       "lede": "Vercel is genuinely great at what it does: static sites, Next.js frontends and serverless functions, with a free tier that is hard to beat. It is not built for a full-stack project with a real backend and a database of its own, and that is the gap DormHost fills.",
       "rows": [
-        { "label": "Best for", "theirs": "Frontends, Next.js sites, serverless functions", "ours": "Small full-stack projects with a backend and a database" },
-        { "label": "Backend", "theirs": "Serverless functions, on demand", "ours": "A real process that runs on a machine", "who": "ours" },
-        { "label": "Database", "theirs": "A separate add-on, billed separately", "ours": "MongoDB, PostgreSQL or MariaDB on the same machine, included", "who": "ours" },
-        { "label": "WebSockets and bots", "theirs": "Not really a fit", "ours": "Yes, on Awake, which never sleeps", "who": "ours" },
-        { "label": "Persistent storage", "theirs": "An object storage add-on", "ours": "Included at /data, and it survives deploys", "who": "ours" },
-        { "label": "Price for a student project", "theirs": "Free tier is fine for static; a backend adds up", "ours": "₹99 a month, all in", "who": "ours" },
-        { "label": "Pay with UPI", "theirs": "No", "ours": "Yes, plus cards and net banking", "who": "ours" }
+        {
+          "label": "Best for",
+          "theirs": "Frontends, Next.js sites, serverless functions",
+          "ours": "Small full-stack projects with a backend and a database"
+        },
+        {
+          "label": "Backend",
+          "theirs": "Serverless functions, on demand",
+          "ours": "A real process that runs on a machine",
+          "who": "ours"
+        },
+        {
+          "label": "Database",
+          "theirs": "A separate add-on, billed separately",
+          "ours": "MongoDB, PostgreSQL or MariaDB on the same machine, included",
+          "who": "ours"
+        },
+        {
+          "label": "WebSockets and bots",
+          "theirs": "Not really a fit",
+          "ours": "Yes, on Awake, which never sleeps",
+          "who": "ours"
+        },
+        {
+          "label": "Persistent storage",
+          "theirs": "An object storage add-on",
+          "ours": "Included at /data, and it survives deploys",
+          "who": "ours"
+        },
+        {
+          "label": "Price for a student project",
+          "theirs": "Free tier is fine for static; a backend adds up",
+          "ours": "₹99 a month, all in",
+          "who": "ours"
+        },
+        {
+          "label": "Pay with UPI",
+          "theirs": "No",
+          "ours": "Yes, plus cards and net banking",
+          "who": "ours"
+        }
       ],
       "verdict": "Use Vercel for a frontend. If your project has a real backend, a database or anything that must stay running, DormHost is the fit."
     },
@@ -550,13 +584,47 @@
       "og": "Render versus DormHost for full-stack student hosting.",
       "lede": "Render is a good home for full-stack apps, and its free tier is popular in tutorials. Its paid plans and add-ons add up quickly though, and pricing is in dollars. DormHost matches the shape and aims it squarely at student budgets.",
       "rows": [
-        { "label": "Best for", "theirs": "Backend services and full-stack web apps", "ours": "The same shape, built for student projects" },
-        { "label": "Price", "theirs": "From around $7 a month, plus database and storage add-ons", "ours": "₹99 a month, everything included", "who": "ours" },
-        { "label": "Database", "theirs": "A paid add-on, priced separately", "ours": "Included on the same machine", "who": "ours" },
-        { "label": "Sleeping", "theirs": "Paid sleep on some plans", "ours": "Nap sleeps by default and wakes in about 200 ms", "who": "ours" },
-        { "label": "Currency", "theirs": "US dollars", "ours": "Indian Rupees, with UPI", "who": "ours" },
-        { "label": "Persistent storage", "theirs": "A paid add-on", "ours": "Included at /data", "who": "ours" },
-        { "label": "Card required", "theirs": "Yes", "ours": "No, start with seven free days", "who": "ours" }
+        {
+          "label": "Best for",
+          "theirs": "Backend services and full-stack web apps",
+          "ours": "The same shape, built for student projects"
+        },
+        {
+          "label": "Price",
+          "theirs": "From around $7 a month, plus database and storage add-ons",
+          "ours": "₹99 a month, everything included",
+          "who": "ours"
+        },
+        {
+          "label": "Database",
+          "theirs": "A paid add-on, priced separately",
+          "ours": "Included on the same machine",
+          "who": "ours"
+        },
+        {
+          "label": "Sleeping",
+          "theirs": "Paid sleep on some plans",
+          "ours": "Nap sleeps by default and wakes in about 200 ms",
+          "who": "ours"
+        },
+        {
+          "label": "Currency",
+          "theirs": "US dollars",
+          "ours": "Indian Rupees, with UPI",
+          "who": "ours"
+        },
+        {
+          "label": "Persistent storage",
+          "theirs": "A paid add-on",
+          "ours": "Included at /data",
+          "who": "ours"
+        },
+        {
+          "label": "Card required",
+          "theirs": "Yes",
+          "ours": "No, start with seven free days",
+          "who": "ours"
+        }
       ],
       "verdict": "Both run full-stack apps. Render bills in dollars with paid add-ons; DormHost is a flat rupee price with the database included."
     },
@@ -569,12 +637,41 @@
       "og": "Railway versus DormHost: flat price versus usage-based.",
       "lede": "Railway makes deploying full-stack apps easy, and its templates are popular. It bills by usage, so a database, a volume and traffic all add line items, and the bill can grow without the project changing. DormHost is one flat price.",
       "rows": [
-        { "label": "Best for", "theirs": "Full-stack apps and quick deploys", "ours": "The same idea, sized for student budgets" },
-        { "label": "Pricing", "theirs": "Usage-based, with separate charges for resources", "ours": "Flat ₹99 a month, whatever the project does", "who": "ours" },
-        { "label": "Database", "theirs": "A paid add-on", "ours": "Included on the same machine", "who": "ours" },
-        { "label": "Persistent volume", "theirs": "A paid add-on", "ours": "Included at /data", "who": "ours" },
-        { "label": "Payment", "theirs": "Card, in dollars", "ours": "UPI, cards or net banking, in rupees", "who": "ours" },
-        { "label": "Sleeping", "theirs": "Configurable, and it still bills", "ours": "Nap sleeps after 15 minutes idle, waking on the next request", "who": "ours" }
+        {
+          "label": "Best for",
+          "theirs": "Full-stack apps and quick deploys",
+          "ours": "The same idea, sized for student budgets"
+        },
+        {
+          "label": "Pricing",
+          "theirs": "Usage-based, with separate charges for resources",
+          "ours": "Flat ₹99 a month, whatever the project does",
+          "who": "ours"
+        },
+        {
+          "label": "Database",
+          "theirs": "A paid add-on",
+          "ours": "Included on the same machine",
+          "who": "ours"
+        },
+        {
+          "label": "Persistent volume",
+          "theirs": "A paid add-on",
+          "ours": "Included at /data",
+          "who": "ours"
+        },
+        {
+          "label": "Payment",
+          "theirs": "Card, in dollars",
+          "ours": "UPI, cards or net banking, in rupees",
+          "who": "ours"
+        },
+        {
+          "label": "Sleeping",
+          "theirs": "Configurable, and it still bills",
+          "ours": "Nap sleeps after 15 minutes idle, waking on the next request",
+          "who": "ours"
+        }
       ],
       "verdict": "Railway is powerful but bills per resource. If you want one number that does not move, DormHost is the simpler answer."
     },
@@ -587,12 +684,41 @@
       "og": "A VPS versus DormHost: who runs the machine?",
       "lede": "A cheap VPS looks attractive at first, then you spend the semester becoming its sysadmin: installing Node, configuring nginx, fighting SSL, patching security holes, backing up the database. DormHost runs the machine so you can stay a student.",
       "rows": [
-        { "label": "Best for", "theirs": "Full control over a real server", "ours": "A project online without running a server" },
-        { "label": "Your job", "theirs": "Install, secure, patch and back up everything", "ours": "Push from GitHub and read the build logs", "who": "ours" },
-        { "label": "Price", "theirs": "₹300 to ₹1000 a month, plus your time", "ours": "₹99 a month, all in", "who": "ours" },
-        { "label": "Database", "theirs": "You install it and you back it up", "ours": "Included, backed up nightly on Awake", "who": "ours" },
-        { "label": "HTTPS", "theirs": "You configure the certificate", "ours": "Works from the moment you deploy", "who": "ours" },
-        { "label": "Uptime", "theirs": "As reliable as your own patching", "ours": "Awake keeps the app running at all times", "who": "ours" }
+        {
+          "label": "Best for",
+          "theirs": "Full control over a real server",
+          "ours": "A project online without running a server"
+        },
+        {
+          "label": "Your job",
+          "theirs": "Install, secure, patch and back up everything",
+          "ours": "Push from GitHub and read the build logs",
+          "who": "ours"
+        },
+        {
+          "label": "Price",
+          "theirs": "₹300 to ₹1000 a month, plus your time",
+          "ours": "₹99 a month, all in",
+          "who": "ours"
+        },
+        {
+          "label": "Database",
+          "theirs": "You install it and you back it up",
+          "ours": "Included, backed up nightly on Awake",
+          "who": "ours"
+        },
+        {
+          "label": "HTTPS",
+          "theirs": "You configure the certificate",
+          "ours": "Works from the moment you deploy",
+          "who": "ours"
+        },
+        {
+          "label": "Uptime",
+          "theirs": "As reliable as your own patching",
+          "ours": "Awake keeps the app running at all times",
+          "who": "ours"
+        }
       ],
       "verdict": "A VPS is a learning exercise in its own right. If the project is the point, DormHost removes the sysadmin work for less money."
     }
@@ -657,15 +783,51 @@
   "status": {
     "note": "No third-party uptime monitor is running yet, so this page is honest rather than automatic. If something is down we say so here, in the changelog and on the contact page.",
     "components": [
-      { "name": "API", "status": "Operational", "class": "ok" },
-      { "name": "Dashboard", "status": "Operational", "class": "ok" },
-      { "name": "Deployments", "status": "Operational", "class": "ok" },
-      { "name": "Mumbai region", "status": "Operational", "class": "ok" },
-      { "name": "London region", "status": "Operational", "class": "ok" },
-      { "name": "Ashburn region", "status": "Operational", "class": "ok" },
-      { "name": "PostgreSQL", "status": "Operational", "class": "ok" },
-      { "name": "MongoDB", "status": "Operational", "class": "ok" },
-      { "name": "AI API", "status": "Operational", "class": "ok" }
+      {
+        "name": "API",
+        "status": "Operational",
+        "class": "ok"
+      },
+      {
+        "name": "Dashboard",
+        "status": "Operational",
+        "class": "ok"
+      },
+      {
+        "name": "Deployments",
+        "status": "Operational",
+        "class": "ok"
+      },
+      {
+        "name": "Mumbai region",
+        "status": "Operational",
+        "class": "ok"
+      },
+      {
+        "name": "London region",
+        "status": "Operational",
+        "class": "ok"
+      },
+      {
+        "name": "Ashburn region",
+        "status": "Operational",
+        "class": "ok"
+      },
+      {
+        "name": "PostgreSQL",
+        "status": "Operational",
+        "class": "ok"
+      },
+      {
+        "name": "MongoDB",
+        "status": "Operational",
+        "class": "ok"
+      },
+      {
+        "name": "AI API",
+        "status": "Operational",
+        "class": "ok"
+      }
     ]
   },
   "blogPosts": [
@@ -730,5 +892,58 @@
       ],
       "cta": "Deploy your final year project for free"
     }
-  ]
+  ],
+  "regions": {
+    "lede": "Three regions today. Your application and its database sit on the same machine in the one you pick, so a query never crosses the internet.",
+    "live": [
+      {
+        "id": "ap-south-1",
+        "city": "Mumbai",
+        "country": "India",
+        "lat": 19.08,
+        "lon": 72.88,
+        "since": "August 2026",
+        "note": "The default. Nearest for most of our students, and where account and billing data is held."
+      },
+      {
+        "id": "eu-west-2",
+        "city": "London",
+        "country": "United Kingdom",
+        "lat": 51.51,
+        "lon": -0.13,
+        "since": "August 2026",
+        "note": "For projects with users in Europe, and for anyone who wants their data outside India."
+      },
+      {
+        "id": "us-east-1",
+        "city": "Ashburn",
+        "country": "United States",
+        "lat": 39.04,
+        "lon": -77.49,
+        "since": "August 2026",
+        "note": "Closest to most of North America, and to the APIs a lot of student projects call."
+      }
+    ],
+    "planned": [
+      {
+        "city": "Singapore",
+        "country": "Singapore",
+        "lat": 1.35,
+        "lon": 103.82
+      },
+      {
+        "city": "Sydney",
+        "country": "Australia",
+        "lat": -33.87,
+        "lon": 151.21
+      },
+      {
+        "city": "São Paulo",
+        "country": "Brazil",
+        "lat": -23.55,
+        "lon": -46.63
+      }
+    ],
+    "plannedNote": "Nothing is promised with a date on it. A region opens when enough people are waiting for one and it can be paid for, and this page changes on the day it does, not before."
+  }
 }

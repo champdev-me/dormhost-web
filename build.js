@@ -250,6 +250,22 @@ function derive(c) {
   c.databases.text = names(c.databases.list).join(', ').replace(/, ([^,]*)$/, ' or $1');
   c.databases.textLong = `${c.databases.text}, which is MySQL`;
 
+  // Map coordinates, projected here rather than stored: content.json holds the
+  // real latitude and longitude, so a marker cannot drift away from the truth.
+  // Equirectangular, cropped north of Antarctica to match the land path.
+  const MAP = { w: 1000, h: 460, top: 84, bottom: -58 };
+  const project = (r) => {
+    r.x = Math.round(((r.lon + 180) / 360) * MAP.w * 10) / 10;
+    r.y = Math.round(((MAP.top - r.lat) / (MAP.top - MAP.bottom)) * MAP.h * 10) / 10;
+    // Percentages so the labels sit on the map at any width, without JS.
+    r.xPct = Math.round((r.x / MAP.w) * 1000) / 10;
+    r.yPct = Math.round((r.y / MAP.h) * 1000) / 10;
+    return r;
+  };
+  c.regions.live.forEach(project);
+  c.regions.planned.forEach(project);
+  c.regions.liveCount = c.regions.live.length;
+
   c.plansByName = Object.fromEntries(c.plans.map((p) => [p.slug, p]));
   c.cheapest = c.plans.reduce((lo, p) => (p.priceMonthly < lo.priceMonthly ? p : lo));
 
