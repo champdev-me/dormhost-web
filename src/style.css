@@ -626,6 +626,15 @@ footer .brand { color: #fff; }
 .foot-legal { border-top: 1px solid var(--on-night-rule); margin-top: 2rem; padding-top: 1.4rem; }
 .foot-legal p { font-size: .85rem; color: #8891B8; margin: 0 0 .6rem; line-height: 1.6; }
 .foot-legal strong { color: #C7CCE4; font-weight: 600; }
+
+/* White badges: several of these marks carry dark or colour-critical ink
+   that the night background would wash out. */
+.foot-payments { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; }
+.pay-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: #fff; border-radius: .3rem; padding: .3rem .55rem;
+}
+.pay-badge img { display: block; height: 16px; width: auto; }
 .foot-note { color: #6E77A0; margin-bottom: 0; }
 /* Quiet on purpose: it is here so a bug report can name a build, not to be read. */
 .foot-version { font-family: var(--mono); font-size: .8em; opacity: .65; }

@@ -60,6 +60,16 @@
         <strong>{{company.operatedBy}}</strong><br>
         <svg class="foot-icon" width="24" height="24" aria-hidden="true"><use href="#i-pin"/></svg>Registered address: {{company.address.oneLine}}
       </p>
+
+      <div class="foot-payments" aria-label="Payment methods accepted">
+        <span class="pay-badge"><img src="/assets/logos/upi.svg?v={{assets.rev}}" alt="UPI" height="16" loading="lazy" decoding="async"></span>
+        <span class="pay-badge"><img src="/assets/logos/rupay.svg?v={{assets.rev}}" alt="RuPay" height="16" loading="lazy" decoding="async"></span>
+        <span class="pay-badge"><img src="/assets/logos/visa.svg?v={{assets.rev}}" alt="Visa" height="16" loading="lazy" decoding="async"></span>
+        <span class="pay-badge"><img src="/assets/logos/mastercard.svg?v={{assets.rev}}" alt="Mastercard" height="16" loading="lazy" decoding="async"></span>
+        <span class="pay-badge"><img src="/assets/logos/amex.svg?v={{assets.rev}}" alt="American Express" height="16" loading="lazy" decoding="async"></span>
+        <span class="pay-badge"><img src="/assets/logos/discover.svg?v={{assets.rev}}" alt="Discover" height="16" loading="lazy" decoding="async"></span>
+        <span class="pay-badge"><img src="/assets/logos/diners.svg?v={{assets.rev}}" alt="Diners Club" height="16" loading="lazy" decoding="async"></span>
+      </div>
       <p class="foot-note">
         {{site.name}} runs on {{site.domain}}; student apps are served from
         {{site.appDomain}}. Both domains are owned and operated by us.
