@@ -3,9 +3,9 @@
 <head>
 {{> head}}
 <title>Status · {{site.name}}</title>
-<meta name="description" content="Live status of {{site.name}}: API, dashboard, deployments, regions, databases and the AI API.">
+<meta name="description" content="Live status of {{site.name}}: API, dashboard, deployments, regions, and uptime over the last 90 days.">
 <meta property="og:title" content="Status · {{site.name}}">
-<meta property="og:description" content="What is up right now, honestly.">
+<meta property="og:description" content="What is running right now, checked automatically.">
 </head>
 <body>
 
@@ -16,29 +16,28 @@
 <div class="page-head">
   <p class="eyebrow">Status</p>
   <h1>What is running right now.</h1>
-  <p class="lead">
-    Everything on this page is monitored by the person who runs the platform,
-    and the note below is honest about that limit.
-  </p>
+  <p class="lead">{{status.note}}</p>
 </div>
 
-<div class="callout">
-  <p>{{status.note}}</p>
+<div id="status-error" class="callout" hidden>
+  <p>Could not load live status just now. That is itself worth knowing: check
+     <a href="/contact.html">contact</a> if this keeps happening.</p>
 </div>
 
 <section>
   <div class="section-head">
     <h2>Components</h2>
-    <p>Last checked manually. Anything down is fixed and then noted here and in the <a href="/changelog.html">changelog</a>.</p>
+    <p>Checked automatically every five minutes. Each square is one day; hover it for the date.</p>
   </div>
-  <div class="features">
-    {{#each status.components}}
-    <div class="feature">
-      <h3>{{name}}</h3>
-      <p><span class="dot {{class}}"></span> {{status}}</p>
-    </div>
-    {{/each}}
+  <div id="status-components" class="status-components" aria-live="polite"></div>
+</section>
+
+<section id="status-incidents-section" hidden>
+  <div class="section-head">
+    <h2>Incidents</h2>
+    <p>Written by hand, only when there is one worth explaining.</p>
   </div>
+  <div id="status-incidents"></div>
 </section>
 
 <div class="cta-row">
@@ -49,6 +48,81 @@
 </main>
 
 {{> footer}}
+
+<script>
+(function () {
+  var API = '{{site.dashboardUrl}}/api/status'
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]
+    })
+  }
+
+  function dayCell(day) {
+    var cls = 'status-day status-day-none'
+    var title = day.date + ': no data'
+    if (day.upFraction !== null) {
+      if (day.upFraction >= 0.99) {
+        cls = 'status-day status-day-up'
+        title = day.date + ': up'
+      } else if (day.upFraction > 0) {
+        cls = 'status-day status-day-partial'
+        title = day.date + ': ' + Math.round(day.upFraction * 100) + '% up'
+      } else {
+        cls = 'status-day status-day-down'
+        title = day.date + ': down'
+      }
+    }
+    return '<span class="' + cls + '" title="' + esc(title) + '"></span>'
+  }
+
+  function componentRow(c) {
+    var dotClass = c.current === 'up' ? 'ok' : c.current === 'down' ? 'bad' : 'unknown'
+    var pct = c.uptimePct === null ? 'no data yet' : c.uptimePct.toFixed(2) + '% up, last 90 days'
+    return '<div class="status-row">' +
+      '<div class="status-row-head">' +
+        '<span class="dot ' + dotClass + '"></span>' +
+        '<strong>' + esc(c.name) + '</strong>' +
+        '<span class="status-pct">' + esc(pct) + '</span>' +
+      '</div>' +
+      '<div class="status-days">' + c.days.map(dayCell).join('') + '</div>' +
+    '</div>'
+  }
+
+  function updateRow(u) {
+    var when = new Date(u.createdAt).toLocaleString()
+    return '<p class="status-update">' +
+      '<span class="status-update-status">' + esc(u.status) + '</span> ' + esc(u.body) +
+      '<span class="status-update-time">' + esc(when) + '</span>' +
+    '</p>'
+  }
+
+  function incidentCard(i) {
+    var resolved = i.status === 'resolved'
+    return '<div class="status-incident' + (resolved ? ' status-incident-resolved' : '') + '">' +
+      '<div class="status-incident-head">' +
+        '<strong>' + esc(i.title) + '</strong>' +
+        '<span class="status-pill">' + esc(i.status) + '</span>' +
+      '</div>' +
+      i.updates.map(updateRow).join('') +
+    '</div>'
+  }
+
+  fetch(API)
+    .then(function (r) { if (!r.ok) throw new Error('bad response'); return r.json() })
+    .then(function (out) {
+      document.getElementById('status-components').innerHTML = out.components.map(componentRow).join('')
+      if (out.incidents && out.incidents.length) {
+        document.getElementById('status-incidents').innerHTML = out.incidents.map(incidentCard).join('')
+        document.getElementById('status-incidents-section').hidden = false
+      }
+    })
+    .catch(function () {
+      document.getElementById('status-error').hidden = false
+    })
+})()
+</script>
 
 </body>
 </html>

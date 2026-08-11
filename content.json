@@ -793,54 +793,7 @@
     }
   ],
   "status": {
-    "note": "No third-party uptime monitor is running yet, so this page is honest rather than automatic. If something is down we say so here, in the changelog and on the contact page.",
-    "components": [
-      {
-        "name": "API",
-        "status": "Operational",
-        "class": "ok"
-      },
-      {
-        "name": "Dashboard",
-        "status": "Operational",
-        "class": "ok"
-      },
-      {
-        "name": "Deployments",
-        "status": "Operational",
-        "class": "ok"
-      },
-      {
-        "name": "Mumbai region",
-        "status": "Operational",
-        "class": "ok"
-      },
-      {
-        "name": "London region",
-        "status": "Operational",
-        "class": "ok"
-      },
-      {
-        "name": "Ashburn region",
-        "status": "Operational",
-        "class": "ok"
-      },
-      {
-        "name": "PostgreSQL",
-        "status": "Operational",
-        "class": "ok"
-      },
-      {
-        "name": "MongoDB",
-        "status": "Operational",
-        "class": "ok"
-      },
-      {
-        "name": "AI API",
-        "status": "Operational",
-        "class": "ok"
-      }
-    ]
+    "note": "Every component below is checked automatically every five minutes. An incident is written by hand, only when there is one worth explaining."
   },
   "blogPosts": [
     {

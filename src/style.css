@@ -269,6 +269,8 @@ code {
 .dot { width: .5rem; height: .5rem; border-radius: 50%; background: #4B5480; flex: none; }
 .dot.awake { background: var(--live); box-shadow: 0 0 0 3px rgba(31,138,98,.22); }
 .dot.ok { background: var(--live); box-shadow: 0 0 0 3px rgba(31,138,98,.22); }
+.dot.bad { background: var(--danger); box-shadow: 0 0 0 3px rgba(180,68,59,.22); }
+.dot.unknown { background: var(--faint); }
 .ms { color: #fff; font-variant-numeric: tabular-nums; }
 .window button {
   font: inherit; font-family: var(--mono); font-size: .8rem;
@@ -523,6 +525,36 @@ section.band {
   width: 1.2rem; height: 1.2rem; flex: none; color: var(--lamp);
   transform: translateY(-.02rem);
 }
+
+/* ------------------------------------------------------------------ status */
+.status-components { border-top: 1px solid var(--rule); }
+.status-row { padding: 1rem 0; border-bottom: 1px solid var(--rule); }
+.status-row-head { display: flex; align-items: center; gap: .5rem; margin-bottom: .55rem; }
+.status-row-head strong { font-size: .95rem; }
+.status-pct { margin-left: auto; font-size: .82rem; color: var(--muted); }
+.status-days { display: flex; flex-wrap: wrap; gap: 2px; }
+.status-day {
+  width: 8px; height: 20px; border-radius: 2px; flex: none;
+  background: var(--rule);
+}
+.status-day-up { background: var(--live); }
+.status-day-partial { background: var(--lamp); }
+.status-day-down { background: var(--danger); }
+
+.status-incident {
+  border: 1px solid var(--rule); border-radius: 10px;
+  padding: 1.1rem 1.3rem; margin-bottom: 1rem; background: var(--surface);
+}
+.status-incident-resolved { opacity: .72; }
+.status-incident-head { display: flex; align-items: center; gap: .6rem; margin-bottom: .6rem; }
+.status-pill {
+  font-size: .72rem; text-transform: capitalize; color: var(--muted);
+  border: 1px solid var(--rule); border-radius: 999px; padding: .1rem .55rem;
+}
+.status-update { font-size: .87rem; color: var(--muted); margin: 0 0 .4rem; }
+.status-update:last-child { margin-bottom: 0; }
+.status-update-status { font-weight: 700; text-transform: capitalize; color: var(--ink); }
+.status-update-time { display: block; font-size: .74rem; color: var(--faint); margin-top: .1rem; }
 
 /* ---------------------------------------------------------------- regions */
 .regions { display: grid; gap: 1rem; grid-template-columns: 1fr; }
