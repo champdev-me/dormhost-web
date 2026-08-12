@@ -269,10 +269,10 @@
     "example": "A short chat on the cheapest model costs well under a rupee, and an image is a few rupees."
   },
   "trial": {
-    "days": 7,
-    "headline": "Seven days free, no credit card required",
-    "short": "Sign in with GitHub and we put seven days of Nap credit in your balance.",
-    "what": "Signing in with GitHub for the first time puts seven days of Nap credit in your balance. It is real credit and it is spent the same way as any other: a day at a time, so you can see exactly what your app costs while you try it.",
+    "days": 30,
+    "headline": "30 days free, no credit card required",
+    "short": "Sign in with GitHub and we put 30 days of Nap credit in your balance.",
+    "what": "Signing in with GitHub for the first time puts 30 days of Nap credit in your balance. It is real credit and it is spent the same way as any other: a day at a time, so you can see exactly what your app costs while you try it.",
     "limits": "Free credit runs one application on the Nap plan. Adding any credit of your own lifts that, and you can then run as many applications as your balance covers, on either plan.",
     "after": "When the free credit runs out your application is stopped, not deleted. Add credit and it comes back exactly as it was. One free trial per GitHub account.",
     "noCard": "We do not ask for a credit card and there is nothing to cancel."
@@ -282,7 +282,7 @@
     "quickstart": [
       {
         "title": "Sign in with GitHub",
-        "text": "Go to the dashboard and sign in. Your first sign-in puts seven days of Nap credit in your balance, with no card and nothing to cancel."
+        "text": "Go to the dashboard and sign in. Your first sign-in puts 30 days of Nap credit in your balance, with no card and nothing to cancel."
       },
       {
         "title": "Create an application",
@@ -738,7 +738,7 @@
   "faq": [
     {
       "q": "Is there a free tier?",
-      "a": "No, and we would rather say so. What you get is seven days of Nap credit for signing in with GitHub, no credit card, spent a day at a time like any other credit. After that it is ₹99 a month on Nap or ₹249 on Awake."
+      "a": "No, and we would rather say so. What you get is 30 days of Nap credit for signing in with GitHub, no credit card, spent a day at a time like any other credit. After that it is ₹99 a month on Nap or ₹249 on Awake."
     },
     {
       "q": "What can I host on DormHost?",
@@ -846,7 +846,7 @@
         "Hosting is ₹99 a month on Nap, charged in rupees by UPI or card, and unused credit is refundable under the refund policy. A semester of it costs less than the printing bill for the report."
       ],
       "steps": [
-        "Sign in to the dashboard with GitHub. The first sign-in puts seven days of credit in your balance, with no card, which is enough to rehearse the demo.",
+        "Sign in to the dashboard with GitHub. The first sign-in puts 30 days of credit in your balance, with no card, which is enough to rehearse the demo.",
         "Push the project to GitHub. Node.js, Python, Go, Java, Ruby, PHP and .NET are detected automatically; anything else needs a Dockerfile in the repository root.",
         "Press New app, name it, choose Nap, and paste the repository URL and branch. The address shown under the name field is what goes in your report.",
         "Press Create and deploy, then watch Live logs. Your app has to listen on the port in the PORT variable, which is the usual reason a first deploy answers nothing.",
