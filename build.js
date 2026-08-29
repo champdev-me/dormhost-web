@@ -310,14 +310,19 @@ function derive(c) {
       },
     }),
 
+    // SoftwareApplication, not Product: a monthly hosting plan is a service,
+    // not a shippable good, and Product pulls in Merchant-listing validation
+    // (return window, shippingDetails) that a wallet-credit refund and a
+    // digital service can't honestly satisfy.
     products: JSON.stringify({
       '@context': 'https://schema.org',
       '@graph': c.plans.map((p) => ({
-        '@type': 'Product',
+        '@type': 'SoftwareApplication',
         name: `${c.site.name} ${p.name}`,
         description: p.description,
-        brand: { '@type': 'Brand', name: c.site.name },
-        category: 'Web application hosting',
+        applicationCategory: 'WebApplication',
+        operatingSystem: 'Any',
+        image: `${c.site.url}/assets/og.png`,
         // One offer, in rupees. A second in dollars would be structured data
         // claiming a price we cannot take: the gateway settles in INR only.
         offers: {
