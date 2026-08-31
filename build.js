@@ -283,6 +283,18 @@ function derive(c) {
   // escaping. Emitted with {{{ }}} so it reaches the page unaltered.
   const a2 = c.company.address;
   c.jsonld = {
+    // Names the site as a distinct entity from the company (Organization,
+    // above). One of the signals Google uses to understand a brand well
+    // enough to ever show it as one; not a switch that turns sitelinks on.
+    // No SearchAction: there is no internal search endpoint to point it at,
+    // and Google retired the sitelinks search box display in 2024 anyway.
+    website: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: c.site.name,
+      url: c.site.url,
+    }),
+
     organization: JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'Organization',
