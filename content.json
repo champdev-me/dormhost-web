@@ -532,6 +532,98 @@
         "Delete the app from Settings when the weekend is over, or leave it up: the trial credit covers both."
       ],
       "cta": "Deploy your hackathon project for free"
+    },
+    {
+      "slug": "discord-bot",
+      "awakeOnly": true,
+      "title": "Discord bot",
+      "h1": "Host a Discord bot 24/7",
+      "meta": "Keep a Discord.js or discord.py bot online 24/7 from GitHub. Restarts on its own if it crashes. Awake tier, ₹249 a month.",
+      "og": "Host a Discord bot that never sleeps, from ₹249 a month.",
+      "lede": "A bot has to be online when someone in the server needs it, not fifteen minutes after the next message. Awake keeps the process running around the clock, and restarts it on its own if it crashes, so a bad unhandled exception at 2am does not need you awake too.",
+      "bullets": [
+        "Discord.js, discord.py, or anything else that holds a gateway connection open",
+        "Awake never sleeps, unlike Nap, which is built for a request-response web app instead",
+        "Crashes restart the process automatically, on the same machine, with the same environment",
+        "A database on the same machine if the bot needs to remember anything",
+        "Logs stream live, so a bad deploy is obvious before someone in the server notices"
+      ],
+      "steps": [
+        "Push the bot to GitHub. Node.js and Python are detected and built automatically; anything else needs a Dockerfile.",
+        "Create the app on Awake, not Nap. Nap would put the bot to sleep after 15 minutes with no web requests, and a bot gets none.",
+        "Put the bot token in the Environment section, never in the repository, and read it from the environment in code.",
+        "A bot has nothing to listen on, so it does not need to bind to the PORT variable the way a web app does.",
+        "Watch Live logs after the first deploy to confirm it logged in, then invite it to a server."
+      ],
+      "cta": "Deploy your Discord bot for free"
+    },
+    {
+      "slug": "telegram-bot",
+      "awakeOnly": true,
+      "title": "Telegram bot",
+      "h1": "Host a Telegram bot 24/7",
+      "meta": "Keep a Telegram bot online 24/7 from GitHub, polling or webhook. Restarts on its own if it crashes. Awake tier, ₹249 a month.",
+      "og": "Host a Telegram bot that never sleeps, from ₹249 a month.",
+      "lede": "A Telegram bot on long polling has to keep asking the Telegram API for updates, which is a process that runs forever rather than one that answers a request and stops. Awake keeps it running continuously, and restarts it on its own if it crashes.",
+      "bullets": [
+        "node-telegram-bot-api, python-telegram-bot, Telegraf, or your own polling loop",
+        "A webhook bot works too: it answers a real HTTPS address we give it",
+        "Awake never sleeps, so long polling never has a gap where updates are missed",
+        "Crashes restart the process automatically, on the same machine, with the same environment",
+        "A database on the same machine for chat state, user data or anything else the bot needs to keep"
+      ],
+      "steps": [
+        "Push the bot to GitHub. Node.js and Python are detected and built automatically; anything else needs a Dockerfile.",
+        "Create the app on Awake, not Nap. A polling bot with nobody visiting it over HTTP looks idle to Nap and would be put to sleep.",
+        "Put the bot token in the Environment section, never in the repository, and read it from the environment in code.",
+        "On long polling there is nothing to bind to PORT; a webhook bot should bind to it and use the app's address as the webhook URL.",
+        "Watch Live logs after the first deploy to confirm it is receiving updates."
+      ],
+      "cta": "Deploy your Telegram bot for free"
+    },
+    {
+      "slug": "flask",
+      "title": "Flask",
+      "h1": "Deploy a Flask project online",
+      "meta": "Host a Flask project online for your viva or portfolio. Automatic builds from requirements.txt, database included, from ₹99 a month.",
+      "og": "Deploy a Flask project online from ₹99 a month, database included.",
+      "lede": "Flask is the framework most college Python projects start in. DormHost installs from requirements.txt, runs it behind gunicorn, and gives it a database on the same machine if the project needs one.",
+      "bullets": [
+        "Detected and built automatically from requirements.txt or pyproject.toml",
+        "Runs behind gunicorn rather than Flask's own development server",
+        "PostgreSQL, MongoDB or MySQL on the same machine, for SQLAlchemy or any other client",
+        "An HTTPS address at yourapp-yourlogin.dormhost.app, or a custom domain through your own Cloudflare"
+      ],
+      "steps": [
+        "Commit requirements.txt with Flask and gunicorn listed. The build installs exactly what is there.",
+        "Bind to the port we set: gunicorn -b 0.0.0.0:$PORT app:app, naming your own module and Flask object.",
+        "Add a database in the Database section and it arrives as DATABASE_URL, ready for SQLAlchemy's create_engine.",
+        "Read secrets with os.environ and set them in the Environment section, never in a config file committed to the repository.",
+        "Set FLASK_DEBUG off, or leave it unset: debug mode in production shows a stack trace, including your source, to anyone who can trigger one."
+      ],
+      "cta": "Deploy your Flask project for free"
+    },
+    {
+      "slug": "spring-boot",
+      "title": "Spring Boot",
+      "h1": "Deploy a Spring Boot project online",
+      "meta": "Host a Java Spring Boot project online for your viva or resume. Automatic Maven or Gradle builds, database included, from ₹99 a month.",
+      "og": "Deploy a Spring Boot project online from ₹99 a month, database included.",
+      "lede": "Java is detected and built automatically, whether the project uses Maven or Gradle, so a Spring Boot application deploys the same way any other repository does: push it, and the build produces a runnable jar.",
+      "bullets": [
+        "Maven (pom.xml) and Gradle (build.gradle) both detected and built automatically",
+        "PostgreSQL, MySQL or MongoDB on the same machine, for Spring Data or your own driver",
+        "The build runs your own mvn or gradle build, so multi-module projects work as they do locally",
+        "An HTTPS address at yourapp-yourlogin.dormhost.app, or a custom domain through your own Cloudflare"
+      ],
+      "steps": [
+        "Commit pom.xml or build.gradle at the repository root. That is what selects the build, not a file extension guess.",
+        "Read the port from the PORT environment variable: server.port=${PORT:8080} in application.properties.",
+        "Add a database in the Database section and read spring.datasource.url from the DATABASE_URL variable we set.",
+        "Move application.properties secrets into the Environment section instead, and reference them the same way.",
+        "A first build compiles the whole project, so expect the first deploy to take longer than a Node.js or Python one."
+      ],
+      "cta": "Deploy your Spring Boot project for free"
     }
   ],
   "compares": [
@@ -857,6 +949,47 @@
         "Open the app a few minutes before you present. A Nap app sleeps after fifteen minutes idle, and this way the panel gets it already awake."
       ],
       "cta": "Deploy your final year project for free"
+    },
+    {
+      "slug": "host-discord-bot",
+      "awakeOnly": true,
+      "title": "How to host your Discord bot 24/7",
+      "date": "2026-08-31",
+      "meta": "Keep a Discord.js or discord.py bot online 24/7 from GitHub, with automatic restarts if it crashes. Awake tier, ₹249 a month.",
+      "lede": "A Discord bot has to be online whenever someone in the server pings it, which rules out the usual student-hosting trick of sleeping when nobody is visiting: nobody visits a bot over HTTP. It needs a plan that never sleeps.",
+      "body": [
+        "That plan is Awake, ₹249 a month, not the ₹99 Nap plan the rest of the site leads with: Nap exists to save money by sleeping between visitors, and a bot has no visitors to sleep between. Awake also restarts the process on its own if it crashes, so one unhandled promise rejection at 2am does not take the bot down until you notice."
+      ],
+      "steps": [
+        "Push the bot to GitHub. Node.js (discord.js) and Python (discord.py) are detected and built automatically.",
+        "Sign in to the dashboard with GitHub, press New app, name it, and choose Awake, not Nap.",
+        "Paste the repository URL and branch, then press Create and deploy.",
+        "Open Environment and add DISCORD_TOKEN (or whatever your code calls it). Read it from the environment, never hard-code it.",
+        "A bot has nothing to listen on, so skip binding to the PORT variable; that step is for web apps.",
+        "Watch Live logs after the first deploy for the client's login confirmation, then invite the bot to a server.",
+        "If it crashes later, Live logs shows the stack trace, and the process restarts on its own without you doing anything."
+      ],
+      "cta": "Deploy your Discord bot for free"
+    },
+    {
+      "slug": "deploy-flask-project",
+      "title": "How to deploy a Flask project for your college viva",
+      "date": "2026-08-31",
+      "meta": "Deploy a Flask project online for a viva or portfolio: install from requirements.txt, run behind gunicorn, database included, from ₹99 a month.",
+      "lede": "Flask ships with its own development server, and the one thing to unlearn before a real deploy is using it: flask run is not meant to serve real traffic, even the traffic of one examiner opening the link during a viva.",
+      "body": [
+        "Hosting is ₹99 a month on Nap, charged in rupees by UPI or card, with unused credit refundable under the refund policy. It sleeps after fifteen minutes idle and wakes on the next visit in about 300 milliseconds, which is worth remembering the moment before a panel opens your link."
+      ],
+      "steps": [
+        "Add gunicorn to requirements.txt alongside Flask. The build installs exactly what is listed there.",
+        "Sign in to the dashboard with GitHub, press New app, name it, choose Nap, and paste the repository URL and branch.",
+        "Set the start command to gunicorn -b 0.0.0.0:$PORT app:app, replacing app:app with your module and Flask object.",
+        "Open Database, add PostgreSQL if the project uses SQLAlchemy, and it arrives as DATABASE_URL.",
+        "Open Environment for a SECRET_KEY or any API keys, read with os.environ, and leave FLASK_DEBUG off.",
+        "Open the app a few minutes before the viva so it is already awake when the panel clicks the link.",
+        "Take a backup from the Backups section the night before, and keep the previous build in Images in case a late change breaks something."
+      ],
+      "cta": "Deploy your Flask project for free"
     }
   ],
   "regions": {

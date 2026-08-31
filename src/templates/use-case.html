@@ -50,6 +50,7 @@
     {{/each}}
   </ol>
 
+  {{#unless awakeOnly}}
   <p>
     Hosting is ₹{{cheapest.monthly}} a month on Nap, all in: the build, the
     running app, the database and the storage. Nothing is metered separately,
@@ -57,6 +58,17 @@
     credit, no card required. The <a href="/docs.html">docs</a> cover databases,
     domains and what to do when a build fails.
   </p>
+  {{/unless}}
+  {{#if awakeOnly}}
+  <p>
+    This needs Awake, ₹{{plansByName.awake.priceMonthly}} a month: it has to
+    stay running, and Nap would put it to sleep after 15 minutes idle. All in:
+    the build, the process, the database and the storage, nothing metered
+    separately. Start with {{trial.days}} days of free credit, no card
+    required. The <a href="/docs.html">docs</a> cover databases, domains and
+    what to do when a build fails.
+  </p>
+  {{/if}}
 </div>
 
 <div class="cta-row">
