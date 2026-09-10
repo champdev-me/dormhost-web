@@ -274,8 +274,8 @@
     "headline": "30 days free, no credit card required",
     "short": "Sign in with GitHub and we put 30 days of Nap credit in your balance.",
     "what": "Signing in with GitHub for the first time puts 30 days of Nap credit in your balance. It is real credit and it is spent the same way as any other: a day at a time, so you can see exactly what your app costs while you try it.",
-    "limits": "Free credit runs one application on the Nap plan. Adding any credit of your own lifts that, and you can then run as many applications as your balance covers, on either plan.",
-    "after": "When the free credit runs out your application is stopped, not deleted. Add credit and it comes back exactly as it was. One free trial per GitHub account.",
+    "limits": "Free credit is not capped to one application. Run as many as your balance covers, on either plan, and each one spends from the same balance a day at a time.",
+    "after": "When the free credit runs out your applications are stopped, not deleted. Add credit and they come back exactly as they were. One free trial per GitHub account.",
     "noCard": "We do not ask for a credit card and there is nothing to cancel."
   },
   "howto": {
@@ -864,10 +864,22 @@
   ],
   "changelog": [
     {
+      "month": "September 2026",
+      "entries": [
+        "Free credit is no longer capped to one app: run as many as your balance covers.",
+        "An app that crashes ten times on one deployment is stopped, with the reason and the last logs on its page, instead of restarting forever.",
+        "Deploy from a subfolder: point an app at any folder inside a monorepo.",
+        "Unzip an upload, or download a whole folder as a .tar.gz, from the file browser.",
+        "/data is writable whatever user your container runs as."
+      ]
+    },
+    {
       "month": "August 2026",
       "entries": [
         "Added Docker deployments: any Dockerfile builds and runs as-is.",
-        "Added a live AI model catalog, with per-request pricing in rupees."
+        "Added a live AI model catalog, with per-request pricing in rupees.",
+        "Always-on apps restart themselves after a crash.",
+        "Free credit spends on any plan, not just Nap."
       ]
     },
     {
