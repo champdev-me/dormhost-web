@@ -75,12 +75,12 @@
         "name": "MySQL"
       },
       {
-        "id":"postgres",
-        "name":"PostgreSQL & PGVector"
+        "id": "postgres",
+        "name": "PostgreSQL & PGVector"
       },
       {
-        "id":"mongo",
-        "name":"MongoDB"
+        "id": "mongo",
+        "name": "MongoDB"
       }
     ],
     "note": "We read your repository and work out how to build it. If your language is not on that list, or you want the build done your way, add a Dockerfile and we build that instead. Rust, Elixir, Deno, Bun, C++, anything that starts and listens on a port."
@@ -322,6 +322,10 @@
       {
         "title": "Or run WordPress instead",
         "text": "Choose WordPress on the create form and there is no repository at all. We run it, create its MySQL, finish the install and show you the admin password on the app page, where you can also reset it."
+      },
+      {
+        "title": "Add Redis for queues and caching",
+        "text": "Choose Redis on the create form to run one of your own. Your other applications in the same region reach it at REDIS_URL automatically, with no host, username or password to copy. It has to be on the Awake plan, because Redis does not speak HTTP and a sleeping one could never be woken by a request."
       },
       {
         "title": "Roll back, and take a backup",
@@ -866,6 +870,7 @@
     {
       "month": "September 2026",
       "entries": [
+        "Redis, as a one-click app. Your other apps in the same region get REDIS_URL automatically.",
         "Free credit is no longer capped to one app: run as many as your balance covers.",
         "An app that crashes ten times on one deployment is stopped, with the reason and the last logs on its page, instead of restarting forever.",
         "Set a start command in Settings, for an image that does not start your app on its own.",
