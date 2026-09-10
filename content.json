@@ -81,6 +81,10 @@
       {
         "id": "mongo",
         "name": "MongoDB"
+      },
+      {
+        "id": "redis",
+        "name": "Redis"
       }
     ],
     "note": "We read your repository and work out how to build it. If your language is not on that list, or you want the build done your way, add a Dockerfile and we build that instead. Rust, Elixir, Deno, Bun, C++, anything that starts and listens on a port."
