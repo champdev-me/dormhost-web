@@ -868,6 +868,8 @@
       "entries": [
         "Free credit is no longer capped to one app: run as many as your balance covers.",
         "An app that crashes ten times on one deployment is stopped, with the reason and the last logs on its page, instead of restarting forever.",
+        "Set a start command in Settings, for an image that does not start your app on its own.",
+        "A build now fails, with the reason, when the image it produced would not start anything.",
         "Deploy from a subfolder: point an app at any folder inside a monorepo.",
         "Unzip an upload, or download a whole folder as a .tar.gz, from the file browser.",
         "/data is writable whatever user your container runs as."
