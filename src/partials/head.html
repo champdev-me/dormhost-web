@@ -19,3 +19,27 @@
 <script type="application/ld+json">{{{jsonld.organization}}}</script>
 <script type="application/ld+json">{{{jsonld.website}}}</script>
 <script type="application/ld+json">{{{jsonld.navigation}}}</script>
+
+<!-- First-party attribution. Records where a visitor arrived from, once, in a
+     cookie on .dormhost.dev so the dashboard can read it at sign-up: the hop
+     to dash.dormhost.dev loses the original referrer otherwise. First touch
+     wins, so a later visit does not overwrite what brought them originally.
+     No third party, no id, nothing that identifies a person. -->
+<script>
+(function () {
+  try {
+    var KEY = 'dh_attr';
+    if (document.cookie.indexOf(KEY + '=') !== -1) return;
+    var q = new URLSearchParams(location.search);
+    var ref = document.referrer || '';
+    var host = '';
+    try { host = ref ? new URL(ref).hostname.replace(/^www\./, '') : ''; } catch (e) {}
+    // Arriving from one of our own pages is not a source.
+    if (host && host.indexOf('dormhost.') !== -1) return;
+    var source = q.get('utm_source') || host || 'direct';
+    var value = JSON.stringify({ s: source.slice(0, 60), r: ref.slice(0, 300) });
+    document.cookie = KEY + '=' + encodeURIComponent(value) +
+      ';path=/;domain=.dormhost.dev;max-age=7776000;samesite=lax;secure';
+  } catch (e) {}
+})();
+</script>
