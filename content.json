@@ -11,6 +11,40 @@
     "lastmod": "2026-08-08",
     "locale": "en_IN"
   },
+  "nav": [
+    {
+      "name": "Features",
+      "href": "/features.html"
+    },
+    {
+      "name": "Pricing",
+      "href": "/pricing.html"
+    },
+    {
+      "name": "AI",
+      "href": "/ai.html"
+    },
+    {
+      "name": "Docs",
+      "href": "/docs.html"
+    },
+    {
+      "name": "Student projects",
+      "href": "/students.html"
+    },
+    {
+      "name": "Blog",
+      "href": "/blog.html"
+    },
+    {
+      "name": "About",
+      "href": "/about.html"
+    },
+    {
+      "name": "Contact",
+      "href": "/contact.html"
+    }
+  ],
   "databases": {
     "list": [
       {

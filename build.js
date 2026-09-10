@@ -295,6 +295,22 @@ function derive(c) {
       url: c.site.url,
     }),
 
+    // The site's own sections, named for a crawler rather than inferred from
+    // link soup. Built from the same content.json nav the header renders, so
+    // the two cannot disagree. Sitelinks stay algorithmic: this is a signal
+    // about structure, not a request, and headings are not the lever for it.
+    navigation: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: `${c.site.name} sections`,
+      itemListElement: c.nav.map((item, i) => ({
+        '@type': 'SiteNavigationElement',
+        position: i + 1,
+        name: item.name,
+        url: `${c.site.url}${item.href}`,
+      })),
+    }),
+
     organization: JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'Organization',
