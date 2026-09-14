@@ -154,7 +154,7 @@
     }
   },
   "policies": {
-    "updated": "6 August 2026",
+    "updated": "14 September 2026",
     "effective": "6 August 2026",
     "refund": {
       "minAgeDays": 7,
@@ -175,7 +175,13 @@
     "idleMinutes": 15,
     "wakeMs": 300,
     "trialRetentionDays": 7,
-    "retentionNote": "If your balance runs out we keep everything for 30 days, or 7 days if you have never added credit of your own. We email you before anything is deleted, and adding credit at any point stops it."
+    "retentionNote": "If your balance runs out we keep everything for 30 days, or 7 days if you have never added credit of your own. We email you before anything is deleted, and adding credit at any point stops it.",
+    "pause": {
+      "freeDaysPaid": 15,
+      "freeDaysNeverPaid": 7,
+      "from": "14 October 2026",
+      "text": "Turning an application off, or having it stopped after repeated crashes, pauses it. From 14 October 2026, a paused application is free for 15 days each calendar month on an account that has added credit of its own, or 7 days on free credit alone. After that it is charged at its plan's daily rate while it stays paused, because its files, database and address still take up space. Turning it on and off again does not reset the allowance. If the balance cannot cover it, the application is treated like any other unpaid one under the retention rules above."
+    }
   },
   "payments": {
     "gateway": "PayU",
@@ -908,6 +914,7 @@
     {
       "month": "September 2026",
       "entries": [
+        "From 14 October, a paused app is free for 15 days a month (7 on free credit), then billed at its plan's daily rate.",
         "Redis, as a one-click app. Your other apps in the same region get REDIS_URL automatically.",
         "Free credit is no longer capped to one app: run as many as your balance covers.",
         "An app that crashes ten times on one deployment is stopped, with the reason and the last logs on its page, instead of restarting forever.",
