@@ -914,6 +914,7 @@
     {
       "month": "September 2026",
       "entries": [
+        "Top-ups ask for your billing country, and for the address on your card when it is not an Indian one. Cards issued abroad are refused without it.",
         "Sign in with your email: we send a link, you click it, you are in. No password, and it works for a new account too.",
         "From 14 October, a paused app is free for 15 days a month (7 on free credit), then billed at its plan's daily rate.",
         "Redis, as a one-click app. Your other apps in the same region get REDIS_URL automatically.",
