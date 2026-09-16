@@ -316,17 +316,17 @@
   "trial": {
     "days": 30,
     "headline": "30 days free, no credit card required",
-    "short": "Sign in with GitHub and we put 30 days of Nap credit in your balance.",
-    "what": "Signing in with GitHub for the first time puts 30 days of Nap credit in your balance. It is real credit and it is spent the same way as any other: a day at a time, so you can see exactly what your app costs while you try it.",
+    "short": "Sign in with your email, GitHub or Google and we put 30 days of Nap credit in your balance.",
+    "what": "Signing in for the first time puts 30 days of Nap credit in your balance. It is real credit and it is spent the same way as any other: a day at a time, so you can see exactly what your app costs while you try it.",
     "limits": "Free credit is not capped to one application. Run as many as your balance covers, on either plan, and each one spends from the same balance a day at a time.",
-    "after": "When the free credit runs out your applications are stopped, not deleted. Add credit and they come back exactly as they were. One free trial per GitHub account.",
+    "after": "When the free credit runs out your applications are stopped, not deleted. Add credit and they come back exactly as they were. One free trial per account.",
     "noCard": "We do not ask for a credit card and there is nothing to cancel."
   },
   "howto": {
     "_readme": "The dashboard procedure, written once. Every step names a control that exists in the dashboard today. If the dashboard changes, change it here and every page follows.",
     "quickstart": [
       {
-        "title": "Sign in with GitHub",
+        "title": "Sign in",
         "text": "Go to the dashboard and sign in. Your first sign-in puts 30 days of Nap credit in your balance, with no card and nothing to cancel."
       },
       {
@@ -914,6 +914,7 @@
     {
       "month": "September 2026",
       "entries": [
+        "Sign in with your email: we send a link, you click it, you are in. No password, and it works for a new account too.",
         "From 14 October, a paused app is free for 15 days a month (7 on free credit), then billed at its plan's daily rate.",
         "Redis, as a one-click app. Your other apps in the same region get REDIS_URL automatically.",
         "Free credit is no longer capped to one app: run as many as your balance covers.",
@@ -965,7 +966,7 @@
       "steps": [
         "Change one line before you start: app.listen(process.env.PORT || 3000). A hard-coded port builds cleanly and then answers nothing.",
         "Make the root build script build React into the folder Express serves, so npm run build produces the whole application.",
-        "Sign in to the dashboard with GitHub, press New app, and name it. The address under the field is the one you will share.",
+        "Sign in to the dashboard, press New app, and name it. The address under the field is the one you will share.",
         "Choose Nap, paste the repository URL and branch, and press Create and deploy. Press Connect GitHub first if the repository is private.",
         "Open Database, choose MongoDB, and press Add a database. It appears in the app as MONGODB_URI, so read that instead of a localhost string.",
         "Open Environment and add your JWT secret and any API keys. Saving restarts the app with them.",
@@ -985,7 +986,7 @@
       "steps": [
         "Commit requirements.txt or pyproject.toml. The build installs from it, so anything missing there is missing in production.",
         "Bind to 0.0.0.0 and the PORT variable: uvicorn main:app --host 0.0.0.0 --port $PORT for FastAPI, gunicorn app:app --bind 0.0.0.0:$PORT for Flask.",
-        "Sign in to the dashboard with GitHub, press New app, name it, and pick Nap. Awake is for bots, scrapers and scheduled work.",
+        "Sign in to the dashboard, press New app, name it, and pick Nap. Awake is for bots, scrapers and scheduled work.",
         "Paste the repository URL and branch, then press Create and deploy. Live logs shows the pip install and the start command as they run.",
         "Open Database, choose PostgreSQL, and press Add a database. It arrives as DATABASE_URL with pgvector already enabled, which is what an embeddings project needs.",
         "Open Environment for your API keys and read them with os.environ. Saving restarts the app.",
@@ -1003,7 +1004,7 @@
         "Hosting is ₹99 a month on Nap, charged in rupees by UPI or card, and unused credit is refundable under the refund policy. A semester of it costs less than the printing bill for the report."
       ],
       "steps": [
-        "Sign in to the dashboard with GitHub. The first sign-in puts 30 days of credit in your balance, with no card, which is enough to rehearse the demo.",
+        "Sign in to the dashboard. The first sign-in puts 30 days of credit in your balance, with no card, which is enough to rehearse the demo.",
         "Push the project to GitHub. Node.js, Python, Go, Java, Ruby, PHP and .NET are detected automatically; anything else needs a Dockerfile in the repository root.",
         "Press New app, name it, choose Nap, and paste the repository URL and branch. The address shown under the name field is what goes in your report.",
         "Press Create and deploy, then watch Live logs. Your app has to listen on the port in the PORT variable, which is the usual reason a first deploy answers nothing.",
@@ -1026,7 +1027,7 @@
       ],
       "steps": [
         "Push the bot to GitHub. Node.js (discord.js) and Python (discord.py) are detected and built automatically.",
-        "Sign in to the dashboard with GitHub, press New app, name it, and choose Awake, not Nap.",
+        "Sign in to the dashboard, press New app, name it, and choose Awake, not Nap.",
         "Paste the repository URL and branch, then press Create and deploy.",
         "Open Environment and add DISCORD_TOKEN (or whatever your code calls it). Read it from the environment, never hard-code it.",
         "A bot has nothing to listen on, so skip binding to the PORT variable; that step is for web apps.",
@@ -1046,7 +1047,7 @@
       ],
       "steps": [
         "Add gunicorn to requirements.txt alongside Flask. The build installs exactly what is listed there.",
-        "Sign in to the dashboard with GitHub, press New app, name it, choose Nap, and paste the repository URL and branch.",
+        "Sign in to the dashboard, press New app, name it, choose Nap, and paste the repository URL and branch.",
         "Set the start command to gunicorn -b 0.0.0.0:$PORT app:app, replacing app:app with your module and Flask object.",
         "Open Database, add PostgreSQL if the project uses SQLAlchemy, and it arrives as DATABASE_URL.",
         "Open Environment for a SECRET_KEY or any API keys, read with os.environ, and leave FLASK_DEBUG off.",
