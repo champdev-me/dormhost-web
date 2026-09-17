@@ -184,13 +184,13 @@
     }
   },
   "payments": {
-    "gateway": "PayU",
+    "gateway": "Cashfree",
     "methods": "UPI, debit card, credit card and net banking",
-    "methodsIntl": "Visa, Mastercard and American Express, charged in Indian Rupees",
+    "methodsIntl": "PayPal, charged in US dollars",
     "currency": "INR",
-    "currencyNote": "Everything is priced and charged in Indian Rupees (INR, ₹), wherever you are. An international card works: your bank converts the rupee amount at its own rate and may add a foreign transaction fee, so the figure on your statement will be close to, but not exactly, the dollar approximation shown here.",
-    "currencyShort": "Priced and charged in ₹, wherever you are",
-    "fxNote": "The dollar figures on this site are an approximation, to give an idea of the price. The amount charged is always the rupee one.",
+    "currencyNote": "Everything is priced in Indian Rupees (INR, ₹), wherever you are. From outside India, pay with PayPal: it charges the rupee price in US dollars at its own rate, including a conversion fee, and your balance is topped up in rupees. PayPal payments start at ₹199, and cards issued outside India are not accepted yet.",
+    "currencyShort": "Priced in ₹, wherever you are",
+    "fxNote": "What you pay is the rupee price, or PayPal's conversion of it. The dollar figures on this site are an approximation, to give an idea of the price.",
     "fxRate": 87,
     "fxReviewed": "6 August 2026"
   },
@@ -914,7 +914,7 @@
     {
       "month": "September 2026",
       "entries": [
-        "Top-ups ask for your billing country, so a card issued outside India gets the phone number format its bank expects. Adding the card's billing address is optional and improves the odds it goes through.",
+        "Paying from outside India: choose PayPal at checkout. It charges in US dollars, your balance is topped up in rupees, and the smallest payment is ₹199.",
         "Sign in with your email: we send a link, you click it, you are in. No password, and it works for a new account too.",
         "From 14 October, a paused app is free for 15 days a month (7 on free credit), then billed at its plan's daily rate.",
         "Redis, as a one-click app. Your other apps in the same region get REDIS_URL automatically.",
