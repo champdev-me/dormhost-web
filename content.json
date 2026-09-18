@@ -914,6 +914,7 @@
     {
       "month": "September 2026",
       "entries": [
+        "The repository you give when you create an app is kept on the app: it shows on the app page, you can change the branch or root folder later, and a push redeploys.",
         "Paying from outside India: choose PayPal at checkout. It charges in US dollars, your balance is topped up in rupees, and the smallest payment is ₹199.",
         "Sign in with your email: we send a link, you click it, you are in. No password, and it works for a new account too.",
         "From 14 October, a paused app is free for 15 days a month (7 on free credit), then billed at its plan's daily rate.",
