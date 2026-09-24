@@ -914,6 +914,8 @@
     {
       "month": "September 2026",
       "entries": [
+        "A build that cannot read your repository now says so in plain words, instead of printing git's own complaint about a username prompt.",
+        "Connecting GitHub while you are signed in now links it to that account. It used to match on your email address, which made a second, empty account when your GitHub address differed.",
         "The repository you give when you create an app is kept on the app: it shows on the app page, you can change the branch or root folder later, and a push redeploys.",
         "Paying from outside India: choose PayPal at checkout. It charges in US dollars, your balance is topped up in rupees, and the smallest payment is ₹199.",
         "Sign in with your email: we send a link, you click it, you are in. No password, and it works for a new account too.",
