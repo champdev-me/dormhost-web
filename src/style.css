@@ -1,25 +1,25 @@
-/* DormHost: night and lamp.
-   Indigo is a sleeping app; amber is a woken one. Every accent decision
-   descends from that pair, because it is the mechanic the price rests on. */
+/* DormHost: night and lamp. The whole site is the night; amber is the one lit
+   window, so it is kept for calls to action and things that are switched on. */
 :root {
+  color-scheme: dark;
   --night:      #161A38;
   --night-deep: #10132B;
   --night-soft: #232948;
   --lamp:       #E8963A;
   --lamp-lit:   #F9CE87;
   --lamp-dim:   #8A6033;
-  --lamp-wash:  #FDF3E6;
-  --lamp-edge:  #F1DBB8;
-  --paper:      #F3F5FA;
-  --surface:    #FFFFFF;
-  --ink:        #171A2B;
-  --muted:      #5B6379;
-  --faint:      #8B93A6;
-  --rule:       #DFE3EC;
-  --live:       #1F8A62;
-  --danger:     #B4443B;
+  --lamp-wash:  #17141F;
+  --lamp-edge:  #5A3F22;
+  --paper:      #090B1A;
+  --surface:    #10132A;
+  --ink:        #ECEEF7;
+  --muted:      #9AA1C2;
+  --faint:      #7C84AC;
+  --rule:       #1E2340;
+  --rule-2:     #2C3357;
+  --live:       #4CC38A;
+  --danger:     #E06C62;
 
-  /* On the dark band, where --muted and --faint have no contrast. */
   --on-night:      #C7CCE4;
   --on-night-dim:  #98A0C4;
   --on-night-rule: #2C3357;
@@ -52,7 +52,7 @@ body {
   padding-left: 1.5rem; padding-right: 1.5rem;
 }
 
-a { color: var(--ink); text-decoration-color: var(--rule); text-underline-offset: .2em; }
+a { color: var(--ink); text-decoration-color: var(--rule-2); text-underline-offset: .2em; }
 a:hover { text-decoration-color: var(--lamp); }
 :focus-visible { outline: 2px solid var(--lamp); outline-offset: 3px; border-radius: 2px; }
 
@@ -64,7 +64,7 @@ p  { margin: 0 0 1rem; }
 
 code {
   font-family: var(--mono); font-size: .88em;
-  background: rgba(22,26,56,.055); border-radius: 3px; padding: .1em .32em;
+  background: rgba(255,255,255,.07); border-radius: 3px; padding: .1em .32em;
 }
 
 .eyebrow {
@@ -88,198 +88,243 @@ code {
 .nav-links { display: flex; align-items: center; gap: .9rem; font-size: .93rem; flex-wrap: wrap; }
 @media (min-width: 34rem) { .nav-links { gap: 1.4rem; } }
 .nav-links a { text-decoration: none; color: var(--muted); }
-/* The only way into the product from here. Lamp rather than night, so it reads
-   as a way in without competing with the hero's dark button. */
+/* Outlined, so it does not compete with the solid lamp button in the hero. */
 .nav-cta {
   display: inline-flex; align-items: center; line-height: 1.35;
-  color: var(--night) !important; font-weight: 650;
-  border: 1px solid rgba(232,150,58,.55); border-radius: 999px;
+  color: var(--ink) !important; font-weight: 650;
+  border: 1px solid var(--rule-2); border-radius: 999px;
   padding: .34rem .9rem;
-  background: linear-gradient(180deg, #FEF6EA, #FBE7CB);
-  box-shadow: 0 1px 0 rgba(232,150,58,.2);
-  transition: background .15s ease, box-shadow .15s ease, transform .15s ease;
+  transition: border-color .15s ease, box-shadow .15s ease;
 }
-.nav-cta:hover {
-  border-color: var(--lamp);
-  background: linear-gradient(180deg, #FBE7CB, #F7D5A6);
-  box-shadow: 0 3px 10px rgba(232,150,58,.26);
-  transform: translateY(-1px);
-}
-@media (prefers-reduced-motion: reduce) { .nav-cta:hover { transform: none; } }
+.nav-cta:hover { border-color: var(--lamp); box-shadow: 0 0 18px -4px rgba(232,150,58,.5); }
 .nav-links a:hover { color: var(--ink); }
 
-/* ---------------------------------------------------------------- hero */
-.hero { padding-top: 2.25rem; padding-bottom: 3rem; }
-.hero-grid { display: grid; gap: 2.5rem; grid-template-columns: 1fr; align-items: center; }
-@media (min-width: 62rem) { .hero-grid { grid-template-columns: 1.05fr .95fr; gap: 3.5rem; } }
-
-.hero p.lead { font-size: 1.16rem; color: var(--muted); max-width: 34rem; margin-top: 1.2rem; }
-.price-line { display: flex; align-items: baseline; flex-wrap: wrap; gap: .3rem .6rem; margin: 1.8rem 0 .3rem; }
-.price-alt {
-  font-family: var(--mono); font-size: .88rem; color: var(--faint);
-  padding-left: .6rem; border-left: 1px solid var(--rule);
-}
-.price {
-  font-family: var(--mono); font-size: clamp(2.6rem, 7vw, 3.6rem);
-  font-weight: 700; letter-spacing: -.04em; font-variant-numeric: tabular-nums;
-}
-.price-unit { color: var(--muted); font-size: 1rem; }
-.price-note { color: var(--faint); font-size: .9rem; margin: 0; max-width: 30rem; }
-
-/* The objection most students have is the card, so it gets a badge rather
-   than a footnote. */
-.no-card {
-  display: inline-flex; align-items: center; gap: .45rem;
-  margin: 1rem 0 .6rem; padding: .4rem .85rem .4rem .62rem;
-  background: var(--night); color: #fff; border-radius: 999px;
-  font-size: .85rem; font-weight: 650; letter-spacing: -.005em;
-}
-.no-card-icon { width: 1.05rem; height: 1.05rem; color: var(--lamp); flex: none; }
-
+/* ---------------------------------------------------------------- controls */
 .cta-row { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.6rem; }
 
-/* The languages, named. "Any language" is the promise; these are the words
-   people actually type into a search box. */
-.runtimes { margin-top: 1.8rem; padding-top: 1.2rem; border-top: 1px solid var(--rule); }
-.runtimes-label {
-  display: flex; align-items: center; gap: .45rem; margin: 0 0 .7rem;
-  font-family: var(--mono); font-size: .7rem; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--faint);
-}
-.runtimes-icon { width: 1rem; height: 1rem; flex: none; color: var(--lamp); }
-.runtime-list, .chip-list { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; margin: 0; padding: 0; }
-.runtime-list li, .chip-list li {
-  display: inline-flex; align-items: center; gap: .38rem;
-  font-size: .84rem; color: var(--muted); background: var(--surface);
-  border: 1px solid var(--rule); border-radius: 999px; padding: .18rem .7rem;
+.chip-list { display: flex; flex-wrap: wrap; gap: .45rem; list-style: none; margin: .85rem 0 1.5rem; padding: 0; }
+.chip-list li {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .86rem; color: var(--on-night); background: var(--surface);
+  border: 1px solid var(--rule-2); border-radius: 999px; padding: .3rem .85rem;
 }
 /* The narrower left gutter is for the icon, so a text-only chip keeps both. */
-.runtime-list li:has(.chip-icon),
-.chip-list li:has(.chip-icon) { padding-left: .5rem; }
-/* Scoped, not !important: the `li` selectors above already outrank a bare class. */
-.runtime-list .runtime-more,
+.chip-list li:has(.chip-icon) { padding-left: .6rem; }
+/* Scoped, not !important: the `li` selector above already outranks a bare class. */
 .chip-list .runtime-more { color: var(--faint); border-style: dashed; }
-/* The marks are in their own colours, so they carry no currentColor. */
-.chip-icon { width: 1rem; height: 1rem; flex: none; }
-/* The hero row sits under its own label; these follow a paragraph. */
-.chip-list { margin: .85rem 0 1.5rem; }
-.btn {
-  display: inline-block; padding: .78rem 1.5rem; border-radius: 6px;
-  font-weight: 650; font-size: .96rem; text-decoration: none; border: 1px solid transparent;
-  transition: transform .12s ease, background .12s ease;
+/* Monochrome on the night so the dark marks stay visible; hover shows their colours. */
+.chip-icon {
+  width: 1rem; height: 1rem; flex: none;
+  filter: grayscale(1) brightness(1.9) contrast(.8); opacity: .7; transition: filter .2s, opacity .2s;
 }
-.btn-primary { background: var(--night); color: #fff; }
-.btn-primary:hover { background: var(--night-deep); transform: translateY(-1px); }
-.btn-ghost { border-color: var(--rule); color: var(--ink); background: var(--surface); }
-.btn-ghost:hover { border-color: var(--night); }
+li:hover > .chip-icon { filter: none; opacity: 1; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem; padding: .8rem 1.4rem; border-radius: 999px;
+  font-weight: 650; font-size: .96rem; text-decoration: none; border: 1px solid transparent;
+  transition: transform .12s ease, background .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.btn-primary { background: var(--lamp); color: #140F22; }
+.btn-primary:hover { background: var(--lamp-lit); box-shadow: 0 8px 30px -8px rgba(232,150,58,.6); transform: translateY(-1px); }
+.btn-ghost { border-color: var(--rule-2); color: var(--ink); }
+.btn-ghost:hover { border-color: var(--muted); }
 @media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn:hover { transform: none; } }
 
-/* -------------------------------------------------- the window (signature) */
-.window {
-  position: relative; background: var(--night); border-radius: 12px; padding: 1.6rem;
-  box-shadow: 0 24px 60px -30px rgba(16,19,43,.6);
-}
-.window-label {
-  font-family: var(--mono); font-size: .7rem; letter-spacing: .14em;
-  text-transform: uppercase; color: #6E77A0; margin-bottom: 1rem;
-}
-.panes { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; }
-/* Dark glass, not an empty box: a graded pane plus one diagonal reflection is
-   what makes the asleep state read as a window you could look through. */
-.pane {
-  aspect-ratio: 3 / 4; border-radius: 5px; position: relative; overflow: hidden;
-  background: linear-gradient(158deg, #2E3560 0%, #1C2147 54%, #262C4E 100%);
-  border: 1px solid #343C69;
-  transition: background .5s ease, box-shadow .5s ease, border-color .5s ease;
-}
-.pane { display: grid; place-items: center; }
-.pane::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(118deg, rgba(255,255,255,.075) 0 34%, rgba(255,255,255,0) 34%);
-}
-.pane-icon {
-  position: relative; z-index: 1; /* above the glass reflection */
-  width: 52%; max-width: 2.3rem; height: auto; aspect-ratio: 1;
-  color: #626DA8; transition: color .5s ease;
-}
-.pane.lit .pane-icon { color: #7C4A11; animation: pane-wake .42s ease both; }
-@keyframes pane-wake {
-  0%   { transform: scale(.72); opacity: .35; }
-  62%  { transform: scale(1.09); opacity: 1; }
-  100% { transform: scale(1); opacity: 1; }
-}
+.dot { width: .5rem; height: .5rem; border-radius: 50%; background: #4B5480; flex: none; }
+.dot.ok { background: var(--live); box-shadow: 0 0 0 3px rgba(76,195,138,.2); }
+.dot.bad { background: var(--danger); box-shadow: 0 0 0 3px rgba(224,108,98,.2); }
+.dot.unknown { background: var(--faint); }
 
-/* Asleep, the window snores. It is the one bit of whimsy on the page and it
-   stops the idle state looking like a loading failure. */
-.zzz {
-  position: absolute; top: 1.15rem; right: 1.5rem;
-  display: flex; align-items: flex-end; gap: .12rem;
-  font-family: var(--mono); color: var(--lamp); line-height: 1;
-  transition: opacity .3s ease;
+/* ---------------------------------------------------------------- home hero */
+/* One window switches on and lights the headline. CSS only, so the page is
+   whole with scripts off and for crawlers. */
+.lamp-hero { position: relative; overflow: hidden; text-align: center; padding-top: 1rem; padding-bottom: 5rem; }
+.lamp-cone {
+  position: absolute; left: 50%; top: 8.25rem; width: min(62rem, 220vw); height: 36rem;
+  transform: translateX(-50%); pointer-events: none;
+  background: linear-gradient(180deg, rgba(232,150,58,.2), rgba(232,150,58,0) 85%);
+  clip-path: polygon(44.5% 0, 55.5% 0, 100% 100%, 0 100%);
+  animation: cone-on 1.4s .5s ease-out both;
 }
-.zzz span { opacity: 0; animation: snore 3.2s ease-in-out infinite; }
-.zzz span:nth-child(1) { font-size: .68rem; animation-delay: 0s; }
-.zzz span:nth-child(2) { font-size: .84rem; animation-delay: .38s; }
-.zzz span:nth-child(3) { font-size: 1rem; animation-delay: .76s; }
-@keyframes snore {
-  0%   { opacity: 0; transform: translate(0, 5px); }
-  22%  { opacity: .9; }
-  65%  { opacity: .45; transform: translate(3px, -7px); }
-  100% { opacity: 0; transform: translate(6px, -14px); }
+.lamp-win {
+  --lit: linear-gradient(180deg, #FFE1AA, var(--lamp));
+  --glow: 0 0 60px 6px rgba(232,150,58,.45), 0 0 160px 30px rgba(232,150,58,.16);
+  position: relative; margin: 2.5rem auto 0; width: 5.75rem; height: 5.75rem; border-radius: .65rem;
+  background: var(--lit); box-shadow: var(--glow);
+  animation: switch-on 1s .1s steps(1, end) both, breathe 6s 2s ease-in-out infinite;
 }
-.window.awake .zzz { opacity: 0; }
-.pane.lit {
-  background: linear-gradient(180deg, #F9CE87 0%, var(--lamp) 100%);
-  border-color: var(--lamp);
-  box-shadow: 0 0 26px -4px rgba(232,150,58,.55);
+.lamp-win::before, .lamp-win::after { content: ""; position: absolute; background: var(--paper); }
+.lamp-win::before { left: 50%; top: 0; bottom: 0; width: .5rem; transform: translateX(-50%); }
+.lamp-win::after { top: 50%; left: 0; right: 0; height: .5rem; transform: translateY(-50%); }
+/* A tube catching: off, a flicker, off, on. */
+@keyframes switch-on {
+  0%   { background: var(--night); box-shadow: none; }
+  38%  { background: var(--lit); box-shadow: 0 0 40px 2px rgba(232,150,58,.35); }
+  46%  { background: var(--night); box-shadow: none; }
+  58%, 100% { background: var(--lit); box-shadow: var(--glow); }
 }
+@keyframes breathe {
+  0%, 100% { box-shadow: var(--glow); }
+  50%      { box-shadow: 0 0 72px 10px rgba(232,150,58,.55), 0 0 200px 44px rgba(232,150,58,.2); }
+}
+@keyframes cone-on { from { opacity: 0; } to { opacity: 1; } }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 
-/* The sill catches the light when the app wakes, the same way it does in the
-   logo. Asleep it is just the ledge the window sits on. */
-.sill {
-  position: relative; height: .5rem; margin-top: .9rem; border-radius: 3px;
-  background: #262C4E; border: 1px solid #343C69;
-  transition: background .5s ease, border-color .5s ease;
+.lamp-inner { position: relative; }
+.lamp-inner > * { animation: rise .7s .25s ease-out both; }
+.lamp-inner > :nth-child(2) { animation-delay: .32s; }
+.lamp-inner > :nth-child(3) { animation-delay: .42s; }
+.lamp-inner > :nth-child(4) { animation-delay: .52s; }
+.lamp-inner > :nth-child(5) { animation-delay: .6s; }
+.lamp-inner > :nth-child(6) { animation-delay: .7s; }
+.lamp-hero .eyebrow { margin: 4rem 0 0; }
+.lamp-hero h1 { font-size: clamp(2.6rem, 9vw, 5.25rem); line-height: .98; letter-spacing: -.05em; margin: 1.1rem auto 0; max-width: 12ch; }
+.lamp-hero .lead { font-size: clamp(1.05rem, 2.4vw, 1.2rem); color: var(--muted); max-width: 34rem; margin: 1.4rem auto 0; }
+.lamp-hero .cta-row { justify-content: center; margin-top: 2.1rem; }
+.lamp-fine { margin: 1rem 0 0; font-size: .84rem; color: var(--faint); }
+.lamp-fine b { font-family: var(--mono); color: var(--lamp-lit); font-weight: 600; }
+.stack {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem 1.15rem;
+  list-style: none; margin: 3.5rem auto 0; padding: 0; max-width: 44rem; font-size: .82rem; color: var(--faint);
 }
-.sill .spill {
-  position: absolute; left: 0; right: 0; top: 100%; height: 2.4rem;
-  background: linear-gradient(180deg, rgba(232,150,58,.32), rgba(232,150,58,0));
-  clip-path: polygon(14% 0, 86% 0, 100% 100%, 0 100%);
-  opacity: 0; transition: opacity .5s ease; pointer-events: none;
-}
-.sill.lit {
-  background: linear-gradient(90deg, #8A6033 0%, #F9CE87 50%, #8A6033 100%);
-  border-color: var(--lamp);
-}
-.sill.lit .spill { opacity: 1; }
+.stack li { display: inline-flex; align-items: center; gap: .45rem; }
+.stack li:hover { color: var(--ink); }
 
 @media (prefers-reduced-motion: reduce) {
-  .pane, .sill, .sill .spill, .pane-icon, .zzz { transition: none; }
-  .pane.lit .pane-icon { animation: none; }
-  .zzz span { animation: none; opacity: .6; }
+  .lamp-cone, .lamp-win, .lamp-inner > * { animation: none; }
 }
 
-.window-readout {
-  position: relative; z-index: 1; /* above the light spilling off the sill */
-  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
-  gap: .6rem 1rem; margin-top: 1.6rem; padding-top: 1rem; border-top: 1px solid var(--on-night-rule);
-  font-family: var(--mono); font-size: .82rem; color: var(--on-night-dim);
+/* ---------------------------------------------------------------- home sections */
+.sec { padding-top: 5rem; padding-bottom: 5rem; border-top: 1px solid var(--rule); }
+@media (min-width: 48rem) { .sec { padding-top: 7rem; padding-bottom: 7rem; } }
+.sec h2 { font-size: clamp(2rem, 4.6vw, 2.9rem); letter-spacing: -.04em; line-height: 1.05; margin-top: .9rem; max-width: 20ch; }
+.sec-sub { color: var(--muted); font-size: 1.05rem; margin: 1rem 0 0; max-width: 34rem; }
+/* min-width: 0 on the children: a grid item defaults to min-width auto, and the
+   terminal's long URL would otherwise push the page sideways. */
+.split { display: grid; gap: 2.5rem; }
+.split > * { min-width: 0; }
+@media (min-width: 58rem) { .split { grid-template-columns: 19rem 1fr; gap: 4rem; align-items: start; } }
+.plan-specs li::before, .also li::before {
+  content: ""; display: inline-block; width: .32rem; height: .32rem; border-radius: 1px;
+  background: var(--lamp); margin-right: .55rem; vertical-align: .15em;
 }
-.readout-state { display: inline-flex; align-items: center; gap: .45rem; }
-.dot { width: .5rem; height: .5rem; border-radius: 50%; background: #4B5480; flex: none; }
-.dot.awake { background: var(--live); box-shadow: 0 0 0 3px rgba(31,138,98,.22); }
-.dot.ok { background: var(--live); box-shadow: 0 0 0 3px rgba(31,138,98,.22); }
-.dot.bad { background: var(--danger); box-shadow: 0 0 0 3px rgba(180,68,59,.22); }
-.dot.unknown { background: var(--faint); }
-.ms { color: #fff; font-variant-numeric: tabular-nums; }
-.window button {
-  font: inherit; font-family: var(--mono); font-size: .8rem;
-  background: transparent; color: var(--lamp); border: 1px solid var(--lamp-dim);
-  border-radius: 5px; padding: .4rem .85rem; cursor: pointer;
+
+/* Repo in, site out: the steps light up as the terminal reaches them. */
+.lit-steps { list-style: none; margin: 2.5rem 0 0; padding: 0; position: relative; }
+.lit-steps::before { content: ""; position: absolute; left: 6px; top: .6rem; bottom: 2.4rem; width: 1px; background: var(--rule-2); }
+.lit-steps li { position: relative; padding: 0 0 1.8rem 2.1rem; }
+.lit-steps li::before {
+  content: ""; position: absolute; left: 0; top: .35rem; width: 13px; height: 13px; border-radius: 50%;
+  background: var(--lamp); border: 1px solid var(--lamp); transition: background .3s, border-color .3s, box-shadow .3s;
 }
-.window button:hover { background: rgba(232,150,58,.1); }
-.window button[disabled] { opacity: .45; cursor: default; }
-.window-caption { color: var(--faint); font-size: .85rem; margin: .9rem 0 0; }
+.lit-steps p { margin: .15rem 0 0; color: var(--faint); font-size: .9rem; }
+.lit-steps .step-name { margin: 0; color: var(--ink); font-size: 1.1rem; font-weight: 650; transition: color .3s; }
+.lit-steps.armed li::before { background: var(--paper); border-color: var(--rule-2); }
+.lit-steps.armed li:not(.on) .step-name { color: var(--faint); }
+.lit-steps.armed li.on::before { background: var(--lamp); border-color: var(--lamp); box-shadow: 0 0 16px rgba(232,150,58,.7); }
+
+.term {
+  margin: 0; border: 1px solid var(--rule-2); border-radius: 14px; background: #0C0F24; overflow: hidden;
+  box-shadow: 0 40px 90px -50px rgba(232,150,58,.35);
+}
+.term-bar { display: flex; align-items: center; gap: 7px; padding: .8rem 1rem; border-bottom: 1px solid var(--rule); font: .75rem var(--mono); color: var(--faint); }
+.term-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--rule-2); }
+.term-bar span { margin-left: .6rem; }
+.term-screen { padding: 1.3rem 1.4rem 1.5rem; font: .86rem/2 var(--mono); color: var(--on-night); min-height: 20rem; overflow-x: auto; }
+.term-screen p { margin: 0; white-space: nowrap; }
+.term-screen.armed p { visibility: hidden; }
+.term-screen.armed p.in { visibility: visible; }
+.term-k { display: inline-block; width: 5.6rem; color: var(--lamp); }
+.term-d { color: #4A5180; }
+.term-ok { color: var(--live); }
+.term-url { color: #fff; text-decoration: underline; text-decoration-color: var(--lamp); text-underline-offset: 4px; }
+.caret { display: inline-block; width: .5rem; height: 1.05em; vertical-align: -.2em; background: var(--lamp-lit); animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+@media (max-width: 30rem) { .term-screen { font-size: .74rem; padding: 1rem; } .term-k { width: 4.4rem; } }
+@media (prefers-reduced-motion: reduce) { .caret { animation: none; } }
+
+/* Plans: one bordered block split by a hairline, the featured half lit from above. */
+.plans { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; }
+@media (min-width: 40rem) { .plans { grid-template-columns: 1fr 1fr; } }
+.plan { background: var(--paper); padding: 2rem; display: flex; flex-direction: column; }
+.plan-top { background: linear-gradient(180deg, rgba(232,150,58,.07), rgba(232,150,58,0) 60%), var(--paper); }
+.plan-name {
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: .4rem 1rem; margin: 0;
+  font: 600 .74rem var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
+}
+.plan-name span { color: var(--lamp-lit); letter-spacing: .1em; }
+.plan-price { font: 700 3.3rem/1 var(--mono); letter-spacing: -.05em; margin: 1.1rem 0 0; font-variant-numeric: tabular-nums; }
+.plan-price span { font: 500 .85rem var(--sans); color: var(--faint); letter-spacing: 0; margin-left: .35rem; }
+.plan-alt { font-size: .8rem; color: var(--faint); margin: .7rem 0 0; }
+.plan-sub { color: var(--muted); font-size: .95rem; margin: .8rem 0 0; }
+.plan-specs {
+  list-style: none; margin: 1.5rem 0 0; padding: 1.1rem 0 0; border-top: 1px solid var(--rule);
+  display: flex; flex-wrap: wrap; gap: .5rem 1.1rem; font-size: .84rem; color: var(--on-night);
+}
+/* auto: the link is what holds both halves to one baseline. */
+.plan-go { margin-top: auto; padding-top: 1.7rem; font-size: .9rem; font-weight: 650; text-decoration: none; }
+.plan-go::after { content: " →"; color: var(--lamp); }
+
+.pay { display: flex; flex-wrap: wrap; align-items: center; gap: .9rem 1.6rem; margin-top: 1.3rem; font-size: .8rem; color: var(--faint); }
+.pay > span { display: inline-flex; flex-wrap: wrap; align-items: center; gap: .45rem; }
+.pay-mark { display: inline-flex; align-items: center; height: 2.1rem; padding: 0 .6rem; border-radius: .45rem; background: #F4F5FA; overflow: hidden; }
+.pay-mark img { display: block; height: 17px; width: auto; }
+/* Card marks sit on a 780x500 canvas with wide margins, so they need a taller box to read at the same size. */
+.pay-mark .pay-card { height: 40px; margin: 0 -8px; }
+
+/* Everything else is ₹0. */
+.zero {
+  list-style: none; margin: 3rem 0 0; padding: 0; display: grid; gap: 1px;
+  background: var(--rule); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden;
+}
+@media (min-width: 36rem) { .zero { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 58rem) { .zero { grid-template-columns: repeat(3, 1fr); } }
+.zero li { background: var(--paper); padding: 1.7rem 1.6rem 1.8rem; }
+.zero-n { font: 700 3rem/1 var(--mono); letter-spacing: -.05em; color: var(--lamp-lit); text-shadow: 0 0 28px rgba(232,150,58,.35); margin: 0 0 1rem; }
+.zero h3 { font-size: 1.05rem; }
+.zero li p:last-child { color: var(--faint); font-size: .88rem; margin: .35rem 0 0; }
+.zero.armed li > * { opacity: 0; transform: translateY(10px); }
+.zero.armed li.in > * { opacity: 1; transform: none; transition: opacity .5s ease, transform .5s ease; }
+.also { list-style: none; margin: 2rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .7rem 1.8rem; }
+.also h3 { display: inline; font-size: .95rem; font-weight: 600; letter-spacing: 0; color: var(--on-night); }
+
+.stats { display: grid; margin-top: 3rem; border-top: 1px solid var(--rule); }
+@media (min-width: 40rem) { .stats { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 58rem) {
+  .stats { grid-template-columns: repeat(4, 1fr); }
+  .stats-3 { grid-template-columns: repeat(3, 1fr); }
+  .stat + .stat { padding-left: 1.4rem; border-left: 1px solid var(--rule); }
+}
+.stat { padding: 1.6rem 1.4rem 0 0; }
+.stat-n { font: 700 2rem/1 var(--mono); letter-spacing: -.04em; color: var(--lamp-lit); margin: 0 0 .9rem; }
+.stat h3 { font-size: 1rem; line-height: 1.3; }
+.stat p:last-child { color: var(--faint); font-size: .88rem; margin: .45rem 0 0; }
+
+.notfor { border-top: 1px solid var(--rule); margin-top: 2.5rem; }
+.notfor-row { padding: 1.2rem 0; border-bottom: 1px solid var(--rule); }
+@media (min-width: 46rem) { .notfor-row { display: grid; grid-template-columns: 20rem 1fr; gap: 2rem; align-items: baseline; } }
+.notfor-row h3 { font-size: .98rem; }
+.notfor-row p { color: var(--faint); font-size: .9rem; margin: .3rem 0 0; }
+@media (min-width: 46rem) { .notfor-row p { margin: 0; } }
+
+/* The answers stay in the markup when closed, so FAQPage matches what is on the page. */
+.faq details { border-bottom: 1px solid var(--rule); }
+.faq details:first-child { border-top: 1px solid var(--rule); }
+.faq summary { list-style: none; cursor: pointer; padding: 1.25rem 0; display: flex; justify-content: space-between; align-items: center; gap: 1.2rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary h3 { font-size: 1.05rem; font-weight: 600; letter-spacing: -.01em; line-height: 1.35; }
+.faq summary::after { content: "+"; font: 400 1.4rem/1 var(--mono); color: var(--lamp); flex: none; }
+.faq details[open] summary::after { content: "\2212"; }
+.faq details p { color: var(--muted); font-size: .95rem; margin: 0 0 1.3rem; max-width: 44rem; }
+
+.final { position: relative; overflow: hidden; text-align: center; }
+.final::before {
+  content: ""; position: absolute; left: 50%; bottom: -16rem; width: 56rem; height: 32rem; transform: translateX(-50%);
+  background: radial-gradient(50% 50% at 50% 50%, rgba(232,150,58,.2), transparent 70%); pointer-events: none;
+}
+.final h2 { margin: 0 auto; max-width: 16ch; }
+.final .sec-sub { margin: 1rem auto 0; }
+.final .cta-row { position: relative; justify-content: center; margin-top: 2.2rem; }
 
 /* ---------------------------------------------------------------- sections */
 section { padding-top: 2.25rem; padding-bottom: 2.25rem; }
@@ -293,33 +338,6 @@ section { padding-top: 2.25rem; padding-bottom: 2.25rem; }
 
 .steps { display: grid; gap: 1.5rem; grid-template-columns: 1fr; counter-reset: step; }
 @media (min-width: 48rem) { .steps { grid-template-columns: repeat(3, 1fr); } }
-/* Repo, build, site. The arrow is a pseudo-element on every node but the
-   first, so the row and the stacked column need no extra markup. */
-.flow { list-style: none; margin: 0; padding: 0; display: grid; gap: 2.4rem; grid-template-columns: 1fr; }
-@media (min-width: 46rem) { .flow { grid-template-columns: repeat(3, 1fr); gap: 2.8rem; } }
-.flow-node {
-  position: relative; background: var(--surface); border: 1px solid var(--rule);
-  border-radius: 10px; padding: 1.3rem 1.4rem 1.2rem;
-}
-.flow-node + .flow-node::before {
-  content: "↓"; position: absolute; left: 50%; top: -1.75rem; transform: translateX(-50%);
-  font-family: var(--mono); font-size: 1.05rem; line-height: 1; color: var(--lamp);
-}
-@media (min-width: 46rem) {
-  .flow-node + .flow-node::before {
-    content: "→"; left: -1.9rem; top: 50%; transform: translateY(-50%);
-  }
-}
-/* The last node is the lit one, the same way the window is when it wakes. */
-.flow-live { border-color: var(--lamp-edge); background: var(--lamp-wash); }
-.flow-icon { width: 1.35rem; height: 1.35rem; color: var(--lamp); display: block; }
-.flow-label { font-weight: 700; margin: .7rem 0 .2rem; }
-.flow-note { color: var(--muted); font-size: .92rem; margin: 0 0 .9rem; }
-.flow-code {
-  display: block; background: none; padding: 0;
-  font-size: .78rem; color: var(--faint); word-break: break-all;
-}
-
 .step { position: relative; padding-top: 1.9rem; }
 .step::before {
   counter-increment: step; content: counter(step);
@@ -334,31 +352,16 @@ section { padding-top: 2.25rem; padding-bottom: 2.25rem; }
 .step-icon { width: 1.15rem; height: 1.15rem; flex: none; color: var(--lamp); }
 .step p { color: var(--muted); font-size: .95rem; margin: .4rem 0 0; }
 
-/* ------------------------------------------------- the dark band (the pitch) */
+/* ------------------------------------------------- the band (ai page) */
 section.band {
-  background: var(--night); color: #fff;
+  background: var(--surface); color: #fff;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
   padding-top: 3.25rem; padding-bottom: 3.5rem;
   margin: .5rem 0;
 }
 .band .section-head { max-width: 44rem; }
 .band .section-head h2 { color: #fff; }
 .band .section-head p { color: var(--on-night); }
-.eyebrow-dim { color: #6E77A0; }
-
-.diffs { display: grid; gap: 0; grid-template-columns: 1fr; }
-@media (min-width: 46rem) { .diffs { grid-template-columns: repeat(2, 1fr); } }
-.diff { padding: 1.5rem 0; border-top: 1px solid var(--on-night-rule); }
-@media (min-width: 46rem) {
-  .diff { padding: 1.6rem 2.2rem 1.6rem 0; }
-  .diff:nth-child(2n) { padding-right: 0; padding-left: 2.2rem; border-left: 1px solid var(--on-night-rule); }
-}
-.diff h3 {
-  display: flex; align-items: flex-start; gap: .5rem;
-  color: var(--lamp-lit); margin-bottom: .5rem;
-}
-.diff-icon { width: 1.15rem; height: 1.15rem; flex: none; color: var(--lamp); transform: translateY(-.02rem); }
-.diff p { color: var(--on-night); font-size: .95rem; margin: 0; }
-.diff strong { color: #fff; }
 
 /* ---------------------------------------------------------------- ai band */
 .ai-points { display: grid; gap: 1.5rem; grid-template-columns: 1fr; margin: 0 0 2rem; }
@@ -381,37 +384,6 @@ section.band {
 .band .tier-foot a { color: var(--on-night); }
 
 /* ---------------------------------------------------------------- pricing */
-/* stretch, not start: both cards run to the height of the taller one, so the
-   prices line up and the buttons sit on the same baseline. */
-.tiers { display: grid; gap: 1rem; grid-template-columns: 1fr; align-items: stretch; }
-@media (min-width: 52rem) {
-  .tiers { grid-template-columns: repeat(3, 1fr); }
-  .tiers-2 { grid-template-columns: repeat(2, 1fr); }
-}
-.tier {
-  background: var(--surface); border: 1px solid var(--rule);
-  border-radius: 10px; padding: 1.5rem; position: relative;
-  display: flex; flex-direction: column;
-}
-.tier.featured { border-color: var(--night); box-shadow: 0 12px 34px -22px rgba(22,26,56,.5); }
-/* Overlaid on the card's top edge rather than sitting in the flow, so the
-   featured card's price still lines up with its neighbour's. */
-.tier-flag {
-  position: absolute; top: -.7rem; left: 1.5rem;
-  font-family: var(--mono); font-size: .64rem; letter-spacing: .12em;
-  text-transform: uppercase; color: #fff; background: var(--night);
-  border-radius: 4px; padding: .22rem .55rem; margin: 0; white-space: nowrap;
-}
-.tier-name { font-family: var(--mono); font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); margin: 0; }
-.tier-price {
-  font-family: var(--mono); font-size: 2rem; font-weight: 700;
-  margin: .5rem 0 .15rem; font-variant-numeric: tabular-nums; letter-spacing: -.03em;
-}
-.tier-per { font-size: .9rem; font-weight: 500; color: var(--faint); letter-spacing: 0; }
-.tier-alt { font-family: var(--mono); font-size: .82rem; color: var(--muted); margin: 0 0 .35rem; }
-.tier-year { font-size: .85rem; color: var(--muted); margin: 0 0 .7rem; }
-.tier-sub { color: var(--faint); font-size: .88rem; margin: 0 0 1rem; }
-
 /* The spec strip: the four numbers people actually compare, given icons so
    they read at a glance rather than as another bullet list. */
 .specs {
@@ -423,9 +395,6 @@ section.band {
 /* An odd number of specs would leave a gap, so the last one spans the row. */
 .spec:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .spec-icon { width: 1.05rem; height: 1.05rem; flex: none; color: var(--lamp); }
-/* auto, not a fixed gap: with the feature list gone the button is what holds
-   the two cards to the same height, so both sit on the same baseline. */
-.tier-cta { margin-top: auto; width: 100%; text-align: center; }
 .tier-foot { margin-top: 1.2rem; font-size: .9rem; color: var(--faint); }
 
 /* --------------------------------------------------------- product detail */
@@ -434,7 +403,7 @@ section.band {
   background: var(--surface); border: 1px solid var(--rule);
   border-radius: 12px; padding: 1.8rem;
 }
-.product-featured { border-color: var(--night); box-shadow: 0 14px 38px -26px rgba(22,26,56,.5); }
+.product-featured { border-color: var(--lamp-edge); box-shadow: 0 30px 60px -40px rgba(232,150,58,.35); }
 .product-head {
   display: flex; flex-wrap: wrap; gap: 1rem 2rem;
   align-items: baseline; justify-content: space-between;
@@ -469,17 +438,6 @@ section.band {
   width: .35rem; height: .35rem; border-radius: 1px; background: var(--lamp);
 }
 
-/* ------------------------------------------------------------ when not to */
-.notfor { display: grid; gap: 0; grid-template-columns: 1fr; border-top: 1px solid var(--rule); }
-.notfor-row { padding: 1.3rem 0; border-bottom: 1px solid var(--rule); }
-@media (min-width: 46rem) {
-  .notfor-row { display: grid; grid-template-columns: 15rem 1fr; gap: 2rem; align-items: baseline; }
-}
-.notfor-row h3 { display: flex; align-items: flex-start; gap: .5rem; }
-.notfor-icon { width: 1.1rem; height: 1.1rem; flex: none; color: var(--faint); margin-top: .05rem; }
-.notfor-row p { color: var(--muted); font-size: .95rem; margin: .3rem 0 0; }
-@media (min-width: 46rem) { .notfor-row p { margin: 0; } }
-
 /* ---------------------------------------------------------------- blog */
 .posts { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
 @media (min-width: 46rem) { .posts { grid-template-columns: repeat(3, 1fr); } }
@@ -495,13 +453,8 @@ section.band {
 .post-card h2 a:hover { text-decoration: underline; text-decoration-color: var(--lamp); }
 .post-lede { color: var(--muted); font-size: .92rem; margin: 0; }
 .post-read { margin: auto 0 0; }
-.post-read a { color: var(--lamp-dim); font-weight: 650; text-decoration-color: var(--lamp); }
+.post-read a { color: var(--lamp); font-weight: 650; text-decoration-color: var(--lamp); }
 .post-read a:hover { color: var(--ink); }
-
-/* ---------------------------------------------------------------- faq */
-.faq { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
-@media (min-width: 48rem) { .faq { grid-template-columns: repeat(2, 1fr); } }
-.faq p { color: var(--muted); font-size: .95rem; margin: .35rem 0 0; }
 
 /* ---------------------------------------------------------------- features */
 .features { display: grid; gap: 0; grid-template-columns: 1fr; border-top: 1px solid var(--rule); }
@@ -634,7 +587,7 @@ section.band {
 }
 
 /* ---------------------------------------------------------------- footer */
-footer { background: var(--night); color: #A8AFCF; padding: 2.5rem 0 2rem; margin-top: 1.5rem; }
+footer { background: var(--night-deep); color: #A8AFCF; padding: 2.5rem 0 2rem; margin-top: 1.5rem; border-top: 1px solid var(--rule); }
 footer a { color: #D5DAEE; text-decoration-color: #3A4269; }
 footer a:hover { text-decoration-color: var(--lamp); }
 .foot-grid { display: grid; gap: 2rem; grid-template-columns: 1fr; }

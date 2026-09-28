@@ -17,7 +17,7 @@ All are 1:1 so a square 16x16 chip does not distort them.
 
 | File | Source |
 | --- | --- |
-| `visa.svg`, `mastercard.svg`, `amex.svg`, `discover.svg`, `diners.svg` | [aaronfagan/svg-credit-card-payment-icons](https://github.com/aaronfagan/svg-credit-card-payment-icons) `logo/*.svg` (Apache 2.0) |
+| `visa.svg`, `mastercard.svg`, `amex.svg`, `discover.svg`, `diners.svg`, `paypal.svg` | [aaronfagan/svg-credit-card-payment-icons](https://github.com/aaronfagan/svg-credit-card-payment-icons) `logo/*.svg` (Apache 2.0) |
 | `rupay.svg` | [Wikimedia Commons, File:RuPay.svg](https://commons.wikimedia.org/wiki/File:RuPay.svg) (CC BY-SA 4.0) |
 | `upi.svg` | [Wikimedia Commons, File:UPI-Logo-vector.svg](https://commons.wikimedia.org/wiki/File:UPI-Logo-vector.svg) (CC BY-SA 4.0) |
 

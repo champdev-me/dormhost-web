@@ -74,6 +74,35 @@
     "persistentPath": "/data",
     "persistentNote": "Anything your application writes to /data stays there through a deploy. Files it writes anywhere else are part of the container and go when you next push."
   },
+  "included": {
+    "_note": "Shown as the ₹0 tiles on the homepage. Each one must be true on both plans: the CDN is the zone-wide cache rule on dormhost.app.",
+    "list": [
+      {
+        "name": "Cloudflare CDN",
+        "note": "Static files cached at Cloudflare's edge, in front of every app."
+      },
+      {
+        "name": "DDoS protection",
+        "note": "Cloudflare filters attacks before they reach your app."
+      },
+      {
+        "name": "Backups",
+        "note": "Take one whenever you want. Awake also backs up every night."
+      },
+      {
+        "name": "Database",
+        "note": "On the same machine as your app, with no second bill."
+      },
+      {
+        "name": "HTTPS",
+        "note": "A real certificate from the first deploy."
+      },
+      {
+        "name": "Bandwidth fees",
+        "note": "No per-gigabyte line at the end of the month."
+      }
+    ]
+  },
   "runtimes": {
     "detected": [
       {

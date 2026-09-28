@@ -14,344 +14,251 @@
 
 {{> nav}}
 
-<header class="wrap hero">
-  <div class="hero-grid">
-    <div>
-      <p class="eyebrow">Node.js, Python and Docker hosting for college students</p>
-      <h1>Put your college project online.</h1>
-      <p class="lead">
-        Deploy Node.js, Python or Docker projects in minutes.
-        ₹{{cheapest.monthly}} a month, database included.
-        No VPS. No DevOps.
-      </p>
-
-      <div class="price-line">
-        <span class="price">₹{{cheapest.monthly}}</span>
-        <span class="price-unit">/ month per app</span>
-        <span class="price-alt">about ${{cheapest.usdMonthly}}, charged in ₹</span>
-      </div>
-      <p class="no-card">
-        <svg class="no-card-icon" width="24" height="24" aria-hidden="true"><use href="#i-shield"/></svg>
-        {{trial.days}} days free, no credit card required
-      </p>
-      <p class="price-note">
-        {{trial.short}} Pay by UPI in India after that. Nothing is saved,
-        nothing auto-renews, and you top up only when you want to.
-      </p>
-
-      <div class="cta-row">
-        <a class="btn btn-primary" href="{{site.dashboardUrl}}">Deploy for free →</a>
-        <a class="btn btn-ghost" href="/pricing.html">See what you get</a>
-      </div>
-
-      <!-- The languages, as text, because "any language" is the claim people
-           search for by name. -->
-      <div class="runtimes">
-        <p class="runtimes-label">
-          <svg class="runtimes-icon" width="24" height="24" aria-hidden="true"><use href="#i-code"/></svg>
-          Detected and built for you
-        </p>
-        <ul class="runtime-list">
-          {{#each runtimes.detected}}<li><img class="chip-icon" src="/assets/logos/{{id}}.svg?v={{assets.rev}}" width="16" height="16" alt="" loading="lazy" decoding="async">{{name}}</li>{{/each}}
-          <li class="runtime-more"><img class="chip-icon" src="/assets/logos/docker.svg?v={{assets.rev}}" width="16" height="16" alt="" loading="lazy" decoding="async">or your own Dockerfile</li>
-          <li class="runtime-more"><svg class="chip-icon" width="16" height="16" aria-hidden="true"><use href="#i-globe"/></svg>or WordPress, no repo needed</li>
-        </ul>
-      </div>
+<!-- The logo, switched on: one window lights the headline as the page loads. -->
+<header class="lamp-hero">
+  <div class="lamp-cone" aria-hidden="true"></div>
+  <div class="lamp-win" aria-hidden="true"></div>
+  <div class="wrap lamp-inner">
+    <p class="eyebrow">Node.js, Python and Docker hosting for college students</p>
+    <h1>Put your college project online.</h1>
+    <p class="lead">Deploy Node.js, Python or Docker projects in minutes. Database included. No VPS, no DevOps.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="{{site.dashboardUrl}}">Deploy for free →</a>
+      <a class="btn btn-ghost" href="/pricing.html">See what you get</a>
     </div>
-
-    <!-- The mechanic, shown rather than described. -->
-    <div>
-      <div class="window" id="window">
-        <p class="window-label">your app · right now</p>
-        <!-- Six panes, six of the things students actually deploy here. -->
-        <span class="zzz" aria-hidden="true"><span>z</span><span>z</span><span>z</span></span>
-        <div class="panes" id="panes">
-          <div class="pane"><svg class="pane-icon" width="24" height="24" aria-hidden="true"><use href="#a-bot"/></svg></div>
-          <div class="pane"><svg class="pane-icon" width="24" height="24" aria-hidden="true"><use href="#a-chat"/></svg></div>
-          <div class="pane"><svg class="pane-icon" width="24" height="24" aria-hidden="true"><use href="#a-chart"/></svg></div>
-          <div class="pane"><svg class="pane-icon" width="24" height="24" aria-hidden="true"><use href="#a-api"/></svg></div>
-          <div class="pane"><svg class="pane-icon" width="24" height="24" aria-hidden="true"><use href="#a-cart"/></svg></div>
-          <div class="pane"><svg class="pane-icon" width="24" height="24" aria-hidden="true"><use href="#a-globe"/></svg></div>
-        </div>
-        <!-- The light falls out of the window onto this, exactly as it does in
-             the logo. It is what stops the dark state reading as empty boxes. -->
-        <div class="sill" id="sill"><span class="spill"></span></div>
-        <div class="window-readout">
-          <span class="readout-state">
-            <span class="dot" id="dot"></span>
-            <span id="state">asleep</span>
-          </span>
-          <span><span class="ms" id="ms">--</span></span>
-          <button id="wake" type="button">send a request</button>
-        </div>
-      </div>
-      <p class="window-caption">
-        Your app sleeps when nobody is using it and wakes on the next visit. A
-        sleeping app uses disk, not memory, which is what makes ₹{{cheapest.monthly}} work.
-      </p>
-    </div>
+    <p class="lamp-fine">
+      <b>₹{{cheapest.monthly}}</b> a month per app, about ${{cheapest.usdMonthly}} ·
+      {{trial.days}} days free, no credit card required · pay by UPI
+    </p>
+    <!-- Named, not just drawn: these are the words people search for. -->
+    <ul class="stack" aria-label="Detected and built for you">
+      {{#each runtimes.detected}}<li><img class="chip-icon" src="/assets/logos/{{id}}.svg?v={{assets.rev}}" width="16" height="16" alt="" decoding="async">{{name}}</li>{{/each}}
+      <li><img class="chip-icon" src="/assets/logos/docker.svg?v={{assets.rev}}" width="16" height="16" alt="" decoding="async">or your own Dockerfile</li>
+      <li><svg class="chip-icon" width="16" height="16" aria-hidden="true"><use href="#i-globe"/></svg>or WordPress, no repo needed</li>
+    </ul>
   </div>
 </header>
 
 <main>
 
-<!-- The whole product as one picture. Everything it implies (databases, HTTPS,
-     sleeping) is expanded on its own page rather than repeated here. -->
-<section id="how" class="wrap">
-  <div class="section-head">
-    <h2>Repo in. Site out.</h2>
-    <p>Nothing between those two is yours to run.</p>
+<section id="how" class="wrap sec">
+  <div class="split">
+    <div>
+      <p class="eyebrow">How it works</p>
+      <h2>Repo in. Site out.</h2>
+      <p class="sec-sub">Nothing between those two is yours to run.</p>
+      <ol class="lit-steps" id="steps">
+        <li><p class="step-name">Your GitHub repo</p><p>Public or private, in any language.</p></li>
+        <li><p class="step-name">We build it</p><p>Detected, built and started for you.</p></li>
+        <li><p class="step-name">Your live site</p><p>HTTPS and a database, on a real machine.</p></li>
+      </ol>
+      <p class="tier-foot">
+        <a href="/docs.html">The five step quickstart</a>, with the dashboard controls named.
+      </p>
+    </div>
+    <!-- An example deploy. Every line is in the markup; the script only reveals them in turn. -->
+    <figure class="term" aria-label="An example deploy, from git push to a live address">
+      <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>~/project</span></div>
+      <div class="term-screen" id="term">
+        <p data-step="0"><span class="term-d">$ </span><span id="term-cmd">git push origin main</span></p>
+        <p data-step="0"><span class="term-k">deploy</span>github.com/you/project <span class="term-d">· main</span></p>
+        <p data-step="1"><span class="term-k">detect</span>Node.js <span class="term-d">· package.json</span></p>
+        <p data-step="1"><span class="term-k">install</span>dependencies <span class="term-d">··········</span> <span class="term-ok">ok</span></p>
+        <p data-step="1"><span class="term-k">build</span>npm run build <span class="term-d">·········</span> <span class="term-ok">ok</span></p>
+        <p data-step="1"><span class="term-k">run</span>starting your app <span class="term-d">·····</span> <span class="term-ok">ok</span></p>
+        <p data-step="2"><span class="term-k">live</span><span class="term-url">https://{{site.appAddress}}</span> <span class="caret"></span></p>
+      </div>
+    </figure>
   </div>
-  <ol class="flow">
-    <li class="flow-node">
-      <svg class="flow-icon" width="24" height="24" aria-hidden="true"><use href="#i-git"/></svg>
-      <p class="flow-label">Your GitHub repo</p>
-      <p class="flow-note">Public or private, in any language.</p>
-      <code class="flow-code">github.com/you/project</code>
-    </li>
-    <li class="flow-node">
-      <svg class="flow-icon" width="24" height="24" aria-hidden="true"><use href="#i-container"/></svg>
-      <p class="flow-label">We build it</p>
-      <p class="flow-note">Detected, built and started for you.</p>
-      <code class="flow-code">detect · install · build · run</code>
-    </li>
-    <li class="flow-node flow-live">
-      <svg class="flow-icon" width="24" height="24" aria-hidden="true"><use href="#i-globe"/></svg>
-      <p class="flow-label">Your live site</p>
-      <p class="flow-note">HTTPS and a database, on a real machine.</p>
-      <code class="flow-code">{{site.appAddress}}</code>
-    </li>
-  </ol>
-  <p class="tier-foot">
-    <a href="/docs.html">The five step quickstart</a>, with the dashboard
-    controls named.
-  </p>
 </section>
 
-<section id="pricing" class="wrap">
-  <div class="section-head">
-    <h2>₹{{cheapest.monthly}} a month, per app.</h2>
-    <p>Two plans, one price each, nothing metered separately. Start with Nap and
-       upgrade whenever you want.</p>
-  </div>
-
-  <div class="tiers tiers-2">
-    {{#each plans}}
-    <div class="tier{{#if featured}} featured{{/if}}">
-      {{#if featured}}<p class="tier-flag">Most students pick this</p>{{/if}}
-      <p class="tier-name">{{name}}</p>
-      <p class="tier-price">₹{{monthly}}<span class="tier-per">/month per app</span></p>
-      <p class="tier-alt">about ${{usdMonthly}} a month, charged in ₹</p>
-      <p class="tier-year">Yearly: ₹{{yearly}}, about ${{usdYearly}}, saving ₹{{yearlySaving}}</p>
-      <p class="tier-sub">{{summary}}</p>
-      <div class="specs">
-        {{#each specs}}
-        <div class="spec">
-          <svg class="spec-icon" width="24" height="24" aria-hidden="true"><use href="#i-{{icon}}"/></svg>
-          <span>{{label}}</span>
+<section id="pricing" class="wrap sec">
+  <div class="split">
+    <div>
+      <p class="eyebrow">Pricing</p>
+      <h2>₹{{cheapest.monthly}} a month, per app.</h2>
+      <p class="sec-sub">Two plans, one price each, nothing metered separately. Start with Nap and upgrade whenever you want.</p>
+    </div>
+    <div>
+      <div class="plans">
+        {{#each plans}}
+        <div class="plan{{#if featured}} plan-top{{/if}}">
+          <p class="plan-name">{{name}}{{#if featured}}<span>Most students pick this</span>{{/if}}</p>
+          <p class="plan-price">₹{{monthly}}<span>/month per app</span></p>
+          <p class="plan-alt">About ${{usdMonthly}} a month, charged in ₹. Yearly ₹{{yearly}}, saving ₹{{yearlySaving}}.</p>
+          <p class="plan-sub">{{summary}}</p>
+          <ul class="plan-specs">{{#each specs}}<li>{{label}}</li>{{/each}}</ul>
+          <a class="plan-go" href="/pricing.html#{{slug}}">What {{name}} includes</a>
         </div>
         {{/each}}
       </div>
-      <a class="btn btn-primary tier-cta" href="/pricing.html#{{slug}}">What {{name}} includes</a>
+      <div class="pay">
+        <span>In India
+          <span class="pay-mark"><img src="/assets/logos/upi.svg?v={{assets.rev}}" alt="UPI" height="17" loading="lazy" decoding="async"></span>
+          <span class="pay-mark"><img src="/assets/logos/rupay.svg?v={{assets.rev}}" alt="RuPay" height="17" loading="lazy" decoding="async"></span>
+          <span class="pay-mark"><img class="pay-card" src="/assets/logos/visa.svg?v={{assets.rev}}" alt="Visa" height="40" loading="lazy" decoding="async"></span>
+          <span class="pay-mark"><img class="pay-card" src="/assets/logos/mastercard.svg?v={{assets.rev}}" alt="Mastercard" height="40" loading="lazy" decoding="async"></span>
+        </span>
+        <span>Everywhere else
+          <span class="pay-mark"><img class="pay-card" src="/assets/logos/paypal.svg?v={{assets.rev}}" alt="PayPal" height="40" loading="lazy" decoding="async"></span>
+        </span>
+      </div>
+      <p class="tier-foot">
+        One plan runs one application. Top up with {{payments.methods}} in India or
+        {{payments.methodsIntl}} anywhere else, and it is drawn down a day at a time.
+        Stop any time and you stop paying. See the <a href="/pricing.html">full plan descriptions</a>.
+      </p>
     </div>
-    {{/each}}
   </div>
-
-  <p class="tier-foot">
-    One plan runs one application. Top up with {{payments.methods}} in India or
-    {{payments.methodsIntl}} anywhere else, and it is drawn down a day at a time.
-    Stop any time and you stop paying. See the
-    <a href="/pricing.html">full plan descriptions</a>.
-  </p>
 </section>
 
-<section id="students" class="wrap">
-  <div class="section-head">
-    <h2>Your project should not require DevOps.</h2>
-    <p>These are the things students actually deploy here. If yours needs a
-       backend, a database or a process that keeps running, it fits.</p>
-  </div>
-  <ul class="chip-list">
-    <li>MERN and full-stack projects</li>
-    <li>Node.js APIs</li>
-    <li>Python, Flask and FastAPI</li>
-    <li>Final-year projects</li>
-    <li>Hackathon projects</li>
-    <li>Discord and Telegram bots</li>
-    <li>College portals and management systems</li>
-    <li>Small personal projects</li>
+<section id="features" class="wrap sec">
+  <p class="eyebrow">Included</p>
+  <h2>Everything you get.</h2>
+  <p class="sec-sub">₹{{cheapest.monthly}} covers the app. Everything around it costs ₹0, and nothing is metered separately.</p>
+  <ul class="zero" id="zero">
+    {{#each included.list}}<li><p class="zero-n">₹0</p><h3>{{name}}</h3><p>{{note}}</p></li>{{/each}}
   </ul>
-  <p class="tier-foot">
-    <a href="/students.html">Pick your stack and follow the exact path</a>, or
-    <a href="/docs.html">read the quickstart</a>.
-  </p>
-</section>
-
-<section id="features" class="wrap">
-  <div class="section-head">
-    <h2>Everything you get.</h2>
-    <p>One price per app covers all of it. There is no add-on list and nothing
-       is metered separately.</p>
-  </div>
-
-  <div class="features">
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-code"/></svg>Any language</h3>
-      <p>Seven runtimes build themselves from your repository. Anything else builds from a Dockerfile.</p>
-    </div>
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-globe"/></svg>WordPress in one click</h3>
-      <p>No repository. We install it, create its database and give you the admin password.</p>
-    </div>
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-git"/></svg>Private repos</h3>
-      <p>Your project does not have to be public. A revocable token clones it the same way.</p>
-    </div>
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-lock"/></svg>HTTPS and your own domain</h3>
-      <p>A real certificate the moment it deploys, and a custom domain through your own Cloudflare.</p>
-    </div>
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-disk"/></svg>Files that survive a deploy</h3>
-      <p>Write to {{limits.persistentPath}} and your uploads and database are still there after you push.</p>
-    </div>
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-key"/></svg>Environment variables</h3>
-      <p>Secrets live in the dashboard, not the repo, and the app restarts when you change one.</p>
-    </div>
-    <div class="feature">
-      <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-terminal"/></svg>Build logs, and a way back</h3>
-      <p>Failed builds show you the error, and the previous working build is one click away.</p>
-    </div>
-  </div>
-
+  <ul class="also">
+    <li><h3>Any language</h3></li>
+    <li><h3>WordPress in one click</h3></li>
+    <li><h3>Private repos</h3></li>
+    <li><h3>HTTPS and your own domain</h3></li>
+    <li><h3>Files that survive a deploy</h3></li>
+    <li><h3>Environment variables</h3></li>
+    <li><h3>Build logs, and a way back</h3></li>
+  </ul>
   <p class="tier-foot">
     <a href="/features.html">Every feature, in detail</a>. Deploy, run, data and
     networking each get their own section.
   </p>
 </section>
 
-<!-- The one dark band on the page: the night the whole brand is built on, and
-     the place the positioning gets made without naming a competitor as an enemy. -->
-<section class="band">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow eyebrow-dim">Why {{site.name}}</p>
-      <h2>Built specifically for small student projects.</h2>
-      <p>The big platforms are excellent at what they do. What they do is not
-         what a final-year project needs.</p>
+<section class="wrap sec">
+  <p class="eyebrow">Why {{site.name}}</p>
+  <h2>Built specifically for small student projects.</h2>
+  <p class="sec-sub">The big platforms are excellent at what they do. What they do is not what a final-year project needs.</p>
+  <div class="stats">
+    <div class="stat">
+      <p class="stat-n">1 process</p>
+      <h3>A real process, not a function</h3>
+      <p>A bot, a WebSocket or a queue worker stays around. <a href="/compare/dormhost-vs-vercel.html">DormHost versus Vercel</a>.</p>
     </div>
-
-    <div class="diffs">
-      <div class="diff">
-        <h3><svg class="diff-icon" width="24" height="24" aria-hidden="true"><use href="#i-terminal"/></svg>A real process, not a function</h3>
-        <p>Frontend hosts run short-lived functions. A bot, a WebSocket or a
-           queue worker needs an ordinary process that stays around.
-           <a style="color: white;" href="/compare/dormhost-vs-vercel.html">DormHost versus Vercel</a>.</p>
-      </div>
-      <div class="diff">
-        <h3><svg class="diff-icon" width="24" height="24" aria-hidden="true"><use href="#i-bolt"/></svg>Sleeping is common. Waking this fast is not</h3>
-        <p>We keep your built image on the disk your app runs on, so waking is
-           just starting a container that is already there:
-           <strong>about {{policies.wakeMs}} milliseconds</strong>.</p>
-      </div>
-      <div class="diff">
-        <h3><svg class="diff-icon" width="24" height="24" aria-hidden="true"><use href="#i-database"/></svg>The database is included, and it is next door</h3>
-        <p>Not a second vendor, a second bill and a second expiring trial. Your
-           {{databases.text}} runs on the same machine as your app, and storage
-           at {{limits.persistentPath}} comes with it.</p>
-      </div>
-      <div class="diff">
-        <h3><svg class="diff-icon" width="24" height="24" aria-hidden="true"><use href="#i-rupee"/></svg>Priced in your own currency</h3>
-        <p>₹{{cheapest.monthly}} a month in India, paid by UPI, or about
-           ${{cheapest.usdMonthly}} from anywhere else, still charged in ₹. No
-           international card, no conversion fee, and no per-gigabyte bandwidth
-           line you find out about at the end of the month.</p>
-      </div>
+    <div class="stat">
+      <p class="stat-n">~{{policies.wakeMs}}ms</p>
+      <h3>Sleeping is common. Waking this fast is not</h3>
+      <p>Your built image stays on the disk your app runs on.</p>
+    </div>
+    <div class="stat">
+      <p class="stat-n">₹0</p>
+      <h3>The database is included, and it is next door</h3>
+      <p>{{databases.text}}, on the same machine, with storage at {{limits.persistentPath}}.</p>
+    </div>
+    <div class="stat">
+      <p class="stat-n">₹ UPI</p>
+      <h3>Priced in your own currency</h3>
+      <p>₹{{cheapest.monthly}} a month in India, paid by UPI. No international card.</p>
     </div>
   </div>
 </section>
 
-<section class="wrap">
-  <div class="section-head">
-    <h2>Your code stays yours.</h2>
-    <p>An ordinary container, an ordinary database, ordinary environment
-       variables. Nothing here is built to make leaving difficult.</p>
+<section id="students" class="wrap sec">
+  <div class="split">
+    <div>
+      <p class="eyebrow">What students deploy</p>
+      <h2>Your project should not require DevOps.</h2>
+    </div>
+    <div>
+      <p class="sec-sub">If yours needs a backend, a database or a process that keeps running, it fits.</p>
+      <ul class="chip-list">
+        <li>MERN and full-stack projects</li>
+        <li>Node.js APIs</li>
+        <li>Python, Flask and FastAPI</li>
+        <li>Final-year projects</li>
+        <li>Hackathon projects</li>
+        <li>Discord and Telegram bots</li>
+        <li>College portals and management systems</li>
+        <li>Small personal projects</li>
+      </ul>
+      <p class="tier-foot">
+        <a href="/students.html">Pick your stack and follow the exact path</a>, or
+        <a href="/docs.html">read the quickstart</a>.
+      </p>
+    </div>
   </div>
-  <ul class="chip-list">
-    <li>GitHub stays your source of truth</li>
-    <li>Backups you can download</li>
-    <li>No contract, no notice period</li>
-    <li>Runs anywhere that takes a Dockerfile</li>
-  </ul>
+</section>
+
+<section id="ai" class="wrap sec">
+  <p class="eyebrow">AI</p>
+  <h2>Building an AI project?</h2>
+  <p class="sec-sub">Host your backend, your database and your AI calls in one place. {{ai.pitch}}</p>
+  <div class="stats stats-3">
+    <div class="stat">
+      <h3>Rupees, not dollars</h3>
+      <p>It comes out of the same balance that runs your app. {{ai.example}}</p>
+    </div>
+    <div class="stat">
+      <h3>Vector search, included</h3>
+      <p>PostgreSQL ships with {{databases.vector.extension}} switched on, for a RAG chatbot's embeddings.</p>
+    </div>
+    <div class="stat">
+      <h3>Zero config in your app</h3>
+      <p><code>OPENAI_BASE_URL</code> and <code>OPENAI_API_KEY</code> are set for you.</p>
+    </div>
+  </div>
   <p class="tier-foot">
-    <a href="/security.html">Isolation, HTTPS, credentials and backups</a>, and
-    the <a href="/refunds.html">refund policy</a> for what is left in your balance.
+    {{ai.billing}} See the <a href="/ai.html">AI page</a> for the models and
+    the <a href="/pricing.html#ai">rupee prices</a>. Using it means agreeing to
+    the <a href="/ai-terms.html">AI terms</a>.
   </p>
 </section>
 
-<section id="ai" class="band">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Building an AI project?</h2>
-      <p>Host your backend, your database and your AI calls in one place.
-         {{ai.pitch}}</p>
+<section class="wrap sec">
+  <div class="split">
+    <div>
+      <p class="eyebrow">No lock-in</p>
+      <h2>Your code stays yours.</h2>
     </div>
-
-    <div class="ai-points">
-      <div class="ai-point">
-        <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-rupee"/></svg>Rupees, not dollars</h3>
-        <p>Most AI APIs want an international card and a $10 minimum.
-           Here it comes out of the same balance that runs your app.
-           {{ai.example}}</p>
-      </div>
-      <div class="ai-point">
-        <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-vector"/></svg>Vector search, included</h3>
-        <p>PostgreSQL ships with {{databases.vector.extension}} switched on, so a
-           RAG chatbot for your final year keeps its embeddings in the database
-           you already have, without a second subscription.</p>
-      </div>
-      <div class="ai-point">
-        <h3><svg class="feature-icon" width="24" height="24" aria-hidden="true"><use href="#i-bolt"/></svg>Zero config in your app</h3>
-        <p>Apps here get <code>OPENAI_BASE_URL</code> and
-           <code>OPENAI_API_KEY</code> set for them, so any OpenAI SDK works
-           without a line of setup.</p>
-      </div>
+    <div>
+      <p class="sec-sub">An ordinary container, an ordinary database, ordinary environment
+         variables. Nothing here is built to make leaving difficult.</p>
+      <ul class="chip-list">
+        <li>GitHub stays your source of truth</li>
+        <li>Backups you can download</li>
+        <li>No contract, no notice period</li>
+        <li>Runs anywhere that takes a Dockerfile</li>
+      </ul>
+      <p class="tier-foot">
+        <a href="/security.html">Isolation, HTTPS, credentials and backups</a>, and
+        the <a href="/refunds.html">refund policy</a> for what is left in your balance.
+      </p>
     </div>
-
-    <p class="tier-foot">
-      {{ai.billing}} See the <a href="/ai.html">AI page</a> for the models and
-      the <a href="/pricing.html#ai">rupee prices</a>. Using it means agreeing to
-      the <a href="/ai-terms.html">AI terms</a>.
-    </p>
   </div>
 </section>
 
-<!-- The humble section. It is here because it is true, and because a student
-     who is talked out of paying us today comes back when they need a backend. -->
-<section class="wrap">
-  <div class="section-head">
-    <h2>Built small. Priced honestly.</h2>
-    <p>{{site.name}} is independently operated and intentionally simple. Which
-       means there are things we would rather send you elsewhere for than take
-       ₹{{cheapest.monthly}} off you for.</p>
-  </div>
+<!-- Here because it is true, and because a student talked out of paying today
+     comes back when they need a backend. -->
+<section class="wrap sec">
+  <p class="eyebrow">Honest limits</p>
+  <h2>Built small. Priced honestly.</h2>
+  <p class="sec-sub">{{site.name}} is independently operated and intentionally simple, so
+     some things are better done elsewhere.</p>
   <div class="notfor">
     <div class="notfor-row">
-      <h3><svg class="notfor-icon" width="24" height="24" aria-hidden="true"><use href="#i-file"/></svg>Your site is just HTML, CSS and JavaScript</h3>
+      <h3>Your site is just HTML, CSS and JavaScript</h3>
       <p>Then you do not need us. <a href="https://pages.github.com/" rel="noopener">GitHub Pages</a> hosts static sites free.</p>
     </div>
     <div class="notfor-row">
-      <h3><svg class="notfor-icon" width="24" height="24" aria-hidden="true"><use href="#i-globe"/></svg>You need a global CDN or edge functions</h3>
-      <p>We have <a href="/regions.html">three regions</a>: Mumbai, London and Ashburn. If milliseconds worldwide matter, use Cloudflare or Vercel.</p>
+      <h3>You need edge functions or servers worldwide</h3>
+      <p>Apps run in one of <a href="/regions.html">three regions</a>: Mumbai, London and Ashburn. For code at the edge, use Cloudflare or Vercel.</p>
     </div>
     <div class="notfor-row">
-      <h3><svg class="notfor-icon" width="24" height="24" aria-hidden="true"><use href="#i-briefcase"/></svg>You are running a business on it</h3>
-      <p>This is enough for a college project, a club site or a portfolio. Not for something people's money or jobs depend on.</p>
+      <h3>You are running a business on it</h3>
+      <p>Enough for a college project, a club site or a portfolio. Not for something people's money or jobs depend on.</p>
     </div>
     <div class="notfor-row">
-      <h3><svg class="notfor-icon" width="24" height="24" aria-hidden="true"><use href="#i-ban"/></svg>You want to mine crypto or send bulk mail</h3>
-      <p>Mining, spam, proxies and traffic generators break the price, so they are not allowed. The <a href="/acceptable-use.html">acceptable use policy</a> says exactly where the line is.</p>
+      <h3>You want to mine crypto or send bulk mail</h3>
+      <p>Mining, spam, proxies and traffic generators are not allowed. The <a href="/acceptable-use.html">acceptable use policy</a> says where the line is.</p>
     </div>
   </div>
   <p class="tier-foot">
@@ -359,29 +266,25 @@
   </p>
 </section>
 
-<section id="faq" class="wrap">
-  <div class="section-head">
-    <h2>Questions</h2>
-  </div>
-  <div class="faq">
-    {{#each faq}}
+<section id="faq" class="wrap sec faq">
+  <div class="split">
     <div>
-      <h3>{{q}}</h3>
-      <p>{{a}}</p>
+      <p class="eyebrow">FAQ</p>
+      <h2>Questions</h2>
     </div>
-    {{/each}}
+    <div>
+      {{#each faq}}<details{{#if _first}} open{{/if}}><summary><h3>{{q}}</h3></summary><p>{{a}}</p></details>{{/each}}
+      <p class="tier-foot">
+        More in the <a href="/docs.html">docs</a>, and anything still unanswered at
+        <a href="mailto:{{company.email}}">{{company.email}}</a>.
+      </p>
+    </div>
   </div>
-  <p class="tier-foot">
-    More in the <a href="/docs.html">docs</a>, and anything still unanswered at
-    <a href="mailto:{{company.email}}">{{company.email}}</a>.
-  </p>
 </section>
 
-<section class="wrap">
-  <div class="section-head">
-    <h2>Your college project. Online in minutes.</h2>
-    <p>Bring the repository. We will do the rest of it.</p>
-  </div>
+<section class="wrap sec final">
+  <h2>Your college project. Online in minutes.</h2>
+  <p class="sec-sub">Bring the repository. We will do the rest of it.</p>
   <div class="cta-row">
     <a class="btn btn-primary" href="{{site.dashboardUrl}}">Deploy for free →</a>
     <a class="btn btn-ghost" href="/pricing.html">See the plans</a>
@@ -393,74 +296,53 @@
 {{> footer}}
 
 <script>
-// The window is the page's one interactive claim: a sleeping app, woken on
-// demand, timed honestly. This is the measured figure, around 235ms on the
-// node. The published claim is rounded up to 300, which is deliberate.
+// The deploy plays each time it scrolls into view. Without this script every
+// line and step simply shows.
 (function () {
-  var panes = Array.prototype.slice.call(document.querySelectorAll('#panes .pane'));
-  var button = document.getElementById('wake');
-  var stateEl = document.getElementById('state');
-  var msEl = document.getElementById('ms');
-  var dot = document.getElementById('dot');
-  var sill = document.getElementById('sill');
-  var windowEl = document.getElementById('window');
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var busy = false;
+  var screen = document.getElementById('term');
+  var steps = document.getElementById('steps');
+  var zero = document.getElementById('zero');
+  if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  function setAsleep() {
-    panes.forEach(function (p) { p.classList.remove('lit'); });
-    sill.classList.remove('lit');
-    windowEl.classList.remove('awake');
-    stateEl.textContent = 'asleep';
-    dot.classList.remove('awake');
-    msEl.textContent = '--';
-    button.textContent = 'send a request';
-    button.disabled = false;
-  }
+  var lines = Array.prototype.slice.call(screen.querySelectorAll('p'));
+  var items = Array.prototype.slice.call(steps.children);
+  var cmd = document.getElementById('term-cmd');
+  var full = cmd.textContent;
+  var timers = [];
+  screen.classList.add('armed');
+  steps.classList.add('armed');
 
-  function wake() {
-    if (busy) return;
-    busy = true;
-    button.disabled = true;
-    button.textContent = 'waking…';
-    stateEl.textContent = 'starting';
-    windowEl.classList.add('awake'); // the snoring stops first
-
-    var total = 235;
-    var started = performance.now();
-
-    if (reduced) {
-      panes.forEach(function (p) { p.classList.add('lit'); });
-      sill.classList.add('lit');
-    } else {
-      panes.forEach(function (p, i) {
-        setTimeout(function () { p.classList.add('lit'); }, (total / panes.length) * i);
-      });
-      // The light reaches the sill once most of the panes are up.
-      setTimeout(function () { sill.classList.add('lit'); }, total * 0.6);
+  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+  function play() {
+    timers.forEach(clearTimeout);
+    timers = [];
+    lines.forEach(function (l) { l.classList.remove('in'); });
+    items.forEach(function (s) { s.classList.remove('on'); });
+    cmd.textContent = '';
+    lines[0].classList.add('in');
+    items[0].classList.add('on');
+    var t = 300;
+    for (var i = 1; i <= full.length; i++) {
+      (function (n) { later(function () { cmd.textContent = full.slice(0, n); }, t + n * 55); })(i);
     }
-
-    var tick = setInterval(function () {
-      msEl.textContent = Math.round(performance.now() - started) + 'ms';
-    }, 16);
-
-    setTimeout(function () {
-      clearInterval(tick);
-      msEl.textContent = Math.round(performance.now() - started) + 'ms';
-      stateEl.textContent = 'serving';
-      dot.classList.add('awake');
-      button.textContent = 'let it sleep';
-      button.disabled = false;
-      busy = false;
-
-      button.onclick = function () {
-        setAsleep();
-        button.onclick = wake;
-      };
-    }, total + 40);
+    t += full.length * 55 + 350;
+    lines.slice(1).forEach(function (l) {
+      t += 520;
+      later(function () { l.classList.add('in'); items[+l.dataset.step].classList.add('on'); }, t);
+    });
   }
+  new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) play();
+  }, { threshold: 0.5 }).observe(screen);
 
-  button.onclick = wake;
+  zero.classList.add('armed');
+  new IntersectionObserver(function (entries, obs) {
+    if (!entries[0].isIntersecting) return;
+    Array.prototype.forEach.call(zero.children, function (z, i) {
+      setTimeout(function () { z.classList.add('in'); }, i * 90);
+    });
+    obs.disconnect();
+  }, { threshold: 0.2 }).observe(zero);
 })();
 </script>
 
