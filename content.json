@@ -914,6 +914,8 @@
     {
       "month": "September 2026",
       "entries": [
+        "Waking a sleeping app waits for your app, not just for whatever is listening on the port. An image that runs nginx in front of your code no longer answers the first request with a gateway error.",
+        "An app that cannot start now shows a page saying so, and where to look, instead of a bare Cloudflare error.",
         "A build that cannot read your repository now says so in plain words, instead of printing git's own complaint about a username prompt.",
         "Connecting GitHub while you are signed in now links it to that account. It used to match on your email address, which made a second, empty account when your GitHub address differed.",
         "The repository you give when you create an app is kept on the app: it shows on the app page, you can change the branch or root folder later, and a push redeploys.",
