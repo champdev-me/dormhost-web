@@ -8,7 +8,7 @@
     "appDomain": "dormhost.app",
     "appAddress": "yourapp-yourlogin.dormhost.app",
     "year": "2026",
-    "lastmod": "2026-08-08",
+    "lastmod": "2026-09-28",
     "locale": "en_IN"
   },
   "nav": [
@@ -908,7 +908,7 @@
   "faq": [
     {
       "q": "Is there a free tier?",
-      "a": "No, and we would rather say so. What you get is 30 days of Nap credit for signing in with GitHub, no credit card, spent a day at a time like any other credit. After that it is ₹99 a month on Nap or ₹249 on Awake."
+      "a": "No, and we would rather say so. What you get is 30 days of Nap credit for signing in, no credit card, spent a day at a time like any other credit. After that it is ₹99 a month on Nap or ₹249 on Awake."
     },
     {
       "q": "What can I host on DormHost?",

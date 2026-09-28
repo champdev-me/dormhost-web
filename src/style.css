@@ -32,6 +32,9 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
+/* The footer colour, so a short page does not end in a band of body colour. */
+html { background: var(--night-deep); }
+
 body {
   margin: 0;
   background: var(--paper);
