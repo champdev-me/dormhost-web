@@ -167,7 +167,7 @@
     },
     "email": "support@dormhost.dev",
     "phone": "+918271374755",
-    "phoneHours": "All days, 10am to 6pm IST",
+    "phoneHours": "Callback only, arranged by email",
     "discord": "https://discord.gg/sjKNXF9dpT",
     "gst": {
       "registered": false,
@@ -943,6 +943,7 @@
     {
       "month": "September 2026",
       "entries": [
+        "Support is by email and Discord. The phone line is now callback only: email us and we will ring you.",
         "Waking a sleeping app waits for your app, not just for whatever is listening on the port. An image that runs nginx in front of your code no longer answers the first request with a gateway error.",
         "An app that cannot start now shows a page saying so, and where to look, instead of a bare Cloudflare error.",
         "A build that cannot read your repository now says so in plain words, instead of printing git's own complaint about a username prompt.",
