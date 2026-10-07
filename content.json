@@ -941,6 +941,15 @@
   ],
   "changelog": [
     {
+      "month": "October 2026",
+      "entries": [
+        "Connecting GitHub has its own page, under GitHub in your account menu, with a proper button. It also notices when GitHub has stopped accepting our access and lets you reconnect.",
+        "Signed up with Google or email? You can connect GitHub right after signing up, before you pick an address, and on the New app page the button now sits next to the repository field.",
+        "Connecting a GitHub account that already belongs to another DormHost account now says so, instead of quietly switching you into that account.",
+        "Sign-in leads with GitHub and Google, and the dashboard text is slightly larger."
+      ]
+    },
+    {
       "month": "September 2026",
       "entries": [
         "Support is by email and Discord. The phone line is now callback only: email us and we will ring you.",
