@@ -943,6 +943,8 @@
     {
       "month": "October 2026",
       "entries": [
+        "Deploying an app that is off now turns it back on, whether you turned it off or we paused it after it kept crashing. It used to deploy and stay stopped. The Deploy button says so when your app is off.",
+        "An app paused after crashing shows a Turn on button at the top of its page. It used to offer Turn off, on an app that was already stopped.",
         "Connecting GitHub has its own page, under GitHub in your account menu, with a proper button. It also notices when GitHub has stopped accepting our access and lets you reconnect.",
         "Signed up with Google or email? You can connect GitHub right after signing up, before you pick an address, and on the New app page the button now sits next to the repository field.",
         "Connecting a GitHub account that already belongs to another DormHost account now says so, instead of quietly switching you into that account.",
