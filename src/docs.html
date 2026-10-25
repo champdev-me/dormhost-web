@@ -109,6 +109,10 @@
   certificate, which is why it sits in your account rather than ours.
 </p>
 <ol>
+  <li><strong>Add the domain in {{site.name}}.</strong> In your app's Domains
+    section, type the domain (<code>yourdomain.com</code>, and
+    <code>www.yourdomain.com</code> too if you want both to open your app). It
+    shows as not verified until the steps below are done.</li>
   <li><strong>Add the domain to Cloudflare.</strong> At dash.cloudflare.com choose
     Add a domain, enter the bare domain (<code>yourdomain.com</code>, without
     www), and pick the Free plan.</li>
@@ -125,13 +129,22 @@
   <li><strong>Set SSL/TLS to Full.</strong> Under SSL/TLS and Overview, choose
     Full. Flexible loops forever, and Full (strict) fails, because the
     certificate on our side is for {{site.appDomain}}.</li>
-  <li><strong>Add the domain in the Domains section and press Check.</strong> It
+  <li><strong>Press Check on the domain in the Domains section.</strong> It
     turns verified once Cloudflare is serving it, often within a minute.</li>
 </ol>
 <p>
   A CNAME to your {{site.appDomain}} address does not work: Cloudflare refuses a
   CNAME from your account into ours. Keep the cloud orange, too. With it grey,
   visitors reach us directly and see a certificate error.
+</p>
+
+<p>
+  To send <code>www.yourdomain.com</code> to <code>yourdomain.com</code> instead
+  of serving the app on both, use a Cloudflare redirect rule rather than a second
+  domain. Keep a proxied A record for <code>www</code> with the same IPv4 address,
+  then in Cloudflare open Rules, Redirect Rules and Create rule, and pick the
+  template Redirect from WWW to root. It is a wildcard rule, so there is nothing
+  to write. Check it sends www to your bare domain, then press Deploy.
 </p>
 
 <h2>Troubleshooting</h2>
