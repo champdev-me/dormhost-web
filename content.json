@@ -390,7 +390,7 @@
       },
       {
         "title": "Point your own domain at it",
-        "text": "In Domains, add the name, then add your domain to your own Cloudflare, add a CNAME to your dormhost.app address, and press Check. Your app answers on both addresses."
+        "text": "In Domains, add the name, then add your domain to your own Cloudflare, add a proxied A record with the IPv4 address that section shows, set SSL/TLS to Full, and press Check. Your app answers on both addresses."
       },
       {
         "title": "Or run WordPress instead",
