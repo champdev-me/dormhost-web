@@ -119,17 +119,26 @@
   <li><strong>Add an A record.</strong> In Cloudflare, under DNS and Records,
     delete any A, AAAA or CNAME record it copied over for the same name, then add
     one with type <code>A</code>, the name you want (<code>@</code> for the bare
-    domain, or <code>www</code>), the IPv4 address shown in your app's Domains
-    section, proxy status Proxied (the orange cloud) and TTL Auto. The Domains
-    section shows the exact values for your app, ready to copy.</li>
+    domain, or <code>www</code>), the IPv4 address for your app's region from
+    the table below, proxy status Proxied (the orange cloud) and TTL Auto. Add
+    a second one for <code>www</code> with the same address. Your app's Domains
+    section shows the same values, ready to copy.</li>
   <li><strong>Set SSL/TLS to Full.</strong> Under SSL/TLS and Overview, choose
     Full. Flexible loops forever, and Full (strict) fails, because the
     certificate on our side is for {{site.appDomain}}.</li>
   <li><strong>Add the domain in the Domains section and press Check.</strong> It
     turns verified once Cloudflare is serving it, often within a minute.</li>
 </ol>
+<table class="table">
+  <thead><tr><th>Region</th><th>Type</th><th>Name</th><th>IPv4 address</th><th>Proxy</th></tr></thead>
+  <tbody>
+    {{#each regions.live}}
+    <tr><td>{{city}} (<code>{{id}}</code>)</td><td><code>A</code></td><td><code>@</code> and <code>www</code></td><td><code>{{ip}}</code></td><td>Proxied</td></tr>
+    {{/each}}
+  </tbody>
+</table>
 <p>
-  A CNAME to your {{site.appDomain}} address does not work: Cloudflare refuses a
+  The region is on your app's page. A CNAME to your {{site.appDomain}} address does not work: Cloudflare refuses a
   CNAME from your account into ours. Keep the cloud orange, too. With it grey,
   visitors reach us directly and see a certificate error.
 </p>
@@ -140,7 +149,7 @@
   <li><strong>The app deployed but shows an error.</strong> It is probably crashing at start. Live logs shows the traceback. Check that it binds <code>0.0.0.0</code> on the port in <code>PORT</code>, and that the variables it reads are set in Environment.</li>
   <li><strong>The first visit is slow.</strong> On Nap the app sleeps after {{policies.idleMinutes}} minutes idle and wakes on the next request in about {{policies.wakeMs}} milliseconds. Waking is usually faster than the page would have loaded anyway.</li>
   <li><strong>The database is unreachable.</strong> Use the connection string from the dashboard, not one you remembered from your laptop. It is loopback, so there is nothing to open in a firewall.</li>
-  <li><strong>My custom domain is not loading.</strong> Check that the domain's nameservers are Cloudflare's, that the A record matches the IPv4 address in your app's Domains section with the orange cloud on, and that SSL/TLS is set to Full. Then press Check in the Domains section. We do not sell domains, so the record stays with you.</li>
+  <li><strong>My custom domain is not loading.</strong> Check that the domain's nameservers are Cloudflare's, that it has an A record, not a CNAME, with the IPv4 address for your app's region from the table above and the orange cloud on, and that SSL/TLS is set to Full. Then press Check in the Domains section. We do not sell domains, so the record stays with you.</li>
   <li><strong>I need help.</strong> Write to <a href="mailto:{{company.email}}">{{company.email}}</a>. The person who replies is the person who built the platform.</li>
 </ul>
 

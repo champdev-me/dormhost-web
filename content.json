@@ -390,7 +390,7 @@
       },
       {
         "title": "Point your own domain at it",
-        "text": "In Domains, add the name, then add your domain to your own Cloudflare, add a proxied A record with the IPv4 address that section shows, set SSL/TLS to Full, and press Check. Your app answers on both addresses."
+        "text": "In Domains, add the name, then add your domain to your own Cloudflare, add a proxied A record (not a CNAME) pointing at your region's IPv4 address from the docs, set SSL/TLS to Full, and press Check. Your app answers on both addresses."
       },
       {
         "title": "Or run WordPress instead",
@@ -1110,6 +1110,7 @@
     "live": [
       {
         "id": "ap-south-1",
+        "ip": "141.148.195.180",
         "city": "Mumbai",
         "country": "India",
         "lat": 19.08,
@@ -1119,6 +1120,7 @@
       },
       {
         "id": "eu-west-2",
+        "ip": "130.162.166.132",
         "city": "London",
         "country": "United Kingdom",
         "lat": 51.51,
@@ -1128,6 +1130,7 @@
       },
       {
         "id": "us-east-1",
+        "ip": "129.158.209.179",
         "city": "Ashburn",
         "country": "United States",
         "lat": 39.04,
