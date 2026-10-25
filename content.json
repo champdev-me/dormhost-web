@@ -943,6 +943,7 @@
     {
       "month": "October 2026",
       "entries": [
+        "Custom domains: your app's Domains section now lists the exact Cloudflare records to add, with your server's IP, and the docs walk through it step by step. Point a proxied A record at that IP and set SSL/TLS to Full. A CNAME to your dormhost.app address does not work across Cloudflare accounts.",
         "Deploying an app that is off now turns it back on, whether you turned it off or we paused it after it kept crashing. It used to deploy and stay stopped. The Deploy button says so when your app is off.",
         "An app paused after crashing shows a Turn on button at the top of its page. It used to offer Turn off, on an app that was already stopped.",
         "Connecting GitHub has its own page, under GitHub in your account menu, with a proper button. It also notices when GitHub has stopped accepting our access and lets you reconnect.",
